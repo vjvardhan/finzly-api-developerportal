@@ -1,71 +1,63 @@
 training:
   - page: developer-portal/index.md
-  - group: Training exercises
+  - group: Finzly APIs
     expanded: true
     pages:
-      - label: Setup
-        page: developer-portal/setup.md
-      - label: Markdown
-        page: developer-portal/markdown.md
-      - label: Folder structure
-        page: developer-portal/awesome/folders.md
-      - label: Mermaid diagrams
-        page: developer-portal/mermaid.md
-      - label: Page table of contents
-        page: developer-portal/page-table-of-contents.md
-      - separator: This is a separator
-      - label: Sidebar navigation
-        page: developer-portal/sidebar-nav.md
-      - label: Search
-        page: developer-portal/search.md
-      - label: Top nav and footers
-        page: developer-portal/nav-footer.md
-      - label: Logo and favicon
-        page: developer-portal/logo.md
-      - label: Metadata
-        page: developer-portal/metadata.md
-      - label: Colors
-        page: developer-portal/colors.md
-      - label: Typography
-        page: developer-portal/typography.md
-      - label: Analytics
-        page: developer-portal/analytics.md
-      - label: Home page
-        page: developer-portal/home-page.md
-      - label: Adding API reference docs
-        page: developer-portal/oas-definitions.md
-      - label: Adding an API response to an MDX page
-        page: developer-portal/mdx.mdx
-      - label: Creating React components
-        page: developer-portal/custom-component.mdx
-  - group: Petstore reference
-    expanded: false
-    pages:
-      - page: openapi/reference.page.yaml/*
-
-  - group: Admin
-    expanded: true
-    pages:
-      - group: Routine
-        expanded: true
-        pages:
-          - group: Rock
-            expanded: true
-            pages:
-              - group: Paper
-                expanded: true
-                pages:
-                  - group: Scissors
-                    expanded: true
-                    pages:
-                      - group: 1-2-3
-                        expanded: true
-                        pages:
-                          - group: Go
-                            expanded: true
-                            pages:
-                              - label: Upgrading
-                                # page: developer-portal/upgrade.md
+       - label: Overview
+         page: developer-portal/Finzly-Api-overview.md
+       - group: Open Banking API v2.1.0
+         expanded: true
+         pages:
+            - label: Customer API
+              page: developer-portal/customer-api.md
+            - label: Customer Contacts
+              page: developer-portal/customer-contact-api.md
+            - label: Cusotmer Account
+              page: developer-portal/customer-account-api.md
+            - label: Payments
+              page: developer-portal/payments-api.md
+            - label : Positive Pay
+              page : developer-portal/positive-payment-api.md
+            - label : Foreign Exchange
+              page : developer-portal/foreign-exchange-api.md
+            - label : Bulk Payment
+              page : developer-portal/bulk-payment-api.md
+       
+       - group : User Admin
+         expand : true
+         pages:
+            - label: Applications
+              page: developer-portal/application-api.md
+            - label: Roles
+              page: developer-portal/roles-api.md
+            - label: Users
+              page : developer-portal/user-api.md 
+       - group : Payment Status Notification
+         expand : true
+         pages: 
+            - label: Payment Notificiation 
+              page: developer-portal/payment-notification-api.md
+  - group : Guides
+    expand : true
+    pages:      
+        - label: Technical Guides
+          page: developer-portal/technical-guides.md
+        - label: Use Cases
+          page: developer-portal/usecase.md
+  - label : Authentication
+    page: developer-portal/authentication.md
+  - label : Common Workflows
+    page: developer-portal/commonworkflow.md  
+  - label : Errors
+    page: developer-portal/errors.md
+  - label : Payment Networks
+    page: developer-portal/payment-networks.md      
+  - label : Webhooks
+    page: developer-portal/webhooks.md
+  - label : Frequently Asked Questions
+    page: developer-portal/faq.md
+  - label : Changelog & Feedback
+    page: developer-portal/changelog-feedback.md
 alternative:
   - page: developer-portal/sidebar-alternative.md
     label: Alternative sidebar example

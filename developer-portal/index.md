@@ -1,45 +1,77 @@
 ---
-title: Training program
+title: Finzly API Program Overview
 ---
 
-# Training program
+# Overview
+Finzly Connect is a universal payment API for developers to access all the payment rails without stressing over the network and messaging rules. Finzly Connects offers REST API and webhook notifications to access any Finzly-powered bank. Finzly has standardized the payment data and made the payment processing super simple, so a bank customer, whether a fintech, business or an individual, doesn't have to worry about the messaging rules. A developer can access ACH, Domestic Wires, International Wires, RTP, and FedNow using Finzly Connect and connect to their favorite Finzly Bank.
 
-This interactive training program is designed to help you understand how to create and edit content using Redocly's developer portal.
-It's a great companion to our [developer portal docs](https://docs.redoc.ly/developer-portal/introduction/).
+Finzly Connect offers instant payment access and notifications via simple REST API. It is designed to be simple to use and implement in any model computer language that allows you to generate web requests. It uses "REST-Like '' RPC-style operations with parameters URL encoded into the request, and its response is encoded in JSON. 
 
-Spend between an hour and a day playing with the most commonly utilized features.
+In this section, we will give a brief overview of the Finzly APIs: OpenBanking API, UserAdmin API and PaymentStatusNotifications API. We'll get as much information as possible from the PDF and add some unique content. 
 
-## Prerequisites
-- Basic Git and markdown knowledge
-- Node and yarn installed
-- A text editor or IDE (we like VS Code)
-- [Setup the developer portal](setup.md)
+This page will also have a menu, as shown below. Using this menu, readers can easily access a specific section of the API documentation.
 
-## Training exercises
 
-Follow the training exercises sequentially.
-Or cherry-pick them independently if you're limited on time.
+# <span>Finzly APIs</span>
+<div class="box">
 
-- [Plain markdown pages](markdown.md)
-- [Changing the url paths](awesome/folders.md)
-- [Markdown with a mermaid diagram](mermaid.md)
-- [The page table of contents](page-table-of-contents.md)
-- [Adding a page to the sidebar navigation](sidebar-nav.md)
-- [Disabling the search box](search.md)
-- [Changing nav and footer links](nav-footer.md)
-- [Change your logo](logo.md)
-- [Change metadata](metadata.md)
-- [Change your colors](colors.md)
-- [Change your typography](typography.md)
-- [Enable Google Analytics](analytics.md)
-- [Modify the homepage](home-page.md)
-- [Modify the OAS definitions](oas-definitions.md)
-- [Adding a response object to an MDX page](mdx.mdx)
-- [Upgrade to a different version of the developer portal](upgrade.md)
+__[Learn About Finzly APIs](Finzly-Api-overview.md)__
+</div>
 
-Upon completion, you may have questions, or you may be ready to start building your content out.
-Learn how to [deploy the developer portal](https://docs.redoc.ly/ci-cd-workflows/) to our global CDN or contact us about purchasing an enterprise license key.
+# <span>Guides</span>
+<div class="box">
 
-## Asking for help
+__[Check out the guides on how to use Finzly APIs](technical-guides.md)__
+</div>
 
-Don't be shy... we're here to help.
+# <span>Authentication</span>
+<div class="box">
+
+__[Create an API access token and authenticate your API requests](authentication.md)__
+</div>
+
+# <span>Common Workflows</span> 
+<div class="box">
+
+__[Learn about common workflows](index.md)__
+</div>
+
+# <span>Error</span>
+<div class="box">
+
+__[Learn about API errors, how they’re structured and how to handle them. ](index.md)__
+</div>
+
+# <span>Payment Networks</span>
+<div class="box">
+
+__[Find out the different payment networks Finzly APIs support ](payment-notification-api.md)__
+</div>
+
+# <span>Webhooks</span>
+<div class="box">
+
+__[Learn how to set up a webhook](webhooks.md)__
+</div>
+
+# <span>Frequently Asked  Question</span>
+<div class="box">
+
+__[Check out the frequently asked questions related to Finzly APIs](faq.md)__
+</div>
+
+# <span>Changelog & Feedback</span>
+<div class="main">
+<div class="box">
+
+__[Find out about what changed with the API](faq.md)__
+</div>
+
+<div class="box">
+
+__Feedback__
+
+__[Share your feedback to improve the API and ensure it fits your needs. Feel free to send your queries & feedback to conenct@finzly.com](index.md)__
+
+</div>
+</div>
