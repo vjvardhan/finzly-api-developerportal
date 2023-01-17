@@ -1,0 +1,36 @@
+.fZMdKK , .NGfdO , .cmvlLP , .BMryA , th{
+    background: linear-gradient(156.86deg,#004596 12.77%,#002e88 82.4%) !important;
+}
+
+.gbwUkf p{
+    font-size:20px;
+}
+.box{
+    border:1px solid lightgrey;border-radius:5px;
+    width:30%;text-align:center;
+    font-size:25px;
+    padding:20px 10px;
+    margin-bottom:30px;
+}
+.box p{margin:0;}
+.box p a{line-height:36px;}
+h1 span{
+    color:black;
+}
+.main{
+    display:flex;
+    align-items:stretch;
+}
+.main .box{
+    width:100%;
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.main .box p{
+    padding-bottom:20px;
+}   
+ol li{
+    font-size:20px;
+}

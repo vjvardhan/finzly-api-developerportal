@@ -1,5 +1,5 @@
 meta:
-  title: Redocly Training
+  title: Finzly API  Training
   description: The best API documentation generator ever.
   siteUrl: https://developer-portal-starter.redoc.ly
   keywords: redocly developer portal, api portal starter, api reference docs
@@ -10,13 +10,14 @@ linkChecker:
     CheckExternal: false
 logo:
   image: ./images/logo.png
-  altText: Redocly Training
+  altText: Finzly API 
 toc:
   enable: true
 oasDefinitions:
   petstore: ./openapi/petstore.yaml
   # add links to definitions in our API registry by using a fully qualified URL.
 stylesheets:
+  - ./css/style.css
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
 #analytics:
@@ -31,7 +32,7 @@ nav:
     page: developer-portal/index.md
 
   - label: External docs
-    icon: ./images/redocly-icon-white.png
+    icon: ./images/logo.png
     href: https://redoc.ly/docs/developer-portal/introduction/
 
   - search: true
