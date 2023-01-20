@@ -1,9 +1,14 @@
 .fZMdKK , .NGfdO , .cmvlLP , .BMryA , th{
-    background: linear-gradient(156.86deg,#004596 12.77%,#002e88 82.4%) !important;
+    background: #002E88 !important;
 }
-
+body{
+    background-color:#D5E6FC;
+}
 .gbwUkf p{
     font-size:20px;
+}
+.hvXhgD{
+    font-size: 30px !important;
 }
 .box{
     border:1px solid lightgrey;border-radius:5px;
@@ -11,12 +16,55 @@
     font-size:25px;
     padding:20px 10px;
     margin-bottom:30px;
+    box-shadow:2px 2px 2px white;   
+}
+
+.main-sub{
+    display: flex;
+    align-items:stretch;
+}
+
+.sub{
+    border:0px solid grey;
+    border-radius:10px;
+    padding:10px 25px;
+    margin:20px;
+    width:50%;
+    background-color: white;
+    text-align: center;
+    box-shadow: 1px 5px 20px #0000000d;
+}
+.sub .box{
+    width:100%;
+}
+
+.cSOVya{
+    border-top:1px solid black !important;
+    color:#D5E6FC !important;
+    line-height: 0px !important;
+    width:100% !important;
+    padding:0px !important;
+    margin-left: 0px !important;
+} 
+.lcljdh{
+    background-color: #002E88 !important;  
+}
+.ieiETB h2{
+    margin-bottom: 1em !important;
+}
+.lcljdh h3{
+    color:white;
+}
+.lcljdh span{
+    color:white;
 }
 .box p{margin:0;}
 .box p a{line-height:36px;}
+
 h1 span{
     color:black;
 }
+
 .main{
     display:flex;
     align-items:stretch;

@@ -1,0 +1,5641 @@
+openapi: 3.0.0
+info:
+  title: Open Banking API
+  description: |
+    Finzly provides a modular platform that enables businesses, developers and fintechs to consume our APIs directly, through banks or embed them into their products. 
+
+    Launching financial products and services is through a simple, single API integration into our FinzlyOS platform.
+
+    Our API consists of modern RESTful messages to connect and communicate with our FinzlyOS platform. For every message, the platform returns a REST response.
+
+    Webhooks are sent in response to third-party actions.
+  termsOfService: https://finzly.com/terms/
+  contact:
+    name: support@finzly.com
+    url: https://finzly.com
+    email: support@finzly.com
+  license:
+    name: Commercial Finzly License
+    url: https://finzly.com
+  version: 2.2.0
+externalDocs:
+  description: User Guide
+  url: https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnect-OpenBankingAPI-UserGuide_v2.2.0.pdf?1223FOUSHA12es
+servers:
+  - url: https://sandbox-digitalbanking-uat.finzly.io/api/openbanking
+    description: FinzlyConnect Open Banking APIs
+    variables:
+      tenant:
+        description: Tenant
+        default: sandbox
+      environment:
+        description: Environment
+        default: uat
+      dns:
+        description: DNS
+        default: finzly.io
+security:
+  - oAuth2:
+      - roles
+tags:
+  - name: Documentation
+    description: |
+
+      1. UserGuide -  https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnect-OpenBankingAPI-UserGuide_v2.2.0?1223FOUSHA1ac
+
+      2. Postman Collection - https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnectOpenBakingAPI-2.2.0.postman_collection.zip
+
+      3. Postman Environment - https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnect-UAT-SANDBOX.postman_environment.zip
+  - name: Customers
+    description: |
+      Customer APIs entitles the downstream partners, Banks and their associates to formally onboard clients with all the necessary information required to perform financial operations. 
+
+      These API's will further help to search & maintain these onboarded clients, update any changes in client information and create/update their beneficiaries (contacts).
+
+      Following use cases helps you to understand the current customer capabilities exposed via APIs
+
+      1. Create Customer
+      2. Update Customer
+      3. Search Customer
+      4. Get Customer By CustomerUID
+  - name: Customer Contacts
+    description: |
+      Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. 
+
+      Once the contacts are defined the template contact UID can be used in the payment APIs as a receiverAccountId. 
+
+      Following use cases helps you to understand the current customer contacts capabilities exposed via APIs
+
+      1. Create Customer Contact
+      2. Update Customer Contact
+      3. Search Customer Contacts
+      4. Get Customer Contact By ContactUID
+  - name: Customer Accounts
+    description: |
+      Customer Accounts APIs helps you can get all the accounts associated for your customer in a single call, you can enhance their experience by providing them most updated balance.
+
+      You can further add value by tracking payment transaction related to these individual accounts. 
+
+      Following use cases helps you to understand the current customer accounts capabilities exposed via APIs
+
+      1. Create Customer Account
+      2. Update Customer Account
+      3. Search Customer Accounts
+      4. Get Customer Account By AccountUID
+  - name: Payments
+    description: |
+      Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.
+
+      The single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.
+
+      Following use cases helps you to understand the current payment capabilities exposed via APIs.       
+
+      1. Initiate Credit Payment
+      2. Initiate Debit Payment
+      3. Get Payment ByUID
+      4. Search Payments
+      5. Cancel Payment
+      6. Return Payment
+      7. Reverse Payment
+      8. Book Transfer
+  - name: Positive Pay
+    description: |
+      Payments Postive Pay has two sets of APIs.
+
+      Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules to monitor ACH debits, setup fedwire drawdown requests and "request for pay - RFP" rules for the instant payments.
+
+      Postive Pay Decision APIs are used to approve or reject the exceptions identified by the postive pay rules engine.
+  - name: Foreign Exchange
+    description: |
+      Foreign Exchange (forex or FX) is the trading of one currency for another.
+
+      For example, one can swap the U.S. dollar for the euro. 
+
+      Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
+
+        Following use cases helps you to understand the current FX capabilities exposed via APIs
+        
+        1. FX Quote
+        2. FX Quote Accept/Reject
+        3. Get Trade By ForexContractNo
+        4. Delete Trade By ForexContractNo
+paths:
+  /v2/customers:
+    get:
+      tags:
+        - Customers
+      summary: Search customers (v2)
+      description: Search customers using various customer parameters such as legal name, short name etc.
+      operationId: searchCustomersV2
+      parameters:
+        - name: legalName
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Full text search of full legal name
+        - name: customerType
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Search by type of customer such as Corporate, Consumer, Financial Institution, Downstream Partner and Processing Org
+        - name: shortName
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Search by Customer short name
+        - name: customerId
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Search by customerId
+        - name: status
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Search by status
+        - name: taxId
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Search by taxId
+        - name: achCompanyID
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Search by ach company Id
+        - name: page
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Which number of page of results to be returned
+            example: '1'
+        - name: limit
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            maximum: 1000
+            type: string
+            description: Total number of records to be returned for a given page
+            example: '100'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCustomersResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '402':
+          description: The parameters were valid but the request failed.
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '409':
+          description: The request conflicts with another request (perhaps due to using the same idempotent key).
+        '429':
+          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+        '500':
+          description: Something went wrong on back end.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCustomersResponse'
+    post:
+      tags:
+        - Customers
+      summary: Add customer (v2)
+      description: Create an customer to the finzly CRM system
+      operationId: createCustomerV2
+      requestBody:
+        description: Customer details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '402':
+          description: The parameters were valid but the request failed.
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '409':
+          description: The request conflicts with another request (perhaps due to using the same idempotent key).
+        '429':
+          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+        '500':
+          description: Something went wrong on back end.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Customer details with newly created ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
+  /v2/customers/{customerUID}:
+    get:
+      tags:
+        - Customers
+      summary: Get customer (v2)
+      description: Retrieve the customer information from the system, using the unique identifier associated with the customer
+      operationId: getCustomerByCustomerUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer unique identifier associated with the customer in the Finzly's CRM system
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetCustomersResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '402':
+          description: The parameters were valid but the request failed.
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '409':
+          description: The request conflicts with another request (perhaps due to using the same idempotent key).
+        '429':
+          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+        '500':
+          description: Something went wrong on back end.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCustomersResponse'
+    put:
+      tags:
+        - Customers
+      summary: Update customer (v2)
+      description: Update an existing customer information
+      operationId: updateCustomerByCustomerUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer unique identifier associated with the customer in the Finzly's CRM system
+      requestBody:
+        description: Customer details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerRequest'
+        required: true
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '402':
+          description: The parameters were valid but the request failed.
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '409':
+          description: The request conflicts with another request (perhaps due to using the same idempotent key).
+        '429':
+          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+        '500':
+          description: Something went wrong on back end.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Customer details with newly created ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
+  /v2/customers/{customerUID}/contacts:
+    get:
+      tags:
+        - Customer Contacts
+      summary: Search customer contacts (v2)
+      description: Search customer contacts using various parameters
+      operationId: searchCustomerContactsV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Unique Customer Id
+        - name: contactName
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Contact name
+        - name: accountNumber
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Contact Account Number
+        - name: page
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Which page of results are to be returned
+        - name: limit
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            maximum: 1000
+            type: string
+            description: How many records are returned in the result set
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchCustomerContactResponse'
+    post:
+      tags:
+        - Customer Contacts
+      summary: Create customer contact (v2)
+      description: Create a new contact for the  existing customer
+      operationId: createCustomerContactV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Unique Customer Id
+      requestBody:
+        description: Account Info
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerContact'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCustomerContactResponse'
+  /v2/customers/{customerUID}/contacts/{contactUID}:
+    get:
+      tags:
+        - Customer Contacts
+      summary: Get customer contact (v2)
+      description: Retrieve customer contact details.
+      operationId: getCustomerContactByUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer unique id in finzly system
+        - name: contactUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Contact unique id in finzly system
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCustomerContactResponse'
+    put:
+      tags:
+        - Customer Contacts
+      summary: Update customer contact (v2)
+      description: Update customer contact details.
+      operationId: updateCustomerContactByUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer unique id in finzly system
+        - name: contactUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Contact unique id in finzly system
+      requestBody:
+        description: Account Info
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerContact'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCustomerContactResponse'
+  /v2/customers/{customerUID}/accounts:
+    get:
+      tags:
+        - Customer Accounts
+      summary: Search Customer Accounts (v2)
+      description: Search the customer accounts using various account parameters.
+      operationId: searchCustomerAccountsV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer unique identifier assigned by the system
+        - name: accountType
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Type of account
+            example: Saving or Checking
+        - name: status
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Status if the account
+            example: Active or Inactive
+        - name: currency
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Currency of the account
+            example: USD
+        - name: wireEnabled
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: true or false
+        - name: accountNumber
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: 11223345
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchAccountResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchAccountResponse'
+    post:
+      tags:
+        - Customer Accounts
+      summary: Create customer account (v2)
+      description: Create an customer account.
+      operationId: createCustomerAccountV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            description: Unique Customer Id
+      requestBody:
+        description: Account Info
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateAccountResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateAccountResponse'
+  /v2/customers/{customerUID}/accounts/{accountUID}:
+    get:
+      tags:
+        - Customer Accounts
+      summary: Get customer account (v2)
+      description: Retrieve a customer account associated with customerUID and accountUID
+      operationId: getCustomerAccountByAccountUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer Id
+        - name: accountUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Account Id
+            example: Account UID
+        - name: includeAccountBalance
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+            description: Pass this as true if to pull in account balance as well, false otherwise
+        - name: page
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            description: Which page of results are to be returned
+        - name: limit
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            maximum: 1000
+            type: string
+            description: How many records are returned in the result set
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAccountResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAccountResponse'
+    put:
+      tags:
+        - Customer Accounts
+      summary: Update customer account (v2)
+      description: Update Customer Account
+      operationId: updateCustomerAccountByAccountUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer Id
+        - name: accountUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Account Id
+      requestBody:
+        description: Account Info
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAccountResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAccountResponse'
+    delete:
+      tags:
+        - Customer Accounts
+      summary: Delete customer account (v2)
+      description: Delete Customer Account
+      operationId: deleteCustomerAccountByAccountUIDV2
+      parameters:
+        - name: customerUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Customer Id
+        - name: accountUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Account Id
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAccountResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAccountResponse'
+  /v2/positivepay/rules/search:
+    post:
+      tags:
+        - Positive Pay
+      summary: Search PositivePay Rules (v2)
+      description: Search positive pay rules for the given criteria
+      operationId: searchPositivePayRules (V2)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPositivePayRuleRequest'
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayRuleResponse'
+  /v2/positivepay/rules:
+    put:
+      tags:
+        - Positive Pay
+      summary: Update PositivePay Rule (v2)
+      description: Update Positive Pay Rule
+      operationId: updateRulesV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositivePayRule'
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePositivePayRuleResponse'
+    post:
+      tags:
+        - Positive Pay
+      summary: Add PositivePay Rule (v2)
+      description: Add positive pay rule.
+      operationId: addPositiveRulesV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPositivePayRule'
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostPositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostPositivePayRuleResponse'
+  /v2/positivepay/rules/{ruleUID}:
+    get:
+      tags:
+        - Positive Pay
+      summary: Get PositivePay Rule By RuleUID (v2)
+      description: Get Positive Pay Rule
+      operationId: getPostivePayRuleV2
+      parameters:
+        - name: ruleUID
+          in: path
+          description: Positive Pay Rule unique id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: '11223'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPositivePayRuleUIDResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPositivePayRuleUIDResponse'
+    delete:
+      tags:
+        - Positive Pay
+      summary: Delete PositivePay Rule By RuleUID (v2)
+      description: Delete positive pay rule.
+      operationId: deleteRules
+      parameters:
+        - name: ruleUID
+          in: path
+          description: Positive Pay Rule Unique Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: number
+            format: int64
+            example: 1
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: delete positive rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePositivePayRuleResponse'
+  /v2/positivepay/rules/{ruleUID}/activate:
+    put:
+      tags:
+        - Positive Pay
+      summary: Activate PositivePay Rule (v2)
+      description: Activate positive pay rule
+      operationId: activateRulesV2
+      parameters:
+        - name: ruleUID
+          in: path
+          description: Positive Pay Rule Unique Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: activate positive rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+  /v2/positivepay/rules/{ruleUID}/suspend:
+    put:
+      tags:
+        - Positive Pay
+      summary: Suspend PositivePay Rule (v2)
+      description: Suspend positive pay rule.
+      operationId: suspendRulesV2
+      parameters:
+        - name: ruleUID
+          in: path
+          description: Positive Pay Rule Unique Id
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: suspend positive rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+  /v2/positivepay/exception/search:
+    post:
+      tags:
+        - Positive Pay
+      summary: Search PositivePay Exceptions (v2)
+      description: Return positive pay exceptions for a given criteria.
+      operationId: searchPositivePayExceptionsV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPositivePayDecisionRequest'
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayDecisionResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayDecisionResponse'
+  /v2/positivepay/exception/{exceptionUID}/approve:
+    put:
+      tags:
+        - Positive Pay
+      summary: Approve PositivePay Exception (v2)
+      description: Approve Positive Pay Exceptions
+      operationId: approveExceptionsV2
+      parameters:
+        - name: exceptionUID
+          in: path
+          description: A unique identifier associated with the positive pay rule exception
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+  /v2/positivepay/exception/{exceptionUID}/reject:
+    put:
+      tags:
+        - Positive Pay
+      summary: Reject Positive Pay Exception (v2)
+      description: Reject Positive Pay Exceptions
+      operationId: rejectExceptions
+      parameters:
+        - name: exceptionUID
+          in: path
+          description: A unique identifier associated with the positive pay exception
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+  /v2/positivepay/exception/approveall:
+    put:
+      tags:
+        - Positive Pay
+      summary: Approve All PositivePay Exceptions (v2)
+      description: Approve all positivepay exceptions via payment unique identifier
+      operationId: approveAllExceptionsV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproveAllPositivePayExceptionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PositivePayExceptionApproveAllResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositivePayExceptionApproveAllResponse'
+  /v3/payments/search:
+    post:
+      tags:
+        - Payments
+      summary: Search payments (v3)
+      description: Retrieve list of payments.
+      operationId: searchPaymentsV3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentSearch'
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaymentSearchResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaymentSearchResponse'
+  /v3/payments/creditrequest:
+    post:
+      tags:
+        - Payments
+      summary: Create a Credit Payment (v3)
+      description: |
+        Submit domestic or international one time or recurring payments
+      operationId: createCreditPaymentV3
+      requestBody:
+        description: Payment fields
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditPaymentRequest'
+        required: true
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: return payment response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+  /v3/payments/debitrequest:
+    post:
+      tags:
+        - Payments
+      summary: Create a Debit Payment (v3)
+      description: |
+        Submit domestic or international one time or recurring payments
+      operationId: createDebitPaymentV3
+      requestBody:
+        description: Payment fields
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DebitPaymentRequest'
+        required: true
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: return payment response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+  /v3/payments/booktransfer:
+    post:
+      tags:
+        - Payments
+      summary: Initiate a Book Transfer Request (v3)
+      description: Initiate Book Transfer
+      operationId: booktransfer
+      requestBody:
+        description: Payment fields
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookTransferRequest'
+        required: true
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookTransferResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: return payment response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookTransferResponse'
+  /v3/payments/{paymentUID}:
+    get:
+      tags:
+        - Payments
+      summary: Get Payment by paymentUID (v3)
+      description: Retrieve a payment using payment uid.
+      operationId: getPaymentByUIDV3
+      parameters:
+        - name: paymentUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Payment Unique Identifier
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPaymentResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPaymentResponse'
+  /v3/payments/{paymentUID}/cancel:
+    put:
+      tags:
+        - Payments
+      summary: Cancel Payment by paymentUID (v3)
+      description: Cancel a payment.
+      operationId: cancelPaymentV3
+      parameters:
+        - name: paymentUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Unique payment Id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelPaymentResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelPaymentResponse'
+  /v3/payments/{paymentUID}/return:
+    put:
+      tags:
+        - Payments
+      summary: Return a payment by paymentUID (v3)
+      description: Return a payment.
+      operationId: returnPaymentV3
+      parameters:
+        - name: paymentUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Payment Unique Identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnPaymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReturnPaymentResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReturnPaymentResponse'
+  /v3/payments/{paymentUID}/reverse:
+    put:
+      tags:
+        - Payments
+      summary: Reverse a payment by paymentUID (v3)
+      description: Reverse a payment.
+      operationId: reversePaymentV3
+      parameters:
+        - name: paymentUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Payment Unique Identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReversePaymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReturnPaymentResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReversePaymentResponse'
+  /v2/fx/quote:
+    post:
+      tags:
+        - Foreign Exchange
+      summary: Get FX Quote (v2)
+      description: Request quote for FX trade
+      operationId: getFXQuoteV2
+      requestBody:
+        description: Quote request attributes to get the quote for a given ccy pair
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FXQuoteRequest'
+        required: true
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXQuoteResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Response to the Get FX Quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXQuoteResponse'
+  /v2/fx/accept:
+    put:
+      tags:
+        - Foreign Exchange
+      summary: Accept FX Quote (v2)
+      description: Accept FX Quote using quoteUUID
+      operationId: acceptFXQuoteV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FXAcceptQuoteRequest'
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXAcceptQuoteResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: FX Quote acceptance response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXAcceptQuoteResponse'
+  /v2/fx/{quoteUUID}/reject:
+    put:
+      tags:
+        - Foreign Exchange
+      summary: Reject FX Quote (v2)
+      description: Reject FX Quote using quoteUUID
+      operationId: rejectFXQuoteV2
+      parameters:
+        - name: quoteUUID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: FX Quote universally unique identifier (UUID)
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXRejectQuoteResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: FX Quote rejection response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXRejectQuoteResponse'
+  /v2/fx/{forexContractNo}:
+    get:
+      tags:
+        - Foreign Exchange
+      summary: Get FX trade information (v2)
+      description: Get FX trade information using forexContractNo
+      operationId: getFXTradeInformationV2
+      parameters:
+        - name: forexContractNo
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: FX Contract Number
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXTradeInfoResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Response to the Get FXTrade request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXTradeInfoResponse'
+  /v2/fx/{forexContractNo}/cover:
+    get:
+      tags:
+        - Foreign Exchange
+      summary: Cover FX trade (v2)
+      description: Cover FX trade using the forexContractNo
+      operationId: coverFXTradeV2
+      parameters:
+        - name: forexContractNo
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: FX Contract Number
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXCoverTradeResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Response to the cover trade request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXCoverTradeResponse'
+  /v2/fx/{forexContractNo}/cancel:
+    delete:
+      tags:
+        - Foreign Exchange
+      summary: Cancel FX trade (v2)
+      description: Cancel FX Trade using forexContractNo
+      operationId: cancelFXTradeV2
+      parameters:
+        - name: forexContractNo
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: FX Contract Number
+      responses:
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXTradeCancelResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: FX Trade cancelation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FXTradeCancelResponse'
+  /bulkpayment/files/supportedFileType:
+    get:
+      tags:
+        - Bulk Payments
+      summary: This will give the list of supported files.
+      description: This will give the list of supported files.
+      operationId: getSupporedFileTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SuportedBulkTransactionTypes'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SuportedBulkTransactionTypes'
+  /bulkpayment/files/{fileNumber}:
+    get:
+      tags:
+        - Bulk Payments
+      summary: Get detials of bulk payment files.
+      description: Get detials of bulk payment files.
+      operationId: getBulkFilePaymentDetails
+      parameters:
+        - name: fileNumber
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: number
+            description: Bulk File Id
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BulkFile'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BulkFile'
+  /bulkpayment/files:
+    post:
+      tags:
+        - Bulk Payments
+      summary: Upload file for bulk payment
+      description: Upload file for bulk payment
+      operationId: uploadBulkFiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkFilesRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BulkFilesResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BulkFilesResponse'
+  /bulkpayment/files/search:
+    post:
+      tags:
+        - Bulk Payments
+      summary: Search all files based on Counter Party (and Payment Date criteria)
+      description: Search all files based on Counter Party (and Payment Date criteria)
+      operationId: getBulkFiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkFilesRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BulkFilesResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BulkFilesResponse'
+  /bulkpayment/files/{fileNumber}/approve:
+    put:
+      tags:
+        - Bulk Payments
+      summary: Approve Bulk Payment File.
+      description: Approve Bulk Payment File.
+      operationId: approveFile
+      parameters:
+        - name: fileNumber
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Unique file number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: fileNumber
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+  /bulkpayment/files/{fileNumber}/reject:
+    put:
+      tags:
+        - Bulk Payments
+      summary: Reject Bulk Payment File.
+      description: Reject Bulk Payment File.
+      operationId: rejectFile
+      parameters:
+        - name: fileNumber
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            description: Unique file number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+        default:
+          description: fileNumber
+          content:
+            application/json:
+              schema:
+                type: string
+                example: success
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          type: string
+          description: Error code assigned by the system
+          example: invalidMethod
+        description:
+          type: string
+          description: Error description to provide addtional details about the error code
+          example: Invalid HTTP method used
+    Pagination:
+      properties:
+        totalRecords:
+          type: number
+          description: Total number of records exist in the system for a given filter
+          format: integer
+          example: 100
+        returnedRecords:
+          type: number
+          description: Total number of records returned
+          format: integer
+          example: 10
+        pageReturned:
+          type: number
+          description: Current number of page returned
+          format: integer
+          example: 2
+        pageSize:
+          type: number
+          description: Total number of records in a given pages
+          format: integer
+          example: 10
+    AccountExternal:
+      properties:
+        externalProvider:
+          type: string
+          description: Identifier of the system of record
+          example: Plaid
+        externalId:
+          type: string
+          description: External account id
+          example: '1234567'
+        externalAuthToken:
+          type: string
+          description: External account auth token
+          example: '1234567'
+    Address:
+      properties:
+        addressLine1:
+          type: string
+          description: Address line 1
+          example: 111 My Street
+        addressLine2:
+          type: string
+          description: Address Line 2
+          example: Suite 210
+        city:
+          type: string
+          description: City
+          example: Charlotte
+        state:
+          type: string
+          description: State
+          example: North Carolina
+        postalCode:
+          type: string
+          description: Postal code
+          example: '28269'
+        countryCode:
+          type: string
+          description: ISO country code
+          example: USA
+    Approver:
+      properties:
+        approverId:
+          type: string
+          description: Id of the Approver
+          example: '12345'
+        approvedDate:
+          type: string
+          description: Date transaction was updated
+          format: dateTime
+          example: 3-3-2020
+    Audit:
+      properties:
+        submitterId:
+          type: string
+          description: User that submitted transaction
+          example: '1234567'
+        submissionDate:
+          type: string
+          description: Date transaction was submitted
+          format: dateTime
+          example: 3-3-2020
+        approvers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Approver'
+    Bank:
+      properties:
+        name:
+          type: string
+          description: Name of the bank. This is an optional field
+          example: XYZ Bank
+        bankIdType:
+          type: string
+          description: The bank unique identifier type. Use BY SWIFT for  international money transfer. Use BY NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.
+          example: By NID, BY ADDRESS, BY SWIFT
+          enum:
+            - By NID
+            - BY ADDRESS
+            - BY SWIFT
+        bankId:
+          type: string
+          description: Bank unique id or routing number or routing code. This is needed when the bankIdType is set to 'BY NID'
+          example: '023423'
+        swiftCode:
+          type: string
+          description: BIC Code. This is needed when the bankIdType is set to 'BY SWIFT'
+          example: USBNX000
+        countryCode:
+          type: string
+          description: Country Code in ISO format.
+          example: USA
+        address:
+          $ref: '#/components/schemas/Address'
+      description: The bank details is used to process the payment and it is required when the sender or receiver is not configured in the Finzly CRM system. Based on the bankIDType either bankId or swiftCode or address is needed.
+    Fee:
+      properties:
+        currency:
+          type: string
+          description: Fee Currency
+          example: USD
+        amount:
+          type: number
+          description: Fee amount
+          example: 10
+    Notification:
+      properties:
+        emailAddress:
+          type: string
+          example: me@gmail.com
+        phoneNumber:
+          type: string
+          example: 111223333 or 111-22-3333
+        message:
+          type: string
+          example: Payment to XXX
+    PaymentOccurrence:
+      properties:
+        frequency:
+          type: string
+          enum:
+            - Daily
+            - Weekly
+            - BiWeekly
+            - Monthly
+            - Quarterly
+            - SemiAnnual
+            - Yearly
+        startDate:
+          type: string
+          format: date
+          example: '2020-01-01'
+        payUntil:
+          type: string
+          enum:
+            - Cancelled
+            - EndDate
+            - NumberOfPayments
+        endDate:
+          type: string
+          description: This is applicable only if payUntil is EndDate
+          format: date
+          example: '2020-01-29'
+        numberOfPayments:
+          type: integer
+          description: This is applicable only if payUntil is NumberOfPayments
+          example: 10
+        status:
+          type: string
+          description: Payment occurence status
+          example: Active
+    FXQuoteRequest:
+      required:
+        - customerId
+        - customerIdType
+        - externalReferenceId
+        - productType
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).
+          example: REQ123 or 1274878
+        channel:
+          type: string
+          description: FX quote request origination source
+          example: ONLINE, FXDesk etc.
+        customerId:
+          type: string
+          description: The value based on the customerIdType
+          example: 112344 for DDA
+        customerIdType:
+          type: string
+          description: CustomerId type
+          example: CustomerUID, CustomerShortName,CustomerId, DDA
+          enum:
+            - CustomerUID
+            - CustomerShortName
+            - CustomerId
+            - DDA
+        sellCurrency:
+          type: string
+          description: Sell Currency
+          example: EUR
+        buyCurrency:
+          type: string
+          description: Buy Currency
+          example: INR
+        fundingAmount:
+          type: number
+          description: Funding Amount. Only one is needed between fundingAmount and transferAmount
+          example: 10000
+        transferAmount:
+          type: number
+          description: Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount
+          example: 1000
+        productType:
+          type: string
+          description: FX financial instrument such SPOT or FORWARD
+          example: SPOT or FORWARD
+          enum:
+            - SPOT
+            - FORWARD
+        tenor:
+          type: string
+          description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+          example: SPOT, ON, TN, nW, nM, nY where n is a number
+        valueDate:
+          type: string
+          description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate.The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+    FXQuoteResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: FXQUOTE001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: Failed to get a FX Quote due to the mandatory attribute <attribute-name> is not provide.
+        data:
+          $ref: '#/components/schemas/FXQuoteResponse_data'
+    FXAcceptQuoteRequest:
+      properties:
+        quoteUUID:
+          type: string
+          description: FX Quote universally unique identifier (UUID)
+          example: 123e4567-e89b-12d3-a456-426614174000
+        autoCover:
+          type: string
+          description: This is an optional field. It is needed if the auto cover is needed during the acceptance of FX quote.
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        autoCoverDelay:
+          type: integer
+          description: This is an optional field. It is required if the auto cover is set to Yes. For the FX quote associated with the consumer then the allowed autoCoverDelay is from 30 minutes to 120 minutes. For non-consumer the allowed autoCoverDelay is from 0 to 120 minutes.
+          example: 30
+    FXAcceptQuoteResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: FXQUOTE002 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to accept a quote: <failure reason>'
+        data:
+          $ref: '#/components/schemas/FXAcceptQuoteResponse_data'
+    FXRejectQuoteResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: FXQUOTE003 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to reject a quote: <failure reason>'
+        data:
+          $ref: '#/components/schemas/FXRejectQuoteResponse_data'
+    FXCoverTradeResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: FX001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to perform the cover trade: <failure reason>'
+        data:
+          $ref: '#/components/schemas/FXCoverTradeResponse_data'
+    FXTradeInfoResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: FX001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to get trade information: <failure reason>'
+        data:
+          $ref: '#/components/schemas/FXTradeInfoResponse_data'
+    FXTradeCancelResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: FX001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to cancel a trade: <failure reason>'
+        data:
+          $ref: '#/components/schemas/FXTradeCancelResponse_data'
+    PaymentSearch:
+      properties:
+        fromDate:
+          type: string
+          description: From date
+          format: date
+        toDate:
+          type: string
+          description: To date
+          format: date
+        currency:
+          type: string
+          description: Payment currency
+        minPaymentAmount:
+          type: number
+          description: Payment amount
+        maxPaymentAmount:
+          type: number
+          description: Payment amount
+        forexContractNo:
+          type: string
+          description: FX contract number
+        paymentType:
+          type: string
+          description: Payment type
+        receiverAccountNo:
+          type: string
+          description: Receiver account number
+        receiverName:
+          type: string
+          description: Receiver name
+        senderAccountNo:
+          type: string
+          description: Sender account number
+        sourceRefNo:
+          type: string
+          description: Payment external reference number
+        status:
+          type: string
+          description: Payment status
+        page:
+          type: integer
+          description: Which page of results are to be returned
+          example: 1
+        limit:
+          type: integer
+          description: How many records are returned in the result set
+          example: 10
+    Groups:
+      type: object
+      properties:
+        condition:
+          type: string
+          example: OR
+        type:
+          type: string
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Groups'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fields'
+    Fields:
+      type: object
+      properties:
+        id:
+          type: string
+          example: beneficiaryBankSWIFT
+        displayName:
+          type: string
+          example: Beneficiary Bank SWIFT
+        swiftCode:
+          type: string
+        swiftTag:
+          type: string
+        fieldLength:
+          type: integer
+    PaymentNoteOptionValueChildren:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PaymentNoteOptionValueChildren_data'
+    AdditionalInfoCreditPayment:
+      properties:
+        channel:
+          type: string
+          description: The payment origination system such as API, TELLER etc.
+          example: API, TELLER etc.
+        requestMethod:
+          type: string
+          description: Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
+          example: WALK-IN, PHONE-IN etc.
+        detailsOfCharges:
+          type: string
+          description: who pays the payment charges
+          example: OUR, BEN, or SHA
+        secCode:
+          type: string
+          description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction
+          example: CCD, PPD etc.
+        transactionTypeCode:
+          type: string
+          description: This is an optional field. This is a secondary SEC code can be set when the sec code is set to IAT.
+          example: ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc.
+        receiverIdentificationNumber:
+          type: string
+          description: This is an optional field. This is Receiver’s DFI Identification Number can be set when the sec code is set to IAT
+          example: 12334356 etc.
+        fullAmount:
+          type: number
+          description: Full payment amount and applicable for request for payment (RFP) request.
+          example: 100
+        discountAmount:
+          type: number
+          description: Discounted amount and applicable for request for payment (RFP) request.
+          example: 100
+        discountExpiryDateTime:
+          type: string
+          description: Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.
+          format: date-time
+          example: '2022-01-01T17:32:25Z'
+        fxContractNumber:
+          type: string
+          description: Unique identifier associated with the FX trade applicable for the international payment
+          example: 111234 etc.
+        originatortoBeneficiary:
+          type: string
+          description: Any additional information to be provided to the wire recipient. This is an optional field
+          example: Notes
+        senderToReceiverNotes:
+          type: string
+          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field
+          example: Notes
+        remittanceMethod:
+          type: string
+          description: This is applicable for the RTP payment. This is an optional field
+          example: EMAIL or URID
+          enum:
+            - EMAIL
+            - URID
+        paymentRemittanceNotes:
+          type: string
+          description: This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field
+          example: Remittance Notes
+        localInstruments:
+          type: string
+          description: Local instrument code applicable for the CTP fedwire payment or RTP payment
+          example: COVS, ANSI, STANDARD, ZELLE etc.
+          enum:
+            - COVS
+            - ANSI
+            - GXML
+            - IXML
+            - NARR
+            - S820
+            - SWIF
+            - UEDI
+            - RRMT
+            - PROP
+            - STANDARD
+            - ZELLE
+            - INTERMEDIARY
+            - FOREIGN_AFFILIATE
+        referenceForBeneficiary:
+          type: string
+          description: This is applicable for the fedwire payment where the local instrument set to COVS. This specifies the reference details for the beneficiary.
+          example: Notes
+        unstructuredAddendaInfo:
+          $ref: '#/components/schemas/AdditionalInfoCreditPayment_unstructuredAddendaInfo'
+        proprietaryCode:
+          type: string
+          description: This is applicable for the fedwire payment where the local instrument set to PROP
+    AdditionalInfoDebitPayment:
+      properties:
+        channel:
+          type: string
+          description: The payment origination system such as API, TELLER etc.
+          example: API, TELLER etc.
+        requestMethod:
+          type: string
+          description: Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
+          example: WALK-IN, PHONE-IN etc.
+        detailsOfCharges:
+          type: string
+          description: who pays the payment charges
+          example: OUR, BEN, or SHA
+        secCode:
+          type: string
+          description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction
+          example: CCD, PPD etc.
+        transactionTypeCode:
+          type: string
+          description: This is an optional field. This is a secondary SEC code can be set when the sec code is set to IAT.
+          example: ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc.
+        receiverIdentificationNumber:
+          type: string
+          description: This is an optional field. This is Receiver’s DFI Identification Number can be set when the sec code is set to IAT
+          example: 12334356 etc.
+        fullAmount:
+          type: number
+          description: Full payment amount and applicable for request for payment (RFP) request.
+          example: 100
+        discountAmount:
+          type: number
+          description: Discounted amount and applicable for request for payment (RFP) request.
+          example: 100
+        discountExpiryDateTime:
+          type: string
+          description: Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.
+          format: date-time
+          example: '2022-01-01T17:32:25Z'
+        fxContractNumber:
+          type: string
+          description: Unique identifier associated with the FX trade applicable for the international payment
+          example: 111234 etc.
+        originatortoBeneficiary:
+          type: string
+          description: Any additional information to be provided to the wire recipient. This is an optional field
+          example: Notes
+        senderToReceiverNotes:
+          type: string
+          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field
+          example: Notes
+        paymentRemittanceNotes:
+          type: string
+          description: This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field
+          example: Remittance Notes
+    BookTransferSender:
+      properties:
+        accountUID:
+          type: string
+          description: Sender account unique identifier
+          example: '123452334'
+        accountNumber:
+          type: string
+          description: Sender account number
+          example: 123452334 etc.
+        accountType:
+          type: string
+          description: Account type
+          example: DDA or GL
+          enum:
+            - DDA
+            - GL
+        currency:
+          type: string
+          description: Sender Currency
+          example: USD
+    BookTransferReceiver:
+      properties:
+        accountUID:
+          type: string
+          description: Sender account unique identifier
+          example: '123452334'
+        accountNumber:
+          type: string
+          description: Sender account number
+          example: 123452334 etc.
+        accountType:
+          type: string
+          description: Account type
+          example: DDA or GL
+          enum:
+            - DDA
+            - GL
+        currency:
+          type: string
+          description: Sender Currency
+          example: USD
+    PaymentSender:
+      properties:
+        accountUID:
+          type: string
+          description: Sender account unique identifier
+          example: '123452334'
+        achCompanyID:
+          type: string
+          description: ACH company/origination id is a 10-digit identifier used by bank and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: '122334789'
+        accountNumber:
+          type: string
+          description: Sender bank account number from where the money will be withdrawn
+          example: 123452334 etc.
+        accountType:
+          type: string
+          description: Account type
+          example: Deposit, GL or MCA
+          enum:
+            - Deposit
+            - GL
+            - MCA
+        subAccountType:
+          type: string
+          description: Sub type of the account whether Checking or Savings
+          example: Checking or Savings
+          enum:
+            - Checking
+            - Savings
+        name:
+          type: string
+          description: Name associated with the account
+          example: Customer account
+        entityType:
+          type: string
+          description: Type of the entity
+          example: Consumer or Corporate
+          enum:
+            - Consumer
+            - Corporate
+        address:
+          $ref: '#/components/schemas/Address'
+        bankIdType:
+          type: string
+          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or BIC. BIC stands for Bank Identifier Code. It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
+          example: NID or BIC
+          enum:
+            - NID
+            - BIC
+        bankId:
+          type: string
+          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or BIC code as per the bankIdType.
+          example: 101206101 or FBOLUS6LXXX
+        phone:
+          type: string
+          description: Phone number associated with the sender
+          example: '18001236754'
+        email:
+          type: string
+          description: Email associated with the sender
+          example: email@domain.com
+        swiftTag:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
+        swiftNote:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
+    PaymentReceiver:
+      properties:
+        accountUID:
+          type: string
+          description: Receiver account unique indentifier exist in the FinzlyOS system
+          example: '12334989'
+        accountNumber:
+          type: string
+          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc.
+          example: '123422434'
+        accountType:
+          type: string
+          description: Account type
+          example: Deposit
+          enum:
+            - Deposit
+        subAccountType:
+          type: string
+          description: Sub type of the account whether Checking or Savings
+          example: Checking, Savings
+        name:
+          type: string
+          description: Name associated with the account
+          example: XYZ Name
+        address:
+          $ref: '#/components/schemas/Address'
+        phone:
+          type: string
+          description: Phone number associated with the receiver
+          example: '18001236754'
+        email:
+          type: string
+          description: Email associated with the receiver
+          example: email@domain.com
+        bank:
+          $ref: '#/components/schemas/Bank'
+        intermediaryBank:
+          $ref: '#/components/schemas/Bank'
+        swiftTag:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
+        swiftNote:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
+    SearchPositivePayDecisionRequest:
+      properties:
+        paymentUID:
+          type: string
+          description: A unique identifier associated with the payment
+          example: '112233'
+        customerUID:
+          type: string
+          description: Customer unique identifier associated with the customer in the Finzly's CRM system
+          example: '112233'
+        customerName:
+          type: string
+          description: Customer name associated with the payment positive rule
+          example: ABC Company
+        customerAccountNumber:
+          type: string
+          description: Bank Account Number
+          example: '12387878'
+        decisionDateTime:
+          type: string
+          description: Decision date and time in (EST)
+          format: date
+        amount:
+          type: number
+          description: Payment amount
+          example: 10
+        positivePayDecisionStatus:
+          type: string
+          description: Decision status
+          example: PENDING, APPROVED, REJECTED etc.
+        secCode:
+          type: string
+          description: SEC code associated with the ACH postive rule
+          example: CCD, PPD etc.
+    SearchPositivePayDecisionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PPD001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to get the positive pay exception information: <Failure Reason>.'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositivePayExceptionDecision'
+    PositivePayExceptionDecision:
+      properties:
+        exceptionUID:
+          type: string
+          description: Unique identifier associated with positive pay exception
+        paymentUID:
+          type: string
+          description: Unique identifier associated with payment
+          example: '100100'
+        paymentRuleType:
+          type: string
+          description: Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.
+          example: ACH, FEDWIRE, RFP
+        amount:
+          type: number
+          description: Payment Amounnt
+          format: int64
+          example: 123456789
+        achCompanyID:
+          type: number
+          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: 122334789
+        customerAccountNumber:
+          type: string
+          description: Bank Account Number
+          example: '12387878'
+        beneName:
+          type: string
+          description: A beneficiary is the person or entity that will receive the payment
+          example: XYZ Name
+        exceptionReason:
+          type: string
+          description: Reason for the positive pay exception
+          example: Amount Mismatch
+        exceptionDateTime:
+          type: string
+          description: Decision date and time in (EST)
+          format: date
+        expiryDateTime:
+          type: string
+          description: Positive Pay Rule Exception expiry date time in (EST)
+          format: date
+        positivePayDecisionStatus:
+          type: string
+          description: Decision status
+        secCode:
+          type: string
+          example: CCD, PPD etc.
+        approvedBy:
+          type: string
+          description: User who approved the exception
+          example: user001
+        approvedDate:
+          type: string
+          description: Approval date and time in (EST)
+          format: date
+    ActivatePositivePayExceptionResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PPD001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to activate or suspend a positive pay exception: <Failure Reason>.'
+        exceptionUID:
+          type: number
+          description: Unique identifier associated with positive pay exception
+          format: int64
+          example: 123456789
+    PositivePayExceptionApproveAllResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PPD001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to approve all positive pay rule exception: <Failure Reason>.'
+    SearchPositivePayRuleRequest:
+      properties:
+        companyBankId:
+          type: string
+          description: Bank unique id or routing number that is used to identify a specific bank
+          example: '12345678'
+        companyName:
+          type: string
+          description: The name of the company or entity that originated the payment request
+          example: XYZ Name
+        companyBankName:
+          type: string
+          description: Bank name where the company account is held.
+          example: XYZ Bank
+        companyAccountNumber:
+          type: string
+          description: A company bank account number
+          example: '12345678'
+        amount:
+          type: number
+          description: Payment amount
+          example: 10
+        customerName:
+          type: string
+          description: Name of the customer who created the positive rule
+        customerAccountNumber:
+          type: string
+          description: Customer bank account number on which the positive rule is defined.
+          example: '12387878'
+        effectiveDate:
+          type: string
+          description: Rule effective date in mm-dd-yyyy format
+          format: date
+          example: '0016-07-14'
+        expiryDate:
+          type: string
+          description: Rule expiration date in mm-dd-yyyy format
+          format: date
+          example: '0016-07-14'
+        status:
+          type: string
+          description: Current state of the rule whether Active or Expired etc.
+          example: Active or Expired
+    SearchPositivePayRuleResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PP001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to get positive rules: <Reason>'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositivePayRule'
+    GetPositivePayRuleUIDResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PP001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to get positive rule: <Reason>'
+        data:
+          $ref: '#/components/schemas/PositivePayRule'
+    UpdatePositivePayRuleResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PP001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to update a positive rule: <Failure Reason>.'
+        ruleUID:
+          type: number
+          description: Positive rule unique id
+          format: int64
+          example: 123456789
+    PostPositivePayRuleResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PP001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to add a positive rule: <Failure Reason>.'
+        ruleUID:
+          type: number
+          description: Positive rule unique id
+          format: int64
+          example: 123456789
+    DeletePositivePayRuleResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PP001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to delete a positive rule: <Failure Reason>.'
+        ruleUID:
+          type: number
+          description: Positive rule unique id
+          format: int64
+          example: 123456789
+    ActivatePositivePayRuleResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: PP001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: 'Failed to activate or suspend a positive rule: <Failure Reason>.'
+        ruleUID:
+          type: number
+          description: Positive rule unique id
+          format: int64
+          example: 123456789
+    PositivePayRule:
+      type: object
+      properties:
+        ruleUID:
+          type: number
+          description: Positive rule unique reference id
+          format: int64
+          example: 123456789
+        paymentRuleType:
+          type: string
+          description: Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.
+          example: ACH, FEDWIRE, RFP
+        customerName:
+          type: string
+          description: Customer name associated with the payment positive rule
+          example: ABC Company
+        customerAccountNumber:
+          type: string
+          description: Bank Account Number
+          example: '12387878'
+        achCompanyID:
+          type: number
+          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: 122334789
+        beneBankId:
+          type: string
+          description: Bank unique id that is used to identify a specific bank
+          example: '12345678'
+        beneName:
+          type: string
+          description: A beneficiary is the person or entity that will receive the payment
+          example: XYZ Name
+        beneBankName:
+          type: string
+          description: Beneficiary bank name
+          example: Bank Name
+        beneAccountNumber:
+          type: string
+          description: A beneficiary bank account number
+          example: '12345678'
+        amount:
+          type: number
+          description: Payment amount
+          example: 10
+        currency:
+          type: string
+          description: Currency Code
+          example: USD
+          default: USD
+        amountType:
+          type: string
+          description: Type of amount associated with the postive pay rule.
+          example: Exact or Maximum
+        frequency:
+          type: string
+          description: Positive pay rule frequency
+          example: Onetime, Weekly etc.
+        secCode:
+          type: string
+          description: SEC code associated with the ACH postive rule
+          example: CCD, PPD etc.
+        status:
+          type: string
+          description: Current state of the rule whether Active or Expired etc.
+          example: Active, Expired
+        effectiveDate:
+          type: string
+          description: Rule effective date in mm-dd-yyyy format
+          format: date
+          example: '0016-07-14'
+        expiryDate:
+          type: string
+          description: Rule effective date in mm-dd-yyyy format
+          format: date
+          example: '0016-07-14'
+    AddPositivePayRule:
+      type: object
+      properties:
+        paymentRuleType:
+          type: string
+          description: Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.
+          example: ACH, FEDWIRE, RFP
+        customerName:
+          type: string
+          description: Customer name associated with the payment positive rule
+          example: ABC Company
+        customerAccountNumber:
+          type: string
+          description: Bank Account Number
+          example: '12387878'
+        achCompanyID:
+          type: number
+          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: 1234567899
+        beneBankId:
+          type: string
+          description: Bank unique id that is used to identify a specific bank
+          example: '12345678'
+        beneName:
+          type: string
+          description: A beneficiary is the person or entity that will receive the payment
+          example: XYZ Name
+        beneBankName:
+          type: string
+          description: Beneficiary bank name
+          example: Bank Name
+        beneAccountNumber:
+          type: string
+          description: A beneficiary bank account number
+          example: '12345678'
+        amount:
+          type: number
+          description: Payment amount
+          example: 10
+        currency:
+          type: string
+          description: Currency Code
+          example: USD
+        amountType:
+          type: string
+          description: Type of amount associated with the postive pay rule.
+          example: Exact or Maximum
+        frequency:
+          type: string
+          description: Positive pay rule frequency
+          example: Onetime, Weekly etc.
+        secCode:
+          type: string
+          description: SEC code associated with the ACH postive rule
+          example: CCD, PPD etc.
+        effectiveDate:
+          type: string
+          description: Rule effective date in mm-dd-yyyy format
+          format: date
+          example: '0016-07-14'
+        expiryDate:
+          type: string
+          description: Rule effective date in mm-dd-yyyy format
+          format: date
+          example: '0016-07-14'
+    ApproveAllPositivePayExceptionRequest:
+      properties:
+        paymentUID:
+          type: array
+          items:
+            type: string
+            description: A unique identifier associated with the payment requires decision.
+            example: '[112233,132311]'
+    BulkFilesRequest:
+      properties:
+        customerId:
+          type: string
+          description: Id of the customer who the filesbulk upload files belongs to
+        paymentDateStart:
+          type: string
+          description: Date that specifies Payment Date range start
+        paymentDateEnd:
+          type: string
+          description: Date that specifies Payment Date range start
+        errors:
+          $ref: '#/components/schemas/Error'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BulkFilesResponse:
+      properties:
+        bulkUploadedFiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkFile'
+        errors:
+          $ref: '#/components/schemas/Error'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BulkfileActions:
+      properties:
+        id:
+          type: string
+          example: Approved or Rejected etc
+        displayName:
+          type: string
+          example: APPROVED / REJECTED etc
+        errors:
+          $ref: '#/components/schemas/Error'
+    BulkFile:
+      properties:
+        fileNumber:
+          type: integer
+        fileName:
+          type: string
+        fileDateTime:
+          type: string
+          format: dateTime
+        fileStatus:
+          type: string
+        fileType:
+          type: string
+        totalDebit:
+          type: number
+          format: double
+        totalCredit:
+          type: number
+          format: double
+        totalPayments:
+          type: number
+          format: integer
+        validPayments:
+          type: number
+          format: integer
+        errorPayments:
+          type: number
+          format: integer
+        creditMemoPostStatus:
+          type: string
+        debitMemoPostStatus:
+          type: string
+        counterparty:
+          type: string
+        counterpartyId:
+          type: integer
+        paymentDate:
+          type: string
+          description: Payment date in mm/dd/yyyy format
+          format: date
+        channel:
+          type: string
+        possibleUserAction:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkfileActions'
+        paymentBatches:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkPaymentBatches'
+        messages:
+          $ref: '#/components/schemas/BulkFile_messages'
+        errors:
+          $ref: '#/components/schemas/Error'
+    BulkPaymentBatches:
+      properties:
+        batchId:
+          type: string
+        totalBatchDebit:
+          type: number
+          format: double
+        totalBatchCredit:
+          type: number
+          format: double
+        batchCurrency:
+          type: string
+        secCode:
+          type: string
+          example: PPD, CCD etc
+        status:
+          type: string
+          example: VALIDATED or ERROR
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkTransaction'
+    UploadMessages:
+      properties:
+        bulkFileId:
+          type: integer
+        fileNumber:
+          type: integer
+        validationCode:
+          type: string
+        displayMessage:
+          type: string
+        validationType:
+          type: string
+        creationDateTime:
+          type: string
+          format: datetime
+        approvedBy:
+          type: string
+        approvedDateTime:
+          type: string
+          format: datetime
+    BulkTransaction:
+      properties:
+        paymentId:
+          type: number
+        transactionType:
+          type: string
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        deliveryMethod:
+          type: string
+          example: ACH
+        createdBy:
+          type: string
+        paymentType:
+          type: string
+        paymentDate:
+          type: string
+          description: Payment date in mm/dd/yyyy format
+          format: date
+        paymentStatus:
+          type: string
+        settlementDate:
+          type: string
+          description: Settlement date in mm/dd/yyyy format
+          format: date
+        lastUpdatedBy:
+          type: string
+        creationDateTime:
+          type: string
+          format: datetime
+        lastUpdatedTime:
+          type: string
+          format: datetime
+        receiverName:
+          type: string
+        receiverAccountNumber:
+          type: string
+        senderAccountNumber:
+          type: string
+    SuportedBulkTransactionTypes:
+      properties:
+        trasactionTypesList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuportedBulkTransactionType'
+        errors:
+          $ref: '#/components/schemas/Error'
+    SuportedBulkTransactionType:
+      properties:
+        trasactionType:
+          type: string
+          description: Type of the transaction
+          example: NACHA, FEDWIRE, FINZLY-CSV
+        fileType:
+          type: string
+          description: Type of the file
+          example: .csv or .txt etc
+    CustomerAddress:
+      required:
+        - addressLine1
+        - city
+        - countryCode
+        - postalCode
+      properties:
+        addressLine1:
+          type: string
+          description: Address line 1
+          example: 111 My Street
+        addressLine2:
+          type: string
+          description: Address Line 2
+          example: Suite 210
+        city:
+          type: string
+          description: City
+          example: Charlotte
+        state:
+          type: string
+          description: State
+          example: North Carolina
+        postalCode:
+          type: string
+          description: Postal code
+          example: '28269'
+        countryCode:
+          type: string
+          description: ISO country code
+          example: USA
+        country:
+          type: string
+          description: Country name
+          example: UNITED STATES OF AMERICA
+    CustomerAdditonalProfileDetails:
+      properties:
+        creditclient:
+          type: boolean
+        accountanalysis:
+          type: boolean
+        sso:
+          type: boolean
+        billingcustomer:
+          type: boolean
+        restrictedaccess:
+          type: boolean
+        achPositivePay:
+          type: boolean
+        achWhitelist:
+          type: boolean
+        achNonPrefund:
+          type: boolean
+        achNonPrefundLimit:
+          type: string
+        paymentFileAuthentication:
+          type: boolean
+        detailsofCharge:
+          type: string
+          enum:
+            - OUR
+            - BEN
+            - SHA
+        fxPricingTier:
+          type: string
+        crediValueAdjustment:
+          type: string
+    LegalEntityAccessSettings:
+      properties:
+        allowOnlineAccess:
+          type: boolean
+        userPinForNewEntry:
+          type: boolean
+        userDualApproval:
+          type: boolean
+        userPinForApproval:
+          type: boolean
+        notificationsDualApproval:
+          type: boolean
+        customerPinForNewEntry:
+          type: boolean
+        customerDualApproval:
+          type: boolean
+        customerPinForApproval:
+          type: boolean
+        benePinForNewEntry:
+          type: boolean
+        beneDualApproval:
+          type: boolean
+        benePinForApproval:
+          type: boolean
+        paymentPinForNewEntry:
+          type: boolean
+        paymentLimitforFirstApprover:
+          type: number
+        paymentDualApproval:
+          type: boolean
+        paymentLimitforSecondApprover:
+          type: number
+        paymentNumberOfApprovers:
+          type: number
+          enum:
+            - 0
+            - 1
+            - 2
+        paymentPinForApproval:
+          type: boolean
+        feeTierForApproval:
+          type: boolean
+    CreateUpdateCustomerResponse:
+      properties:
+        status:
+          type: string
+          description: This will return Success/Failed
+          example: Success or Failure
+        code:
+          type: string
+          description: This will indicate the error code in case of API error
+          example: CUST001 etc.
+        message:
+          type: string
+          description: This will be the detailed error message indicating what failed and how to fix the issue
+          example: Failed to create a customer due to the mandatory attribute <attribute-name> is not provide.
+        data:
+          $ref: '#/components/schemas/CreateUpdateCustomerResponse_data'
+    CreateCustomerRequest:
+      required:
+        - addressLine1
+        - city
+        - countryCode
+        - customerType
+        - externalReferenceId
+        - legalName
+        - mailAddressSameAsLegal
+        - shortName
+        - state
+        - taxId
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).
+          example: REQ123
+        legalName:
+          type: string
+          description: Customer's legal name
+          example: ABC Bank
+        shortName:
+          type: string
+          description: Customer's short name
+          example: BOFA
+        customerId:
+          type: string
+          description: Customer ID
+          example: CUST123
+        customerType:
+          type: string
+          description: Type of customer
+          example: Corporate,Consumer,Downstream Partner,Financial Institution,Processing Org
+          enum:
+            - Corporate
+            - Consumer
+            - Financial Institution
+            - Downstream Partner
+            - Processing Org
+        taxId:
+          type: string
+          description: Tax ID
+          example: '123456789'
+        achCompanyID:
+          type: string
+          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: '1234567899'
+        lei:
+          type: string
+          description: Legal Entity ID for accounting/tax purpose
+          example: ABC1234
+        swiftcode:
+          type: string
+          description: SWIFT code
+          example: BOFAUS3N
+        language:
+          type: string
+          description: Suported language
+          example: English
+        emailAddress:
+          type: string
+          description: Customer Email Address
+          example: abc@abc.com
+        phoneNumber:
+          type: string
+          description: Customer's Phone number
+          example: 123-124-9877
+        faxNumber:
+          type: string
+          description: Customer's phone number
+          example: 123-124-9877
+        website:
+          type: string
+          description: Customer's website
+          example: http://www.finzly.com
+        logoUrl:
+          type: string
+          description: Customer's logo url
+          example: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png
+        linkedinUrl:
+          type: string
+          description: Customer's LinkedIn profile URL
+          example: https://www.linkedin.com/company/finzly
+        twitterUrl:
+          type: string
+          description: Customer's twitter url
+          example: https://twitter.com/finzly
+        legalAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+        mailAddressSameAsLegal:
+          type: boolean
+        mailingAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+        relationshipType:
+          type: string
+          description: Relationship Type
+          example: Customer or Bank or ThirdParty or Self
+          enum:
+            - customer
+            - bank
+            - thirdparty
+            - self
+        partnerOrgShortName:
+          type: string
+          description: This is shortname of the partner org. This is required if the relationshipType is Third Party optional otherwise.
+          example: ABC
+        costCenter:
+          type: string
+          description: Cost Center code
+          example: '123123121'
+        relationshipManager:
+          type: string
+          description: Relationship manager name. It needs to be a valid user login id in the system
+          example: testuser
+        originatingOfficer:
+          type: string
+          description: Originating Officer name. Its needs to be a valid user login id in the system
+          example: testuser
+        parentEntityShortName:
+          type: string
+          description: This is shortname of the parent org
+          example: ParentEntity
+        addtionalProfileDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAdditonalProfileDetails'
+        secCodes:
+          type: array
+          description: Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity
+          items:
+            type: string
+            example: WEB,CCD,PPD,TEL,IAT
+        note:
+          type: string
+        legalEntityAccessSettings:
+          $ref: '#/components/schemas/LegalEntityAccessSettings'
+    UpdateCustomerRequest:
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).
+          example: REQ123
+        legalName:
+          type: string
+          description: Customer's legal name
+          example: ABC Bank
+        customerId:
+          type: string
+          description: Customer Id assigned by the user.
+          example: CUST123
+        customerType:
+          type: string
+          description: Type of customer
+          example: Corporate
+          enum:
+            - Corporate
+            - Consumer
+            - Financial Institution
+            - Downstream Partner
+            - Processing Org
+        taxId:
+          type: string
+          description: Tax ID / TIN/SSN
+          example: '123456789'
+        achCompanyID:
+          type: string
+          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: '1234567899'
+        lei:
+          type: string
+          description: Legal Entity ID for accounting/tax purpose
+          example: ABC1234
+        swiftcode:
+          type: string
+          description: SWIFT code
+          example: BOFAUS3N
+        language:
+          type: string
+          description: Suported language
+          example: English
+        emailAddress:
+          type: string
+          description: Customer Email Address
+          example: abc@abc.com
+        phoneNumber:
+          type: string
+          description: Customer's Phone number
+          example: 123-124-9877
+        faxNumber:
+          type: string
+          description: Customer's phone number
+          example: 123-124-9877
+        website:
+          type: string
+          description: Customer's website
+          example: http://www.finzly.com
+        logoUrl:
+          type: string
+          description: Customer's logo url
+          example: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png
+        linkedinUrl:
+          type: string
+          description: Customer's LinkedIn profile URL
+          example: https://www.linkedin.com/company/finzly
+        twitterUrl:
+          type: string
+          description: Customer's twitter url
+          example: https://twitter.com/finzly
+        legalAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+        mailAddressSameAsLegal:
+          type: boolean
+        mailingAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+        relationshipType:
+          type: string
+          description: Relationship Type
+          example: Customer or Bank or ThirdParty or Self
+          enum:
+            - customer
+            - bank
+            - thirdparty
+            - self
+        partnerOrgShortName:
+          type: string
+          description: This is shortname of the partner org. This is required if the relationshipType is Third Party optional otherwise
+          example: ABC
+        costCenter:
+          type: string
+          description: Cost Center code
+          example: '123123121'
+        relationshipManager:
+          type: string
+          description: Relationship manager name. It needs to be a valid user login id in the system
+          example: testuser
+        originatingOfficer:
+          type: string
+          description: Originating Officer name. Its needs to be a valid user login id in the system
+          example: testuser
+        parentEntityShortName:
+          type: string
+          description: This is shortname of the parent org
+          example: ParentEntity
+        addtionalProfileDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAdditonalProfileDetails'
+        secCodes:
+          type: array
+          description: Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity
+          items:
+            type: string
+            example: WEB
+        note:
+          type: string
+        legalEntityAccessSettings:
+          $ref: '#/components/schemas/LegalEntityAccessSettings'
+    GetCustomersResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: CUST001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to get the customer: <Reason>'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetCustomerDetailResponse'
+    GetCustomerDetailResponse:
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing purpose (if needed).
+          example: tran12780
+        legalName:
+          type: string
+          description: Customer's legal name
+          example: DEMO Bank
+        shortName:
+          type: string
+          description: Customer's short name
+          example: DMOB
+        customerUID:
+          type: number
+          description: The unique identifier associated with the customer record assigned by the Finzly system.
+          example: 111222
+        customerType:
+          type: string
+          description: Type of the customers in the Finzly CRM system
+          example: Consumer or Corporate or Downstream Partner or Processing Org or Financial Institution
+          enum:
+            - Consumer
+            - Corporate
+            - Financial Institution
+            - Downstream Partner
+            - Processing Org
+        taxId:
+          type: string
+          description: A tax id that the US government uses to identify business entities located in the US number.
+          example: '123456789'
+        achCompanyID:
+          type: string
+          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+          example: '1234567899'
+        customerId:
+          type: string
+          description: Customer id assigned by the user.
+          example: '12347890'
+        status:
+          type: string
+          description: Current status of the customer.
+          example: Active, Suspended,New,Pending
+        lei:
+          type: string
+          description: Legal Entity Identifier (LEI) associated with the customer
+          example: ABC1234
+        swiftcode:
+          type: string
+          description: SWIFT code that identifies your bank, country, location, and branch
+          example: BOFAUS3N
+        language:
+          type: string
+          description: language
+          example: English
+        emailAddress:
+          type: string
+          description: Customer email address
+          example: abc@bank.com
+        phoneNumber:
+          type: string
+          description: Customer phone number
+          example: '1112223333'
+        faxNumber:
+          type: string
+          description: Customer fax number
+          example: '1231249877'
+        website:
+          type: string
+          description: Customer website url address
+          example: http://www.bank.com
+        logoUrl:
+          type: string
+          description: Customer logo url
+          example: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png
+        linkedinUrl:
+          type: string
+          description: Company linkedin URL
+          example: https://www.linkedin.com/company/finzly
+        twitterUrl:
+          type: string
+          description: Customer twitter url
+          example: https://twitter.com/bank
+        legalAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+        mailAddressSameAsLegal:
+          type: boolean
+        mailingAddress:
+          $ref: '#/components/schemas/CustomerAddress'
+        relationshipType:
+          type: string
+          description: Relationship Type
+          example: Customer or Bank or ThirdParty or Self
+          enum:
+            - customer
+            - bank
+            - thirdparty
+            - self
+        partnerOrgShortName:
+          type: string
+          description: This is the shortname associated with the customer defined in the CRM system as 'Downstream Partner'. This is required only if the customer relationshipType is Third party
+          example: TESTBANK
+        processingOrgShortName:
+          type: string
+          description: This is the shortname associated with the processing org the customer is associated with.
+          example: POBANK
+        costCenter:
+          type: string
+          description: Cost Center associated with the customer entity
+          example: '123123121'
+        relationshipManager:
+          type: string
+          description: Relationship manager name. It needs to be a valid user login id in the finzly system.
+          example: testuser
+        originatingOfficer:
+          type: string
+          description: Originating Officer name. Its needs to be a valid user login id in the finzly system.
+          example: testuser
+        parentEntityShortName:
+          type: string
+          description: This is the shortname associated with the existing customer legal entity act as a parent entity
+          example: TESTBANK
+        addtionalProfileDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAdditonalProfileDetails'
+        secCodes:
+          type: array
+          description: Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity
+          items:
+            type: string
+            example: WEB
+        note:
+          type: string
+          description: Free form text to leave any notes for the csutomer entity.
+          example: Notes for the customer
+        legalEntityAccessSettings:
+          $ref: '#/components/schemas/LegalEntityAccessSettings'
+    UpdateAccountRequest:
+      properties:
+        externalReferenceId:
+          type: number
+        accountId:
+          type: string
+        accountType:
+          type: string
+          enum:
+            - Deposit
+            - Loan
+        accountSubType:
+          type: string
+          enum:
+            - Checking
+            - Saving
+            - CD
+            - Money Market
+            - Pseudo
+            - HSA (Health Saving Account)
+        systemOfRecords:
+          type: string
+          enum:
+            - Other Core
+            - External
+        accountNumber:
+          type: string
+        currency:
+          type: string
+        accountName:
+          type: string
+        masterGl:
+          type: string
+        enableOffset:
+          type: string
+          description: Enable offset account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        enableWire:
+          type: string
+          description: Enable or Disable for the wire transaction
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        defaultOffset:
+          type: string
+          description: Default offset account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        feeAccount:
+          type: string
+          description: Whether the accountNumber is a Fee account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        returnAccount:
+          type: string
+          description: Whether the accountNumber is a Return account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        fboAccountNumber:
+          type: string
+          example: for e.g. 1122344
+        country:
+          type: string
+        countryCode:
+          type: string
+        routingNumber:
+          type: string
+    UpdateAccountResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: ACC001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to update an account: <Reason>'
+        data:
+          $ref: '#/components/schemas/UpdateAccountResponse_data'
+    CreateAccountRequest:
+      properties:
+        externalReferenceId:
+          type: string
+        accountName:
+          type: string
+        accountNumber:
+          type: string
+        accountType:
+          type: string
+          enum:
+            - Deposit
+            - Loan
+        accountSubType:
+          type: string
+          enum:
+            - Checking
+            - Saving
+            - CD
+            - Money Market
+            - Pseudo
+            - HSA (Health Saving Account)
+        currency:
+          type: string
+        countryCode:
+          type: string
+        enableOffset:
+          type: string
+          description: Enable offset account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        enableWire:
+          type: string
+          description: Enable or Disable for the wire transaction
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        defaultOffset:
+          type: string
+          description: Default offset account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        feeAccount:
+          type: string
+          description: Whether the accountNumber is a Fee account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        returnAccount:
+          type: string
+          description: Whether the accountNumber is a Return account
+          example: Yes or No
+          enum:
+            - 'true'
+            - 'false'
+        fboAccountNumber:
+          type: string
+        systemOfRecords:
+          type: string
+          enum:
+            - Other Core
+            - External
+        routingNumber:
+          type: string
+        masterGl:
+          type: string
+    CreateAccountResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: ACC001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to create an account: <Reason>'
+        data:
+          $ref: '#/components/schemas/CreateAccountResponse_data'
+    SearchAccountResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: ACC001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to get an account: <Reason>'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerBankAccount'
+    GetAccountResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: ACC001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to get an account: <Reason>'
+        data:
+          $ref: '#/components/schemas/CustomerBankAccount'
+    CustomerBankAccount:
+      properties:
+        accountUID:
+          type: string
+          description: Account unique identifier assigned by the system
+          example: '100100'
+        name:
+          type: string
+          description: Account Name
+          example: Checking
+        accountNumber:
+          type: string
+          description: Account Number
+          example: '1122345'
+        fboAccountNumber:
+          type: string
+          description: FBO Account Number
+          example: '2233445'
+        type:
+          type: string
+          description: Account Type
+          example: DEPOSIT or LOAN
+        subType:
+          type: string
+          description: Account Type
+          example: Checking, Saving, Psuedo
+        systemOfRecord:
+          type: string
+          description: Identifier of the system of record
+          example: Other Core or External
+        balanceType:
+          type: string
+          description: Account balance type in the bank core system
+          example: DDA etc.
+        ledgerBalance:
+          type: string
+          description: Account ledger balance amount in the bank core system
+          example: '24000.00'
+        availableBalance:
+          type: string
+          description: Account balance amount in the bank core system
+          example: '25000.00'
+        availableBalanceStatus:
+          type: string
+          description: Account balance status in the bank core system
+          example: NSF
+        amountPrecision:
+          type: string
+          description: Amount amountPrecision
+        currency:
+          type: string
+          description: Currency Code is ISO format
+          example: USD
+        country:
+          type: string
+          description: Country Name
+          example: UNITED STATE OF AMERICA etc.
+        bankId:
+          type: string
+          description: Bank routing number
+          example: '11223498'
+        bankName:
+          type: string
+          description: Name of the bank associated with the bankId
+          example: Chase etc.
+        bankIdType:
+          type: string
+          description: Bank identifier type
+          example: By ABA or By Address
+        enableWires:
+          type: boolean
+          description: Wire status
+          example: false
+        enableOffset:
+          type: boolean
+          description: Whether the accountNumber is a Offset account
+          example: false
+        defaultOffset:
+          type: boolean
+          description: Default offset account
+          example: false
+        feeAccount:
+          type: boolean
+          description: Whether the accountNumber is a Fee account
+          example: false
+        returnAccount:
+          type: boolean
+          description: Whether the accountNumber is a Return account
+          example: false
+        status:
+          type: string
+          description: Account status
+          example: Active etc.
+        externalAccount:
+          $ref: '#/components/schemas/AccountExternal'
+    CustomerContact:
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed).
+        templateName:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/CustomerAddress'
+        emailAddress:
+          type: string
+          description: Customer Email Address
+          example: abc@abc.com
+        phoneNumber:
+          type: string
+          description: Customer's Phone number
+          example: 123-124-9877
+        contactBank:
+          $ref: '#/components/schemas/CustomerContact_contactBank'
+        intermediaryBank:
+          $ref: '#/components/schemas/CustomerContact_intermediaryBank'
+        otherInfo:
+          $ref: '#/components/schemas/CustomerContact_otherInfo'
+        regulartoryReporting:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerContact_regulartoryReporting'
+    CreateCustomerContactResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: CUST001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to create a customer contact: <Reason>'
+        data:
+          $ref: '#/components/schemas/CreateCustomerContactResponse_data'
+    SearchCustomerContactResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: CUST001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to search the customer contact: <Reason>'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerContact'
+    GetCustomerContactResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: CUST001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to get a customer contact: <Reason>'
+        data:
+          $ref: '#/components/schemas/CustomerContact'
+    CreditPaymentRequest:
+      required:
+        - externalReferenceId
+        - paymentAmount
+        - paymentCurrency
+        - paymentDate
+        - paymentNotes
+        - receiver
+        - sender
+        - speed
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id set by the originator system.
+          example: PaymentRef100
+        paymentDate:
+          type: string
+          description: Payment date in mm-dd-yyyy format.
+          format: date
+          example: '0014-03-15'
+        paymentCurrency:
+          type: string
+          description: Payment currency
+          example: USD
+        paymentAmount:
+          type: number
+          description: Payment amount
+          example: 100
+        speed:
+          type: string
+          description: Speed associated with the payment based on the delivery time and fee.
+          example: Standard, Economy, Express
+        paymentNotes:
+          type: string
+          description: Payment notes provided by the payment originator.
+          default: Notes
+        sender:
+          $ref: '#/components/schemas/PaymentSender'
+        receiver:
+          $ref: '#/components/schemas/PaymentReceiver'
+        fee:
+          $ref: '#/components/schemas/Fee'
+        recurrence:
+          $ref: '#/components/schemas/PaymentOccurrence'
+        additionalInfo:
+          $ref: '#/components/schemas/AdditionalInfoCreditPayment'
+    BookTransferRequest:
+      required:
+        - externalReferenceId
+        - paymentAmount
+        - paymentDate
+        - receiver
+        - sender
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).
+          example: Payment101
+        senderAccount:
+          $ref: '#/components/schemas/BookTransferSender'
+        receiverAccount:
+          $ref: '#/components/schemas/BookTransferReceiver'
+        paymentAmount:
+          type: number
+          example: 100
+        paymentDate:
+          type: string
+          description: Payment date in mm-dd-yyyy format.
+          format: date
+          example: '0014-03-15'
+        channel:
+          type: string
+          description: Channel associated with the payment
+          example: API, TELLER etc.
+    BookTransferResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: BOOKTRF001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to create a book transfer payment: <Reason>'
+        data:
+          $ref: '#/components/schemas/BookTransferResponse_data'
+    PaymentResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PAYMENT001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to create a payment: <Reason>'
+        data:
+          $ref: '#/components/schemas/BookTransferResponse_data'
+    DebitPaymentRequest:
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id set by the originator system.
+          example: PaymentRef100
+        paymentAmount:
+          type: number
+          example: 100
+        paymentDate:
+          type: string
+          description: Payment date in mm-dd-yyyy format.
+          format: date
+          example: '0014-03-15'
+        paymentCurrency:
+          type: string
+          description: Payment Currency
+          example: USD
+        paymentNotes:
+          type: string
+          description: Payment notes provided by the originator
+          default: Notes
+        speed:
+          type: string
+          example: Standard, Economy, Express
+        debtor:
+          $ref: '#/components/schemas/PaymentSender'
+        creditor:
+          $ref: '#/components/schemas/PaymentReceiver'
+        fee:
+          $ref: '#/components/schemas/Fee'
+        recurrence:
+          $ref: '#/components/schemas/PaymentOccurrence'
+        additionalInfo:
+          $ref: '#/components/schemas/AdditionalInfoDebitPayment'
+    CancelPaymentResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PAYMENT001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to cancel a payment: <Reason>'
+        data:
+          $ref: '#/components/schemas/CancelPaymentResponse_data'
+    ReturnPaymentRequest:
+      properties:
+        achReturnCode:
+          type: string
+          description: Valid ACH return code such as R01,R02 etc.
+          example: R01
+        returnNotes:
+          type: string
+          description: Return notes
+          example: Invalid payment request.
+    ReturnPaymentResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PAYMENT003 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to return a payment: <Reason>'
+        data:
+          $ref: '#/components/schemas/ReturnPaymentResponse_data'
+    ReversePaymentRequest:
+      properties:
+        reversalNotes:
+          type: string
+          description: Reversal notes
+    ReversePaymentResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PAYMENT004 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to reverse a payment: <Reason>'
+        data:
+          $ref: '#/components/schemas/ReversePaymentResponse_data'
+    GetPaymentResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PAYMENT001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to retrieve a payment: <Reason>'
+        data:
+          $ref: '#/components/schemas/Payment'
+    Payment:
+      properties:
+        paymentUID:
+          type: integer
+          description: Payment unique identifier assigned by the system.
+          example: 12341
+        counterPartyId:
+          type: string
+          description: Customer UID associated with the payment.
+        senderUID:
+          type: string
+        senderAccountNumber:
+          type: string
+        senderAccountName:
+          type: string
+        senderName:
+          type: string
+        senderAccountType:
+          type: string
+        ultimateSenderName:
+          type: string
+        ultimateSenderAccountNumber:
+          type: string
+        ultimateSenderAddress1:
+          type: string
+        ultimateSenderAddress2:
+          type: string
+        ultimateSenderTaxId:
+          type: string
+        ultimateSenderCity:
+          type: string
+        ultimateSenderState:
+          type: string
+        ultimateSenderZip:
+          type: string
+        ultimateSenderCountry:
+          type: string
+        beneficiaryUID:
+          type: string
+        beneficiaryName:
+          type: string
+        senderAmount:
+          type: string
+        paymentDate:
+          type: string
+        receiverCurrency:
+          type: string
+          description: ISO Currency Code
+        senderCurrency:
+          type: string
+          description: ISO Currency Code
+        receiverAmount:
+          type: number
+        deliveryMethod:
+          type: string
+          description: One of the payment network delivery methods that includes Same Day ACH, Regular ACH, RTP, Fedwire
+          example: ACH
+        receiverAccountNumber:
+          type: string
+        ultimateReceiverName:
+          type: string
+        ultimateReceiverAccountNumber:
+          type: string
+        ultimateReceiverAddress1:
+          type: string
+        ultimateReceiverAddress2:
+          type: string
+        ultimateReceiverTaxId:
+          type: string
+        ultimateReceiverCity:
+          type: string
+        ultimateReceiverState:
+          type: string
+        ultimateReceiverZip:
+          type: string
+        ultimateReceiverCountry:
+          type: string
+        createdBy:
+          type: string
+        bankFeePayer:
+          type: string
+          enum:
+            - remitter
+            - beneficiary
+        paymentNotes:
+          type: string
+          description: Notes associated with the payment.
+          example: payment for invoice ABC123
+        forexContract:
+          type: string
+          example: '1325'
+        occurrences:
+          $ref: '#/components/schemas/PaymentOccurrence'
+        status:
+          type: string
+          example: FUTURE_DATED
+        displayStatus:
+          type: string
+          example: Scheduled
+        notification:
+          $ref: '#/components/schemas/Notification'
+        audit:
+          $ref: '#/components/schemas/Audit'
+        creationDateTime:
+          type: string
+        customerType:
+          type: string
+          description: Customer type associated with the payment.
+          example: Corporate or Consumer
+        deliveryAgentType:
+          type: string
+        quoteId:
+          type: string
+        wireType:
+          type: string
+        counterParty:
+          type: string
+        businessUnit:
+          type: string
+          description: Processing org name assigned to the payment.
+        channel:
+          type: string
+        costCenter:
+          type: string
+        book:
+          type: string
+        businessUnitId:
+          type: string
+          description: Processing org id assigned to the payment.
+    PaymentSearchResponse:
+      properties:
+        status:
+          type: string
+          description: Status of the API request either it will be a success or a failure
+          example: Success or Failure
+          enum:
+            - Success
+            - Failure
+        code:
+          type: string
+          description: Code associated with the error.
+          example: PAYMENT001 etc.
+        message:
+          type: string
+          description: Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.
+          example: 'Failed to search a payment: <Reason>'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    FXQuoteResponse_data:
+      type: object
+      properties:
+        externalReferenceId:
+          type: string
+          description: Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).
+          example: REQ123 or 1274878
+        quoteUUID:
+          type: string
+          description: FX Quote universally unique identifier (UUID)
+          example: 123e4567-e89b-12d3-a456-426614174000
+        expirySeconds:
+          type: integer
+          description: Time in seconds after which the FX quote will expire
+          example: 30
+        exchangeRate:
+          type: number
+          description: The price of one currency in terms of the other
+          example: 1.2
+          default: 0
+        invertedRate:
+          type: number
+          description: Time in seconds after which the FX quote will expire
+          example: 0.83
+          default: 0
+        sellCurrency:
+          type: string
+          description: Sell Currency
+          example: EUR
+        buyCurrency:
+          type: string
+          description: Buy Currency
+          example: INR
+        fundingAmount:
+          type: number
+          description: Funding Amount. Only one is needed between fundingAmount and transferAmount
+          example: 10000
+        transferAmount:
+          type: number
+          description: Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount
+          example: 1000
+        productType:
+          type: string
+          description: FX financial instrument such SPOT or FORWARD
+          example: SPOT or FORWARD
+          enum:
+            - SPOT
+            - FORWARD
+        tenor:
+          type: string
+          description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+          example: SPOT, ON, TN, nW, nM, nY where n is a number
+        valueDate:
+          type: string
+          description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        externalPricingSystemRefId:
+          type: string
+          description: Unique reference id returned by the external system provider.
+          example: R1274878 etc.
+    FXAcceptQuoteResponse_data:
+      type: object
+      properties:
+        quoteUUID:
+          type: string
+          description: FX Quote universally unique identifier (UUID)
+          example: 123e4567-e89b-12d3-a456-426614174000
+        forexContractNo:
+          type: string
+          description: FX contract number assigned by the system after acceptance.
+          example: '123898'
+        tradeStatus:
+          type: string
+          description: Trade status after acceptance of fx quote
+          example: Booked etc.
+        tradeDate:
+          type: string
+          description: The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        ccyPair:
+          type: string
+          description: A currency pair is the quotation of two different currencies, with the value of one currency being quoted against the other
+          example: USDEUR
+        direction:
+          type: string
+          description: Buy or Sell
+          example: Buy or Sell
+        baseCcy:
+          type: string
+          description: The base currency is the first currency stated in a currency pair quote
+          example: USD
+        baseAmount:
+          type: number
+          description: Base currency amount
+          example: 1000
+        quoteCcy:
+          type: string
+          description: The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.
+          example: USD
+        quoteAmount:
+          type: number
+          description: Quote currency amount
+          example: 900
+        tenor:
+          type: string
+          description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+          example: SPOT, ON, TN, nW, nM, nY where n is a number
+        exchangeRate:
+          type: number
+          description: The price of one currency in terms of the other
+          example: 1.2
+          default: 0
+        valueDate:
+          type: string
+          description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        referenceSpotRate:
+          type: number
+          description: the offered rate
+          example: 100
+        referenceFwdPoints:
+          type: number
+          description: The number of basis points added to or subtracted from the current spot rate of a currency pair to determine the forward rate for delivery on a specific value date
+          example: 100
+        executionTime:
+          type: string
+          description: The execution time
+          format: date
+        externalPricingSystemRefId:
+          type: string
+          description: Unique reference id returned by the external system provider.
+          example: R1274878 etc.
+    FXRejectQuoteResponse_data:
+      type: object
+      properties:
+        quoteUUID:
+          type: string
+          description: FX Quote universally unique identifier (UUID)
+          example: 123e4567-e89b-12d3-a456-426614174000
+        fxQuoteStatus:
+          type: string
+          description: FX Quote status after rejection
+          example: Rejected
+    FXCoverTradeResponse_data:
+      type: object
+      properties:
+        forexContractNo:
+          type: string
+          description: FX contract number assigned by the system for a given customer trade.
+          example: '123898'
+        coverTradeNo:
+          type: string
+          description: Unique cover trade number assigned by the system.
+          example: '990919'
+        externalPricingSystemRefId:
+          type: string
+          description: Unique reference id provided by the external system
+          example: R1274878 etc.
+        channel:
+          type: string
+          description: Channel associated with the cover trade.
+          example: API
+        customerIdType:
+          type: string
+          description: CustomerId type associated with the cover trade
+          example: CustomerUID, CustomerShortName,CustomerId, DDA
+          enum:
+            - CustomerUID
+            - CustomerShortName
+            - CustomerId
+            - DDA
+        customerId:
+          type: string
+          description: The value based on the customerIdType associated with the cover trade
+          example: 112344 for DDA
+        tradeDate:
+          type: string
+          description: The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        valueDate:
+          type: string
+          description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        ccyPair:
+          type: string
+          description: A currency pair is the quotation of two different currencies, with the value of one currency being quoted against the other
+          example: USDEUR
+        direction:
+          type: string
+          description: Buy or Sell
+          example: Buy or Sell
+        baseCcy:
+          type: string
+          description: The base currency is the first currency stated in a currency pair quote
+          example: USD
+        baseAmount:
+          type: number
+          description: Base currency amount
+          example: 1000
+        quoteCcy:
+          type: string
+          description: The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.
+          example: EUR
+        quoteAmount:
+          type: number
+          description: Quote currency amount
+          example: 955.08
+        tenor:
+          type: string
+          description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+          example: SPOT, ON, TN, nW, nM, nY where n is a number
+        allInRate:
+          type: number
+          description: The all in rate associated with the cover trade
+          example: 0.98
+          default: 0
+        referenceSpotRate:
+          type: number
+          description: the offered rate
+          example: 100
+    FXTradeInfoResponse_data:
+      type: object
+      properties:
+        forexContractNo:
+          type: string
+          description: FX contract number assigned by the system for a given trade.
+          example: '123898'
+        tradeDate:
+          type: string
+          description: The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        ccyPair:
+          type: string
+          description: A currency pair is the quotation of two different currencies, with the value of one currency being quoted against the other
+          example: USDEUR
+        direction:
+          type: string
+          description: Buy or Sell
+          example: Buy or Sell
+        baseCcy:
+          type: string
+          description: The base currency is the first currency stated in a currency pair quote
+          example: USD
+        baseAmount:
+          type: number
+          description: Base currency amount
+          example: 1000
+        quoteCcy:
+          type: string
+          description: The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.
+          example: USD
+        quoteAmount:
+          type: number
+          description: Quote currency amount
+          example: 900
+        tenor:
+          type: string
+          description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+          example: SPOT, ON, TN, nW, nM, nY where n is a number
+        exchangeRate:
+          type: number
+          description: The price of one currency in terms of the other
+          example: 1.2
+          default: 0
+        valueDate:
+          type: string
+          description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.
+          format: date
+          example: '2020-01-01'
+        referenceSpotRate:
+          type: number
+          description: the offered rate
+          example: 100
+        referenceFwdPoints:
+          type: number
+          description: The number of basis points added to or subtracted from the current spot rate of a currency pair to determine the forward rate for delivery on a specific value date
+          example: 100
+        executionTime:
+          type: string
+          description: The execution time
+          format: date
+    FXTradeCancelResponse_data:
+      type: object
+      properties:
+        forexContractNo:
+          type: string
+          description: FX contract number assigned by the system for a given trade.
+          example: '123898'
+        tradeStatus:
+          type: string
+          description: Trade status after trade cancelation
+          example: Cancelled etc.
+    PaymentNoteOptionValueChildren_data:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: Drivers Licence
+        swiftCode:
+          type: string
+          example: DVB001
+        group:
+          type: boolean
+          example: false
+        children:
+          $ref: '#/components/schemas/PaymentNoteOptionValueChildren'
+    AdditionalInfoCreditPayment_unstructuredAddendaInfo:
+      type: object
+      properties:
+        addendaLength:
+          type: integer
+        addendaInformation:
+          type: string
+      description: This is applicable for the fedwire payment where the local instrument can be S820, GXML, ANSI, IXML, NARR, SWIF, UEDI
+    BulkFile_messages:
+      type: object
+      properties:
+        uploadErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UploadMessages'
+        uploadWarnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/UploadMessages'
+    CreateUpdateCustomerResponse_data:
+      type: object
+      properties:
+        customerUID:
+          type: string
+          description: Customer id within Finzly's CRM system
+          example: '123'
+        externalReferenceId:
+          type: string
+        shortName:
+          type: string
+        customerEntityStatus:
+          type: string
+          description: Status of the customer
+          example: New
+    UpdateAccountResponse_data:
+      type: object
+      properties:
+        accountUID:
+          type: string
+          description: Account unique identifier assigned by the system
+        externalReferenceId:
+          type: string
+    CreateAccountResponse_data:
+      type: object
+      properties:
+        accountUID:
+          type: string
+        externalReferenceId:
+          type: string
+    CustomerContact_contactBank:
+      type: object
+      properties:
+        country:
+          type: string
+        accountNo:
+          type: string
+        accountCcy:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/CustomerAddress'
+        nationalCode:
+          type: string
+          example: '0125487'
+        swiftCode:
+          type: string
+          example: USBNX000
+    CustomerContact_intermediaryBank:
+      type: object
+      properties:
+        country:
+          type: string
+        name:
+          type: string
+        nationalCode:
+          type: string
+        swiftCode:
+          type: string
+        coverMessageRequired:
+          type: string
+        address:
+          $ref: '#/components/schemas/CustomerAddress'
+    CustomerContact_otherInfo:
+      type: object
+      properties:
+        beneficiaryNotes:
+          type: string
+        otherBeneBankInfo:
+          type: string
+    CustomerContact_regulartoryReporting:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    CreateCustomerContactResponse_data:
+      type: object
+      properties:
+        customerContactUID:
+          type: string
+          description: Customer contact unique identifier created by the system.
+        externalReferenceId:
+          type: string
+          description: External reference id received in the request.
+    BookTransferResponse_data:
+      type: object
+      properties:
+        paymentUID:
+          type: string
+        paymentStatus:
+          type: string
+        externalReferenceId:
+          type: string
+    CancelPaymentResponse_data:
+      type: object
+      properties:
+        paymentUID:
+          type: string
+    ReturnPaymentResponse_data:
+      type: object
+      properties:
+        paymentUID:
+          type: string
+        status:
+          type: string
+          description: Payment status.
+    ReversePaymentResponse_data:
+      type: object
+      properties:
+        paymentUID:
+          type: string
+          description: Payment unique identifier.
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      description: BankOS OpenBanking API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://sandbox-security-uat.finzly.io/auth
+          tokenUrl: https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token
+          scopes:
+            roles: manage

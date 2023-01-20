@@ -1,63 +1,118 @@
 training:
   - page: developer-portal/index.md
-  - group: Finzly APIs
-    expanded: true
+  - group: Finzly Connect APIs
+    expanded: false
+    pages:
+       - group: Overview Section
+         expanded: false
+         pages:
+            - label: diagram 1
+              page: developer-portal/diagram1.md
+            - label: diagram 2
+              page: developer-portal/diagram2.md
+  - group: Payment Networks
+    expanded: false
     pages:
        - label: Overview
-         page: developer-portal/Finzly-Api-overview.md
-       - group: Open Banking API v2.1.0
-         expanded: true
+         page: developer-portal/overviewSection.md
+       - group: ACH Payment
+         expanded: false
+         page: developer-portal/achOverview.md
          pages:
-            - label: Customer API
-              page: developer-portal/customer-api.md
-            - label: Customer Contacts
-              page: developer-portal/customer-contact-api.md
-            - label: Cusotmer Account
-              page: developer-portal/customer-account-api.md
-            - label: Payments
-              page: developer-portal/payments-api.md
-            - label : Positive Pay
-              page : developer-portal/positive-payment-api.md
-            - label : Foreign Exchange
-              page : developer-portal/foreign-exchange-api.md
-            - label : Bulk Payment
-              page : developer-portal/bulk-payment-api.md
-       
-       - group : User Admin
-         expand : true
+          - label: SEC Code
+            page: developer-portal/secCodes.md
+          - label: ACH Transactions
+            page: developer-portal/achTransaction.md
+          - label: ACH Positive Pay
+            page: developer-portal/achPositivePay.md
+          - label: Prefund vs Non-Prefund
+            page: developer-portal/prefund.md
+          - label: Bulk Upload
+            page: developer-portal/bulk.md
+       - group: Fedwire Payment
+         expanded: false
+         page: developer-portal/fedwire.md 
          pages:
-            - label: Applications
-              page: developer-portal/application-api.md
-            - label: Roles
-              page: developer-portal/roles-api.md
-            - label: Users
-              page : developer-portal/user-api.md 
-       - group : Payment Status Notification
-         expand : true
-         pages: 
-            - label: Payment Notificiation 
-              page: developer-portal/payment-notification-api.md
-  - group : Guides
-    expand : true
-    pages:      
-        - label: Technical Guides
-          page: developer-portal/technical-guides.md
-        - label: Use Cases
-          page: developer-portal/usecase.md
-  - label : Authentication
-    page: developer-portal/authentication.md
-  - label : Common Workflows
-    page: developer-portal/commonworkflow.md  
-  - label : Errors
-    page: developer-portal/errors.md
-  - label : Payment Networks
-    page: developer-portal/payment-networks.md      
-  - label : Webhooks
-    page: developer-portal/webhooks.md
+          - label: Business Codes
+            page: developer-portal/businessCode.md
+          - label: Wired Organization
+            page: developer-portal/wired.md
+          - label: Notification
+            page: developer-portal/notification.md
+       - label: Instant Payment
+         page: developer-portal/instant.md
+       - label: International Payment
+         page: developer-portal/internationalPayment.md
+  - label: Use Cases
+    page:  developer-portal/usecase.md
+  - group: APIs Documentation
+    expanded: false
+    pages:
+      - group: Getting Started with Finzly APIs
+        expanded: false
+        pages:
+          - label: Sandbox and Testing
+            page: developer-portal/sandbox.md
+      - label: Authentication
+        page: developer-portal/authentication.md
+      - label: Error
+        page: developer-portal/errors.md
+      - group: Customer APIs
+        expanded: false
+        pages:
+          - label: Customer Onboard
+            page: developer-portal/customer-api.md
+          - label: Account Management
+            page:  developer-portal/customer-account-api.md
+          - label: Contact Management
+            page: developer-portal/customer-contact-api.md
+      - group: Payment APIs
+        expanded: false
+        pages:
+          - label: Payment Origination
+            page: developer-portal/payments-api.md
+          - label : Positive Pay
+            page : developer-portal/positive-payment-api.md
+          - label : Bulk Payment
+            page : developer-portal/bulk-payment-api.md
+          - label: Book Transfer
+            page: developer-portal/bookTransfer.md
+      - Label: Foreign Exchange APIs
+        page: developer-portal/foreign-exchange-api.md
+      - group: User Admin APIs
+        expanded: false
+        pages:
+          - label: Applications
+            page: developer-portal/application-api.md
+          - label: Roles Management
+            page: developer-portal/roles-api.md
+          - label: Users Management
+            page : developer-portal/user-api.md 
+      - group: Webhooks APIs
+        expanded: false
+        pages:
+          - label: Payment Notification
+            page: developer-portal/webhooks.md
+  - separator: '.'
+  - label: Finzly Connect APIs
+  - separator: '.'
+  - group: Open Banking APIs
+    expanded: false
+    pages:
+      - page: openapi/reference.page.yaml/*
+  - group: User Admin
+    expanded: false
+    pages:
+      - page: openapi/userReference.page.yaml/*
+  - group: Payment Status Notification
+    expanded: false
+    pages:
+      - page: openapi/paymentReference.page.yaml/*
   - label : Frequently Asked Questions
     page: developer-portal/faq.md
   - label : Changelog & Feedback
     page: developer-portal/changelog-feedback.md
+  
 alternative:
   - page: developer-portal/sidebar-alternative.md
     label: Alternative sidebar example
