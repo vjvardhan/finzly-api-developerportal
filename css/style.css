@@ -16,7 +16,28 @@ body{
     font-size:25px;
     padding:20px 10px;
     margin-bottom:30px;
+    box-shadow:2px 2px 2px white;   
 }
+
+.main-sub{
+    display: flex;
+    align-items:stretch;
+}
+
+.sub{
+    border:0px solid grey;
+    border-radius:10px;
+    padding:10px 25px;
+    margin:20px;
+    width:50%;
+    background-color: white;
+    text-align: center;
+    box-shadow: 1px 5px 20px #0000000d;
+}
+.sub .box{
+    width:100%;
+}
+
 .cSOVya{
     border-top:1px solid black !important;
     color:#D5E6FC !important;

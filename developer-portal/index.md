@@ -12,53 +12,93 @@ In this section, we will give a brief overview of the Finzly APIs: OpenBanking A
 This page will also have a menu, as shown below. Using this menu, readers can easily access a specific section of the API documentation.
 
 
+<div class="main-sub">
+
+<div class="sub">
+
 # <span>Finzly APIs</span>
+
 <div class="box">
 
-__[Learn About Finzly APIs](Finzly-Api-overview.md)__
+__[Learn About Finzly APIs](index.md)__
+</div>
 </div>
 
-# <span>Guides</span>
+
+
+<div class="sub">
+
+# <span>Use Cases</span>
 <div class="box">
 
-__[Check out the guides on how to use Finzly APIs](technical-guides.md)__
+__[Check out different Finzly API Use Cases](usecase.md)__
 </div>
+
+</div>
+</div>
+
+
+<div class="main-sub">
+<div class="sub">
 
 # <span>Authentication</span>
 <div class="box">
 
 __[Create an API access token and authenticate your API requests](authentication.md)__
 </div>
+</div>
 
-# <span>Common Workflows</span> 
+<div class="sub">
+
+# <span>Book Transfer</span> 
 <div class="box">
 
-__[Learn about common workflows](commonworkflow.md)__
+__[Book Transfer](booktransfer.md)__
 </div>
+</div>
+</div>
+
+<div class="main-sub">
+<div class="sub">
 
 # <span>Error</span>
 <div class="box">
 
 __[Learn about API errors, how they’re structured and how to handle them. ](errors.md)__
 </div>
+</div>
+
+<div class="sub">
 
 # <span>Payment Networks</span>
 <div class="box">
 
-__[Find out the different payment networks Finzly APIs support ](payment-networks.md)__
+__[Find out the different payment networks Finzly APIs support ](overviewsection.md)__
 </div>
+</div>
+</div>
+
+
+<div class="main-sub">
+<div class="sub">
 
 # <span>Webhooks</span>
 <div class="box">
 
 __[Learn how to set up a webhook](webhooks.md)__
 </div>
+</div>
+
+<div class="sub"> 
 
 # <span>Frequently Asked  Question</span>
 <div class="box">
 
 __[Check out the frequently asked questions related to Finzly APIs](faq.md)__
 </div>
+</div>
+</div>
+
 
 # <span>Changelog & Feedback</span>
 <div class="main">
