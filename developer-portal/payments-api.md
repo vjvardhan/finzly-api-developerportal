@@ -232,52 +232,6 @@ Request Parameters
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
 |data|[BookTransferResponse_data](https://apidocs.finzly.net/dashboard?java=#schemabooktransferresponse_data)|false|none|none|
 
-### **Book Transfer**
-**POST /v3/payments/booktransfer**
-
-**HTTP Method: POST**
-
-**Description -** Sending a POST request to the  **/v3/payments/booktransfer**
-
-endpoint allows users to Initiate Book Transfer. All the request parameters and objects are specified below:
-
-**Request Parameters**
-
-**All details will be passed in the body of the API request.**
-
-
-
-
-|**Name**|**In**|**Type**|**Required**|**Description**|
-| :- | :- | :- | :- | :- |
-|body|body|[BookTransferRequest](https://apidocs.finzly.net/dashboard?javascript#schemabooktransferrequest)|true|Payment fields|
-
-**JSON Response**
-
-**A successful POST request to this endpoint returns the following data -**
-
-**Success Code - 200**
-
-```yaml Before
-{
-  "status": "Success or Failure",
-  "code": "BOOKTRF001 etc.",
-  "message": "Failed to create a book transfer payment: ",
-  "data": {
-    "paymentUID": "string",
-    "paymentStatus": "string",
-    "externalReferenceId": "string"
-  }
-}
-
-```
-|**Name**|**Type**|**Required**|**Restrictions**|**Description**|
-| :- | :- | :- | :- | :- |
-|status|string|false|none|Status of the API request either it will be a success or a failure|
-|code|string|false|none|Code associated with the error.|
-|message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[BookTransferResponse_data](https://apidocs.finzly.net/dashboard?java=#schemabooktransferresponse_data)|false|none|none|
-
 ### **Get Payment by UIDV3**
 **GET /v3/payments/{paymentUID}**
 

@@ -33,19 +33,19 @@ __[Create an API access token and authenticate your API requests](authentication
 # <span>Common Workflows</span> 
 <div class="box">
 
-__[Learn about common workflows](index.md)__
+__[Learn about common workflows](commonworkflow.md)__
 </div>
 
 # <span>Error</span>
 <div class="box">
 
-__[Learn about API errors, how they’re structured and how to handle them. ](index.md)__
+__[Learn about API errors, how they’re structured and how to handle them. ](errors.md)__
 </div>
 
 # <span>Payment Networks</span>
 <div class="box">
 
-__[Find out the different payment networks Finzly APIs support ](payment-notification-api.md)__
+__[Find out the different payment networks Finzly APIs support ](payment-networks.md)__
 </div>
 
 # <span>Webhooks</span>
@@ -64,14 +64,14 @@ __[Check out the frequently asked questions related to Finzly APIs](faq.md)__
 <div class="main">
 <div class="box">
 
-__[Find out about what changed with the API](faq.md)__
+__[Find out about what changed with the API](changelog-feedback.md)__
 </div>
 
 <div class="box">
 
 __Feedback__
 
-__[Share your feedback to improve the API and ensure it fits your needs. Feel free to send your queries & feedback to conenct@finzly.com](index.md)__
+__[Share your feedback to improve the API and ensure it fits your needs. Feel free to send your queries & feedback to conenct@finzly.com](changelog-feedback.md)__
 
 </div>
 </div>
