@@ -99,19 +99,26 @@ __[Check out the frequently asked questions related to Finzly APIs](faq.md)__
 </div>
 </div>
 
+<div class="main-sub">
+<div class="sub">
 
 # <span>Changelog & Feedback</span>
-<div class="main">
 <div class="box">
 
 __[Find out about what changed with the API](changelog-feedback.md)__
 </div>
+</div>
 
+
+<div class="sub">
+
+# <span></span>
 <div class="box">
 
 __Feedback__
 
 __[Share your feedback to improve the API and ensure it fits your needs. Feel free to send your queries & feedback to conenct@finzly.com](changelog-feedback.md)__
 
+</div>
 </div>
 </div>
