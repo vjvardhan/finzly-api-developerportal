@@ -1,5 +1,5 @@
 ---
-title: Finzly Foreign Exchange Api
+title: Finzly Foreign Exchange APIs
 ---
 
 

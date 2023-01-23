@@ -1,20 +1,9 @@
 training:
   - page: developer-portal/index.md
-  - group: Finzly Connect APIs
-    expanded: false
-    pages:
-       - group: Overview Section
-         expanded: false
-         pages:
-            - label: diagram 1
-              page: developer-portal/diagram1.md
-            - label: diagram 2
-              page: developer-portal/diagram2.md
   - group: Payment Networks
     expanded: false
+    page: developer-portal/overviewSection.md
     pages:
-       - label: Overview
-         page: developer-portal/overviewSection.md
        - group: ACH Payment
          expanded: false
          page: developer-portal/achOverview.md
@@ -47,12 +36,8 @@ training:
     page:  developer-portal/usecase.md
   - group: APIs Documentation
     expanded: false
+    page: developer-portal/sandbox.md
     pages:
-      - group: Getting Started with Finzly APIs
-        expanded: false
-        pages:
-          - label: Sandbox and Testing
-            page: developer-portal/sandbox.md
       - label: Authentication
         page: developer-portal/authentication.md
       - label: Error

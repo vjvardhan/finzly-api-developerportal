@@ -7,7 +7,7 @@ Finzly Connect is a universal payment API for developers to access all the payme
 
 Finzly Connect offers instant payment access and notifications via simple REST API. It is designed to be simple to use and implement in any model computer language that allows you to generate web requests. It uses "REST-Like '' RPC-style operations with parameters URL encoded into the request, and its response is encoded in JSON. 
 
-In this section, we will give a brief overview of the Finzly APIs: OpenBanking API, UserAdmin API and PaymentStatusNotifications API. We'll get as much information as possible from the PDF and add some unique content. 
+In this section, we will give a brief overview of the Finzly APIs: OpenBanking API, UserAdmin API and PaymentStatus-Notifications API. We'll get as much information as possible from the PDF and add some unique content. 
 
 This page will also have a menu, as shown below. Using this menu, readers can easily access a specific section of the API documentation.
 <style>
@@ -24,7 +24,6 @@ This page will also have a menu, as shown below. Using this menu, readers can ea
 .sub h3{
     color:#fff;
     font-size:16px !important;
-    
 }
 
 </style>
@@ -76,7 +75,7 @@ __[](authentication.md)__
 
 ### Book Transfer</strong></p>
 
-__[](booktransfer.md)__
+__[](bookTransfer.md)__
 
 </div>
 </div>

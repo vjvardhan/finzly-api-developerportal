@@ -14,7 +14,7 @@ body{
 body h1,h2,h3{
     font-family: 'Poppins', sans-serif !important;
 }
-body p,span{
+body p,span, ol ,li, ul,li{
     font-family: 'Open Sans', sans-serif !important;
     line-height: 1.5 !important;
     font-size: 1rem !important;
@@ -53,9 +53,7 @@ p{
     font-size:16px;
     box-shadow: 1px 5px 20px #0000000d;
 }
-.sub:hover{
-    box-shadow: 10px 10px 10px rgb(77 79 147 / 50%);
-}
+
 
 
 .cSOVya{
