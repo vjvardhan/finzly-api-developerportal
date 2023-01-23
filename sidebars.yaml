@@ -93,9 +93,7 @@ training:
         pages:
           - label: Payment Notification
             page: developer-portal/webhooks.md
-  - separator: '.'
   - label: Finzly Connect APIs
-  - separator: '.'
   - group: Open Banking APIs
     expanded: false
     pages:
