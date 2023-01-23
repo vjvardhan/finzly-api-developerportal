@@ -1,5 +1,5 @@
 ---
-title: Finzly API Program Overview
+title: Finzly Connect API 
 ---
 
 # Overview
