@@ -10,6 +10,15 @@ body{
 .hvXhgD, .dpwHGH {
     font-size: 30px !important;
 }
+
+body h1,h2,h3{
+    font-family: 'Poppins', sans-serif !important;
+}
+body p, span{
+    font-family: sans-serif !important;
+    line-height: 1.5 !important;
+    font-size: 14px !important;
+}
 .box{
     border:1px solid lightgrey;border-radius:5px;
     width:30%;text-align:center;
@@ -80,10 +89,18 @@ body{
     color:#fff !important;
     text-align: justify !important;
     font-family: sans-serif !important;
+    text-align: justify !important;
+    line-height: 1.5;
+    font-size: 14px !important;
 }
 .lcljdh span{
     color:white;
+    font-family: sans-serif !important;
+    text-align: justify !important;
+   
 }
+
+
 .box p{margin:0;}
 .box p a{line-height:36px;}
 
