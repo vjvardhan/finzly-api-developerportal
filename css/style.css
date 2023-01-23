@@ -49,11 +49,15 @@ body{
 .lcljdh{
     background-color: #002E88 !important;  
 }
+.main-link{
+    color:white;
+}
+
 .ieiETB h2{
     margin-bottom: 1em !important;
 }
-.lcljdh h3, .bqaPJS .bLdCdi{
-    color:white;
+.lcljdh h3, .bqaPJS, .bLdCdi{
+    color:#fff;
 }
 .lcljdh span{
     color:white;
