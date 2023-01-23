@@ -14,10 +14,14 @@ body{
 body h1,h2,h3{
     font-family: 'Poppins', sans-serif !important;
 }
-body p, span{
+body p,span{
     font-family: sans-serif !important;
     line-height: 1.5 !important;
     font-size: 14px !important;
+    text-align: justify !important;
+}
+p{
+    text-align: justify !important; 
 }
 .box{
     border:1px solid lightgrey;border-radius:5px;
@@ -101,7 +105,7 @@ body p, span{
 }
 
 
-.box p{margin:0;}
+.box p{margin:0; text-align: center!important;}
 .box p a{line-height:36px;}
 
 h1 span{
@@ -125,3 +129,12 @@ h1 span{
 ol li{
     font-size:20px;
 }
+
+/* responsive section */
+
+@media screen and (max-width: 556px){
+    .main-sub{display: block!important;}
+    .main-sub .sub{width: 100%!important; margin: 0px!important;}
+    .fmDiqV h1, .gbwUkf h1{margin-top: 1em;}
+}
+
