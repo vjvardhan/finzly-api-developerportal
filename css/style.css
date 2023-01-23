@@ -15,7 +15,7 @@ body h1,h2,h3{
     font-family: 'Poppins', sans-serif !important;
 }
 body p,span{
-    font-family: sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
     line-height: 1.5 !important;
     font-size: 14px !important;
     text-align: justify !important;
@@ -42,14 +42,21 @@ p{
     border-radius:10px;
     padding:10px 25px;
     margin:20px;
+    height:150px;
     width:50%;
-    background-color: white;
-    text-align: center;
+    position: relative;
+    background:#003C90 !important;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
     box-shadow: 1px 5px 20px #0000000d;
 }
-.sub .box{
-    width:100%;
+.sub:hover{
+    box-shadow: 10px 10px 10px rgb(77 79 147 / 50%);
 }
+
 
 .cSOVya{
     border-top:1px solid black !important;
@@ -129,12 +136,18 @@ h1 span{
 ol li{
     font-size:20px;
 }
-
+.cgrlMz{
+    padding:10px 8px 10px 20px !important;
+}
+.kSljmO {
+    margin-right: 4px;
+}
 /* responsive section */
 
 @media screen and (max-width: 556px){
     .main-sub{display: block!important;}
-    .main-sub .sub{width: 100%!important; margin: 0px!important;}
+    .main-sub .sub{width: 100%!important; margin-bottom: 20px!important; margin-left: 0px!important;}
     .fmDiqV h1, .gbwUkf h1{margin-top: 1em;}
+    .sub p strong{font-size: 18px!important;}
 }
 
