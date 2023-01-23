@@ -38,7 +38,6 @@ nav:
     icon: ./images/logo.png
     href: https://finzly.com/
 
-  
 
 footer:
   copyrightText: Copyright © Finzly 2022-2023. All right reserved.
@@ -46,14 +45,20 @@ footer:
     - group: Legal
       items:
         - label: Terms of Use
+          target: '_blank'
           href: 'https://finzly.com/terms'
+         
         - label: Privacy Notice
+          target: '_blank'
           href: 'https://finzly.com/privacy'
         - label: Security
+          target: '_blank'
           href: 'https://finzly.com/finzly-security-page'
     - group: Support
       items:
         - label: About
+          target: '_blank'
           href: https://finzly.com/about
         - label: Contact us
+          target: '_blank'
           href: https://finzly.com/contact/
