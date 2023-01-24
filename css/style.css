@@ -179,10 +179,20 @@ ol li{
     .gbwUkf p, .fmDiqV p, .gbwUkf li, .fmDiqV li{font-size: 15px!important; word-spacing: -3px;}
     .euvaeq,.iSexbG{background-color: #003c90!important;} 
     .gbwUkf table td, .gbwUkf table th, .fmDiqV table th,.fmDiqV table td{font-size: 15px!important; line-height: 1.5!important;}
-    
+    .eDYffK, .eFrWrZ{text-align: left!important;}   
 }
+
 @media screen and (min-width: 900px){
-.dmvKRI,.cIgtsP {
-    width: 100%!important;
+    .dmvKRI,.cIgtsP {
+        width: 100%!important;
+    }
+    .euvaeq,.iSexbG{background-color: #003c90!important;}
 }
+
+
+@media screen and (max-width: 800px){
+    .dmvKRI,.cIgtsP {
+        width: 100%!important;
+    }
+    .euvaeq,.iSexbG{background-color: #003c90!important;}
 }
