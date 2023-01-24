@@ -15,7 +15,8 @@ __Add Client (of Fintech)__
 
 __Description__ - Using this API, the user can add a CRM entity to FinzlyOS. This API allows them to create customer types such as Customer, Corporate, Downstream partner (FinTech), Third Party Customer (Customer of a FinTech), and Financial Institutions.
 
-__HTTP Method:__ POST
+__HTTP Method: POST__
+
 **<span>Customer API </span>**
 **<span>Search Customer</span>**
 
@@ -338,10 +339,10 @@ The entire data will be passed through the body section.
 
 **Note the following about the results:**
 
-- **Request URL:** ​Shows what executed.
-- **Response Headers:​** Contains messages about the success or failure of the request.
-- **Response Body:** ​Contains a JSON array of the results.
-- **Curl Command Line:** ​Contains a form of the request that you can copy and paste to execute at the command line or in scripts.
+- **Request URL:**  ​Shows what executed.
+- **Response Headers:​**  Contains messages about the success or failure of the request.
+- **Response Body:** ​ Contains a JSON array of the results.
+- **Curl Command Line:** ​ Contains a form of the request that you can copy and paste to execute at the command line or in scripts.
 
 
 ## **Getting Customer Information by customerUID**
