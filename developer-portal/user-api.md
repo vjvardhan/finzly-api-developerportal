@@ -2,7 +2,6 @@
 title: Finzly User API
 ---
 
-# **USERS**
 
 ## Users API 
 

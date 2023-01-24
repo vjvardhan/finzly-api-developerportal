@@ -2,7 +2,8 @@
 title: Finzly Application API
 ---
 
-# **API Name UserAdmin**
+
+
 ## **Applications API**
 ### **Get Application**
 [GET /applications](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplication/)
