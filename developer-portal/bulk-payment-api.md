@@ -7,7 +7,6 @@ Finzly system supports the ACH bulk payment processing in a NACHA format via FTP
 
 **Following functions helps you to understand the current FX capabilities exposed via APIs**
 
-
 **Get Supported File Types**
 
 [Get /bulkpayment/files/supportedFileType](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getSupporedFileTypes/)
