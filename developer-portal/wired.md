@@ -45,14 +45,14 @@ Fedwire Funds service supports the following origination gateways for processing
 
 
 ### **Payment Status Updates**
-  - __Payment Status Notification for every event on the wire life cycle will be notified. This will be applied for both outgoing and incoming payments.__
-  - __Validation Failed - Fedwire Payment with the Exception status will be notified.__ 
-  - __OFAC Review/Reject - Fedwire Payment with OFAC compliance Exception will be notified.__
-  - __Memo Post Status - Fedwire Payment with memo post status failure will be notified.__
-  - __### Processed - Notification back to the Customer on payment Processing.__
+  - Payment Status Notification for every event on the wire life cycle will be notified. This will be applied for both outgoing and incoming payments.
+  - Validation Failed - Fedwire Payment with the Exception status will be notified.
+  - OFAC Review/Reject - Fedwire Payment with OFAC compliance Exception will be notified.
+  - Memo Post Status - Fedwire Payment with memo post status failure will be notified.
+  - Processed - Notification back to the Customer on payment Processing.
 
 ### **Drawdown Initiation**
-- __Capability to initiate a Drawdown request for both Customer and as well as for the Bank for their treasury Funds/Fed Transfers.__
+-  Capability to initiate a Drawdown request for both Customer and as well as for the Bank for their treasury Funds/Fed Transfers.
   - Drawdown initiation is possible for customer using the open Banking API and Bulk Files.
   - Every Drawdown request initiated will be received as a Separate drawdown payment linking the original payment. 
 

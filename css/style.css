@@ -163,16 +163,26 @@ ol li{
     margin-right: 4px;
 }
 /* responsive section */
+@media screen and (min-width: 1200px){
+.bvQHuV,.gNTinC{
+    margin-bottom: 0.5rem!important;
+}
+}
 
 @media screen and (max-width: 556px){
     .main-sub{display: block!important;}
     .main-sub .sub{width: 100%!important; margin-bottom: 20px!important; margin-left: 0px!important;}
     .fmDiqV h1, .gbwUkf h1{margin-top: 1em;}
     .sub p strong{font-size: 18px!important;}
+    .bDpeLU p{text-align: left!important; font-size: 15px!important;}
+    .sc-hRUHzT ol li{font-size: 15px!important; word-spacing: -2px;}
+    .gbwUkf p, .fmDiqV p, .gbwUkf li, .fmDiqV li{font-size: 15px!important; word-spacing: -3px;}
+    .euvaeq,.iSexbG{background-color: #003c90!important;} 
+    .gbwUkf table td, .gbwUkf table th, .fmDiqV table th,.fmDiqV table td{font-size: 15px!important; line-height: 1.5!important;}
+    
 }
 @media screen and (min-width: 900px){
 .dmvKRI,.cIgtsP {
     width: 100%!important;
 }
-
 }

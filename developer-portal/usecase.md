@@ -2,7 +2,7 @@
 title: Finzly API Use Case Guides 
 ---
 
-# **Use Cases**
+## **Use Cases**
 
 Finzly APIs simplify the trading and payment of foreign currencies with an exceptional user experience. Banks can use Finzly APIs to integrate new products and services with the bank’s existing systems. That allows for quick and seamless integration. If a bank wishes to create a new product or service, Finzly APIs make it a much more straightforward process.
 
