@@ -73,4 +73,3 @@ Illustrating to customers how a bank is actively working with regulations secure
 - Payment Scheduling - It allows the user to schedule a payment to a future date
 - Repetitive Payments - It provides various options to set repetitive payments such as Daily, Weekly, Bi-Weekly, Monthly, etc.
 - A simplified and improved payment experience with a single self-service portal with a customizable Super App for SMB, Commercial & Institutional clients.
-

@@ -10,7 +10,7 @@ Finzly system supports the ACH bulk payment processing in a NACHA format via FTP
 
 **Get Supported File Types**
 
-[**Get /bulkpayment/files/supportedFileType**](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getSupporedFileTypes/)
+[Get /bulkpayment/files/supportedFileType](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getSupporedFileTypes/)
 
 __HTTP Method: GET__
 
@@ -39,7 +39,7 @@ __HTTP Method: GET__
 ```
 **Get Bulk File Payment Details**
 
-[GET /bulkpayment/files/{fileNumber}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)
+[GET/bulkpayment/files/{fileNumber}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)
 
 **HTTP Method: GET**
 
