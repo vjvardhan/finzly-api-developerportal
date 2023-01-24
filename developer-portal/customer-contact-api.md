@@ -1,5 +1,5 @@
 ---
-title: Customer Contact API
+title: Customer Contact
 ---
 # **Add Customer Contact**
 
@@ -23,7 +23,7 @@ Following use cases helps you to understand the current customer contacts capabi
 
 ## **Search Customer Contacts**
 
-**GET /v2/customers/{customerUID}/contacts**
+[GET /v2/customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)
 
 **HTTP Method: GET**
 
@@ -131,7 +131,7 @@ Following use cases helps you to understand the current customer contacts capabi
 
 
 ## **Creating Customer Contact**
-POST /v2/customers/{customerUID}/contacts
+[POST /v2/customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)
 
 **HTTP Method: POST** 
 
@@ -172,7 +172,7 @@ POST /v2/customers/{customerUID}/contacts
 
 
 ## **Get Customer Contact Details**
-GET /v2/customers/{customerUID}/contacts/{contactUID}
+[GET /v2/customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerContactByUIDV2/)
 
 **HTTP Method: GET**
 
@@ -268,7 +268,7 @@ In this Query, we need to pass the two Parameters, CustomerID and ContactID, in 
 
 
 ## **Update Customer Contact Details**
-**PUT /v2/customers/{customerUID}/contacts/{contactUID}**
+[PUT /v2/customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerContactByUIDV2/)
 
 **HTTP Method: PUT**
 

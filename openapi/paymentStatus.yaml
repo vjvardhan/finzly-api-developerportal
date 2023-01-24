@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Payment Status Notifications
+  title: Payment Status Notification
   description: This API allows third-parties, bank's customers to receive payments details whenever there is an update to the payment in the payment system. Basic authentication is supported security protocols by Finzly. Finzly can also share the FinzlyOS public IPs with the third parties or bank's customers to whitelist at their end for an additional security.
   termsOfService: https://finzly.com/terms/
   contact:

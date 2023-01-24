@@ -1,10 +1,9 @@
 training:
   - page: developer-portal/index.md
-  - group: Payment Networks
-    expanded: false
+  - group: Payment Solutions
     page: developer-portal/overviewSection.md
     pages:
-       - group: ACH Payment
+       - group: ACH Processing
          expanded: false
          page: developer-portal/achOverview.md
          pages:
@@ -24,7 +23,7 @@ training:
          pages:
           - label: Business Codes
             page: developer-portal/businessCode.md
-          - label: Wired Organization
+          - label: Wire Organization
             page: developer-portal/wired.md
           - label: Notification
             page: developer-portal/notification.md
@@ -32,17 +31,17 @@ training:
          page: developer-portal/instant.md
        - label: International Payment
          page: developer-portal/internationalPayment.md
-  - label: Use Cases
-    page:  developer-portal/usecase.md
-  - group: APIs Documentation
+       - Label: Foreign Exchange
+         page: developer-portal/foreign-exchange-api.md
+       - label: Use Cases
+         page:  developer-portal/usecase.md
+  - group: API Documentation
     expanded: false
     page: developer-portal/sandbox.md
     pages:
-      - label: Authentication
-        page: developer-portal/authentication.md
-      - label: Error
+      - label: Errors
         page: developer-portal/errors.md
-      - group: Customer APIs
+      - group: Customer
         expanded: false
         pages:
           - label: Customer Onboard
@@ -51,7 +50,7 @@ training:
             page:  developer-portal/customer-account-api.md
           - label: Contact Management
             page: developer-portal/customer-contact-api.md
-      - group: Payment APIs
+      - group: Payment
         expanded: false
         pages:
           - label: Payment Origination
@@ -62,9 +61,7 @@ training:
             page : developer-portal/bulk-payment-api.md
           - label: Book Transfer
             page: developer-portal/bookTransfer.md
-      - Label: Foreign Exchange APIs
-        page: developer-portal/foreign-exchange-api.md
-      - group: User Admin APIs
+      - group: User Admin
         expanded: false
         pages:
           - label: Applications
@@ -73,7 +70,7 @@ training:
             page: developer-portal/roles-api.md
           - label: Users Management
             page : developer-portal/user-api.md 
-      - group: Webhooks APIs
+      - group: Webhooks
         expanded: false
         pages:
           - label: Payment Notification

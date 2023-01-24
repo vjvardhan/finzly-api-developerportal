@@ -16,7 +16,7 @@ The following **supported API functions** helps you to understand the current cu
 
 ## **Supported Customer Accounts API functions**
 ### **Search Customer Account**
-**HTTP Method: GET**
+[HTTP Method: GET](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerAccountsV2/)
 
 **Description** - Sending a GET request to the Search Customers Account Endpoint will allow users to search for customer accounts using parameters customerUID, accountType, and others. This can be used to search the details of customers' accounts registered with the corporate entity. The details will be provided in bulk and not specific. All the request parameters and objects are specified below:
 
@@ -119,7 +119,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 
 ### **Create Customer Account**
-**POST /v2/customers/{customerUID}/accounts**
+[POST /v2/customers/{customerUID}/accounts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerAccountV2/)
 
 **HTTP Method: POST**	
 
@@ -178,7 +178,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 
 ### **Get Customers**
-**GET /v2/customers/{customerUID}/accounts/{accountUID}**
+[GET /v2/customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerAccountByAccountUIDV2/)
 
 **HTTP  Method: GET**	
 
@@ -251,7 +251,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 
 ### **Update Customer Account**
-**PUT /v2/customers/{customerUID}/accounts/{accountUID}**
+[PUT /v2/customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerAccountByAccountUIDV2/)
 
 **HTTP  Method: PUT**
 
@@ -310,7 +310,7 @@ Response Code - 200
 
 ### **Delete Customer Account**
 
-**DELETE /v2/customers/{customerUID}/accounts/{accountUID}**
+[DELETE /v2/customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteCustomerAccountByAccountUIDV2/)
 
 **HTTP  Method: DELETE**
 

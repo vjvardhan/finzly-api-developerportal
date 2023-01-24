@@ -17,7 +17,7 @@ The following use cases help you to understand the current payment capabilities 
 
 ### **Search Payments**
 
-**POST /v3/payments/search**
+[POST /v3/payments/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPaymentsV3/)
 
 **HTTP  Method: GET**
 
@@ -131,7 +131,7 @@ The following use cases help you to understand the current payment capabilities 
 |data|[Payment]|false|none|none|
 
 ### **Create Credit Payment**
-**POST /v3/payments/creditrequest**
+[POST /v3/payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)
 
 **HTTP Method: POST**
 
@@ -190,7 +190,7 @@ Request Parameters
 |externalReferenceId|string|false|none|none|
 
 ### **Create Debit Payment**
-**POST /v3/payments/debitrequest**
+[POST /v3/payments/debitrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createDebitPaymentV3/)
 
 **HTTP Method: POST**
 
@@ -233,7 +233,7 @@ Request Parameters
 |data|[BookTransferResponse_data](https://apidocs.finzly.net/dashboard?java=#schemabooktransferresponse_data)|false|none|none|
 
 ### **Get Payment by UIDV3**
-**GET /v3/payments/{paymentUID}**
+[GET /v3/payments/{paymentUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPaymentByUIDV3/)
 
 **HTTP Method: GET**
 
@@ -350,7 +350,7 @@ Request Parameters
 ### **Cancel Payment by paymentUID (v3)**
 
 
-**PUT /v3/payments/{paymentUID}/cancel**
+[PUT /v3/payments/{paymentUID}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelPaymentV3/)
 
 **HTTP Method: PUT**	
 
@@ -401,7 +401,7 @@ Cancel Payment Response data
 |paymentUID|string|false|none|none|
 
 ### **Return a payment by paymentUID (v3)**
-**PUT/v3/payments/{paymentUID}/return**
+[PUT/v3/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/returnPaymentV3/)
 
 **HTTP Method: PUT**
 
@@ -419,7 +419,7 @@ Cancel Payment Response data
 
 JSON Response not available
 ### **Reverse Payment by paymentUID (v3)**
-**PUT /v3/payments/{paymentUID}/reverse**
+[PUT /v3/payments/{paymentUID}/reverse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/reversePaymentV3/)
 
 **HTTP Method: PUT**
 

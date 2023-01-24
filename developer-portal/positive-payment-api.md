@@ -12,7 +12,7 @@ Positive Pay Rules APIs enable third parties, bank customers, and downstream par
 ## **API Functions**
 ### **Search Positive Pay Rules**
 
-**POST /v2/positivepay/rules/search**
+[POST /v2/positivepay/rules/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayRules%20(V2)/)
 
 **HTTP Method: POST**
 
@@ -91,7 +91,7 @@ Positive Pay Rules APIs enable third parties, bank customers, and downstream par
 
 
 ### **Update Positive Pay Rules(v2)**
-**PUT /v2/positivepay/rules**
+[PUT /v2/positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateRulesV2/)
 
 **HTTP Method: PUT**
 
@@ -128,7 +128,7 @@ A successful PUT request to this endpoint returns the following data -**
 
 
 ### **Add PositivePay Rule (v2)**
-**POST /v2/positivepay/rules**
+[POST /v2/positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/addPositiveRulesV2/)
 
 **HTTP Method: POST**
 
@@ -165,7 +165,7 @@ A successful PUT request to this endpoint returns the following data -**
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 ### **Get PositivePay Rule By RuleUID (v2)**
-**GET /v2/positivepay/rules/{ruleUID}**
+[GET /v2/positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPostivePayRuleV2/)
 
 **HTTP Method - GET**
 
@@ -221,7 +221,7 @@ Request Parameters
 
 
 ### **Delete Rules**
-**DELETE /v2/positivepay/rules/{ruleUID}**
+[DELETE /v2/positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteRules/)
 
 **HTTP Method: Delete**
 
@@ -257,7 +257,7 @@ Request Parameters
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 ### **Activate Rules**
-**PUT /v2/positivepay/rules/{ruleUID}/activate**
+[PUT /v2/positivepay/rules/{ruleUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/activateRulesV2/)
 
 **HTTP Method: PUT**
 
@@ -293,7 +293,7 @@ Request Parameters
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 ### **Suspend Rules**
-**PUT /v2/positivepay/rules/{ruleUID}/suspend**
+[PUT /v2/positivepay/rules/{ruleUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/suspendRulesV2/)
 
 **HTTP Method: PUT**
 
@@ -330,7 +330,7 @@ Request Parameters
 
 
 ### **Search Positive Pay Expectations**
-**POST /v2/positivepay/exception/search**
+[POST /v2/positivepay/exception/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayExceptionsV2/)
 
 **HTTP Method: POST**
 
@@ -386,7 +386,7 @@ Request Parameters
 |ruleUID|[[PositivePayExceptionDecision](https://apidocs.finzly.net/dashboard?java=#schemapositivepayexceptiondecision)]|false|none|Positive rule unique id|
 
 ### **Approve PositivePay Exception**
-**PUT /v2/positivepay/exception/{exceptionUID}/approve**
+[PUT /v2/positivepay/exception/{exceptionUID}/approve](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveExceptionsV2/)
 
 **HTTP Method: PUT**
 
@@ -425,7 +425,7 @@ Request Parameters
 
 ### **Reject Exceptions**
 
-**PUT /v2/positivepay/exception/{exceptionUID}/reject**
+[PUT /v2/positivepay/exception/{exceptionUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectExceptions/)
 
 **HTTP Method: PUT**
 
@@ -464,7 +464,7 @@ All the request parameters and objects are specified below-
 |exceptionUID|number(int64)|false|none|Unique identifier associated with positive pay exception|
 
 ### **Approve All Exceptions**
-**PUT /v2/positivepay/exception/approveall**
+[PUT /v2/positivepay/exception/approveall](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveAllExceptionsV2/)
 
 **HTTP Method: PUT**
 

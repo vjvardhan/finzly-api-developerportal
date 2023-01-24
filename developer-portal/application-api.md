@@ -5,7 +5,7 @@ title: Finzly Application API
 # **API Name UserAdmin**
 ## **Applications API**
 ### **Get Application**
-**GET /applications**
+[GET /applications](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplication/)
 
 **HTTP Method: GET**
 
@@ -68,7 +68,7 @@ Enumerated Values
 
 Get Application Details By App Code	
 
-**GET /applications/appcode/{app-code}**
+[GET /applications/appcode/{app-code}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplicationDetailsByAppCode/)
 
 **HTTP Method: GET**
 

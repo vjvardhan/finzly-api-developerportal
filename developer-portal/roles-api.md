@@ -3,8 +3,10 @@ title: Finzly Roles API
 ---
 
 # Roles 
-### **Roles**
-### **POST/searchRoleV2**
+
+### **Search Roles**
+
+[POST/searchRoleV2](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRoleV2/)
 
 **HTTP Method: POST**
 
@@ -123,7 +125,8 @@ title: Finzly Roles API
 
 
 ### **Add Role V2**
-**POST /v2/roles**
+
+[POST /v2/roles](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRoleV2/)
 
 **HTTP Method: POST**
 
@@ -177,7 +180,9 @@ Sending a successful POST request to this endpoint returns the following data -
 
 
 ### **Get Role**
-**GET /v2/roles/{roleUUID}
+
+[GET /v2/roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getRoleV2/)
+
 HTTP Method: GET**
 
 **Description -** Sending a GET request to **/v2/roles/{roleUUID}** allows users to retrieve a role details by a role id by passing roleUUID in the path of the API request. All the request parameters and objects are mentioned below - 
@@ -260,7 +265,8 @@ HTTP Method: GET**
 |applications|[V2App]|false|none|none|
 
 ### **Update Role V2**
-**PUT /v2/roles/{roleUUID}**
+
+[PUT /v2/roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRoleV2/)
 
 **HTTP Method:  PUT**
 
@@ -301,7 +307,8 @@ HTTP Method: GET**
 |data|[V2CreateRoleResponse_data](https://apidocs.finzly.net/dashboard?java=#schemav2createroleresponse_data)|false|none|none|
 
 ### **Delete Role**
-**DELETE /v2/roles/{roleUUID}**
+
+[DELETE /v2/roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRoleV2/)
 
 **HTTP Method: DELETE**
 

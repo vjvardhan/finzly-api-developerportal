@@ -53,6 +53,14 @@ p{
     font-size:16px;
     box-shadow: 1px 5px 20px #0000000d;
 }
+.sub:hover{
+    background-color: #003c90!important;
+    opacity: 0.8;
+  /*  box-shadow: 10px 10px 10px rgb(77 79 147 / 50%);*/
+}
+.sub:hover h3{
+    color: #fff;
+}
 
 
 

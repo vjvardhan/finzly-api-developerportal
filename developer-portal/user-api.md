@@ -8,7 +8,7 @@ title: Finzly User API
 
 ### **Search User**	
 
-**POST /v2/users/search**
+[POST /v2/users/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)
 
 **HTTP Method: POST**
 
@@ -67,7 +67,8 @@ title: Finzly User API
 |pagination|[V2Pagination](https://apidocs.finzly.net/dashboard?java=#schemav2pagination)|false|none|none|
 
 ### **Get User V2**
-**GET /v2/users/{userUUID}**
+
+[GET /v2/users/{userUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getUserV2/)
 
 **HTTP Method: GET**
 
@@ -166,7 +167,8 @@ title: Finzly User API
 |userlimits|<p>[[V2UserLimits](https://apidocs.finzly.net/dashboard?java=#schemav2userlimits)]</p><p></p>|false|none|none|
 
 ### **Update User**
-**PUT /v2/users**
+
+[PUT /v2/users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)
 
 **HTTP Method: PUT**
 
@@ -220,7 +222,8 @@ title: Finzly User API
 
 
 ### **Add User**
-**POST /v2/users**
+
+[POST /v2/users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)
 
 **HTTP Method: POST**
 
@@ -275,7 +278,7 @@ Request Parameters
 |userUUID|string|false|none|A universally unique identifier (UUID) assigned to the user by the system|
 
 ### **Activate User**
-**PUT /v2/users/{userUUID}/activate
+[PUT /v2/users/{userUUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/activateUserV2/)
 HTTP Method: PUT**
 
 **Description -** Sending a PUT request to the PUT /v2/users/{userUUID}/activate endpoint allows users to activate a user. The request parameters and objects are mentioned below - 
@@ -317,7 +320,7 @@ HTTP Method: PUT**
 
 ### **Suspend User V2**
 
-**PUT /v2/users/{userUUID}/suspend**
+[PUT /v2/users/{userUUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/suspendUserV2/)
 
 **HTTP Method: PUT**
 

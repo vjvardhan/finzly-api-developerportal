@@ -1,5 +1,5 @@
 ---
-title: Finzly Foreign Exchange APIs
+title: Foreign Exchange
 ---
 
 
@@ -16,7 +16,7 @@ Following functions helps you to understand the current FX capabilities exposed 
 
 ## **API Functions**
 ### **Get FX Quote**
-**POST /v2/fx/quote**
+[POST /v2/fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)
 
 **HTTP Method: GET**
 
@@ -67,7 +67,7 @@ Following functions helps you to understand the current FX capabilities exposed 
 |data|<p>[FXQuoteResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxquoteresponse_data)</p><p></p>|false|none|none|
 
 ### **Accept FX Quote** 
-**PUT /v2/fx/accept**
+[PUT /v2/fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)
 
 **HTTP Method: PUT**
 
@@ -144,7 +144,7 @@ FX Accept Quote Response Data
 |externalPricingSystemRefId|string|false|none|Unique reference id returned by the external system provider.|
 
 ### **Reject FX Quote**
-**PUT /v2/fx/{quoteUUID}/reject**
+[PUT /v2/fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)
 
 **HTTP Method: PUT**
 
@@ -198,7 +198,7 @@ FX Accept Quote Response Data
 
 ### **Get FX trade information (v2)**
 
-**GET /v2/fx/{forexContractNo}**
+[GET /v2/fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformationV2/)
 
 **HTTP Method: GET**
 
@@ -293,7 +293,7 @@ FX Accept Quote Response Data
 |executionTime|string(date)|false|none|The execution time|
 
 ### **Cover FX Trade**
-**GET /v2/fx/{forexContractNo}/cover**
+[GET /v2/fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTradeV2/)
 
 **HTTP Method: GET**
 
@@ -395,7 +395,7 @@ FX Accept Quote Response Data
 |referenceSpotRate|number|false|none|the offered rate|
 
 ### **Cancel FX Trade**
-**DELETE /v2/fx/{forexContractNo}/cancel**
+[DELETE /v2/fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)
 
 **HTTP Method: Delete**
 
