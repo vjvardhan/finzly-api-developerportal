@@ -1,7 +1,7 @@
 ---
 title: Customer Contact
 ---
-# **Add Customer Contact**
+## **Add Customer Contact**
 
 
 This API allows the user to add a customer account to the customer profile in the CRM system. The user can use the account unique identifier (UID) in the payment request. The customer account can be a type of Checking, Saving or Virtual (Fintech account).
@@ -19,9 +19,9 @@ Following use cases helps you to understand the current customer contacts capabi
 3. Get Customer Contacts By ContactUID
 4. Update Customer Contact 
 
-# <span>Customer Contact API </span>
+## Customer Contact API
 
-## **Search Customer Contacts**
+### **Search Customer Contacts**
 
 [GET /v2/customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)
 
@@ -32,7 +32,7 @@ Following use cases helps you to understand the current customer contacts capabi
 
 **Request Parameters -** 
 
-**Here, the customerUID, Page and Limit are mandatory parameters. CustomerUID will be passed via the PATH of the API request and Page and Limit will be passed via the query section of the API request to fetch the information.** 
+Here, the customerUID, Page and Limit are mandatory parameters. CustomerUID will be passed via the PATH of the API request and Page and Limit will be passed via the query section of the API request to fetch the information.
 
 
 
@@ -46,7 +46,7 @@ Following use cases helps you to understand the current customer contacts capabi
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -** 
+A successful GET request to this endpoint returns the following data -
 
 **Response Code - 200**
 
@@ -130,7 +130,7 @@ Following use cases helps you to understand the current customer contacts capabi
 |data|[[CustomerContact](https://apidocs.finzly.net/dashboard?java=#schemacustomercontact)]|false|none|none|
 
 
-## **Creating Customer Contact**
+### **Creating Customer Contact**
 [POST /v2/customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)
 
 **HTTP Method: POST** 
@@ -146,7 +146,7 @@ Following use cases helps you to understand the current customer contacts capabi
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -** 
+A successful POST request to this endpoint returns the following data -
 
 ```yaml Before
 {
@@ -171,7 +171,7 @@ Following use cases helps you to understand the current customer contacts capabi
 |data|[CreateCustomerContactResponse_data](https://apidocs.finzly.net/dashboard?java=#schemacreatecustomercontactresponse_data)|false|none|none|
 
 
-## **Get Customer Contact Details**
+### **Get Customer Contact Details**
 [GET /v2/customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerContactByUIDV2/)
 
 **HTTP Method: GET**
@@ -267,7 +267,7 @@ In this Query, we need to pass the two Parameters, CustomerID and ContactID, in 
 
 
 
-## **Update Customer Contact Details**
+### **Update Customer Contact Details**
 [PUT /v2/customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerContactByUIDV2/)
 
 **HTTP Method: PUT**
@@ -277,7 +277,7 @@ In this Query, we need to pass the two Parameters, CustomerID and ContactID, in 
 
 **Request Parameters**
 
-**Here we also need to pass two Parameters, customerUID, and contactUID, in the Path and the further account information for which they want to update the record in the Body section.**
+Here we also need to pass two Parameters, customerUID, and contactUID, in the Path and the further account information for which they want to update the record in the Body section.
 
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |

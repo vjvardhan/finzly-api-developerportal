@@ -30,7 +30,7 @@ The 402 (Payment Required) status code is reserved for future use.
 
 The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server intending to make the reason for the forbidden request public can describe it in the response payload (if any).
 
-` `If authentication credentials were provided in the request, the server considers them insufficient to grant access. The client SHOULD NOT automatically repeat the request with the same credentials. The client MAY repeat the request with new or different credentials. However, a request might be forbidden for reasons unrelated to the credentials.
+If authentication credentials were provided in the request, the server considers them insufficient to grant access. The client SHOULD NOT automatically repeat the request with the same credentials. The client MAY repeat the request with new or different credentials. However, a request might be forbidden for reasons unrelated to the credentials.
 
 An origin server that wishes to "hide" the current existence of a forbidden target resource MAY instead respond with a status code of 404 (Not Found).
 

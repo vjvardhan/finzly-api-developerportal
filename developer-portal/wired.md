@@ -8,32 +8,31 @@ title: Wired Organization
 
 Fedwire Funds service supports the following origination gateways for processing through BankOS 
 
-` `- API – Finzly Connect APIs
-
-- ` `Supports the initiation of
+&#10003; API – Finzly Connect APIs
+  - Supports the initiation of
   - Customer or Corporate credit transfer 
   - Customer Transfer Plus 
   - Customer or Corporate Drawdown Request
 
-` `- Web - Online Digital Treasury Portal (CashOS)
+&#10003; Web - Online Digital Treasury Portal (CashOS)
 
 - Supports the initiation of domestic wire transfer
-  - ` `This will be defined based on the Processing speed as Express (Configurable) and Fees to be applied.
+- This will be defined based on the Processing speed as Express (Configurable) and Fees to be applied.
 
-\-  Branch - Teller Application (Wire Room) 
+&#10003;  Branch - Teller Application (Wire Room) 
 
 - Supports the initiation of Wire from branch using the teller application with an option as
   - Walk-in 
   - Phone-in
 
-\-  Bulk uploads 
+&#10003;  Bulk uploads 
 
 - Supports the initiation of wire with an option from Bulk File processing
-  - ` `Fedwire message upload 
+  - Fedwire message upload 
     - This will be based on the actual raw Fedwire message structure.
     - Multiple Fedwire message can be uploaded in a File
 
-\-   Finzly CSV
+&#10003;   Finzly CSV
 
 - This is customed CSV formatted file for processing the Fedwire payments with required information as
   - Sender (Originator details) 

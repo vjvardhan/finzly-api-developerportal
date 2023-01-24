@@ -2,12 +2,12 @@
 title: Finzly Customer Account API
 ---
 
-# **Positive Pay**
+## **Positive Pay**
 Payments Positive Pay has two sets of APIs.
 
 Positive Pay Rules APIs enable third parties, bank customers, and downstream partners to define positive rules to monitor ACH debits, set up Fedwire drawdown requests, and "request for pay - RFP" rules for instant payments.
 
-**Positive Pay Decision APIs approve or reject the exceptions identified by the positive pay rules engine.**
+Positive Pay Decision APIs approve or reject the exceptions identified by the positive pay rules engine.
 
 ## **API Functions**
 ### **Search Positive Pay Rules**
@@ -26,7 +26,7 @@ Positive Pay Rules APIs enable third parties, bank customers, and downstream par
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -104,8 +104,9 @@ Positive Pay Rules APIs enable third parties, bank customers, and downstream par
 |body|body|[PositivePayRule](https://apidocs.finzly.net/dashboard?java=#schemapositivepayrule)|false |none|
 
 
-**JSON Response
-A successful PUT request to this endpoint returns the following data -**
+**JSON Response**
+
+A successful PUT request to this endpoint returns the following data -
 
 **Response Code - 200**
 
@@ -143,7 +144,7 @@ A successful PUT request to this endpoint returns the following data -**
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -171,7 +172,7 @@ A successful PUT request to this endpoint returns the following data -**
 
 **Description -** Sending a GET request to the **/v2/positivepay/rules/{ruleUID}** endpoint allows users to get PositivePay Rule by providing ruleUID in the path of the API request.  All the request parameters and objects are specified below- 
 
-Request Parameters
+**Request Parameters**
 
 
 |Name |In|Type|Required|Description|
@@ -180,7 +181,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -235,7 +236,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful DELETE request to this endpoint returns the following data -**
+A successful DELETE request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -271,7 +272,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -**
+A successful PUT request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -308,7 +309,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -**
+A successful PUT request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -346,7 +347,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -401,7 +402,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -**
+A successful PUT request to this endpoint returns the following data
 
 **Response Code - 200**
 ```yaml Before
@@ -442,7 +443,7 @@ All the request parameters and objects are specified below-
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data 
 
 **Response Code - 200**
 
@@ -479,7 +480,7 @@ Description - Sending a PUT request to **/v2/positivepay/exception/approveall** 
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -**
+A successful PUT request to this endpoint returns the following data
 
 **Response Code - 200**
 ```yaml Before

@@ -3,7 +3,7 @@ title: SEC Codes
 ---
 
 
-### **SEC Codes**
+## **SEC Codes**
 
 Each payment entry must be categorized under one of the several Service Entry Class Codes, aka SEC Codes. Finzly supports all the SEC Codes as listed below 
 

@@ -3,7 +3,7 @@ title: Foreign Exchange
 ---
 
 
-# **Foreign Exchange**
+## **Foreign Exchange**
 
 Foreign Exchange (forex or FX) is trading one currency for another. For example, one can swap the U.S. dollar for the euro. Foreign Exchange Finzly FX APIs enable third parties, banks, and banks' downstream partners to initiate and manage FX trades for their customers.
 
@@ -31,7 +31,7 @@ Following functions helps you to understand the current FX capabilities exposed 
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data-
 
 **Response Code - 200**
 
@@ -82,7 +82,7 @@ Following functions helps you to understand the current FX capabilities exposed 
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data-
 
 **Response Code - 200**
 
@@ -161,7 +161,7 @@ FX Accept Quote Response Data
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -**
+A successful PUT request to this endpoint returns the following data -
 
 **Response Code - 200**
 ```yaml Before
@@ -215,7 +215,7 @@ FX Accept Quote Response Data
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data -
 
 **Response Code - 200**
 
@@ -308,7 +308,7 @@ FX Accept Quote Response Data
 
 **JASON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data -
 
 **Response Code - 200**
 ```yaml Before
@@ -410,7 +410,7 @@ FX Accept Quote Response Data
 
 **JASON Response**
 
-**A successful Delete request to this endpoint returns the following data -**
+A successful Delete request to this endpoint returns the following data -
 
 **Response Code - 200**
 

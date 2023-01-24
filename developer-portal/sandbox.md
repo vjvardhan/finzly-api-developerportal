@@ -5,7 +5,7 @@ title: Sandbox and Testing
 
 
 
-# **Getting started with Finzly APIs**
+## **Getting started with Finzly APIs**
 
 
 

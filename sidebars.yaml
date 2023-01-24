@@ -1,6 +1,7 @@
 training:
   - page: developer-portal/index.md
   - group: Payment Solutions
+    expanded: true
     page: developer-portal/overviewSection.md
     pages:
        - group: ACH Processing
@@ -75,7 +76,7 @@ training:
         pages:
           - label: Payment Notification
             page: developer-portal/webhooks.md
-  - label: Finzly Connect APIs
+  - label: Finzly Connect API
     page: 
   - group: Open Banking APIs
     expanded: false

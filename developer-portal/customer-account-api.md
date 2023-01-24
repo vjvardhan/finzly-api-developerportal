@@ -2,7 +2,7 @@
 title: Finzly Customer Account API
 ---
 
-# Customer Accounts
+## Customer Accounts
 
 Customer Accounts APIs help users get all the accounts associated with their customer in a single call. You can enhance the customer experience by providing them with the most updated balance. Besides, you can further add value by tracking payment transactions related to these individual accounts.
 
@@ -37,7 +37,8 @@ Customer UID must be passed in the path of the API request to search for custome
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -** 
+A successful GET request to this endpoint returns the following data -
+
 ``` yaml Before
 
 {
@@ -127,7 +128,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 **Request Parameters**
 
-**The customer uid must be passed in the path of API request. In the body section must pass the details of the user account to be createds**
+The customer uid must be passed in the path of API request. In the body section must pass the details of the user account to be createds.
 
 |Name |In|Type |Required |Description|
 | :- | :- | :- | :- | :- |
@@ -137,7 +138,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data -
 
 **Response Code - 200**
 
@@ -186,7 +187,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 **Request Parameters**
 
-**Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate.**
+Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate.
 
 
 |**Name**|**In**|**Data Type**|**Required**|**Description**|
@@ -200,7 +201,7 @@ Customer UID must be passed in the path of the API request to search for custome
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -** 
+A successful GET request to this endpoint returns the following data -
 
 **Response Code - 200**
 
@@ -259,9 +260,9 @@ Customer UID must be passed in the path of the API request to search for custome
 
 **Request Parameters**
 
-**Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate. Body section will include the details of the user account which we want to update.**
+Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate. Body section will include the details of the user account which we want to update.
 
-|Name|In|Type|Required|Description|
+|**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |customerUID|path|string|true|none|
 |accountUID|path|string|true|none|
@@ -318,7 +319,7 @@ Response Code - 200
 
 **Request Parameters**
 
-**Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate to delete the account.** 
+Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate to delete the account.
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
@@ -329,7 +330,7 @@ Response Code - 200
 
 **JSON Response**
 
-**A successful DELETE request to this endpoint will return the following data -** 
+A successful DELETE request to this endpoint will return the following data -
 
 **Response Code - 200**
 

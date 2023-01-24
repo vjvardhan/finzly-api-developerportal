@@ -2,10 +2,10 @@
 title: Overview 
 ---
 
-# Overview
+## **Overview**
 Finzly Connect is a universal payment API for developers to access all the payment rails without stressing over the network and messaging rules. Finzly Connects offers REST API and webhook notifications to access any Finzly-powered bank. Finzly has standardized the payment data and made the payment processing super simple, so a bank customer, whether a fintech, business or an individual, doesn't have to worry about the messaging rules. A developer can access ACH, Domestic Wires, International Wires, RTP, and FedNow using Finzly Connect and connect to their favorite Finzly Bank.
 
-Finzly Connect offers instant payment access and notifications via simple REST API. It is designed to be simple to use and implement in any model computer language that allows you to generate web requests. It uses "REST-Like '' RPC-style operations with parameters URL encoded into the request, and its response is encoded in JSON. 
+Finzly Connect offers instant payment access and notifications via simple REST API. It is designed to be simple to use and implement in any model computer language that allows you to generate web requests. It uses "REST-Like" RPC-style operations with parameters URL encoded into the request, and its response is encoded in JSON. 
 
 In this section, we will give a brief overview of the Finzly APIs: OpenBanking API, UserAdmin API and PaymentStatus-Notifications API. We'll get as much information as possible from the PDF and add some unique content. 
 
@@ -63,7 +63,7 @@ __[](usecase.md)__
 ### Authentication</strong></p>
 
 
-__[](authentication.md)__
+__[](sandbox.md)__
 </div>
 
 <div class="sub">

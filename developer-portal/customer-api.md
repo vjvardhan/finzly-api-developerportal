@@ -2,7 +2,7 @@
 title: Customer API Traning Progrme
 ---
 
-# Customers APIs
+## Customers APIs
 Customer APIs entitle the downstream partners, Banks, and associates to formally onboard clients with all the required information to perform financial operations.
 These APIs will also enable users to search & maintain these onboarded clients, update any modifications in client information and create/update their beneficiaries (contacts).
 Following use cases helps you to understand the current customer capabilities exposed via APIs
@@ -338,10 +338,10 @@ The entire data will be passed through the body section.
 
 **Note the following about the results:**
 
-- **Request URL: ​Shows what executed.**
-- **Response Headers:​ Contains messages about the success or failure of the request.** 
-- **Response Body: ​Contains a JSON array of the results.** 
-- **Curl Command Line: ​Contains a form of the request that you can copy and paste to execute at the command line or in scripts.**
+- **Request URL:** ​Shows what executed.
+- **Response Headers:​** Contains messages about the success or failure of the request.
+- **Response Body:** ​Contains a JSON array of the results.
+- **Curl Command Line:** ​Contains a form of the request that you can copy and paste to execute at the command line or in scripts.
 
 
 ## **Getting Customer Information by customerUID**
@@ -353,7 +353,7 @@ The entire data will be passed through the body section.
 
 **Request Parameters**
 
-**Here we need to pass the CustomerID as a Path in the API request to get the response.**
+Here we need to pass the CustomerID as a Path in the API request to get the response.
 
 
 |Name |In|Data Type|Required|Description|
@@ -484,9 +484,7 @@ A successful GET request to /v2/customers/**{customerUID}** endpoint returns the
 
 **Request Parameters**
 
-**Here we need to Pass the Customer ID in the path of the API request and Data via the body section to update the record on behalf of the customerID.**
-
-**nd data will be passed via the body section to update the record on the behalf of customerID.**
+Here we need to Pass the Customer ID in the path of the API request and Data via the body section to update the record on behalf of the customerID and data will be passed via the body section to update the record on the behalf of customerID.
 
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |

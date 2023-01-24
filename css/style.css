@@ -2,7 +2,7 @@
     background: #003C90 !important;
 }
 body{
-    background-color:white;
+    background-color:#fff;
 }
 .gbwUkf p{
     font-size:20px;
@@ -19,9 +19,13 @@ body p,span, ol ,li, ul,li{
     line-height: 1.5 !important;
     font-size: 1rem !important;
     text-align: justify !important;
+    text-justify: distribute !important;
+    text-align-last: left !important;
 }
 p{
     text-align: justify !important; 
+    text-justify: distribute !important;
+    text-align-last: left !important;
 }
 .box{
     border:1px solid lightgrey;border-radius:5px;
@@ -36,7 +40,17 @@ p{
     display: flex;
     align-items:stretch;
 }
+.cRRXke, .bryfch{
+    text-align: left !important;
+}
 
+div [data-cy="sidebar-item-Finzly Connect API"] {
+    color:#9b9da1;
+}
+div [data-cy="sidebar-item-Finzly Connect API"]:hover {
+    background-color: transparent;
+    color:#9b9da1;
+}
 .sub{
     border:0px solid grey;
     border-radius:10px;
@@ -156,4 +170,9 @@ ol li{
     .fmDiqV h1, .gbwUkf h1{margin-top: 1em;}
     .sub p strong{font-size: 18px!important;}
 }
+@media screen and (min-width: 900px){
+.dmvKRI,.cIgtsP {
+    width: 100%!important;
+}
 
+}

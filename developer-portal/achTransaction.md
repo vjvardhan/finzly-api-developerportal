@@ -74,4 +74,4 @@ ACH payments are usually processed with 2 days settlement, which means if a paym
 
 The Federal Reserve processes the files on all bank working days from x:00 to x:00. Same day ACH files are transmitted at the following times
 
-Standard ACH files are transmitted at the following times…
+Standard ACH files are transmitted at the following times.

@@ -2,7 +2,7 @@
 title: Finzly API Overview Section  
 ---
 
-# **Overview**
+## **Overview**
 
 Finzly Connect is the universal payment API for the developers to access all the payment rails, without
 having to worry about the network and messaging rules. Finzly Connects offers REST API and webhook

@@ -2,7 +2,7 @@
 title: Finzly Customer Account API
 ---
 
-# Payments
+## Payments
 Payments APIs enable third parties, banks, and downstream partners to initiate and manage customer payments.
 
 The single payment API supports the payment origination for the various payment rails such as ACH, FedWire, SWIFT, and Instant Payments based on speed preference.
@@ -25,7 +25,7 @@ The following use cases help you to understand the current payment capabilities 
 
 **Request Parameters**
 
-***No argument is required. Only payment details will be passed in the body of the API request.***
+No argument is required. Only payment details will be passed in the body of the API request.
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
@@ -137,9 +137,9 @@ The following use cases help you to understand the current payment capabilities 
 
 **Description -** Sending a POST request to **/v3/payments/creditrequest** endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
 
-Request Parameters
+**Request Parameters**
 
-***All details of the users to which we want to make the payment will be passed in the body of the API request.***
+All details of the users to which we want to make the payment will be passed in the body of the API request.
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
@@ -149,7 +149,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful POST request to this endpoint will return the following data-** 
+A successful POST request to this endpoint will return the following data-
 
 **Success Code - 200**
 
@@ -198,7 +198,7 @@ Request Parameters
 
 **Request Parameters**
 
-***All details of the users from which want to receive the payment will be passed in the body of the API request.***
+All details of the users from which want to receive the payment will be passed in the body of the API request.
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
@@ -207,7 +207,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data -
 
 **Success Code - 200**
 
@@ -242,16 +242,13 @@ Request Parameters
 
 **Request Parameters**
 
-
-
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |paymentUID|path|string|true|none|
 
-
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data -
 
 **Success Code - 200**
 
@@ -364,7 +361,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -**
+A successful PUT request to this endpoint returns the following data 
 
 **Success Code - 200**
 
@@ -409,7 +406,7 @@ Cancel Payment Response data
 
 **Request Parameters**
 
-**In case of an incorrect transaction or refund, the users need to pass paymentUID in the API request path to return a payment.**
+In case of an incorrect transaction or refund, the users need to pass paymentUID in the API request path to return a payment.
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|

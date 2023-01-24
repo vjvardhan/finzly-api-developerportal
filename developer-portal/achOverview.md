@@ -4,7 +4,7 @@ title: ACH Overview
 
 
 
-### **ACH** 
+## **ACH** 
 
 ACH (Automated Clearing House) is the most popular, and highly used payment network that was first launched in [xxxx]. ACH payments are exchanged in NACHA formatted files. NACHA sets the rules and guidelines for the processing of ACH payments. After the power of RESTful APIs were proved to be critical for a connected e-commerce and treasury, the need to offer ACH payments via REST API has become critical for the success of banks. 
 
