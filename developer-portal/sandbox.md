@@ -52,4 +52,4 @@ Please contact the Finzly support team to validate the integration.
 
 ## **API Access**
 
-Click [API Access](https://finzly.com/api-access) to fill in your contact information to get the sandbox API keys mailed to your inbox. Using the API keys, you can access and test your use case via the Finzly Connect APIs.
+Click [**API Access**](https://finzly.com/api-access) to fill in your contact information to get the sandbox API keys mailed to your inbox. Using the API keys, you can access and test your use case via the Finzly Connect APIs.

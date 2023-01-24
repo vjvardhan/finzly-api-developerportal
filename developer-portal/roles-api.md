@@ -2,7 +2,7 @@
 title: Finzly Roles API
 ---
 
-## Roles 
+## Roles Management
 
 ### **Search Roles**
 

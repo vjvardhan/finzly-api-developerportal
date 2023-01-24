@@ -2,7 +2,7 @@
 title: Finzly Customer Account API
 ---
 
-## Payments
+## Payment Origination
 Payments APIs enable third parties, banks, and downstream partners to initiate and manage customer payments.
 
 The single payment API supports the payment origination for the various payment rails such as ACH, FedWire, SWIFT, and Instant Payments based on speed preference.

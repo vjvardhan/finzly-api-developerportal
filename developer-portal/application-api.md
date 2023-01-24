@@ -4,7 +4,7 @@ title: Finzly Application API
 
 
 
-## **Applications API**
+## **Applications**
 ### **Get Application**
 [GET /applications](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplication/)
 

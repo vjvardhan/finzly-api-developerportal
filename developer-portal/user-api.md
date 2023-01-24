@@ -3,7 +3,7 @@ title: Finzly User API
 ---
 
 
-## Users API 
+## Users Management
 
 ### **Search User**	
 
@@ -12,7 +12,6 @@ title: Finzly User API
 **HTTP Method: POST**
 
 **Description -** Sending a POST request to **/v2/users/search endpoint allows users to** search users by the given request criteria. This API will return user profile data without role and user limit details. All the request parameters and objects are mentioned below - 
-
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|

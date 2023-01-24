@@ -4,13 +4,13 @@ training:
     expanded: true
     page: developer-portal/overviewSection.md
     pages:
-       - group: ACH Processing
+       - group: ACH
          expanded: false
          page: developer-portal/achOverview.md
          pages:
           - label: SEC Code
             page: developer-portal/secCodes.md
-          - label: ACH Transactions
+          - label: ACH Processing
             page: developer-portal/achTransaction.md
           - label: ACH Positive Pay
             page: developer-portal/achPositivePay.md
@@ -18,7 +18,7 @@ training:
             page: developer-portal/prefund.md
           - label: Bulk Upload
             page: developer-portal/bulk.md
-       - group: Fedwire Payment
+       - group: Fedwire
          expanded: false
          page: developer-portal/fedwire.md 
          pages:
@@ -32,8 +32,6 @@ training:
          page: developer-portal/instant.md
        - label: International Payment
          page: developer-portal/internationalPayment.md
-       - Label: Foreign Exchange
-         page: developer-portal/foreign-exchange-api.md
        - label: Use Cases
          page:  developer-portal/usecase.md
   - group: API Documentation
@@ -45,7 +43,7 @@ training:
       - group: Customer
         expanded: false
         pages:
-          - label: Customer Onboard
+          - label: Customer Onboarding
             page: developer-portal/customer-api.md
           - label: Account Management
             page:  developer-portal/customer-account-api.md
@@ -62,6 +60,8 @@ training:
             page : developer-portal/bulk-payment-api.md
           - label: Book Transfer
             page: developer-portal/bookTransfer.md
+          - Label: Foreign Exchange
+            page: developer-portal/foreign-exchange-api.md
       - group: User Admin
         expanded: false
         pages:
@@ -71,11 +71,8 @@ training:
             page: developer-portal/roles-api.md
           - label: Users Management
             page : developer-portal/user-api.md 
-      - group: Webhooks
-        expanded: false
-        pages:
-          - label: Payment Notification
-            page: developer-portal/webhooks.md
+      -  label: Webhooks
+         page: developer-portal/webhooks.md        
   - label: Finzly Connect API
     page: 
   - group: Open Banking APIs

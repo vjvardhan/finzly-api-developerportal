@@ -3,6 +3,9 @@ title: Book Transfer
 ---
 
 ## **Book Transfer**
+Book transfers are used to move money within a bank or within a ledger. These transfers do not require
+using any payment rail. 
+
 **POST /v3/payments/booktransfer**
 
 **HTTP Method: POST**

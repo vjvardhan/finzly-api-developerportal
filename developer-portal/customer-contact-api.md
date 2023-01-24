@@ -1,7 +1,7 @@
 ---
 title: Customer Contact
 ---
-## **Add Customer Contact**
+## **Contact Management**
 
 
 This API allows the user to add a customer account to the customer profile in the CRM system. The user can use the account unique identifier (UID) in the payment request. The customer account can be a type of Checking, Saving or Virtual (Fintech account).

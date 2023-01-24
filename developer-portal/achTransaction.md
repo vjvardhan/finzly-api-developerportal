@@ -2,7 +2,7 @@
 title: ACH Transaction
 ---
 
-## **ACH Transactions**
+## **ACH Processing**
 
 **Credit Request**
 

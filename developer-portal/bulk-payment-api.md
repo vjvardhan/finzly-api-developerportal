@@ -2,7 +2,7 @@
 title: Finzly Customer Account API
 ---
 
-## **Bulk Payments**
+## **Bulk Payment**
 Finzly system supports the ACH bulk payment processing in a NACHA format via FTP channel. The bank can create an FTP account to process the ACH bulk file in a Nacha format. The solution provided two types of FTP account.
 
 **Following functions helps you to understand the current FX capabilities exposed via APIs**
@@ -10,9 +10,9 @@ Finzly system supports the ACH bulk payment processing in a NACHA format via FTP
 
 **Get Supported File Types**
 
-### **Get /bulkpayment/files/supportedFileType**
+[**Get /bulkpayment/files/supportedFileType**](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getSupporedFileTypes/)
 
-[HTTP Method: GET](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getSupporedFileTypes/)
+__HTTP Method: GET__
 
 **Description** - Sending a GET request to the endpoint allows users to get supported files in a list format. 
 
@@ -37,7 +37,8 @@ Finzly system supports the ACH bulk payment processing in a NACHA format via FTP
 }
 
 ```
-### **Get Bulk File Payment Details**
+**Get Bulk File Payment Details**
+
 [GET /bulkpayment/files/{fileNumber}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)
 
 **HTTP Method: GET**
@@ -53,7 +54,7 @@ Finzly system supports the ACH bulk payment processing in a NACHA format via FTP
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data
 
 **Response Code - 200**
 
