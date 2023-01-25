@@ -27,7 +27,7 @@ Following use cases helps you to understand the current customer contacts capabi
 
 **HTTP Method: GET**
 
-**Description -** A **GET** request containing a series of parameters and objects to the v2/customers/{customerUID}/contacts endpoint is required to search customer contacts. Sending a GET request to the  **/v2/customers/{customerUID}/contacts** endpoint** allows Corporate Entities acting as customers to get the list of the details to those customers who are linked with the customerID. All parameters and objects are specified below:
+**Description -** A GET request containing a series of parameters and objects to the **v2/customers/{customerUID}/contacts** endpoint is required to search customer contacts. Sending a GET request to the  **/v2/customers/{customerUID}/contacts** endpoint allows Corporate Entities acting as customers to get the list of the details to those customers who are linked with the customerID. All parameters and objects are specified below:
 
 
 **Request Parameters -** 
@@ -135,7 +135,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP Method: POST** 
 
-**Description -** Sending a **POST** request to **v2/customers/{customerUID}/contacts** endpoint allows users to create a new contact for the existing customer. Corporate entities acting as customers can create a Customer, so thus in the future, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity. All parameters and objects are specified below:
+**Description -** Sending a POST request to **v2/customers/{customerUID}/contacts** endpoint allows users to create a new contact for the existing customer. Corporate entities acting as customers can create a Customer, so thus in the future, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -176,7 +176,7 @@ A successful POST request to this endpoint returns the following data -
 
 **HTTP Method: GET**
 
-**Description -** A GET request containing contactUID to the /v2/customers/{customerUID}/contacts/{contactUID} endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer's contact.
+**Description -** A GET request containing contactUID to the **/v2/customers/{customerUID}/contacts/{contactUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer's contact.
 
 **Parameters**
 
@@ -272,7 +272,7 @@ In this Query, we need to pass the two Parameters, CustomerID and ContactID, in 
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to v2/customers/{customerUID}/contacts/{contactUID} allows users to update customer contact details. All parameters and objects are specified below:
+**Description -** Sending a PUT request to **v2/customers/{customerUID}/contacts/{contactUID}** allows users to update customer contact details. All parameters and objects are specified below:
 
 
 **Request Parameters**

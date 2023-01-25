@@ -13,18 +13,19 @@ Following use cases helps you to understand the current customer capabilities ex
 
 __Add Client (of Fintech)__
 
-__Description__ - Using this API, the user can add a CRM entity to FinzlyOS. This API allows them to create customer types such as Customer, Corporate, Downstream partner (FinTech), Third Party Customer (Customer of a FinTech), and Financial Institutions.
-
 __HTTP Method: POST__
 
-**<span>Customer API </span>**
-**<span>Search Customer</span>**
+__Description__ - Using this API, the user can add a CRM entity to FinzlyOS. This API allows them to create customer types such as Customer, Corporate, Downstream partner (FinTech), Third Party Customer (Customer of a FinTech), and Financial Institutions.
+
+
+## **Customer API**
+### **Search Customer**
 
 [GET /v2/customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)
 
 __HTTP Method: GET__
 
-__Description__ - A GET request containing a series of parameters and objects to the GET /v2/customers endpoint is required to search for customers. Sending a GET request to the Search Customers Endpoint will allow users to search for customers using parameters such as legal name, short name, etc. All parameters and objects are specified below:
+__Description__ - A GET request containing a series of parameters and objects to the **GET /v2/customers** endpoint is required to search for customers. Sending a GET request to the Search Customers Endpoint will allow users to search for customers using parameters such as legal name, short name, etc. All parameters and objects are specified below:
 
 
 __Request Parameters__
@@ -289,13 +290,12 @@ __API Response Objects-__
 - *Response Body: ​Contains a JSON array of the results.* 
 - *Curl Command Line: ​Contains a form of the request that you can copy and paste to execute at the command line or in scripts.*
 
-## <span>Creating Customer</span>
+### **Creating Customer**
+[POST /v2/customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerV2/)
 
 **HTTP Method:** **POST**
 
-[POST /v2/customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerV2/)
-
-**Description -** Sending a POST request to Customers Endpoint will allow the users to create a customer as a Corporate Account for getting the features and using further options. Finzy is providing a dashboard where corporate customers can create their account and use the settings later on as per their convenience. In order to create a customer a POST request containing a series of parameters and objects to the POST /v2/customers endpoint is required. All parameters and objects are specified below -
+**Description -** Sending a POST request to Customers Endpoint will allow the users to create a customer as a Corporate Account for getting the features and using further options. Finzy is providing a dashboard where corporate customers can create their account and use the settings later on as per their convenience. In order to create a customer a POST request containing a series of parameters and objects to the **POST /v2/customers** endpoint is required. All parameters and objects are specified below -
 
 **Request Parameters**
 
@@ -344,13 +344,13 @@ The entire data will be passed through the body section.
 - **Response Body:** ​ Contains a JSON array of the results.
 - **Curl Command Line:** ​ Contains a form of the request that you can copy and paste to execute at the command line or in scripts.
 
+### **Getting Customer Information by customerUID**
 
-## **Getting Customer Information by customerUID**
 [GET /v2/customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerByCustomerUIDV2/)
 
 **HTTP Method: GET**
 
-**Description** - A GET request containing customerUID to the /v2/customers/**{customerUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer. **By passing the Customer ID in the path of the API request, we can get the full details in the response.**
+**Description** - A GET request containing customerUID to the **/v2/customers/{customerUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer. By passing the Customer ID in the path of the API request, we can get the full details in the response.
 
 **Request Parameters**
 
@@ -364,7 +364,7 @@ Here we need to pass the CustomerID as a Path in the API request to get the resp
 
 **Success Response**
 
-A successful GET request to /v2/customers/**{customerUID}** endpoint returns the following data 
+A successful GET request to **/v2/customers/{customerUID}** endpoint returns the following data 
 
 **Response Code - 200**
 
@@ -475,13 +475,14 @@ A successful GET request to /v2/customers/**{customerUID}** endpoint returns the
 
 ```
 
-## **Updating Customers**
+
+### **Updating Customers**
 
 [PUT /v2/customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerByCustomerUIDV2/)
 
 **HTTP Method: PUT**
 
-**Description -** A PUT request containing a series of parameters and objects to the v2/customers/{customerUID} endpoint is required to update customers. Sending a PUT request to the v2/customers/{customerUID} endpoint allows users to update information related to any existing customer type using parameters. All parameters and objects are specified below:
+**Description -** A PUT request containing a series of parameters and objects to the **v2/customers/{customerUID}** endpoint is required to update customers. Sending a PUT request to the **v2/customers/{customerUID}** endpoint allows users to update information related to any existing customer type using parameters. All parameters and objects are specified below:
 
 **Request Parameters**
 

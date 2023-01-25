@@ -7,7 +7,7 @@ Finzly system supports the ACH bulk payment processing in a NACHA format via FTP
 
 **Following functions helps you to understand the current FX capabilities exposed via APIs**
 
-**Get Supported File Types**
+### **Get Supported File Types**
 
 [Get /bulkpayment/files/supportedFileType](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getSupporedFileTypes/)
 
@@ -17,7 +17,7 @@ __HTTP Method: GET__
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -**
+A successful GET request to this endpoint returns the following data
 
 **Response Code - 200**
 
@@ -36,7 +36,7 @@ __HTTP Method: GET__
 }
 
 ```
-**Get Bulk File Payment Details**
+### **Get Bulk File Payment Details**
 
 [GET/bulkpayment/files/{fileNumber}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)
 
@@ -345,8 +345,6 @@ A successful GET request to this endpoint returns the following data
 **Description -** Sending a POST request to /bulkpayment/files allows users to Upload files for bulk payment. The request parameters and objects are specified below- 
 
 **Request Parameters**
-
-
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
@@ -757,11 +755,11 @@ Description - Sending a POST request to **/bulkpayment/files/search** allows use
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to PUT /bulkpayment/files/{fileNumber}/approve endpoint allows users to approve bulk payment files by using file number. The request parameters and objects are specified below - 
+**Description -** Sending a PUT request to **PUT /bulkpayment/files/{fileNumber}/approve** endpoint allows users to approve bulk payment files by using file number. The request parameters and objects are specified below - 
 
 **Request Parameters**
 
-**The fileNumber must be passed in the path of API request.**
+The fileNumber must be passed in the path of API request.
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
@@ -778,11 +776,11 @@ Description - Sending a POST request to **/bulkpayment/files/search** allows use
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to the bulkpayment/files/{fileNumber}/reject endpoint allows users to reject Bulk Payment File. The request parameters and objects are specified below - 
+**Description -** Sending a PUT request to the **bulkpayment/files/{fileNumber}/reject** endpoint allows users to reject Bulk Payment File. The request parameters and objects are specified below - 
 
 **Request Parameters**
 
-**The fileNumber must be passed in the path of API request.**
+The fileNumber must be passed in the path of API request.
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |

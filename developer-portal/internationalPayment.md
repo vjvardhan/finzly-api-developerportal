@@ -4,7 +4,7 @@ title: International Payment
 
 
 
-## **International Payment**
+## **International Payments**
 
 The commerce is now global, and the businesses have to routinely send and receive payments to and from global vendors and customers. Finzly Connect allows making global payments, tracking and payment notifications via API easier.
 

@@ -4,7 +4,7 @@ title: Fedwire
 
 
 
-## **FEDWIRE** 
+## **Fedwire** 
 
 Fedwire Funds Services (Fedwire) is a real-time gross settlement transfer system that allows participating financial institutions to send and receive same-day fund transfers. Federal Reserve operates the FEDWIRE payment network and is typically used to process high value payments or the payments that are required to be delivered faster, typically within an hour. Note: There could be delay due to compliance and other bank policies.
 

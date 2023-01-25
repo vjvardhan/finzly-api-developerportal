@@ -10,11 +10,11 @@ title: Finzly Application API
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET request to GET/applications endpoint allows users to fetch the application details using parameters “type” and “status” as a query in the API request.
+**Description -** Sending a GET request to **GET/applications** endpoint allows users to fetch the application details using parameters “type” and “status” as a query in the API request.
 
-Request Parameters
+**Request Parameters**
 
-**The Application Type and status are optional parameters to be passed in the query of API request.**
+The Application Type and status are optional parameters to be passed in the query of API request.
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
@@ -22,7 +22,7 @@ Request Parameters
 |status|query|string|false|Application Status|
 
 
-Enumerated Values
+**Enumerated Values**
 
 |**Parameter**|**Value**|
 | :- | :- |
@@ -33,7 +33,7 @@ Enumerated Values
 
 **JSON Response**
 
-**A successful GET request to this endpoint will return the following data -** 
+A successful GET request to this endpoint will return the following data 
 
 ```yaml Before
 {
@@ -67,7 +67,7 @@ Enumerated Values
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
 |data|[[SearchApplication](https://apidocs.finzly.net/dashboard?java=#schemasearchapplication)]|false|none|none|
 
-Get Application Details By App Code	
+### **Get Application Details By App Code**	
 
 [GET /applications/appcode/{app-code}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplicationDetailsByAppCode/)
 
@@ -87,7 +87,7 @@ The App-code needs to be passed in the path of the API request
 
 **JSON Response**
 
-**A successful GET request to this endpoint returns the following data -** 
+A successful GET request to this endpoint returns the following data 
 
 ```yaml Before
 {

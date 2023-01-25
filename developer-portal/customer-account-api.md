@@ -16,7 +16,9 @@ The following **supported API functions** helps you to understand the current cu
 
 ## **Supported Customer Accounts API functions**
 ### **Search Customer Account**
-[HTTP Method: GET](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerAccountsV2/)
+[GET /v2/customers/{customerUID}/accounts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerAccountsV2/)
+
+**HTTP Method: GET**
 
 **Description** - Sending a GET request to the Search Customers Account Endpoint will allow users to search for customer accounts using parameters customerUID, accountType, and others. This can be used to search the details of customers' accounts registered with the corporate entity. The details will be provided in bulk and not specific. All the request parameters and objects are specified below:
 
@@ -124,7 +126,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP Method: POST**	
 
-**Description -** Sending a POST request to /v2/customers/{customerUID}/accounts endpoint allows users to create a customer account using parameters including customerUID. All parameters and objects are specified below:
+**Description -** Sending a POST request to **/v2/customers/{customerUID}/accounts** endpoint allows users to create a customer account using parameters including customerUID. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -183,7 +185,7 @@ A successful POST request to this endpoint returns the following data -
 
 **HTTP  Method: GET**	
 
-**Description -** Sending a GET request to /v2/customers/{customerUID}/accounts/{accountUID} endpoint allows users to retrieve a customer account associated with parameters including customerUID and accountUID. All parameters and objects are specified below -
+**Description -** Sending a GET request to **/v2/customers/{customerUID}/accounts/{accountUID}** endpoint allows users to retrieve a customer account associated with parameters including customerUID and accountUID. All parameters and objects are specified below -
 
 **Request Parameters**
 
@@ -256,7 +258,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP  Method: PUT**
 
-**Description -** Sending a PUT request to v2/customers/{customerUID}/accounts/{accountUID} endpoint with parameters including customerUID and accountUID allows users to update customer accounts. All parameters and objects are specified below:
+**Description -** Sending a PUT request to **v2/customers/{customerUID}/accounts/{accountUID}** endpoint with parameters including customerUID and accountUID allows users to update customer accounts. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -315,7 +317,7 @@ Response Code - 200
 
 **HTTP  Method: DELETE**
 
-**Description - Sending a DELETE request to the** /v2/customers/{customerUID}/accounts/{accountUID} endpoint with parameters including CustomerUID and AccountUID allows users to delete a customer account. All parameters and objects are specified below:
+**Description -** Sending a DELETE request to the **/v2/customers/{customerUID}/accounts/{accountUID}** endpoint with parameters including CustomerUID and AccountUID allows users to delete a customer account. All parameters and objects are specified below:
 
 **Request Parameters**
 

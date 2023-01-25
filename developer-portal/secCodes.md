@@ -1,5 +1,5 @@
 ---
-title: SEC Codes 
+title: SEC Code 
 ---
 
 

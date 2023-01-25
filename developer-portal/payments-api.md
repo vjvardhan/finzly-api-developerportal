@@ -21,7 +21,7 @@ The following use cases help you to understand the current payment capabilities 
 
 **HTTP  Method: GET**
 
-**Description -** Sending a GET request to /v3/payments/search endpoint allows users to retrieve a list of payments. All the request parameters and objects are specified below:
+**Description -** Sending a GET request to **/v3/payments/search** endpoint allows users to retrieve a list of payments. All the request parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -194,7 +194,7 @@ A successful POST request to this endpoint will return the following data-
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to /v3/payments/debitrequest endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
+**Description -** Sending a POST request to **/v3/payments/debitrequest** endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -237,7 +237,7 @@ A successful POST request to this endpoint returns the following data -
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET Request to /v3/payments/{paymentUID} endpoint allows users to retrieve  payment details using payment uid **in the path of the API request**. All the request parameters and objects are specified below:
+**Description -** Sending a GET Request to **/v3/payments/{paymentUID}** endpoint allows users to retrieve  payment details using payment uid in the path of the API request. All the request parameters and objects are specified below:
 
 
 **Request Parameters**
@@ -351,7 +351,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP Method: PUT**	
 
-**Description-** Sending a PUT Request to /v3/payments/{paymentUID}/cancel endpoint allows users to cancel a payment.using paymentUID. All the request parameters and objects are specified below -
+**Description-** Sending a PUT Request to **/v3/payments/{paymentUID}/cancel** endpoint allows users to cancel a payment.using paymentUID. All the request parameters and objects are specified below -
 
 
 
@@ -402,7 +402,7 @@ Cancel Payment Response data
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to /v3/payments/{paymentUID}/return endpoint allows users to return a payment. All the request parameters and objects are specified below
+**Description -** Sending a PUT request to **/v3/payments/{paymentUID}/return** endpoint allows users to return a payment. All the request parameters and objects are specified below
 
 **Request Parameters**
 
@@ -420,7 +420,7 @@ JSON Response not available
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to /v3/payments/{paymentUID}/reverse endpoint allows users to reverse a payment. All the request parameters and objects are specified below
+**Description -** Sending a PUT request to **/v3/payments/{paymentUID}/reverse** endpoint allows users to reverse a payment. All the request parameters and objects are specified below
 
 **Request Parameters**
 

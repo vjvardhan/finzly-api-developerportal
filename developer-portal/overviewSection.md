@@ -32,7 +32,7 @@ Weekly, Bi-Weekly, Monthly etc.
 
 ![image info](./images/payment-hub.png)
 
-To initiate a payment, the developer must provide very minimal details as follows
+To initiate a payment, the developer must provide very minimal details as follows:
 1. Sender Account
     1. Sender Unique ID
 2. Receiver Information
@@ -56,7 +56,7 @@ curl -X POST [URL]
 }
 
 ```
-Developers can receive real-time webhook notifications for
+Developers can receive real-time webhook notifications for:
 1. Outgoing credit payment statuses
 2. Outgoing debit payment statuses
 3. Incoming payments

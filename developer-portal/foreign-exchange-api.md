@@ -120,7 +120,7 @@ A successful GET request to this endpoint returns the following data-
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
 |data|<p>[FXAcceptQuoteResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxacceptquoteresponse_data)</p><p></p>|false|none|none|
 
-FX Accept Quote Response Data
+**FX Accept Quote Response Data**
 
 
 |**Name**|**Type**|**Required**|**Restrictions**|**Description**|
@@ -148,7 +148,7 @@ FX Accept Quote Response Data
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to PUT /v2/fx/{quoteUUID}/reject endpoint allows user to reject FX Quote using quoteUUID in the path of the API request. All the request parameters and objects are mentioned below - 
+**Description -** Sending a PUT request to **PUT /v2/fx/{quoteUUID}/reject** endpoint allows user to reject FX Quote using quoteUUID in the path of the API request. All the request parameters and objects are mentioned below - 
 
 **Request Parameters**
 
@@ -297,7 +297,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET request to the GET /v2/fx/{forexContractNo}/cover endpoint allows users to cover FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
+**Description -** Sending a GET request to the **GET /v2/fx/{forexContractNo}/cover** endpoint allows users to cover FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
 
 **Request Parameters**
 
@@ -399,7 +399,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP Method: Delete**
 
-**Description -** Sending a DELETE request to the /v2/fx/{forexContractNo}/cancel endpoint allows users to cancel FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
+**Description -** Sending a DELETE request to the **/v2/fx/{forexContractNo}/cancel** endpoint allows users to cancel FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
 
 **Request Parameters**
 

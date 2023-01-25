@@ -1,12 +1,14 @@
 training:
   - page: developer-portal/index.md
+  - label: Use Cases
+    page:  developer-portal/usecase.md
   - label: Payment Solutions
     page: developer-portal/overviewSection.md
   - group: ACH
     expanded: false
     page: developer-portal/achOverview.md
     pages:
-      - label: SEC Code
+      - label: SEC Codes
         page: developer-portal/secCodes.md
       - label: ACH Processing
         page: developer-portal/achTransaction.md
@@ -24,14 +26,12 @@ training:
       page: developer-portal/businessCode.md
     - label: Wire Organization
       page: developer-portal/wired.md
-    - label: Notification
+    - label: Notifications
       page: developer-portal/notification.md
-    - label: Instant Payment
+    - label: Instant Payments
       page: developer-portal/instant.md
-    - label: International Payment
+    - label: International Payments
       page: developer-portal/internationalPayment.md
-    - label: Use Cases
-      page:  developer-portal/usecase.md
   - group: API Documentation
     expanded: false
     page: developer-portal/sandbox.md

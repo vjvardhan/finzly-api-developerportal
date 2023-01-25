@@ -16,7 +16,7 @@ Positive Pay Decision APIs approve or reject the exceptions identified by the po
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to /v2/positivepay/rules/search allows users to search positive pay rules for the given criteria. All the request parameters and objects are specified below
+**Description -** Sending a POST request to **/v2/positivepay/rules/search** allows users to search positive pay rules for the given criteria. All the request parameters and objects are specified below
 
 
 |Name |In|Type|Required|Description|
@@ -95,7 +95,7 @@ A successful POST request to this endpoint returns the following data
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to /v2/positivepay/rules endpoint allows users to update Positive Pay Rule.  All the request parameters and objects are specified below
+**Description -** Sending a PUT request to **/v2/positivepay/rules** endpoint allows users to update Positive Pay Rule.  All the request parameters and objects are specified below
 
 **Request Parameters**
 
@@ -226,7 +226,7 @@ A successful GET request to this endpoint returns the following data
 
 **HTTP Method: Delete**
 
-**Description -** Sending a GET request to the /v2/positivepay/rules/{ruleUID} endpoint allows users to Delete PositivePay Rule by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
+**Description -** Sending a GET request to the **/v2/positivepay/rules/{ruleUID}** endpoint allows users to Delete PositivePay Rule by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
 
 
 
@@ -298,7 +298,7 @@ A successful PUT request to this endpoint returns the following data
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to PUT /v2/positivepay/rules/{ruleUID}/suspend endpoint allows users to suspend Positive Pay Rules by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
+**Description -** Sending a PUT request to PUT **/v2/positivepay/rules/{ruleUID}/suspend** endpoint allows users to suspend Positive Pay Rules by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
 
 
 
@@ -335,7 +335,7 @@ A successful PUT request to this endpoint returns the following data
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to /v2/positivepay/exception/search endpoint allows users to return positive pay expectations for a given criteria. All the request parameters and objects are specified below- 
+**Description -** Sending a POST request to **/v2/positivepay/exception/search** endpoint allows users to return positive pay expectations for a given criteria. All the request parameters and objects are specified below- 
 
 **Request Parameters**
 
@@ -430,7 +430,7 @@ A successful PUT request to this endpoint returns the following data
 
 **HTTP Method: PUT**
 
-**Description -** Sending a GET request to the /v2/positivepay/exception/{exceptionUID}/reject allows users to reject exceptions by passing the exceptionUID in the path of the API request.
+**Description -** Sending a GET request to the **/v2/positivepay/exception/{exceptionUID}/reject** allows users to reject exceptions by passing the exceptionUID in the path of the API request.
 
 All the request parameters and objects are specified below- 
 
@@ -469,7 +469,7 @@ A successful GET request to this endpoint returns the following data
 
 **HTTP Method: PUT**
 
-Description - Sending a PUT request to **/v2/positivepay/exception/approveall** endpoint allows users to** approve all positive pay exceptions via payment unique identifier in the API request path. All the request parameters and objects are specified below - 
+Description - Sending a PUT request to **/v2/positivepay/exception/approveall** endpoint allows users to approve all positive pay exceptions via payment unique identifier in the API request path. All the request parameters and objects are specified below - 
 
 **Request Parameters**
 

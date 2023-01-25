@@ -11,6 +11,15 @@ body{
     font-size: 30px !important;
 }
 
+div [data-cy="sidebar-item-ACH"] { margin-left: 45px;}
+div [data-cy="sidebar-item-SEC Codes"],div [data-cy="sidebar-item-ACH Processing"],div [data-cy="sidebar-item-ACH Positive Pay"],div [data-cy="sidebar-item-Prefund vs Non-Prefund"],div [data-cy="sidebar-item-Bulk Upload"]
+{ margin-left: 50px;}
+div [data-cy="sidebar-item-Fedwire"] { margin-left: 45px;}
+div [data-cy="sidebar-item-Business Codes"],div [data-cy="sidebar-item-Wire Organization"],div [data-cy="sidebar-item-Notifications"],div [data-cy="sidebar-item-Instant Payments"],div [data-cy="sidebar-item-International Payments"]
+{ margin-left: 50px;}
+div [data-cy="sidebar-item-Finzly Connect API"] {color:#9b9da1;}
+div [data-cy="sidebar-item-Finzly Connect API"]:hover { background-color: transparent; color:#9b9da1;}
+
 body h1,h2,h3{
     font-family: 'Poppins', sans-serif !important;
 }

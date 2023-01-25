@@ -6,20 +6,15 @@ title: Book Transfer
 Book transfers are used to move money within a bank or within a ledger. These transfers do not require
 using any payment rail. 
 
-**POST /v3/payments/booktransfer**
+[POST /v3/payments/booktransfer](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/booktransfer/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to the  **/v3/payments/booktransfer**
-
-endpoint allows users to Initiate Book Transfer. All the request parameters and objects are specified below:
+**Description -** Sending a POST request to the  **/v3/payments/booktransfer** endpoint allows users to Initiate Book Transfer. All the request parameters and objects are specified below:
 
 **Request Parameters**
 
-**All details will be passed in the body of the API request.**
-
-
-
+All details will be passed in the body of the API request.
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
@@ -27,7 +22,7 @@ endpoint allows users to Initiate Book Transfer. All the request parameters and 
 
 **JSON Response**
 
-**A successful POST request to this endpoint returns the following data -**
+A successful POST request to this endpoint returns the following data
 
 **Success Code - 200**
 
