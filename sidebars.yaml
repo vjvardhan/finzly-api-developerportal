@@ -1,39 +1,37 @@
 training:
   - page: developer-portal/index.md
-  - group: Payment Solutions
-    expanded: true
+  - label: Payment Solutions
     page: developer-portal/overviewSection.md
+  - group: ACH
+    expanded: false
+    page: developer-portal/achOverview.md
     pages:
-       - group: ACH
-         expanded: false
-         page: developer-portal/achOverview.md
-         pages:
-          - label: SEC Code
-            page: developer-portal/secCodes.md
-          - label: ACH Processing
-            page: developer-portal/achTransaction.md
-          - label: ACH Positive Pay
-            page: developer-portal/achPositivePay.md
-          - label: Prefund vs Non-Prefund
-            page: developer-portal/prefund.md
-          - label: Bulk Upload
-            page: developer-portal/bulk.md
-       - group: Fedwire
-         expanded: false
-         page: developer-portal/fedwire.md 
-         pages:
-          - label: Business Codes
-            page: developer-portal/businessCode.md
-          - label: Wire Organization
-            page: developer-portal/wired.md
-          - label: Notification
-            page: developer-portal/notification.md
-       - label: Instant Payment
-         page: developer-portal/instant.md
-       - label: International Payment
-         page: developer-portal/internationalPayment.md
-       - label: Use Cases
-         page:  developer-portal/usecase.md
+      - label: SEC Code
+        page: developer-portal/secCodes.md
+      - label: ACH Processing
+        page: developer-portal/achTransaction.md
+      - label: ACH Positive Pay
+        page: developer-portal/achPositivePay.md
+      - label: Prefund vs Non-Prefund
+        page: developer-portal/prefund.md
+      - label: Bulk Upload
+        page: developer-portal/bulk.md
+  - group: Fedwire
+    expanded: false
+    page: developer-portal/fedwire.md 
+    pages:
+    - label: Business Codes
+      page: developer-portal/businessCode.md
+    - label: Wire Organization
+      page: developer-portal/wired.md
+    - label: Notification
+      page: developer-portal/notification.md
+    - label: Instant Payment
+      page: developer-portal/instant.md
+    - label: International Payment
+      page: developer-portal/internationalPayment.md
+    - label: Use Cases
+      page:  developer-portal/usecase.md
   - group: API Documentation
     expanded: false
     page: developer-portal/sandbox.md
