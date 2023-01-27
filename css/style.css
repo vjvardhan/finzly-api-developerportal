@@ -159,16 +159,16 @@ div [data-cy="sidebar-item-Finzly Connect API"]:hover{
    background:#e4e7eb!important;
    transition-duration: 0.5s;
   }
-  .gbwUkf table{
+  .gbwUkf table, .fmDiqV table{
     box-shadow: 3px 0 10px rgb(0 0 0 / 12%);
   }
-  .gbwUkf table tr td{
+  .gbwUkf table tr td,  .fmDiqV table tr td{
     text-align: left!important;
 }
-.gbwUkf table tr td ul li,.gbwUkf table tr td ol li{
+.gbwUkf table tr td ul li,.gbwUkf table tr td ol li, .fmDiqV table tr td ol li,.fmDiqV table tr td ul li{
     font-size: 15px!important;
 }
-.gbwUkf table th{
+.gbwUkf table th, .fmDiqV table th{
     background: linear-gradient(90deg, rgba(15,88,165,1) 0%, rgba(18,94,221,1) 0%, rgba(2,80,198,1) 0%, rgba(156,22,10,1) 0%, rgba(214,25,178,1) 0%, rgba(212,149,199,1) 0%, rgba(14,139,238,1) 0%, rgba(238,173,6,1) 0%, rgba(240,132,7,1) 0%, rgba(21,161,234,1) 0%, rgba(236,151,16,1) 0%, rgba(0,60,144,1) 0%, rgba(9,126,239,1) 0%, rgba(23,20,235,1) 0%, rgba(0,60,144,1) 0%, rgba(7,60,149,1) 17%, rgba(116,173,242,1) 100%, rgba(69,10,227,1) 100%, rgba(201,66,108,1) 100%)!important;
 }
 

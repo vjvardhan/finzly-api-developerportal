@@ -6,7 +6,10 @@ title: Wired Organization
 
 ## **Wire Origination**
 
+
 Fedwire Funds service supports the following origination gateways for processing through BankOS 
+
+![image info](./images/Wired.png)
 
 &#10003; API – Finzly Connect APIs
   - Supports the initiation of
