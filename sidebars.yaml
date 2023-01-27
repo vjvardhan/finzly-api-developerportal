@@ -73,13 +73,16 @@ training:
     page: 
   - group: Open Banking APIs
     expanded: true
-    - page: openapi/reference.page.yaml/*
+    pages:
+      - page: openapi/reference.page.yaml/*
   - group: User Admin
     expanded: true
-    - page: openapi/userReference.page.yaml/*
+    pages:
+      - page: openapi/userReference.page.yaml/*
   - group: Payment Status Notification
     expanded: true
-    - page: openapi/paymentReference.page.yaml/*
+    pages:
+      - page: openapi/paymentReference.page.yaml/*
   - label : Frequently Asked Questions
     page: developer-portal/faq.md
   - label : Changelog & Feedback
