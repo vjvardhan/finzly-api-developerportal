@@ -1,14 +1,7 @@
 openapi: 3.0.0
 info:
   title: Open Banking API
-  description: |
-    Finzly provides a modular platform that enables businesses, developers and fintechs to consume our APIs directly, through banks or embed them into their products. 
-
-    Launching financial products and services is through a simple, single API integration into our FinzlyOS platform.
-
-    Our API consists of modern RESTful messages to connect and communicate with our FinzlyOS platform. For every message, the platform returns a REST response.
-
-    Webhooks are sent in response to third-party actions.
+  description: Finzly Connect Open Banking APIs
   termsOfService: https://finzly.com/terms/
   contact:
     name: support@finzly.com
@@ -18,12 +11,9 @@ info:
     name: Commercial Finzly License
     url: https://finzly.com
   version: 2.2.0
-externalDocs:
-  description: User Guide
-  url: https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnect-OpenBankingAPI-UserGuide_v2.2.0.pdf?1223FOUSHA12es
 servers:
-  - url: https://sandbox-digitalbanking-uat.finzly.io/api/openbanking
-    description: FinzlyConnect Open Banking APIs
+  - url: https://{tenant}-security-{environment}.{dns}/auth/realms/{tenant}/protocol/openid-connect/token
+    description: Sandbox URL
     variables:
       tenant:
         description: Tenant
@@ -37,15 +27,6 @@ servers:
 security:
   - oAuth2:
       - roles
-tags:
-  - name: Documentation
-    description: |
-
-      1. UserGuide -  https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnect-OpenBankingAPI-UserGuide_v2.2.0?1223FOUSHA1ac
-
-      2. Postman Collection - https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnectOpenBakingAPI-2.2.0.postman_collection.zip
-
-      3. Postman Environment - https://s3.amazonaws.com/bankos-demo.finzly.com/FinzlyConnect-UAT-SANDBOX.postman_environment.zip
   - name: Customers
     description: |
       Customer APIs entitles the downstream partners, Banks and their associates to formally onboard clients with all the necessary information required to perform financial operations. 
