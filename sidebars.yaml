@@ -28,10 +28,10 @@ training:
       page: developer-portal/wired.md
     - label: Notifications
       page: developer-portal/notification.md
-    - label: Instant Payments
-      page: developer-portal/instant.md
-    - label: International Payments
-      page: developer-portal/internationalPayment.md
+  - label: Instant Payments
+    page: developer-portal/instant.md
+  - label: International Payments
+    page: developer-portal/internationalPayment.md
   - label: API Documentation
     page: developer-portal/sandbox.md
   - label: Errors
@@ -72,17 +72,14 @@ training:
   - label: Finzly Connect API
     page: 
   - group: Open Banking APIs
-    expanded: false
-    pages:
-      - page: openapi/reference.page.yaml/*
+    expanded: true
+    - page: openapi/reference.page.yaml/*
   - group: User Admin
-    expanded: false
-    pages:
-      - page: openapi/userReference.page.yaml/*
+    expanded: true
+    - page: openapi/userReference.page.yaml/*
   - group: Payment Status Notification
-    expanded: false
-    pages:
-      - page: openapi/paymentReference.page.yaml/*
+    expanded: true
+    - page: openapi/paymentReference.page.yaml/*
   - label : Frequently Asked Questions
     page: developer-portal/faq.md
   - label : Changelog & Feedback
