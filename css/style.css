@@ -10,16 +10,13 @@ body{
 .hvXhgD, .dpwHGH {
     font-size: 30px !important;
 }
-
-div [data-cy="sidebar-item-ACH"] { margin-left: 45px;}
-div [data-cy="sidebar-item-SEC Codes"],div [data-cy="sidebar-item-ACH Processing"],div [data-cy="sidebar-item-ACH Positive Pay"],div [data-cy="sidebar-item-Prefund vs Non-Prefund"],div [data-cy="sidebar-item-Bulk Upload"]
-{ margin-left: 50px;}
-div [data-cy="sidebar-item-Fedwire"] { margin-left: 45px;}
-div [data-cy="sidebar-item-Business Codes"],div [data-cy="sidebar-item-Wire Organization"],div [data-cy="sidebar-item-Notifications"],div [data-cy="sidebar-item-Instant Payments"],div [data-cy="sidebar-item-International Payments"]
-{ margin-left: 50px;}
-div [data-cy="sidebar-item-Finzly Connect API"] {color:#9b9da1;}
-div [data-cy="sidebar-item-Finzly Connect API"]:hover { background-color: transparent; color:#9b9da1;}
-
+.gbwUkf img{
+    box-shadow: 1px 0 9px rgb(0 0 0 / 12%);
+    margin: 20px 0px;
+}
+.gatsby-highlight pre[class*='language-'], pre[class*='language-']{
+    margin: 30px 0px!important;
+}
 body h1,h2,h3{
     font-family: 'Poppins', sans-serif !important;
 }
@@ -30,6 +27,7 @@ body p,span, ol ,li, ul,li{
     text-align: justify !important;
     text-justify: distribute !important;
     text-align-last: left !important;
+    /* color: #7c7777; */
 }
 p{
     text-align: justify !important; 
@@ -49,17 +47,131 @@ p{
     display: flex;
     align-items:stretch;
 }
+/* .gbwUkf strong{
+    color: #003c90;
+} */
+.kOEKBd:hover {
+    color: none!important;;
+    background-color:transparent!important;
+}
+.kOEKBd::before {
+  content: "";
+  background-color: #e4e7eb;
+  width: 100%;
+  height: 0%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transition: 0.7s;
+}
+.kOEKBd::before{
+  width: 0%!important;
+  height: 100%!important;
+}
+.kOEKBd:hover::before {
+  width: 100%!important;
+  border-radius: 5px!important;
+}
+.gdrzED:hover {
+    color: none!important;;
+    background-color:transparent!important;
+}
+.gdrzED::before {
+  content: "";
+  background-color: #e4e7eb;
+  width: 100%;
+  height: 0%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transition: 0.7s;
+}
+.gdrzED::before{
+  width: 0%!important;
+  height: 100%!important;
+}
+.gdrzED:hover::before {
+  width: 100%!important;
+  border-radius: 5px!important;
+}
+.gbwUkf p{
+    margin: 8px!important;
+}
 .cRRXke, .bryfch{
     text-align: left !important;
 }
+div [data-cy="sidebar-item-ACH"] {
+    margin-left: 45px;
+}
+div [data-cy="sidebar-item-SEC Codes"],div [data-cy="sidebar-item-ACH Processing"],div [data-cy="sidebar-item-ACH Positive Pay"],div [data-cy="sidebar-item-Prefund vs Non-Prefund"],div [data-cy="sidebar-item-Bulk Upload"],div [data-cy="sidebar-item-International Payments"]{
+    margin-left: 50px;
+}
 
-div [data-cy="sidebar-item-Finzly Connect API"] {
+div [data-cy="sidebar-item-Fedwire"], div [data-cy="sidebar-item-Errors"],div [data-cy="sidebar-item-Customer"],div [data-cy="sidebar-item-Payment"],div [data-cy="sidebar-item-User Admin"],[data-cy="sidebar-item-User Admin"],[data-cy="sidebar-item-User Admin"]{
+    margin-left: 45px;
+}
+div [data-cy="sidebar-item-Business Codes"],div [data-cy="sidebar-item-Wire Organization"],div [data-cy="sidebar-item-Notifications"],div [data-cy="sidebar-item-Instant Payments"],div [data-cy="sidebar-item-Webhooks"]{
+    margin-left: 50px;
+}
+div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Account Management"], div [data-cy="sidebar-item-Contact Management"],div [data-cy="sidebar-item-Payment Origination"],div [data-cy="sidebar-item-Positive Pay"],div [data-cy="sidebar-item-Bulk Payment"],div [data-cy="sidebar-item-Book Transfer"],div [data-cy="sidebar-item-Foreign Exchange"],div [data-cy="sidebar-item-Applications"],div [data-cy="sidebar-item-Roles Management"],div [data-cy="sidebar-item-Users Management"]{
+    margin-left: 50px;
+}
+
+div [data-cy="sidebar-item-Finzly Connect API"]{
     color:#9b9da1;
 }
-div [data-cy="sidebar-item-Finzly Connect API"]:hover {
+div [data-cy="sidebar-item-Finzly Connect API"]:hover{
     background-color: transparent;
     color:#9b9da1;
 }
+
+/* tr{
+    position: relative;
+  }
+  tr:hover::before, tr:hover::after{
+    width: 100%;
+  }
+  tr::after{
+    left:0;
+    bottom: 0;
+    transition-duration: 0.5s;
+    content:"";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    transition: all 0.5s linear;
+    background: #003c90; 
+  }
+  tr::before{
+    content:"";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    transition: all 0.5s linear;
+    background: #003c90;
+    right: 0;
+    top: 0;
+    transition-duration: 0.5s;
+  } */
+  tr:hover{
+   background:#e4e7eb!important;
+   transition-duration: 0.5s;
+  }
+  .gbwUkf table{
+    box-shadow: 3px 0 10px rgb(0 0 0 / 12%);
+  }
+  .gbwUkf table tr td{
+    text-align: left!important;
+}
+.gbwUkf table tr td ul li,.gbwUkf table tr td ol li{
+    font-size: 15px!important;
+}
+.gbwUkf table th{
+    background: linear-gradient(90deg, rgba(15,88,165,1) 0%, rgba(18,94,221,1) 0%, rgba(2,80,198,1) 0%, rgba(156,22,10,1) 0%, rgba(214,25,178,1) 0%, rgba(212,149,199,1) 0%, rgba(14,139,238,1) 0%, rgba(238,173,6,1) 0%, rgba(240,132,7,1) 0%, rgba(21,161,234,1) 0%, rgba(236,151,16,1) 0%, rgba(0,60,144,1) 0%, rgba(9,126,239,1) 0%, rgba(23,20,235,1) 0%, rgba(0,60,144,1) 0%, rgba(7,60,149,1) 17%, rgba(116,173,242,1) 100%, rgba(69,10,227,1) 100%, rgba(201,66,108,1) 100%)!important;
+}
+
 .sub{
     border:0px solid grey;
     border-radius:10px;
@@ -84,9 +196,6 @@ div [data-cy="sidebar-item-Finzly Connect API"]:hover {
 .sub:hover h3{
     color: #fff;
 }
-
-
-
 .cSOVya{
     border-top:1px solid black !important;
     color:#D5E6FC !important;
@@ -139,15 +248,12 @@ div [data-cy="sidebar-item-Finzly Connect API"]:hover {
     text-align: justify !important;
    
 }
-
-
 .box p{margin:0; text-align: center!important;}
 .box p a{line-height:36px;}
 
 h1 span{
     color:black;
 }
-
 .main{
     display:flex;
     align-items:stretch;

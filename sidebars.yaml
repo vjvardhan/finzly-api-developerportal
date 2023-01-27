@@ -32,45 +32,43 @@ training:
       page: developer-portal/instant.md
     - label: International Payments
       page: developer-portal/internationalPayment.md
-  - group: API Documentation
-    expanded: false
+  - label: API Documentation
     page: developer-portal/sandbox.md
+  - label: Errors
+    page: developer-portal/errors.md
+  - group: Customer
+    expanded: false
     pages:
-      - label: Errors
-        page: developer-portal/errors.md
-      - group: Customer
-        expanded: false
-        pages:
-          - label: Customer Onboarding
-            page: developer-portal/customer-api.md
-          - label: Account Management
-            page:  developer-portal/customer-account-api.md
-          - label: Contact Management
-            page: developer-portal/customer-contact-api.md
-      - group: Payment
-        expanded: false
-        pages:
-          - label: Payment Origination
-            page: developer-portal/payments-api.md
-          - label : Positive Pay
-            page : developer-portal/positive-payment-api.md
-          - label : Bulk Payment
-            page : developer-portal/bulk-payment-api.md
-          - label: Book Transfer
-            page: developer-portal/bookTransfer.md
-          - Label: Foreign Exchange
-            page: developer-portal/foreign-exchange-api.md
-      - group: User Admin
-        expanded: false
-        pages:
-          - label: Applications
-            page: developer-portal/application-api.md
-          - label: Roles Management
-            page: developer-portal/roles-api.md
-          - label: Users Management
-            page : developer-portal/user-api.md 
-      -  label: Webhooks
-         page: developer-portal/webhooks.md        
+    - label: Customer Onboarding
+      page: developer-portal/customer-api.md
+    - label: Account Management
+      page:  developer-portal/customer-account-api.md
+    - label: Contact Management
+      page: developer-portal/customer-contact-api.md
+  - group: Payment
+    expanded: false
+    pages:
+    - label: Payment Origination
+      page: developer-portal/payments-api.md
+    - label : Positive Pay
+      page : developer-portal/positive-payment-api.md
+    - label : Bulk Payment
+      page : developer-portal/bulk-payment-api.md
+    - label: Book Transfer
+      page: developer-portal/bookTransfer.md
+    - Label: Foreign Exchange
+      page: developer-portal/foreign-exchange-api.md
+  - group: User Admin
+    expanded: false
+    pages:
+      - label: Applications
+        page: developer-portal/application-api.md
+      - label: Roles Management
+        page: developer-portal/roles-api.md
+      - label: Users Management
+        page : developer-portal/user-api.md 
+  - label: Webhooks
+    page: developer-portal/webhooks.md        
   - label: Finzly Connect API
     page: 
   - group: Open Banking APIs
