@@ -6,7 +6,7 @@ title: Finzly API Changelog and Feedback
 
 ## **Changelog & Feedback** 
 
-**Release Date: April 7th,2023**
+### **April 7th,2023**
 
 |**Change**|**Category**|**Description**|
 | :- | :- | :- | 
@@ -15,7 +15,7 @@ title: Finzly API Changelog and Feedback
 | Customer APIs | Enhancement | Added additional attributes to the customer account APIs for the create, get and update operations <ul><li>Callback- Yes or No</li><li>Callback Limit - Amount</li><li>Cost Center</li></ul>  |
 | FX APIs | Enhancement| The following chnages are performed to the existing FX APIs <ol><li>Added two additional attributes to the "/v2/fx/accept" API <ol type="a"> <li>autoCover - Yes or No </li><li>autoCoverDelay - Number in minutes</li></ol></li><li>Added a new API to perform cover trade "/v2/fx/forexContractNo}/cover"<ol type="a"><li>Require a FX Contract Number</li></ol></li></ol> |
 
-**Release Date: November 18th,2022**
+### **November 18th,2022**
 
 |**Change**|**Category**|**Description**|
 | :- | :- | :- | 

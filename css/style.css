@@ -4,13 +4,14 @@
 body{
     background-color:#fff;
 }
-.gbwUkf p{
+
+.gbwUkf p, .fmDiqV p {
     font-size:20px;
 }
 .hvXhgD, .dpwHGH {
     font-size: 30px !important;
 }
-.gbwUkf img{
+.gbwUkf img, .fmDiqV img{
     box-shadow: 1px 0 9px rgb(0 0 0 / 12%);
     margin: 20px 0px;
 }
@@ -47,8 +48,97 @@ p{
     display: flex;
     align-items:stretch;
 }
-/* .gbwUkf strong{
+.gbwUkf strong, .fmDiqV strong{
     color: #003c90;
+}
+.gbwUkf h2, .fmDiqV h2{
+    color: #003c90!important;
+}
+.icmJFJ, .eIzTXx{
+    color:white !important;
+}
+h1{
+    color: #003c90!important; 
+}
+.gbwUkf table tr th strong, .fmDiqV table tr th strong{
+    color: #fff!important;
+}
+
+.heading1 {
+    color: red;
+    font-weight:700;
+    font-size: 35px;
+}
+.heading2 {
+    color: blue;
+    font-weight:700;
+    font-size: 30px;
+}
+
+ .gbwUkf > ul , .fmDiqV >ul{
+    padding-left: 3em!important;
+    margin-top: 0px!important;
+ }
+ .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7) div{
+    margin-left: 40px;
+    padding-left: 20px;
+  }
+ .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7){
+    margin-left: 15px !important;
+ }
+ /* .buZDrU a:nth-child(7) div, .buZDrU a:nth-child(8) div{
+    margin-left: 15px;
+ } */
+ .buZDrU div[data-cy="sidebar-item-Foreign Exchange"]:nth-child(2){
+    margin-left: 15px !important;
+ }
+ .buZDrU+[data-cy="sidebar-item-User Admin"]{
+    margin-left: 0px !important;
+    padding-left: 40px;
+ }
+ .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14){
+    margin-left: 15px !important;
+ }
+ .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14)+.buZDrU [data-cy="sidebar-item-Roles"], .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14)+.buZDrU [data-cy="sidebar-item-Users"], aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]+.buZDrU [data-cy="sidebar-item-Roles"], aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]+.buZDrU [data-cy="sidebar-item-Users"]{
+    margin-left: 50px;
+ }
+ aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]{
+    margin-left: 16px;
+ }
+ .hNdzPL{
+    background-color: #003c90!important;
+ }  
+ .gbwUkf .main-sub .sub, .fmDiqV .main-sub .sub{
+    transition: all 0.3s;
+    margin: 20px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+ }    
+ .gbwUkf .main-sub  .sub:hover, .fmDiqV .main-sub  .sub:hover{
+    background-color: #fff!important;
+    transform: translateY(-5px);
+    box-shadow: 0 22px 43px rgba(0, 0, 0, 0.32); 
+ }
+ .gbwUkf .main-sub  .sub:hover> h3 strong, .fmDiqV .main-sub  .sub:hover> h3 strong{
+   color: #003c90!important;
+ }
+ .jJtGCC{
+    background:#003c90!important;
+ } 
+.sub h3 strong{
+    color: #fff!important;
+}
+
+.laoQlN:hover, .laoQlN.active {
+    color: #003c90!important;
+    background-color: #e6e6e6;
+}
+.iDjRRy:hover, .iDjRRy.active {
+    color: #003c90!important;
+    background-color: #e6e6e6;
+}
+
+/* .gbwUkf strong a{
+    color: #fff!important;
 } */
 .kOEKBd:hover {
     color: none!important;;
@@ -96,7 +186,7 @@ p{
   width: 100%!important;
   border-radius: 5px!important;
 }
-.gbwUkf p{
+.gbwUkf p, .fmDiqV p{
     margin: 8px!important;
 }
 .cRRXke, .bryfch{
@@ -108,6 +198,12 @@ div [data-cy="sidebar-item-ACH"] {
 div [data-cy="sidebar-item-SEC Codes"],div [data-cy="sidebar-item-ACH Processing"],div [data-cy="sidebar-item-ACH Positive Pay"],div [data-cy="sidebar-item-Prefund vs Non-Prefund"],div [data-cy="sidebar-item-Bulk Upload"],div [data-cy="sidebar-item-International Payments"]{
     margin-left: 50px;
 }
+div [data-cy="sidebar-item-API Documentation"]{
+    margin-left: 16px;
+}
+div [data-cy="sidebar-item-Errors"]{
+    margin-left: 45px!important;
+}
 
 div [data-cy="sidebar-item-Fedwire"], div [data-cy="sidebar-item-Errors"],div [data-cy="sidebar-item-Customer"],div [data-cy="sidebar-item-Payment"],div [data-cy="sidebar-item-User Admin"],[data-cy="sidebar-item-User Admin"],[data-cy="sidebar-item-User Admin"]{
     margin-left: 45px;
@@ -115,8 +211,11 @@ div [data-cy="sidebar-item-Fedwire"], div [data-cy="sidebar-item-Errors"],div [d
 div [data-cy="sidebar-item-Business Codes"],div [data-cy="sidebar-item-Wire Organization"],div [data-cy="sidebar-item-Notifications"],div [data-cy="sidebar-item-Instant Payments"],div [data-cy="sidebar-item-Webhooks"]{
     margin-left: 50px;
 }
-div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Account Management"], div [data-cy="sidebar-item-Contact Management"],div [data-cy="sidebar-item-Payment Origination"],div [data-cy="sidebar-item-Positive Pay"],div [data-cy="sidebar-item-Bulk Payment"],div [data-cy="sidebar-item-Book Transfer"],div [data-cy="sidebar-item-Foreign Exchange"],div [data-cy="sidebar-item-Applications"],div [data-cy="sidebar-item-Roles Management"],div [data-cy="sidebar-item-Users Management"]{
+div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Account Management"], div [data-cy="sidebar-item-Contact Management"],div [data-cy="sidebar-item-Payment Origination"],div [data-cy="sidebar-item-Bulk Payment"],div [data-cy="sidebar-item-Book Transfer"],div [data-cy="sidebar-item-Foreign Exchange"],div [data-cy="sidebar-item-Applications"],div [data-cy="sidebar-item-Roles Management"],div [data-cy="sidebar-item-Users Management"], .buZDrU .buZDrU div[data-cy="sidebar-item-Positive Pay"], .buZDrU [data-cy="sidebar-item-User Admin"]+.buZDrU div[data-cy="sidebar-item-Roles"], .buZDrU [data-cy="sidebar-item-User Admin"]+.buZDrU div[data-cy="sidebar-item-Users"]{
     margin-left: 50px;
+}
+.buZDrU [data-cy="sidebar-item-Open Banking APIs"]+.buZDrU div[data-cy="sidebar-item-Positive Pay"], .buZDrU [data-cy="sidebar-item-Open Banking APIs"]+.buZDrU div[data-cy="sidebar-item-Foreign Exchange"]{
+    margin-left: 32px;
 }
 
 div [data-cy="sidebar-item-Finzly Connect API"]{
@@ -126,50 +225,40 @@ div [data-cy="sidebar-item-Finzly Connect API"]:hover{
     background-color: transparent;
     color:#9b9da1;
 }
-
-/* tr{
-    position: relative;
+.gbwUkf table ul,.fmDiqV table ul{
+    padding-left: 20px!important;
+}
+.gbwUkf table ol,.fmDiqV table ol{
+    padding-left: 20px!important;
+}
+.gbwUkf table ol > li::marker , .fmDiqV table ol > li::marker{
+    font-weight: bold;
   }
-  tr:hover::before, tr:hover::after{
-    width: 100%;
-  }
-  tr::after{
-    left:0;
-    bottom: 0;
-    transition-duration: 0.5s;
-    content:"";
-    width: 0;
-    height: 2px;
-    position: absolute;
-    transition: all 0.5s linear;
-    background: #003c90; 
-  }
-  tr::before{
-    content:"";
-    width: 0;
-    height: 2px;
-    position: absolute;
-    transition: all 0.5s linear;
-    background: #003c90;
-    right: 0;
-    top: 0;
-    transition-duration: 0.5s;
-  } */
   tr:hover{
    background:#e4e7eb!important;
    transition-duration: 0.5s;
   }
-  .gbwUkf table, .fmDiqV table{
+  .gbwUkf table, .fmDiqV table {
     box-shadow: 3px 0 10px rgb(0 0 0 / 12%);
   }
-  .gbwUkf table tr td,  .fmDiqV table tr td{
+  .gbwUkf table tr td , .fmDiqV table tr td{
     text-align: left!important;
+    vertical-align: top;
 }
-.gbwUkf table tr td ul li,.gbwUkf table tr td ol li, .fmDiqV table tr td ol li,.fmDiqV table tr td ul li{
+.gbwUkf table tr td ul li,.gbwUkf table tr td ol li, .fmDiqV table tr td ol li, .fmDiqV table tr td ul li{
     font-size: 15px!important;
 }
 .gbwUkf table th, .fmDiqV table th{
     background: linear-gradient(90deg, rgba(15,88,165,1) 0%, rgba(18,94,221,1) 0%, rgba(2,80,198,1) 0%, rgba(156,22,10,1) 0%, rgba(214,25,178,1) 0%, rgba(212,149,199,1) 0%, rgba(14,139,238,1) 0%, rgba(238,173,6,1) 0%, rgba(240,132,7,1) 0%, rgba(21,161,234,1) 0%, rgba(236,151,16,1) 0%, rgba(0,60,144,1) 0%, rgba(9,126,239,1) 0%, rgba(23,20,235,1) 0%, rgba(0,60,144,1) 0%, rgba(7,60,149,1) 17%, rgba(116,173,242,1) 100%, rgba(69,10,227,1) 100%, rgba(201,66,108,1) 100%)!important;
+    resize: unset;
+    overflow: unset;
+}
+body .gbwUkf details > table, body .gbwUkf > table, body .gbwUkf > div:not(.sc-bOCfAF) table, body .gbwUkf > p table{
+    display: table;
+}
+
+body .fmDiqV details > table, body .fmDiqV > table, body .fmDiqV > div:not(.sc-bOCfAF) table, body .fmDiqV > p table{
+    display: table;
 }
 
 .sub{
@@ -285,6 +374,8 @@ ol li{
 }
 
 @media screen and (max-width: 556px){
+     .hNdzPL{background-color:#003c90!important;}
+    .jJtGCC{background:#003c90!important;}
     .main-sub{display: block!important;}
     .main-sub .sub{width: 100%!important; margin-bottom: 20px!important; margin-left: 0px!important;}
     .fmDiqV h1, .gbwUkf h1{margin-top: 1em;}

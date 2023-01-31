@@ -6,36 +6,35 @@ title: Wired Organization
 
 ## **Wire Origination**
 
+![image info](./images/Wired.png)
 
 Fedwire Funds service supports the following origination gateways for processing through BankOS 
 
-![image info](./images/Wired.png)
-
-&#10003; API – Finzly Connect APIs
+<svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg> API – Finzly Connect APIs
   - Supports the initiation of
   - Customer or Corporate credit transfer 
   - Customer Transfer Plus 
   - Customer or Corporate Drawdown Request
 
-&#10003; Web - Online Digital Treasury Portal (CashOS)
+<svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg> Web - Online Digital Treasury Portal (CashOS)
 
 - Supports the initiation of domestic wire transfer
 - This will be defined based on the Processing speed as Express (Configurable) and Fees to be applied.
 
-&#10003;  Branch - Teller Application (Wire Room) 
+<svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg>  Branch - Teller Application (Wire Room) 
 
 - Supports the initiation of Wire from branch using the teller application with an option as
   - Walk-in 
   - Phone-in
 
-&#10003;  Bulk uploads 
+<svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg>  Bulk uploads 
 
 - Supports the initiation of wire with an option from Bulk File processing
   - Fedwire message upload 
     - This will be based on the actual raw Fedwire message structure.
     - Multiple Fedwire message can be uploaded in a File
 
-&#10003;   Finzly CSV
+<svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg>   Finzly CSV
 
 - This is customed CSV formatted file for processing the Fedwire payments with required information as
   - Sender (Originator details) 
