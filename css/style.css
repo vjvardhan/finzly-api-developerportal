@@ -397,6 +397,8 @@ ol li{
 }
 
 @media screen and (max-width: 556px){
+    .faXghE{background:#003c90!important;}
+    .keyBrj{background-color:#003c90!important;}
     .hNdzPL,.iSexbG{background-color:#003c90!important;}
     .jJtGCC,.faXghE{background:#003c90!important;}
     .main-sub{display: block!important;}
@@ -418,6 +420,7 @@ ol li{
 }
 
 @media screen and (min-width: 900px){
+    .keyBrj{background-color:#003c90!important;}
     .hNdzPL,.iSexbG{background-color:#003c90!important;}
     .jJtGCC,.faXghE{background:#003c90!important;}
     .dmvKRI,.cIgtsP {
@@ -428,6 +431,8 @@ ol li{
 
 
 @media screen and (max-width: 800px){
+    .faXghE{background:#003c90!important;}
+    .keyBrj{background-color:#003c90!important;}
     .dmvKRI,.cIgtsP {
         width: 100%!important;
     }

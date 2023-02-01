@@ -10,7 +10,7 @@ Finzly APIs offer many ways to process premium payments and claims by embedding 
 
 Allow fintechs to Send & receive payments, create Virtual Accounts & manage accounts
 
-### **Bank Account validation.**
+### **Bank Account validation**
 
 Account Validation is a vital facet of an organization’s risk assessment. Understanding their customers’ banking status will allow our clients to eliminate fraud and counter risks related to payment acceptance.
 
