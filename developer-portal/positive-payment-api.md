@@ -90,7 +90,7 @@ A successful POST request to this endpoint returns the following data
 |expiryDate|string(date)|false|none|Rule effective date in mm-dd-yyyy format|
 
 
-### **Update Positive Pay Rules(v2)**
+### **Update Positive Pay Rules**
 [PUT /v2/positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateRulesV2/)
 
 **HTTP Method: PUT**
@@ -128,7 +128,7 @@ A successful PUT request to this endpoint returns the following data -
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 
-### **Add PositivePay Rule (v2)**
+### **Add PositivePay Rule**
 [POST /v2/positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/addPositiveRulesV2/)
 
 **HTTP Method: POST**
@@ -165,7 +165,7 @@ A successful POST request to this endpoint returns the following data
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
-### **Get PositivePay Rule By RuleUID (v2)**
+### **Get PositivePay Rule By RuleUID**
 [GET /v2/positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPostivePayRuleV2/)
 
 **HTTP Method - GET**

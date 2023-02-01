@@ -48,7 +48,8 @@ A successful POST request to this endpoint returns the following data
 
 
 
-### **Book Transfer Request**:
+ **Book Transfer Request**:
+
 |**Attribute**|**Type**|**Required**|**Restrictions**|**Notes**|
 | :-: | :-: | :- | :- | :- | 
 |externalReferenceId|string|TRUE|Max Limit – 50 chars |Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed) |
@@ -58,7 +59,8 @@ A successful POST request to this endpoint returns the following data
 |paymentDate|string(date)|TRUE|Valid date format mm-dd-yyyy|Payment date in mm-dd-yyyy format|
 |channel|string|FALSE|Valid channel such as API etc.|Channel associated with the payment. If not provided it will default to API|
 
-### **Book Transfer Sender**
+ **Book Transfer Sender**
+
 |**Attribute**|**Type**|**Required**|**Restrictions**|**Notes**|
 | :-: | :-: | :- | :- | :- | 
 |accountUID|string||FALSE|Valid account id exists in the system. Max Length 17 chars |Sender account unique identifier. If accountUID is provided then other attributes are not required such as accountNumber, accounttype, currency |
@@ -66,7 +68,7 @@ A successful POST request to this endpoint returns the following data
 |accountType|string|FALSE|DDA or GL|Account type|
 |currency|string|FALSE|Valid 3-digit currency code such as USD |Sender Currency|
 
-### **Book Transfer Receiver**
+**Book Transfer Receiver**
 
 |**Attribute**|**Type**|**Required**|**Restrictions**|**Notes**|
 | :-: | :-: | :- | :-: | :-: |
@@ -75,7 +77,7 @@ A successful POST request to this endpoint returns the following data
 |accountType|string|FALSE|DDA or GL|Account type|
 |currency|string|FALSE|Valid 3-digit currency code such as USD|Sender Currency.|
 
-### **Book Transfer Response:**
+ **Book Transfer Response:**
 
 |**Attribute**|**Type**|**Required**|**Restrictions** |**Notes**|
 | :-: | :- | :- | :- | :- |
@@ -84,7 +86,7 @@ A successful POST request to this endpoint returns the following data
 |message|string |FALSE |none |Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it. |
 |data|Book Transfer Response|FALSE |none|none|
 
-### **Book Transfer Response**
+ **Book Transfer Response**
 
 |**Attribute**|**Type**|**Required**|**Restrictions**|**Notes**|
 | :-: | :- | :- | :- | :-: |

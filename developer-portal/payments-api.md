@@ -174,14 +174,14 @@ A successful POST request to this endpoint will return the following data-
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
 |data|[BookTransferResponse_data](https://apidocs.finzly.net/dashboard?java=#schemabooktransferresponse_data)|false|none|none|
 
-**Book Transfer Response Data**
+<!-- **Book Transfer Response Data**
 ```yaml Before
 {
   "paymentUID": "string",
   "paymentStatus": "string",
   "externalReferenceId": "string"
 }
-```
+``` -->
 
 |Name|Type|Required|Restrictions|Description|
 | :- | :- | :- | :- | :- |

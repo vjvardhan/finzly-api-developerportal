@@ -79,29 +79,33 @@ h1{
     padding-left: 3em!important;
     margin-top: 0px!important;
  }
- .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7) div{
+ .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7) div,.eQOPTz div[data-cy="sidebar-item-International Payments"]:nth-child(7) div{
     margin-left: 40px;
     padding-left: 20px;
   }
- .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7){
+ .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7),.eQOPTz div[data-cy="sidebar-item-International Payments"]:nth-child(7){
     margin-left: 15px !important;
  }
  /* .buZDrU a:nth-child(7) div, .buZDrU a:nth-child(8) div{
     margin-left: 15px;
  } */
- .buZDrU div[data-cy="sidebar-item-Foreign Exchange"]:nth-child(2){
+ .buZDrU div[data-cy="sidebar-item-Foreign Exchange"]:nth-child(2),.eQOPTz div[data-cy="sidebar-item-Foreign Exchange"]:nth-child(2){
     margin-left: 15px !important;
  }
- .buZDrU+[data-cy="sidebar-item-User Admin"]{
+ .buZDrU+[data-cy="sidebar-item-User Admin"],.eQOPTz+[data-cy="sidebar-item-User Admin"]{
     margin-left: 0px !important;
     padding-left: 40px;
  }
- .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14){
+ .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14),.eQOPTz div[data-cy="sidebar-item-User Admin"]:nth-child(14){
     margin-left: 15px !important;
  }
  .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14)+.buZDrU [data-cy="sidebar-item-Roles"], .buZDrU div[data-cy="sidebar-item-User Admin"]:nth-child(14)+.buZDrU [data-cy="sidebar-item-Users"], aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]+.buZDrU [data-cy="sidebar-item-Roles"], aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]+.buZDrU [data-cy="sidebar-item-Users"]{
     margin-left: 50px;
  }
+ .eQOPTz div[data-cy="sidebar-item-User Admin"]:nth-child(14)+.eQOPTz [data-cy="sidebar-item-Roles"], .eQOPTz div[data-cy="sidebar-item-User Admin"]:nth-child(14)+.eQOPTz [data-cy="sidebar-item-Users"], aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]+.eQOPTz [data-cy="sidebar-item-Roles"], aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]+.eQOPTz [data-cy="sidebar-item-Users"]{
+    margin-left: 50px;
+ }
+
  aside [data-cy="sidebar-item-Open Banking APIs"]+[data-cy="sidebar-item-User Admin"]{
     margin-left: 16px;
  }
@@ -211,10 +215,18 @@ div [data-cy="sidebar-item-Fedwire"], div [data-cy="sidebar-item-Errors"],div [d
 div [data-cy="sidebar-item-Business Codes"],div [data-cy="sidebar-item-Wire Organization"],div [data-cy="sidebar-item-Notifications"],div [data-cy="sidebar-item-Instant Payments"],div [data-cy="sidebar-item-Webhooks"]{
     margin-left: 50px;
 }
-div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Account Management"], div [data-cy="sidebar-item-Contact Management"],div [data-cy="sidebar-item-Payment Origination"],div [data-cy="sidebar-item-Bulk Payment"],div [data-cy="sidebar-item-Book Transfer"],div [data-cy="sidebar-item-Foreign Exchange"],div [data-cy="sidebar-item-Applications"],div [data-cy="sidebar-item-Roles Management"],div [data-cy="sidebar-item-Users Management"], .buZDrU .buZDrU div[data-cy="sidebar-item-Positive Pay"], .buZDrU [data-cy="sidebar-item-User Admin"]+.buZDrU div[data-cy="sidebar-item-Roles"], .buZDrU [data-cy="sidebar-item-User Admin"]+.buZDrU div[data-cy="sidebar-item-Users"]{
+div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Account Management"], div [data-cy="sidebar-item-Contact Management"],div [data-cy="sidebar-item-Payment Origination"],div [data-cy="sidebar-item-Bulk Payment"],div [data-cy="sidebar-item-Book Transfer"],div [data-cy="sidebar-item-Applications"],div [data-cy="sidebar-item-Roles Management"],div [data-cy="sidebar-item-Users Management"], .buZDrU .buZDrU div[data-cy="sidebar-item-Positive Pay"], .buZDrU [data-cy="sidebar-item-User Admin"]+.buZDrU div[data-cy="sidebar-item-Roles"], .buZDrU [data-cy="sidebar-item-User Admin"]+.buZDrU div[data-cy="sidebar-item-Users"]{
     margin-left: 50px;
 }
-.buZDrU [data-cy="sidebar-item-Open Banking APIs"]+.buZDrU div[data-cy="sidebar-item-Positive Pay"], .buZDrU [data-cy="sidebar-item-Open Banking APIs"]+.buZDrU div[data-cy="sidebar-item-Foreign Exchange"]{
+div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Account Management"], div [data-cy="sidebar-item-Contact Management"],div [data-cy="sidebar-item-Payment Origination"],div [data-cy="sidebar-item-Bulk Payment"],div [data-cy="sidebar-item-Book Transfer"],div [data-cy="sidebar-item-Applications"],div [data-cy="sidebar-item-Roles Management"],div [data-cy="sidebar-item-Users Management"], .eQOPTz .eQOPTz div[data-cy="sidebar-item-Positive Pay"], .eQOPTz [data-cy="sidebar-item-User Admin"]+.eQOPTz div[data-cy="sidebar-item-Roles"], .eQOPTz [data-cy="sidebar-item-User Admin"]+.eQOPTz div[data-cy="sidebar-item-Users"]{
+    margin-left: 50px;
+}
+
+ .buZDrU [data-cy="sidebar-item-Open Banking APIs"]+.buZDrU div[data-cy="sidebar-item-Foreign Exchange"]{
+    margin-left: 32px;
+}
+
+.eQOPTz [data-cy="sidebar-item-Open Banking APIs"]+.eQOPTz div[data-cy="sidebar-item-Foreign Exchange"]{
     margin-left: 32px;
 }
 
