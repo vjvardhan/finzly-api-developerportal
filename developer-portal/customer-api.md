@@ -21,11 +21,11 @@ __Description__ - Using this API, the user can add a CRM entity to FinzlyOS. Thi
 ## **Customer API**
 ### **Search Customer**
 
-[GET /v2/customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)
+[GET /customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)
 
 __HTTP Method: GET__
 
-__Description__ - A GET request containing a series of parameters and objects to the **GET /v2/customers** endpoint is required to search for customers. Sending a GET request to the Search Customers Endpoint will allow users to search for customers using parameters such as legal name, short name, etc. All parameters and objects are specified below:
+__Description__ - A GET request containing a series of parameters and objects to the **GET /customers** endpoint is required to search for customers. Sending a GET request to the Search Customers Endpoint will allow users to search for customers using parameters such as legal name, short name, etc. All parameters and objects are specified below:
 
 
 __Request Parameters__
@@ -42,9 +42,9 @@ Page and Limits are the mandatory parameters that provide the list of Corporate 
 | Page | Query | String | True | none |
 | limit | Query | String | True | none |
 
-__JSON Response__ for GET request to __/v2/customers__ endpoint
+__JSON Response__ for GET request to __/customers__ endpoint
 
-A successful GET request to __/v2/customers__ endpoint will return the following data - 
+A successful GET request to __/customers__ endpoint will return the following data - 
 
 __Response Code - 200__
 
@@ -146,8 +146,8 @@ __API Response Objects-__
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|pagination|[Pagination](https://apidocs.finzly.net/dashboard?java=#schemapagination)|false|none|none|
-|data|[[GetCustomerDetailResponse](https://apidocs.finzly.net/dashboard?java=#schemagetcustomerdetailresponse)]|false|none|none|
+|pagination|[Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)|false|none|none|
+|data|[[GetCustomerDetailResponse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)]|false|none|none|
 
 
 **Get Customer Detail Response**
@@ -267,9 +267,9 @@ __API Response Objects-__
 |logoUrl|string|false|none|Customer logo url|
 |linkedinUrl|string|false|none|Company linkedin URL|
 |<p>twitterUrl</p><p></p><p></p>|string|false|none|Customer twitter url|
-|legalAddress|[CustomerAddress](https://apidocs.finzly.net/dashboard?java=#schemacustomeraddress)|false|none|none|
+|legalAddress|[CustomerAddress](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)|false|none|none|
 |mailAddressSameAsLegal|boolean|false|none|none|
-|mailingAddress|[CustomerAddress](https://apidocs.finzly.net/dashboard?java=#schemacustomeraddress)|false|none|none|
+|mailingAddress|[CustomerAddress](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)|false|none|none|
 |relationshipType|string|false|none|Relationship Type|
 |partnerOrgShortName|string|false|none|This is the shortname associated with the customer defined in the CRM system as 'Downstream Partner'. This is required only if the customer relationshipType is Third party|
 |processingOrgShortName|string|false|none|This is the shortname associated with the processing org the customer is associated with.|
@@ -277,10 +277,10 @@ __API Response Objects-__
 |relationshipManager|string|false|none|Relationship manager name. It needs to be a valid user login id in the finzly system.|
 |originatingOfficer|string|false|none|Originating Officer name. It needs to be a valid user login id in the finzly system.|
 |parentEntityShortName|string|false|none|This is the short name associated with the existing customer legal entity act as a parent entity|
-|addtionalProfileDetails|[[CustomerAdditonalProfileDetails](https://apidocs.finzly.net/dashboard?java=#schemacustomeradditonalprofiledetails)]|false|none|none|
+|addtionalProfileDetails|[[CustomerAdditonalProfileDetails](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)]|false|none|none|
 |secCodes|string|false|none|Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity|
 |note|string|false|none|Free form text to leave any notes for the customer entity.|
-|legalEntityAccessSettings|[LegalEntityAccessSettings](https://apidocs.finzly.net/dashboard?java=#schemalegalentityaccesssettings)|false|none|none|
+|legalEntityAccessSettings|[LegalEntityAccessSettings](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomersV2/)|false|none|none|
 
 
 *Note the following about the results:*
@@ -291,11 +291,11 @@ __API Response Objects-__
 - *Curl Command Line: ​Contains a form of the request that you can copy and paste to execute at the command line or in scripts.*
 
 ### **Creating Customer**
-[POST /v2/customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerV2/)
+[POST /customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerV2/)
 
 **HTTP Method:** **POST**
 
-**Description -** Sending a POST request to Customers Endpoint will allow the users to create a customer as a Corporate Account for getting the features and using further options. Finzy is providing a dashboard where corporate customers can create their account and use the settings later on as per their convenience. In order to create a customer a POST request containing a series of parameters and objects to the **POST /v2/customers** endpoint is required. All parameters and objects are specified below -
+**Description -** Sending a POST request to Customers Endpoint will allow the users to create a customer as a Corporate Account for getting the features and using further options. Finzy is providing a dashboard where corporate customers can create their account and use the settings later on as per their convenience. In order to create a customer a POST request containing a series of parameters and objects to the **POST /customers** endpoint is required. All parameters and objects are specified below -
 
 **Request Parameters**
 
@@ -303,10 +303,10 @@ The entire data will be passed through the body section.
 
 |Name |In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|` `[CreateCustomerRequest](https://apidocs.finzly.net/dashboard?java#schemacreatecustomerrequest)|true|Customer Details|
+|body|body|` `[CreateCustomerRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerV2/)|true|Customer Details|
 
 
-**JSON Response** for POST request to **/v2/customers** endpoint will return the following data - 
+**JSON Response** for POST request to **/customers** endpoint will return the following data - 
 
 **Response Code - 200**
 
@@ -334,7 +334,7 @@ The entire data will be passed through the body section.
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[CreateUpdateCustomerResponse_data](https://apidocs.finzly.net/dashboard?java=#schemacreateupdatecustomerresponse_data)</p><p></p>|false|none|none|
+|data|<p>[CreateUpdateCustomerResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerV2/)</p><p></p>|false|none|none|
 
 
 **Note the following about the results:**
@@ -346,11 +346,11 @@ The entire data will be passed through the body section.
 
 ### **Getting Customer Information by customerUID**
 
-[GET /v2/customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerByCustomerUIDV2/)
+[GET /customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerByCustomerUIDV2/)
 
 **HTTP Method: GET**
 
-**Description** - A GET request containing customerUID to the **/v2/customers/{customerUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer. By passing the Customer ID in the path of the API request, we can get the full details in the response.
+**Description** - A GET request containing customerUID to the **/customers/{customerUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer. By passing the Customer ID in the path of the API request, we can get the full details in the response.
 
 **Request Parameters**
 
@@ -364,7 +364,7 @@ Here we need to pass the CustomerID as a Path in the API request to get the resp
 
 **Success Response**
 
-A successful GET request to **/v2/customers/{customerUID}** endpoint returns the following data 
+A successful GET request to **/customers/{customerUID}** endpoint returns the following data 
 
 **Response Code - 200**
 
@@ -478,11 +478,11 @@ A successful GET request to **/v2/customers/{customerUID}** endpoint returns the
 
 ### **Updating Customers**
 
-[PUT /v2/customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerByCustomerUIDV2/)
+[PUT /customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerByCustomerUIDV2/)
 
 **HTTP Method: PUT**
 
-**Description -** A PUT request containing a series of parameters and objects to the **v2/customers/{customerUID}** endpoint is required to update customers. Sending a PUT request to the **v2/customers/{customerUID}** endpoint allows users to update information related to any existing customer type using parameters. All parameters and objects are specified below:
+**Description -** A PUT request containing a series of parameters and objects to the **/customers/{customerUID}** endpoint is required to update customers. Sending a PUT request to the **/customers/{customerUID}** endpoint allows users to update information related to any existing customer type using parameters. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -491,7 +491,7 @@ Here we need to Pass the Customer ID in the path of the API request and Data via
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
 |customerUID|path|string|true|none|
-|body|body|[UpdateCustomerRequest](https://apidocs.finzly.net/dashboard#schemaupdatecustomerrequest)|true|Customer details|
+|body|body|[UpdateCustomerRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerByCustomerUIDV2/)|true|Customer details|
 
 **JSON Response**
 
@@ -532,7 +532,7 @@ Here we need to Pass the Customer ID in the path of the API request and Data via
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[CreateUpdateCustomerResponse_data](https://apidocs.finzly.net/dashboard?java=#schemacreateupdatecustomerresponse_data)</p><p></p>|false|none|none|
+|data|<p>[CreateUpdateCustomerResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerByCustomerUIDV2/)</p><p></p>|false|none|none|
 
 
 

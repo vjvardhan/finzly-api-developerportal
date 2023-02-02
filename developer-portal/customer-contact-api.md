@@ -23,11 +23,11 @@ Following use cases helps you to understand the current customer contacts capabi
 
 ### **Search Customer Contacts**
 
-[GET /v2/customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)
+[GET /customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)
 
 **HTTP Method: GET**
 
-**Description -** A GET request containing a series of parameters and objects to the **v2/customers/{customerUID}/contacts** endpoint is required to search customer contacts. Sending a GET request to the  **/v2/customers/{customerUID}/contacts** endpoint allows Corporate Entities acting as customers to get the list of the details to those customers who are linked with the customerID. All parameters and objects are specified below:
+**Description -** A GET request containing a series of parameters and objects to the **/customers/{customerUID}/contacts** endpoint is required to search customer contacts. Sending a GET request to the  **/customers/{customerUID}/contacts** endpoint allows Corporate Entities acting as customers to get the list of the details to those customers who are linked with the customerID. All parameters and objects are specified below:
 
 
 **Request Parameters -** 
@@ -127,22 +127,22 @@ A successful GET request to this endpoint returns the following data -
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
 |pagination|<p>Pagination</p><p></p>|false|none|none|
-|data|[[CustomerContact](https://apidocs.finzly.net/dashboard?java=#schemacustomercontact)]|false|none|none|
+|data|[[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)]|false|none|none|
 
 
 ### **Creating Customer Contact**
-[POST /v2/customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)
+[POST /customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)
 
 **HTTP Method: POST** 
 
-**Description -** Sending a POST request to **v2/customers/{customerUID}/contacts** endpoint allows users to create a new contact for the existing customer. Corporate entities acting as customers can create a Customer, so thus in the future, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity. All parameters and objects are specified below:
+**Description -** Sending a POST request to **/customers/{customerUID}/contacts** endpoint allows users to create a new contact for the existing customer. Corporate entities acting as customers can create a Customer, so thus in the future, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity. All parameters and objects are specified below:
 
 **Request Parameters**
 
 |**Name** |**In**|**Type** |**Required** |**Description**|
 | :- | :- | :- | :- | :- |
 |customerUID|path|integer|true|none|
-|body|body|[CustomerContact](https://apidocs.finzly.net/dashboard#schemacustomercontact)|true|Account Info|
+|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)|true|Account Info|
 
 **JSON Response**
 
@@ -168,15 +168,15 @@ A successful POST request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[CreateCustomerContactResponse_data](https://apidocs.finzly.net/dashboard?java=#schemacreatecustomercontactresponse_data)|false|none|none|
+|data|[CreateCustomerContactResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)|false|none|none|
 
 
 ### **Get Customer Contact Details**
-[GET /v2/customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerContactByUIDV2/)
+[GET /customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerContactByUIDV2/)
 
 **HTTP Method: GET**
 
-**Description -** A GET request containing contactUID to the **/v2/customers/{customerUID}/contacts/{contactUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer's contact.
+**Description -** A GET request containing contactUID to the **/customers/{customerUID}/contacts/{contactUID}** endpoint is required to retrieve information related to customers. Sending a GET request to this Endpoint allows users to retrieve the customer information from the system using the unique identifier associated with the customer's contact.
 
 **Parameters**
 
@@ -186,7 +186,7 @@ In this Query, we need to pass the two Parameters, CustomerID and ContactID, in 
 |Name |In|Type |Required |Description|
 | :- | :- | :- | :- | :- |
 |customerUID|path|integer|true|none|
-|contactUID|path|[CustomerContact](https://apidocs.finzly.net/dashboard#schemacustomercontact)|true|none|
+|contactUID|path|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerContactByUIDV2/)|true|none|
 
 ```yaml Before
 {
@@ -268,11 +268,11 @@ In this Query, we need to pass the two Parameters, CustomerID and ContactID, in 
 
 
 ### **Update Customer Contact Details**
-[PUT /v2/customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerContactByUIDV2/)
+[PUT /customers/{customerUID}/contacts/{contactUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerContactByUIDV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to **v2/customers/{customerUID}/contacts/{contactUID}** allows users to update customer contact details. All parameters and objects are specified below:
+**Description -** Sending a PUT request to **/customers/{customerUID}/contacts/{contactUID}** allows users to update customer contact details. All parameters and objects are specified below:
 
 
 **Request Parameters**
@@ -283,7 +283,7 @@ Here we also need to pass two Parameters, customerUID, and contactUID, in the Pa
 | :- | :- | :- | :- | :- |
 |customerUID|path|string|true|none|
 |contactUID|path|string|true|none|
-|body|body|[CustomerContact](https://apidocs.finzly.net/dashboard#schemacustomercontact)|true|Account Information|
+|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerContactByUIDV2/)|true|Account Information|
 
 **JSON Response**
 

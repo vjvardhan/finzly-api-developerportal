@@ -7,16 +7,16 @@ title: Finzly User API
 
 ### **Search User**	
 
-[POST /v2/users/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)
+[POST /users/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to **/v2/users/search endpoint allows users to** search users by the given request criteria. This API will return user profile data without role and user limit details. All the request parameters and objects are mentioned below - 
+**Description -** Sending a POST request to **/users/search endpoint allows users to** search users by the given request criteria. This API will return user profile data without role and user limit details. All the request parameters and objects are mentioned below - 
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[V2SearchUserRequest](https://apidocs.finzly.net/dashboard?java=#schemav2searchuserrequest)|true|Customer User|
+|body|body|[V2SearchUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)|true|Customer User|
 
 **JSON Response**
 
@@ -61,16 +61,16 @@ title: Finzly User API
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[[V2SearchUser](https://apidocs.finzly.net/dashboard?java=#schemav2searchuser)]|false|none|none|
-|pagination|[V2Pagination](https://apidocs.finzly.net/dashboard?java=#schemav2pagination)|false|none|none|
+|data|[[V2SearchUser](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)]|false|none|none|
+|pagination|[V2Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)|false|none|none|
 
 ### **Get User V2**
 
-[GET /v2/users/{userUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getUserV2/)
+[GET /users/{userUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)
 
 **HTTP Method: GET**
 
-**Description -**  Sending a GET request to this ID /v2/users/{userUUID} allows users to get the user by userUUID. This API will return user profile data along with role and user limit details. All the request parameters and objects are mentioned below - 
+**Description -**  Sending a GET request to this ID /users/{userUUID} allows users to get the user by userUUID. This API will return user profile data along with role and user limit details. All the request parameters and objects are mentioned below - 
 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
@@ -161,23 +161,23 @@ title: Finzly User API
 |type|string|false|none|Type of user|
 |createdBy|string|false|none|User Id who created the user in the system|
 |lastUpdatedBy|string|false|none|User who last updated the user in the system|
-|roles|[[V2UserRole](https://apidocs.finzly.net/dashboard?java=#schemav2userrole)]|false|none|none|
-|userlimits|<p>[[V2UserLimits](https://apidocs.finzly.net/dashboard?java=#schemav2userlimits)]</p><p></p>|false|none|none|
+|roles|[[V2UserRole](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)]|false|none|none|
+|userlimits|<p>[[V2UserLimits](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)]</p><p></p>|false|none|none|
 
 ### **Update User**
 
-[PUT /v2/users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)
+[PUT /users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to PUT/v2/users allows users to update an existing user. The request parameters and objects are mentioned below -
+**Description -** Sending a PUT request to PUT /users allows users to update an existing user. The request parameters and objects are mentioned below -
 
 **Request Parameters**
 
 
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|<p>[V2UpdateUserRequest](https://apidocs.finzly.net/dashboard?java=#schemav2updateuserrequest)</p><p></p>|false|Customer User|
+|body|body|<p>[V2UpdateUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)</p><p></p>|false|Customer User|
 
 **JSON Response**
 
@@ -200,7 +200,7 @@ title: Finzly User API
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2AddUserResponseData](https://apidocs.finzly.net/dashboard?java=#schemav2adduserresponsedata)|false|none|none|
+|data|[V2AddUserResponseData](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)|false|none|none|
 
 
 **V2 Add User Response**
@@ -221,18 +221,18 @@ title: Finzly User API
 
 ### **Add User**
 
-[POST /v2/users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)
+[POST /users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to POST/v2/users endpoint allows users to add a new user to the system. The request parameters and objects are mentioned below
+**Description -** Sending a POST request to POST /users endpoint allows users to add a new user to the system. The request parameters and objects are mentioned below
 
 Request Parameters
 
 
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|<p>[V2UpdateUserRequest](https://apidocs.finzly.net/dashboard?java=#schemav2updateuserrequest)</p><p></p>|false|Customer User|
+|body|body|<p>[V2UpdateUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)</p><p></p>|false|Customer User|
 
 **JSON Response**
 
@@ -256,7 +256,7 @@ Request Parameters
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2AddUserResponseData](https://apidocs.finzly.net/dashboard?java=#schemav2adduserresponsedata)|false|none|none|
+|data|[V2AddUserResponseData](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)|false|none|none|
 
 **V2 Add User Response**
 ```yaml Before
@@ -276,10 +276,10 @@ Request Parameters
 |userUUID|string|false|none|A universally unique identifier (UUID) assigned to the user by the system|
 
 ### **Activate User**
-[PUT /v2/users/{userUUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/activateUserV2/)
+[PUT /users/{userUUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/activateUserV2/)
 HTTP Method: PUT**
 
-**Description -** Sending a PUT request to the PUT /v2/users/{userUUID}/activate endpoint allows users to activate a user. The request parameters and objects are mentioned below - 
+**Description -** Sending a PUT request to the PUT /users/{userUUID}/activate endpoint allows users to activate a user. The request parameters and objects are mentioned below - 
 
 **Request Parameters**
 
@@ -318,11 +318,11 @@ HTTP Method: PUT**
 
 ### **Suspend User V2**
 
-[PUT /v2/users/{userUUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/suspendUserV2/)
+[PUT /users/{userUUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/suspendUserV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to  /v2/users/{userUUID}/suspend endpoint allows users to suspend a user by passing userUUID in the path of the API request. The request parameters and objects are mentioned below - 
+**Description -** Sending a PUT request to  /users/{userUUID}/suspend endpoint allows users to suspend a user by passing userUUID in the path of the API request. The request parameters and objects are mentioned below - 
 
 Request Parameters
 

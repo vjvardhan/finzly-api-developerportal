@@ -32,7 +32,7 @@ training:
     page: developer-portal/instant.md
   - label: International Payments
     page: developer-portal/internationalPayment.md
-  - label: API Documentation
+  - label: API Guide
     page: developer-portal/sandbox.md
   - label: Errors
     page: developer-portal/errors.md
@@ -67,8 +67,11 @@ training:
         page: developer-portal/roles-api.md
       - label: Users Management
         page : developer-portal/user-api.md 
-  - label: Webhooks
-    page: developer-portal/webhooks.md        
+  - group: Payment Webhook
+    expanded: false
+    pages: 
+      - label: Webhook
+        page : developer-portal/webhooks.md 
   - label: Finzly Connect API
     page: 
   - group: Open Banking APIs

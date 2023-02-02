@@ -167,10 +167,10 @@ A successful GET request to this endpoint returns the following data
 |counterpartyId|integer|false|none|none|
 |paymentDate|string(date)|false|none|Payment date in mm/dd/yyyy format|
 |channel|string|false|none|none|
-|possibleUserAction|[[BulkfileActions](https://apidocs.finzly.net/dashboard?java=#schemabulkfileactions)]|false|none|none|
-|paymentBatches|<p>[[BulkPaymentBatches](https://apidocs.finzly.net/dashboard?java=#schemabulkpaymentbatches)]</p><p></p><p></p>|false|none|none|
-|messages|[BulkFile_messages](https://apidocs.finzly.net/dashboard?java=#schemabulkfile_messages)|false|none|none|
-|errors|<p>[Error](https://apidocs.finzly.net/dashboard?java=#schemaerror)</p><p></p>|false|none|none|
+|possibleUserAction|[[BulkfileActions](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)]|false|none|none|
+|paymentBatches|<p>[[BulkPaymentBatches](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)]</p><p></p><p></p>|false|none|none|
+|messages|[BulkFile_messages](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)|false|none|none|
+|errors|<p>[Error](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)</p><p></p>|false|none|none|
 
 **Bulk File Actions**
 
@@ -190,7 +190,7 @@ A successful GET request to this endpoint returns the following data
 | :- | :- | :- | :- | :- |
 |id|string|false|none|none|
 |displayName|string|false|none|none|
-|errors|[Error](https://apidocs.finzly.net/dashboard?java=#schemaerror)|false|none|none|
+|errors|[Error](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)|false|none|none|
 
 **Error**
 
@@ -241,7 +241,7 @@ A successful GET request to this endpoint returns the following data
 |batchCurrency|string|false|none|none|
 |secCode|string|false|none|none|
 |status|string|false|none|none|
-|transactions|[[BulkTransaction](https://apidocs.finzly.net/dashboard?java=#schemabulktransaction)]|false|none|none|
+|transactions|[[BulkTransaction](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)]|false|none|none|
 
 **Bulk Transaction**
 
@@ -292,8 +292,8 @@ A successful GET request to this endpoint returns the following data
 
 |**Name**|**Type**|**Required**|**Restrictions**|**Description**|
 | :- | :- | :- | :- | :- |
-|uploadErrors|[[UploadMessages](https://apidocs.finzly.net/dashboard?java=#schemauploadmessages)]|false|none|none|
-|uploadWarnings|<p>[[UploadMessages](https://apidocs.finzly.net/dashboard?java=#schemauploadmessages)]</p><p></p>|false|none|none|
+|uploadErrors|[[UploadMessages](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)]|false|none|none|
+|uploadWarnings|<p>[[UploadMessages](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFilePaymentDetails/)]</p><p></p>|false|none|none|
 
 **Upload Messages**
 ```yaml Before
@@ -348,7 +348,7 @@ A successful GET request to this endpoint returns the following data
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[BulkFilesRequest](https://apidocs.finzly.net/dashboard?java=#schemabulkfilesrequest)|false|none|
+|body|body|[BulkFilesRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)|false|none|
 **JSON Response**
 
 **A successful POST request to this endpoint returns the following data -**
@@ -461,9 +461,9 @@ A successful GET request to this endpoint returns the following data
 ```
 |**Name**|**Type**|**Required**|**Restrictions**|**Description**|
 | :- | :- | :- | :- | :- |
-|bulkUploadedFiles|<p>[[BulkFile](https://apidocs.finzly.net/dashboard?java=#schemabulkfile)]</p><p></p>|false|none|none|
-|errors|[Error](https://apidocs.finzly.net/dashboard?java=#schemaerror)|false|none|none|
-|pagination|[Pagination](https://apidocs.finzly.net/dashboard?java=#schemapagination)|false|none|none|
+|bulkUploadedFiles|<p>[[BulkFile](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)]</p><p></p>|false|none|none|
+|errors|[Error](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)|false|none|none|
+|pagination|[Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)|false|none|none|
 
 
 **Bulk File**
@@ -579,10 +579,10 @@ A successful GET request to this endpoint returns the following data
 |counterpartyId|integer|false|none|none|
 |paymentDate|string(date)|false|none|Payment date in mm/dd/yyyy format|
 |channel|string|false|none|none|
-|possibleUserAction|[[BulkfileActions](https://apidocs.finzly.net/dashboard?java=#schemabulkfileactions)]|false|none|none|
-|paymentBatches|[[BulkPaymentBatches](https://apidocs.finzly.net/dashboard?java=#schemabulkpaymentbatches)]|false|none|none|
-|messages|[BulkFile_messages](https://apidocs.finzly.net/dashboard?java=#schemabulkfile_messages)|false|none|none|
-|errors|[Error](https://apidocs.finzly.net/dashboard?java=#schemaerror)|false|none|none|
+|possibleUserAction|[[BulkfileActions](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)]|false|none|none|
+|paymentBatches|[[BulkPaymentBatches](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)]|false|none|none|
+|messages|[BulkFile_messages](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)|false|none|none|
+|errors|[Error](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/uploadBulkFiles/)|false|none|none|
 
 ```yaml Before
 {
@@ -629,7 +629,7 @@ Description - Sending a POST request to **/bulkpayment/files/search** allows use
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[BulkFilesRequest](https://apidocs.finzly.net/dashboard?java=#schemabulkfilesrequest)|false|none|
+|body|body|[BulkFilesRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFiles/)|false|none|
 
 
 **JSON Response**
@@ -747,9 +747,9 @@ Description - Sending a POST request to **/bulkpayment/files/search** allows use
 
 |**Name**|**Type**|**Required**|**Restrictions**|**Description**|
 | :- | :- | :- | :- | :- |
-|bulkUploadedFiles|<p>[[BulkFile](https://apidocs.finzly.net/dashboard?java=#schemabulkfile)]</p><p></p>|false|none|none|
-|errors|[Error](https://apidocs.finzly.net/dashboard?java=#schemaerror)|false|none|none|
-|pagination|[Pagination](https://apidocs.finzly.net/dashboard?java=#schemapagination)|false|none|none|
+|bulkUploadedFiles|<p>[[BulkFile](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFiles/)]</p><p></p>|false|none|none|
+|errors|[Error](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFiles/)|false|none|none|
+|pagination|[Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getBulkFiles/)|false|none|none|
 ### **Approve File**
 [PUT /bulkpayment/files/{fileNumber}/approve](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveFile/)
 

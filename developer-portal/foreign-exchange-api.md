@@ -16,18 +16,18 @@ Following functions helps you to understand the current FX capabilities exposed 
 
 ## **API Functions**
 ### **Get FX Quote**
-[POST /v2/fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)
+[POST /fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET request to the **/v2/fx/quote** endpoint allows users to request a quote for FX trade. All the parameters and objects are specified below - 
+**Description -** Sending a GET request to the **/fx/quote** endpoint allows users to request a quote for FX trade. All the parameters and objects are specified below - 
 
 **Request Parameters**
 
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[FXQuoteRequest](https://apidocs.finzly.net/dashboard?java=#schemafxquoterequest)|true|Quote request attributes to get the quote for a given ccy pair|
+|body|body|[FXQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)|true|Quote request attributes to get the quote for a given ccy pair|
 
 **JSON Response**
 
@@ -64,21 +64,21 @@ A successful POST request to this endpoint returns the following data-
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXQuoteResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxquoteresponse_data)</p><p></p>|false|none|none|
+|data|<p>[FXQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)</p><p></p>|false|none|none|
 
 ### **Accept FX Quote** 
-[PUT /v2/fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)
+[PUT /fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending PUT request to **/v2/fx/accept** endpoint allows users to accept FX Quote using quoteUUID in the API request path. All the request parameters and objects are specified below - 
+**Description -** Sending PUT request to **/fx/accept** endpoint allows users to accept FX Quote using quoteUUID in the API request path. All the request parameters and objects are specified below - 
 
 **Request Parameters**
 
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[FXAcceptQuoteRequest](https://apidocs.finzly.net/dashboard?java=#schemafxacceptquoterequest)|false|none|
+|body|body|[FXAcceptQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)|false|none|
 
 **JSON Response**
 
@@ -118,7 +118,7 @@ A successful GET request to this endpoint returns the following data-
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXAcceptQuoteResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxacceptquoteresponse_data)</p><p></p>|false|none|none|
+|data|<p>[FXAcceptQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)</p><p></p>|false|none|none|
 
 **FX Accept Quote Response Data**
 
@@ -144,11 +144,11 @@ A successful GET request to this endpoint returns the following data-
 |externalPricingSystemRefId|string|false|none|Unique reference id returned by the external system provider.|
 
 ### **Reject FX Quote**
-[PUT /v2/fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)
+[PUT /fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to **PUT /v2/fx/{quoteUUID}/reject** endpoint allows user to reject FX Quote using quoteUUID in the path of the API request. All the request parameters and objects are mentioned below - 
+**Description -** Sending a PUT request to **PUT /fx/{quoteUUID}/reject** endpoint allows user to reject FX Quote using quoteUUID in the path of the API request. All the request parameters and objects are mentioned below - 
 
 **Request Parameters**
 
@@ -181,7 +181,7 @@ A successful PUT request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXRejectQuoteResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxrejectquoteresponse_data)</p><p></p>|false|none|none|
+|data|<p>[FXRejectQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)</p><p></p>|false|none|none|
 
 **FX Reject Quote Response Data**
 ```yaml Before
@@ -198,11 +198,11 @@ A successful PUT request to this endpoint returns the following data -
 
 ### **Get FX trade information (v2)**
 
-[GET /v2/fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformationV2/)
+[GET /fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformationV2/)
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET request to  **/v2/fx/{forexContractNo}** allows users to get FX trade information using forexContractNo in the path of the API request. All the request parameters and objects are mentioned below - 
+**Description -** Sending a GET request to  **/fx/{forexContractNo}** allows users to get FX trade information using forexContractNo in the path of the API request. All the request parameters and objects are mentioned below - 
 
 
 
@@ -249,7 +249,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXTradeInfoResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxtradeinforesponse_data)</p><p></p>|false|none|none|
+|data|<p>[FXTradeInfoResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformationV2/)</p><p></p>|false|none|none|
 
 **FX Trade Response Data**
 
@@ -293,11 +293,11 @@ A successful GET request to this endpoint returns the following data -
 |executionTime|string(date)|false|none|The execution time|
 
 ### **Cover FX Trade**
-[GET /v2/fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTradeV2/)
+[GET /fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTradeV2/)
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET request to the **GET /v2/fx/{forexContractNo}/cover** endpoint allows users to cover FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
+**Description -** Sending a GET request to the **GET /fx/{forexContractNo}/cover** endpoint allows users to cover FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
 
 **Request Parameters**
 
@@ -343,7 +343,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXCoverTradeResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxcovertraderesponse_data)</p><p></p>|false|none|none|
+|data|<p>[FXCoverTradeResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTradeV2/)</p><p></p>|false|none|none|
 
 **FX Cover Trader Response Data**
 
@@ -395,11 +395,11 @@ A successful GET request to this endpoint returns the following data -
 |referenceSpotRate|number|false|none|the offered rate|
 
 ### **Cancel FX Trade**
-[DELETE /v2/fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)
+[DELETE /fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)
 
 **HTTP Method: Delete**
 
-**Description -** Sending a DELETE request to the **/v2/fx/{forexContractNo}/cancel** endpoint allows users to cancel FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
+**Description -** Sending a DELETE request to the **/fx/{forexContractNo}/cancel** endpoint allows users to cancel FX trade by passing the forexContractNo in the path of the API request. All the parameters and objects are specified below - 
 
 **Request Parameters**
 
@@ -432,7 +432,7 @@ A successful Delete request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXTradeCancelResponse_data](https://apidocs.finzly.net/dashboard?java=#schemafxtradecancelresponse_data)</p><p></p>|false|none|none|
+|data|<p>[FXTradeCancelResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)</p><p></p>|false|none|none|
 
 **FX Trade Cancel Response Data**
 ```yaml Before

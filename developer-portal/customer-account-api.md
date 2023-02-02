@@ -16,7 +16,7 @@ The following **supported API functions** helps you to understand the current cu
 
 ## **Supported Customer Accounts API functions**
 ### **Search Customer Account**
-[GET /v2/customers/{customerUID}/accounts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerAccountsV2/)
+[GET /customers/{customerUID}/accounts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerByCustomerUIDV2/)
 
 **HTTP Method: GET**
 
@@ -88,7 +88,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[[CustomerBankAccount](https://apidocs.finzly.net/dashboard?java=#schemacustomerbankaccount)]|false|none|none|
+|data|[[CustomerBankAccount](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerAccountsV2/)]|false|none|none|
 
 **Customer Bank Account**
 
@@ -118,15 +118,15 @@ A successful GET request to this endpoint returns the following data -
 |feeAccount|boolean|false|none|Whether the accountNumber is a Fee account|
 |returnAccount|boolean|false|none|Whether the accountNumber is a Return account|
 |status|string|false|none|Account Status|
-|externalAccount|[AccountExternal](https://apidocs.finzly.net/dashboard?java=#schemaaccountexternal)|false|none|none|
+|externalAccount|[AccountExternal](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerAccountsV2/)|false|none|none|
 
 
 ### **Create Customer Account**
-[POST /v2/customers/{customerUID}/accounts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerAccountV2/)
+[POST /customers/{customerUID}/accounts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerAccountV2/)
 
 **HTTP Method: POST**	
 
-**Description -** Sending a POST request to **/v2/customers/{customerUID}/accounts** endpoint allows users to create a customer account using parameters including customerUID. All parameters and objects are specified below:
+**Description -** Sending a POST request to **/customers/{customerUID}/accounts** endpoint allows users to create a customer account using parameters including customerUID. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -135,7 +135,7 @@ The customer uid must be passed in the path of API request. In the body section 
 |Name |In|Type |Required |Description|
 | :- | :- | :- | :- | :- |
 |customerUID|path|integer|true|none|
-|body|body|[CreateAccountRequest](https://apidocs.finzly.net/dashboard#schemacreateaccountrequest)|true|Account Info|
+|body|body|[CreateAccountRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerAccountV2/)|true|Account Info|
 
 
 **JSON Response**
@@ -162,7 +162,7 @@ A successful POST request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[CreateAccountResponse_data](https://apidocs.finzly.net/dashboard?java=#schemacreateaccountresponse_data)|false|none|none|
+|data|[CreateAccountResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerAccountV2/)|false|none|none|
 
 **Create Account Response Data**
 
@@ -181,11 +181,11 @@ A successful POST request to this endpoint returns the following data -
 
 
 ### **Get Customers**
-[GET /v2/customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerAccountByAccountUIDV2/)
+[GET /customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerByCustomerUIDV2/)
 
 **HTTP  Method: GET**	
 
-**Description -** Sending a GET request to **/v2/customers/{customerUID}/accounts/{accountUID}** endpoint allows users to retrieve a customer account associated with parameters including customerUID and accountUID. All parameters and objects are specified below -
+**Description -** Sending a GET request to **/customers/{customerUID}/accounts/{accountUID}** endpoint allows users to retrieve a customer account associated with parameters including customerUID and accountUID. All parameters and objects are specified below -
 
 **Request Parameters**
 
@@ -250,15 +250,15 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[CustomerBankAccount](https://apidocs.finzly.net/dashboard?java=#schemacustomerbankaccount)|false|none|none|
+|data|[CustomerBankAccount](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getCustomerAccountByAccountUIDV2/)|false|none|none|
 
 
 ### **Update Customer Account**
-[PUT /v2/customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerAccountByAccountUIDV2/)
+[PUT /customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerAccountByAccountUIDV2/)
 
 **HTTP  Method: PUT**
 
-**Description -** Sending a PUT request to **v2/customers/{customerUID}/accounts/{accountUID}** endpoint with parameters including customerUID and accountUID allows users to update customer accounts. All parameters and objects are specified below:
+**Description -** Sending a PUT request to **/customers/{customerUID}/accounts/{accountUID}** endpoint with parameters including customerUID and accountUID allows users to update customer accounts. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -268,7 +268,7 @@ Two parameters need to be passed in the path of the API request, customerUID and
 | :- | :- | :- | :- | :- |
 |customerUID|path|string|true|none|
 |accountUID|path|string|true|none|
-|body|body|[UpdateAccountRequest](https://apidocs.finzly.net/dashboard#schemaupdateaccountrequest)|true|Account Info|
+|body|body|[UpdateAccountRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerAccountByAccountUIDV2/)|true|Account Info|
 
 **JSON Response**
 
@@ -293,7 +293,7 @@ Response Code - 200
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[UpdateAccountResponse_data](https://apidocs.finzly.net/dashboard?java=#schemaupdateaccountresponse_data)|false|none|none|
+|data|[UpdateAccountResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateCustomerAccountByAccountUIDV2/)|false|none|none|
 
 **Update Account Response data**
 
@@ -313,11 +313,11 @@ Response Code - 200
 
 ### **Delete Customer Account**
 
-[DELETE /v2/customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteCustomerAccountByAccountUIDV2/)
+[DELETE /customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteCustomerAccountByAccountUIDV2/)
 
 **HTTP  Method: DELETE**
 
-**Description -** Sending a DELETE request to the **/v2/customers/{customerUID}/accounts/{accountUID}** endpoint with parameters including CustomerUID and AccountUID allows users to delete a customer account. All parameters and objects are specified below:
+**Description -** Sending a DELETE request to the **/customers/{customerUID}/accounts/{accountUID}** endpoint with parameters including CustomerUID and AccountUID allows users to delete a customer account. All parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -353,7 +353,7 @@ A successful DELETE request to this endpoint will return the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[UpdateAccountResponse_data](https://apidocs.finzly.net/dashboard?java=#schemaupdateaccountresponse_data)|false|none|none|
+|data|[UpdateAccountResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteCustomerAccountByAccountUIDV2/)|false|none|none|
 
 
 **Update Account Response data**

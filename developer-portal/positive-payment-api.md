@@ -12,16 +12,16 @@ Positive Pay Decision APIs approve or reject the exceptions identified by the po
 ## **API Functions**
 ### **Search Positive Pay Rules**
 
-[POST /v2/positivepay/rules/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayRules%20(V2)/)
+[POST /positivepay/rules/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayRules%20(V2)/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to **/v2/positivepay/rules/search** allows users to search positive pay rules for the given criteria. All the request parameters and objects are specified below
+**Description -** Sending a POST request to **/positivepay/rules/search** allows users to search positive pay rules for the given criteria. All the request parameters and objects are specified below
 
 
 |Name |In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|[ReversePaymentRequest](https://apidocs.finzly.net/dashboard?java=#schemareversepaymentrequest)|false |none|
+|body|body|[ReversePaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayRules%20(V2)/)|false |none|
 
 
 **JSON Response**
@@ -64,7 +64,7 @@ A successful POST request to this endpoint returns the following data
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[[PositivePayRule](https://apidocs.finzly.net/dashboard?java=#schemapositivepayrule)]|false|none|none|
+|data|[[PositivePayRule](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayRules%20(V2)/)]|false|none|none|
 
 **Positive Pay Rule**
 
@@ -91,17 +91,17 @@ A successful POST request to this endpoint returns the following data
 
 
 ### **Update Positive Pay Rules**
-[PUT /v2/positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateRulesV2/)
+[PUT /positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateRulesV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to **/v2/positivepay/rules** endpoint allows users to update Positive Pay Rule.  All the request parameters and objects are specified below
+**Description -** Sending a PUT request to **/positivepay/rules** endpoint allows users to update Positive Pay Rule.  All the request parameters and objects are specified below
 
 **Request Parameters**
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[PositivePayRule](https://apidocs.finzly.net/dashboard?java=#schemapositivepayrule)|false |none|
+|body|body|[PositivePayRule](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/updateRulesV2/)|false |none|
 
 
 **JSON Response**
@@ -129,18 +129,18 @@ A successful PUT request to this endpoint returns the following data -
 
 
 ### **Add PositivePay Rule**
-[POST /v2/positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/addPositiveRulesV2/)
+[POST /positivepay/rules](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/addPositiveRulesV2/)
 
 **HTTP Method: POST**
 
-**Description -**  Sending a PUT request to the **/v2/positivepay/rules** endpoint allows users to add a positive pay rule. All the request parameters and objects are specified below- 
+**Description -**  Sending a PUT request to the **/positivepay/rules** endpoint allows users to add a positive pay rule. All the request parameters and objects are specified below- 
 
 **Request Parameters**
 
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|<p>[AddPositivePayRule](https://apidocs.finzly.net/dashboard?java=#schemaaddpositivepayrule)</p><p></p>|false |none|
+|body|body|<p>[AddPositivePayRule](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/addPositiveRulesV2/)</p><p></p>|false |none|
 
 **JSON Response**
 
@@ -166,11 +166,11 @@ A successful POST request to this endpoint returns the following data
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 ### **Get PositivePay Rule By RuleUID**
-[GET /v2/positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPostivePayRuleV2/)
+[GET /positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPostivePayRuleV2/)
 
 **HTTP Method - GET**
 
-**Description -** Sending a GET request to the **/v2/positivepay/rules/{ruleUID}** endpoint allows users to get PositivePay Rule by providing ruleUID in the path of the API request.  All the request parameters and objects are specified below- 
+**Description -** Sending a GET request to the **/positivepay/rules/{ruleUID}** endpoint allows users to get PositivePay Rule by providing ruleUID in the path of the API request.  All the request parameters and objects are specified below- 
 
 **Request Parameters**
 
@@ -222,11 +222,11 @@ A successful GET request to this endpoint returns the following data
 
 
 ### **Delete Rules**
-[DELETE /v2/positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteRules/)
+[DELETE /positivepay/rules/{ruleUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/deleteRules/)
 
 **HTTP Method: Delete**
 
-**Description -** Sending a GET request to the **/v2/positivepay/rules/{ruleUID}** endpoint allows users to Delete PositivePay Rule by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
+**Description -** Sending a GET request to the **/positivepay/rules/{ruleUID}** endpoint allows users to Delete PositivePay Rule by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
 
 
 
@@ -258,11 +258,11 @@ A successful DELETE request to this endpoint returns the following data
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 ### **Activate Rules**
-[PUT /v2/positivepay/rules/{ruleUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/activateRulesV2/)
+[PUT /positivepay/rules/{ruleUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/activateRulesV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to the **/v2/positivepay/rules/{ruleUID}/activate** endpoint allows users to activate Positive Pay Rule by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
+**Description -** Sending a PUT request to the **/positivepay/rules/{ruleUID}/activate** endpoint allows users to activate Positive Pay Rule by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
 
 
 
@@ -294,11 +294,11 @@ A successful PUT request to this endpoint returns the following data
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 ### **Suspend Rules**
-[PUT /v2/positivepay/rules/{ruleUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/suspendRulesV2/)
+[PUT /positivepay/rules/{ruleUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/suspendRulesV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to PUT **/v2/positivepay/rules/{ruleUID}/suspend** endpoint allows users to suspend Positive Pay Rules by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
+**Description -** Sending a PUT request to PUT **/positivepay/rules/{ruleUID}/suspend** endpoint allows users to suspend Positive Pay Rules by providing ruleUID in the path of the API request. All the request parameters and objects are specified below- 
 
 
 
@@ -330,19 +330,19 @@ A successful PUT request to this endpoint returns the following data
 |ruleUID|number(int64)|false|none|Positive rule unique id|
 
 
-### **Search Positive Pay Expectations**
-[POST /v2/positivepay/exception/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayExceptionsV2/)
+### **Search Positive Pay Exceptions**
+[POST /positivepay/exception/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayExceptionsV2/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to **/v2/positivepay/exception/search** endpoint allows users to return positive pay expectations for a given criteria. All the request parameters and objects are specified below- 
+**Description -** Sending a POST request to **/positivepay/exception/search** endpoint allows users to return positive pay expectations for a given criteria. All the request parameters and objects are specified below- 
 
 **Request Parameters**
 
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[SearchPositivePayDecisionRequest](https://apidocs.finzly.net/dashboard?java=#schemasearchpositivepaydecisionrequest)|false|none|
+|body|body|[SearchPositivePayDecisionRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPositivePayExceptionsV2/)|false|none|
 
 
 **JSON Response**
@@ -384,14 +384,14 @@ A successful POST request to this endpoint returns the following data
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|ruleUID|[[PositivePayExceptionDecision](https://apidocs.finzly.net/dashboard?java=#schemapositivepayexceptiondecision)]|false|none|Positive rule unique id|
+|ruleUID|[[PositivePayExceptionDecision](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveExceptionsV2/)]|false|none|Positive rule unique id|
 
 ### **Approve PositivePay Exception**
-[PUT /v2/positivepay/exception/{exceptionUID}/approve](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveExceptionsV2/)
+[PUT /positivepay/exception/{exceptionUID}/approve](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveExceptionsV2/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to the **/v2/positivepay/exception/{exceptionUID}/approve** endpoint allows users to approve Positive Pay Exception by passing the ExceptionUID in the API request path. All the request parameters and objects are specified below- 
+**Description -** Sending a PUT request to the **/positivepay/exception/{exceptionUID}/approve** endpoint allows users to approve Positive Pay Exception by passing the ExceptionUID in the API request path. All the request parameters and objects are specified below- 
 
 **Request Parameters**
 
@@ -426,11 +426,11 @@ A successful PUT request to this endpoint returns the following data
 
 ### **Reject Exceptions**
 
-[PUT /v2/positivepay/exception/{exceptionUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectExceptions/)
+[PUT /positivepay/exception/{exceptionUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectExceptions/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a GET request to the **/v2/positivepay/exception/{exceptionUID}/reject** allows users to reject exceptions by passing the exceptionUID in the path of the API request.
+**Description -** Sending a GET request to the **/positivepay/exception/{exceptionUID}/reject** allows users to reject exceptions by passing the exceptionUID in the path of the API request.
 
 All the request parameters and objects are specified below- 
 
@@ -465,18 +465,18 @@ A successful GET request to this endpoint returns the following data
 |exceptionUID|number(int64)|false|none|Unique identifier associated with positive pay exception|
 
 ### **Approve All Exceptions**
-[PUT /v2/positivepay/exception/approveall](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveAllExceptionsV2/)
+[PUT /positivepay/exception/approveall](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveAllExceptionsV2/)
 
 **HTTP Method: PUT**
 
-Description - Sending a PUT request to **/v2/positivepay/exception/approveall** endpoint allows users to approve all positive pay exceptions via payment unique identifier in the API request path. All the request parameters and objects are specified below - 
+Description - Sending a PUT request to **/positivepay/exception/approveall** endpoint allows users to approve all positive pay exceptions via payment unique identifier in the API request path. All the request parameters and objects are specified below - 
 
 **Request Parameters**
 
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[ApproveAllPositivePayExceptionRequest](https://apidocs.finzly.net/dashboard?java=#schemaapproveallpositivepayexceptionrequest)|false|none|
+|body|body|[ApproveAllPositivePayExceptionRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/approveAllExceptionsV2/)|false|none|
 
 **JSON Response**
 

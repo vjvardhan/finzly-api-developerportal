@@ -17,11 +17,11 @@ The following use cases help you to understand the current payment capabilities 
 
 ### **Search Payments**
 
-[POST /v3/payments/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPaymentsV3/)
+[POST /payments/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPaymentsV3/)
 
 **HTTP  Method: GET**
 
-**Description -** Sending a GET request to **/v3/payments/search** endpoint allows users to retrieve a list of payments. All the request parameters and objects are specified below:
+**Description -** Sending a GET request to **/payments/search** endpoint allows users to retrieve a list of payments. All the request parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -30,7 +30,7 @@ No argument is required. Only payment details will be passed in the body of the 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[PaymentSearch](https://apidocs.finzly.net/dashboard?http=#schemapaymentsearch)|false|none|
+|body|body|[PaymentSearch](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPaymentsV3/)|false|none|
 
 **JSON Response**
 
@@ -131,11 +131,11 @@ No argument is required. Only payment details will be passed in the body of the 
 |data|[Payment]|false|none|none|
 
 ### **Create Credit Payment**
-[POST /v3/payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)
+[POST /payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to **/v3/payments/creditrequest** endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
+**Description -** Sending a POST request to **//payments/creditrequest** endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -144,7 +144,7 @@ All details of the users to which we want to make the payment will be passed in 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[CreditPaymentRequest](https://apidocs.finzly.net/dashboard?java=#schemacreditpaymentrequest)|true|Payment fields|
+|body|body|[CreditPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)|true|Payment fields|
 
 
 **JSON Response**
@@ -172,7 +172,7 @@ A successful POST request to this endpoint will return the following data-
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[BookTransferResponse_data](https://apidocs.finzly.net/dashboard?java=#schemabooktransferresponse_data)|false|none|none|
+|data|[BookTransferResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)|false|none|none|
 
 <!-- **Book Transfer Response Data**
 ```yaml Before
@@ -190,11 +190,11 @@ A successful POST request to this endpoint will return the following data-
 |externalReferenceId|string|false|none|none|
 
 ### **Create Debit Payment**
-[POST /v3/payments/debitrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createDebitPaymentV3/)
+[POST /payments/debitrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createDebitPaymentV3/)
 
 **HTTP Method: POST**
 
-**Description -** Sending a POST request to **/v3/payments/debitrequest** endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
+**Description -** Sending a POST request to **  /payments/debitrequest** endpoint allows users to submit domestic or international one time or recurring payments. All the request parameters and objects are specified below:
 
 **Request Parameters**
 
@@ -203,7 +203,7 @@ All details of the users from which want to receive the payment will be passed i
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[DebitPaymentRequest](https://apidocs.finzly.net/dashboard?java=#schemadebitpaymentrequest)|true|Payment fields|
+|body|body|[DebitPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createDebitPaymentV3/)|true|Payment fields|
 
 **JSON Response**
 
@@ -230,14 +230,14 @@ A successful POST request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[BookTransferResponse_data](https://apidocs.finzly.net/dashboard?java=#schemabooktransferresponse_data)|false|none|none|
+|data|[BookTransferResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createDebitPaymentV3/)|false|none|none|
 
-### **Get Payment by UIDV3**
-[GET /v3/payments/{paymentUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPaymentByUIDV3/)
+### **Get Payment by UID**
+[GET /payments/{paymentUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPaymentByUIDV3/)
 
 **HTTP Method: GET**
 
-**Description -** Sending a GET Request to **/v3/payments/{paymentUID}** endpoint allows users to retrieve  payment details using payment uid in the path of the API request. All the request parameters and objects are specified below:
+**Description -** Sending a GET Request to **/payments/{paymentUID}** endpoint allows users to retrieve  payment details using payment uid in the path of the API request. All the request parameters and objects are specified below:
 
 
 **Request Parameters**
@@ -342,16 +342,16 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[Payment](https://apidocs.finzly.net/dashboard?java=#schemapayment)|false|none|none|
+|data|[Payment](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPaymentByUIDV3/)|false|none|none|
 
-### **Cancel Payment by paymentUID (v3)**
+### **Cancel Payment by paymentUID**
 
 
-[PUT /v3/payments/{paymentUID}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelPaymentV3/)
+[PUT /payments/{paymentUID}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelPaymentV3/)
 
 **HTTP Method: PUT**	
 
-**Description-** Sending a PUT Request to **/v3/payments/{paymentUID}/cancel** endpoint allows users to cancel a payment.using paymentUID. All the request parameters and objects are specified below -
+**Description-** Sending a PUT Request to **/payments/{paymentUID}/cancel** endpoint allows users to cancel a payment.using paymentUID. All the request parameters and objects are specified below -
 
 
 
@@ -383,7 +383,7 @@ A successful PUT request to this endpoint returns the following data
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[CancelPaymentResponse_data](https://apidocs.finzly.net/dashboard?java=#schemacancelpaymentresponse_data)|false|none|none|
+|data|[CancelPaymentResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelPaymentV3/)|false|none|none|
 
 Cancel Payment Response data
 ```yaml Before
@@ -397,12 +397,12 @@ Cancel Payment Response data
 | :- | :- | :- | :- | :- |
 |paymentUID|string|false|none|none|
 
-### **Return a payment by paymentUID (v3)**
-[PUT/v3/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/returnPaymentV3/)
+### **Return a payment by paymentUID**
+[PUT/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/returnPaymentV3/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to **/v3/payments/{paymentUID}/return** endpoint allows users to return a payment. All the request parameters and objects are specified below
+**Description -** Sending a PUT request to **/payments/{paymentUID}/return** endpoint allows users to return a payment. All the request parameters and objects are specified below
 
 **Request Parameters**
 
@@ -412,15 +412,15 @@ In case of an incorrect transaction or refund, the users need to pass paymentUID
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |paymentUID|path|string|true|none|
-|body|body|[ReturnPaymentRequest](https://apidocs.finzly.net/dashboard?java=#schemareturnpaymentrequest)|false |none|
+|body|body|[ReturnPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/returnPaymentV3/)|false |none|
 
 JSON Response not available
-### **Reverse Payment by paymentUID (v3)**
-[PUT /v3/payments/{paymentUID}/reverse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/reversePaymentV3/)
+### **Reverse Payment by paymentUID**
+[PUT /payments/{paymentUID}/reverse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/reversePaymentV3/)
 
 **HTTP Method: PUT**
 
-**Description -** Sending a PUT request to **/v3/payments/{paymentUID}/reverse** endpoint allows users to reverse a payment. All the request parameters and objects are specified below
+**Description -** Sending a PUT request to **/payments/{paymentUID}/reverse** endpoint allows users to reverse a payment. All the request parameters and objects are specified below
 
 **Request Parameters**
 
@@ -428,7 +428,7 @@ JSON Response not available
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |paymentUID|path|string|true|none|
-|body|body|[ReversePaymentRequest](https://apidocs.finzly.net/dashboard?java=#schemareversepaymentrequest)|false |none|
+|body|body|[ReversePaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/reversePaymentV3/)|false |none|
 
 **JSON Response not available**
 

@@ -65,7 +65,7 @@ A successful GET request to this endpoint will return the following data
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[[SearchApplication](https://apidocs.finzly.net/dashboard?java=#schemasearchapplication)]|false|none|none|
+|data|[[SearchApplication](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplication/)]|false|none|none|
 
 ### **Get Application Details By App Code**	
 
@@ -127,5 +127,5 @@ A successful GET request to this endpoint returns the following data
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[Application]|false|none|none|
+|data|[Application](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getApplicationDetailsByAppCode/)|false|none|none|
 
