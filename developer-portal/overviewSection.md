@@ -39,10 +39,12 @@ Weekly, Bi-Weekly, Monthly etc.
 To initiate a payment, the developer must provide very minimal details as follows:
 
 <svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg> Sender Account
-&nbsp;&nbsp;1. Sender Unique ID
+
+&nbsp;&nbsp; 1. Sender Unique ID
 
 <svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg> Receiver Information
- &nbsp;1. Receiver Unique 
+
+&nbsp;&nbsp; 1. Receiver Unique 
 
 <svg width="12" height="12" x="0" y="0" viewBox="0 0 32 32"> <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,32,32)"><path d="M16 1a15 15 0 1 0 15 15A15.017 15.017 0 0 0 16 1zm2.707 20.293a1 1 0 1 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L13.414 16z" fill="#003c90" data-original="#000000" class=""></path></g></svg> Amount
 
