@@ -18,9 +18,13 @@ oasDefinitions:
   userApi: ./openapi/userAPI.yaml
   paymentApi: ./openapi/paymentStatus.yaml
 
+extra_javascript:
+  -  https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  -  https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js
   # add links to definitions in our API registry by using a fully qualified URL.
 stylesheets:
   - ./css/style.css
+  - https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap
