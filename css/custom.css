@@ -39,7 +39,7 @@
 .item:hover h3{
     color:#fff;
 } */
-.item .avatar,.item .gatsby-resp-image-image{
+.item .avatar,.item .gatsby-resp-image-image,.gatsby-resp-image-background-image{
     height:200px;
     object-fit: cover;
     width: 100%;
@@ -50,7 +50,8 @@
 .item .avatar:hover{
     transform: scale(1.1);
 }
-.item .gatsby-resp-image-image{
+
+.item .gatsby-resp-image-image:hover,.item .gatsby-resp-image-background-image:hover{
     transform: scale(1.1);   
 }
 .item .content{
