@@ -1,7 +1,7 @@
 training:
   - page: developer-portal/index.md
   - label: Use Cases
-    page:  developer-portal/usecase.md
+    page:  developer-portal/demo.md
   - label: Payment Solutions
     page: developer-portal/overviewSection.md
   - group: ACH
@@ -49,6 +49,8 @@ training:
     expanded: false
     pages:
     - label: Payment Origination
+      page: developer-portal/payments-api.md
+    - label: Instant Payment Request
       page: developer-portal/payments-api.md
     - label : Positive Pay
       page : developer-portal/positive-payment-api.md
