@@ -39,7 +39,7 @@
 .item:hover h3{
     color:#fff;
 } */
-.item .avatar{
+.item .avatar,.item .gatsby-resp-image-image{
     height:200px;
     object-fit: cover;
     width: 100%;
@@ -49,6 +49,9 @@
 }
 .item .avatar:hover{
     transform: scale(1.1);
+}
+.item .gatsby-resp-image-image{
+    transform: scale(1.1);   
 }
 .item .content{
     padding-top: 5px;
@@ -73,8 +76,8 @@
     text-align: right;
 }
 .fmDiqV .item img{
-    position: absolute;
-    top: -20px;
+    position: absolute!important;
+    top: -20px!important;
 }
 .item .content .inner-icon{
     height: 50px;
