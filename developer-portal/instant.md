@@ -15,8 +15,10 @@ The following diagram explains the fund flow in FedNow and RTP payment network.
 
 ![image info](./images/service.png)
 
-
+<br>
 
 ![image info](./images/transaction.png)
+
+<br>
 
 Finzly Connect offers instant payment access and notifications via simple REST API. Develop new financial products such as Point of Sale, QR based invoices, and get paid instantly from your customer’s bank and eliminate card transaction fees.

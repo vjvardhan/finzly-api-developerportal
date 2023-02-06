@@ -107,6 +107,7 @@
                 </div>
             </div>
             <div class="item">
+            <a href="#high-volume-payouts">
                 <img src="images/HIGH VOL PMTS.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -115,6 +116,7 @@
                  <h3>High volume payouts</h3>
                 </div>
             </div>
+            </a>
         </div>
     </div>
     <div class="direction">

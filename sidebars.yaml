@@ -51,7 +51,7 @@ training:
     - label: Payment Origination
       page: developer-portal/payments-api.md
     - label: Instant Payment Request
-      page: developer-portal/payments-api.md
+      page: developer-portal/instant-payment.md
     - label : Positive Pay
       page : developer-portal/positive-payment-api.md
     - label : Bulk Payment
