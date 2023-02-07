@@ -18,8 +18,8 @@ oasDefinitions:
   userApi: ./openapi/userAPI.yaml
   paymentApi: ./openapi/paymentStatus.yaml
 
-#postBodyScripts:
-scripts:
+postBodyScripts:
+# scripts:
   - ./css/custom.js
   # add links to definitions in our API registry by using a fully qualified URL.
 

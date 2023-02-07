@@ -1,10 +1,13 @@
 .fZMdKK , .NGfdO , .cmvlLP , .BMryA , .eeNMMj, .hqHtPN, .jYRcKw, .kCDmow, .hskyvr, th{
     background: #003C90 !important;
 }
+
 body{
     background-color:#fff;
 }
-
+/* html{
+    scroll-behavior: smooth;
+} */
 .gbwUkf p, .fmDiqV p {
     font-size:20px;
 }
@@ -136,6 +139,7 @@ h1{
 
 .laoQlN:hover, .laoQlN.active {
     color: #003c90!important;
+    text-decoration: none!important;
     background-color: #e6e6e6;
 }
 .iDjRRy:hover, .iDjRRy.active {
@@ -144,6 +148,7 @@ h1{
 }
 .jQgZJd:hover, .jQgZJd.active{
     color: #003c90!important;
+    text-decoration: none!important;
     background-color: #e6e6e6;
 }
 .dDksSy:hover, .dDksSy.active{

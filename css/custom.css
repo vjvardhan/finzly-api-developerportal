@@ -1,6 +1,7 @@
 .direction{
     text-align: center;
 }
+
 .direction button{
     font-family: cursive;
     font-weight: bold;
@@ -111,18 +112,40 @@
     display: none;
 }
 @media screen and (max-width: 1024px){
-    .item{
+    .fmDiqV  .item, .gbwUkf .item{
         width: calc(33.3vw - 20px);
     }
-    .direction{
+    .fmDiqV  .direction{
         display: none;
     }
 }
 @media screen and (max-width: 768px){
-    .item{
-        width: calc(50vw - 20px);
+    .fmDiqV  .item, .gbwUkf .item{
+        width: calc(50vw - 58px);
     }
-    .direction{
+    .fmDiqV  .direction, .gbwUkf .direction{
         display: none;
     }
 } 
+@media screen and (max-width: 556px){
+    .fmDiqV .item,.gbwUkf .item{
+        width: calc(50vw - 35px);
+    }
+    .fmDiqV .item .content,.gbwUkf .item .content{
+        display: block!important;
+        padding-left: 10px;
+        gap:5px!important;
+    }
+    .fmDiqV .item .content h3, .gbwUkf .item .content h3{
+        font-size: 14px;
+        text-align: left;
+       padding-top: 10px;
+      padding-left: 4px;
+    }
+}
+@media screen and (max-width: 320px){
+    .fmDiqV .item, .gbwUkf .item {
+        width: calc(50vw - 25px);
+    }
+}
+

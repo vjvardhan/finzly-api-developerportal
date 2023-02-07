@@ -1,13 +1,16 @@
  <div id="formList">
         <div id="list">
             <div class="item">
+            <a href="#insurance">
                 <img src="images/INSURANCE 1.jpg" class="avatar">
                 <div class="content">
                 <div class="inner-icon"><svg  width="30" height="30" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><path d="M200 256h-32a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8h32a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8Zm-8 56h-16v-40h16ZM312 328h32a8 8 0 0 0 8-8v-56a8 8 0 0 0-8-8h-32a8 8 0 0 0-8 8v56a8 8 0 0 0 8 8Zm8-56h16v40h-16Z" fill="#003c90" data-original="#000000" class=""></path><path d="M368.627 168.608a39.906 39.906 0 0 0 19.648-19.448l53.448 27.793A37.142 37.142 0 0 0 496 144a8 8 0 0 0-4.115-6.993l-216-120a8.013 8.013 0 0 0-5.9-.748L96 61.645V56a8 8 0 0 0-8-8H24a8 8 0 0 0-8 8v112a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-8h48a8.013 8.013 0 0 0 2.2-.308l58.147-16.613L91 233.753a8 8 0 0 0-.659 11.9l24 24a8 8 0 0 0 10.516.7l3.141-2.4v87.755a39.439 39.439 0 0 0-4.275 7.132l-53.446-27.793A37.142 37.142 0 0 0 16 368a8 8 0 0 0 4.115 6.993l216 120a8 8 0 0 0 5.905.748L416 450.355V456a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8V344a8 8 0 0 0-8-8h-64a8 8 0 0 0-8 8v8h-32v-84.047l3.141 2.4a8 8 0 0 0 10.516-.7l24-24a8 8 0 0 0-.659-11.9l-78.255-62.6a39.592 39.592 0 0 0 25.884-2.541ZM80 160H32V64h48Zm352 192h48v96h-48Zm-16 16v65.819L241.083 479.45l-208.62-115.9A21.157 21.157 0 0 1 62.9 349.242L220.309 431.1a8 8 0 0 0 7.382-14.2l-89.751-46.669a23.968 23.968 0 0 1 12.107-12.3 23.5 23.5 0 0 1 20.686.377l81.689 40.844a8 8 0 0 0 5.776.537L369.121 368ZM256.644 232.007c-.107 0-.216-.007-.324-.007H256q-.159 0-.318.006A32.359 32.359 0 0 0 224 264.32v102.736L177.889 344a39.739 39.739 0 0 0-33.889-.875v-87.407l112-85.647 112 85.647V352a8.013 8.013 0 0 0-2.2.308L288 374.537V264.32a32.207 32.207 0 0 0-31.356-32.313ZM272 264.32v114.789l-15.206 4.344L240 375.056V264.32A16.339 16.339 0 0 1 256.161 248 15.991 15.991 0 0 1 272 264.32Zm132.023-23.657L391.3 253.391l-130.441-99.745a8 8 0 0 0-9.718 0L120.7 253.391l-12.727-12.728L244.187 131.7l11.019-3.148 23.125 11.563Zm-62.756-86.974-81.689-40.844a8 8 0 0 0-5.776-.537L142.879 144H96V78.181L270.917 32.55l208.62 115.9a21.157 21.157 0 0 1-30.437 14.308L291.691 80.9a8 8 0 0 0-7.382 14.2l89.751 46.67a23.966 23.966 0 0 1-12.107 12.3 23.5 23.5 0 0 1-20.686-.381Z" fill="#003c90" data-original="#000000" class=""></path></svg></div>
                 <div class="inner-heading"> <h3>Insurance</h3> </div>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#travel-platforms">
                 <img src="images/TRAVEL PLATFORMS 2.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -16,7 +19,9 @@
                  <div class="inner-heading"><h3>Travel platforms</h3></div>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#healthcare">
                 <img src="images/HEALTHCARE.jpg" class="avatar">
                 <div class="content">
                 <div class="inner-icon">
@@ -25,7 +30,9 @@
                 <div class="inner-heading"><h3>Healthcare</h3></div>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#payroll">
                 <img src="images/PAYROLL.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -34,7 +41,9 @@
                  <h3>Payroll</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#education">
                 <img src="images/EDUCATION.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -43,7 +52,9 @@
                  <h3>Education</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#neobanksfintechs">
                 <img src="images/NEOBANK 2.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -52,7 +63,9 @@
                  <h3>Neobanks/Fintechs</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#e-com-platforms">
                 <img src="images/ECOM.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -61,7 +74,9 @@
                  <h3>E-com platforms</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#logistics-platforms">
                 <img src="images/LOGISTICS.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -70,7 +85,9 @@
                  <h3>Logistics platforms</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+             <a href="#wealth-management-and-investment-platforms">
                 <img src="images/WEALTH MGMT.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -79,7 +96,9 @@
                  <h3>Wealth management</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+             <a href="#invoice-payments">
                 <img src="images/INVOICE.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -88,7 +107,9 @@
                  <h3>Invoice payments</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#community-payments">
                 <img src="images/LOGISTICS.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -97,7 +118,9 @@
                  <h3>Community payments</h3>
                 </div>
             </div>
+            </a>
             <div class="item">
+            <a href="#utility-bill-payments">
                 <img src="images/UTILITY 2.jpg" class="avatar">
                 <div class="content">
                  <div class="inner-icon">
@@ -106,6 +129,7 @@
                  <h3>Utility bill payments</h3>
                 </div>
             </div>
+           </a> 
             <div class="item">
             <a href="#high-volume-payouts">
                 <img src="images/HIGH VOL PMTS.jpg" class="avatar">
@@ -150,13 +174,6 @@ Streamline payments and grow your customers through simple payment collections i
 - Recurring billing
 - Automatic payments
 - Claims disbursements
-
-## Insurance
-Home, auto, travel, pet, health – whatever your insurance segment is, use payment APIs to build seamless experiences to settle claims, collect premium payments or recover debts. Differentiate by offering “getting insured in seconds” or “getting claims settled in seconds” using our instant payment APIs.
-
-- Collect premium payments
-- Recover debts
-- Settle claims
 
 ## Payroll
 Enable businesses to wait until payday to release funds by supporting instant payrolls. Process traditional payroll using our APIs, also taking advantage of Same-day ACH provision by using our ability to accept ACH payments and payout to third parties.
