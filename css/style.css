@@ -82,7 +82,16 @@ h1{
     padding-left: 3em!important;
     margin-top: 0px!important;
  }
- 
+ .dpwHGH:hover, .hvXhgD:hover{
+    text-decoration: none!important;
+ }
+ .hqHtPN:hover,.lcljdh:hover{
+    text-decoration: none!important;
+ }
+ .lcljdh span,.hqHtPN .bLdCdi,.hqHtPN span{
+    text-align:center!important;
+    text-align-last:center!important;
+ }
 
  .buZDrU div[data-cy="sidebar-item-International Payments"]:nth-child(7) div,.eQOPTz div[data-cy="sidebar-item-International Payments"]:nth-child(7) div{
     margin-left: 40px;
@@ -464,7 +473,7 @@ body .fmDiqV details>table, body .fmDiqV>div:not(.sc-bOCfAF) table, body .fmDiqV
 .lcljdh span{
     color:white;
     font-family: sans-serif !important;
-    text-align: justify !important;
+    /* text-align: justify !important; */
    
 }
 .box p{margin:0; text-align: center!important;}
