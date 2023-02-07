@@ -445,6 +445,13 @@ a:hover{
 .gbwUkf a:not([role='button']):visited,.fmDiqV a:not([role="button"]):visited{
     color: #003c90!important;
 }
+.fmDiqV a:not([role="button"]),.gbwUkf a:not([role='button']){
+    color: #003c90!important;
+}
+.gbwUkf a:not([role='button']):hover,.fmDiqV a:not([role="button"]):hover{
+    color: #003c90!important; 
+}
+
 .ieiETB h2{
     margin-bottom: 1em !important;
 }

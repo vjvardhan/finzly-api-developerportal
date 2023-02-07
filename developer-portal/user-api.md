@@ -88,7 +88,7 @@ title: Finzly User API
 
 **JSON Response -** 
 
-**A successful GET request this endpoint returns the following data -**
+**A successful GET request this endpoint returns the following data**
 
 ```yaml Before
 
@@ -277,7 +277,7 @@ Request Parameters
 
 ### **Activate User**
 [PUT /users/{userUUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/activateUserV2/)
-HTTP Method: PUT**
+**HTTP Method: PUT**
 
 **Description -** Sending a PUT request to the PUT /users/{userUUID}/activate endpoint allows users to activate a user. The request parameters and objects are mentioned below - 
 
@@ -343,7 +343,7 @@ Request Parameters
 
 **JSON Response**
 
-**A successful PUT request to this endpoint returns the following data -** 
+**A successful PUT request to this endpoint returns the following data** 
 
 ```yaml Before
 {
