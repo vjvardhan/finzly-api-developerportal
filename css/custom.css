@@ -46,7 +46,7 @@
     width: 100%;
     box-shadow: 0 10px 15px #7e878d;
     margin-top: 0px!important;
-    transition: 0.3s;
+    transition: 0.3s!important;
 }
 .item .avatar:hover{
     transform: scale(1.1);

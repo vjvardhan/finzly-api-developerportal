@@ -438,7 +438,13 @@ body .fmDiqV details>table, body .fmDiqV>div:not(.sc-bOCfAF) table, body .fmDiqV
 .main-link{
     color:white;
 }
-
+a:hover{
+    text-decoration: none!important;
+    color:#003C90;
+}
+.gbwUkf a:not([role='button']):visited,.fmDiqV a:not([role="button"]):visited{
+    color: #003c90!important;
+}
 .ieiETB h2{
     margin-bottom: 1em !important;
 }
