@@ -11,7 +11,7 @@ One can initiate an instant payment request using Finzly Connect Payment API usi
 
 If the sender’s bank account is already onboarded in the BankOS CRM system. Then execute the below API to get the account UID (Unique Identifier) associated with the bank account, if it is not set up in the BankOS CRM system then you can ignore this step.
 
-[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](http://localhost:3000/openapi/reference/operation/createCreditPaymentV3/)
+[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)
 
 Where: 
 - **customer_UID:** This is the unique ID assigned to the customer.
@@ -47,7 +47,7 @@ Where:
 
 If the receiver’s bank account is already onboarded in the BankOS CRM system. Then execute the below API to get the account UID (Unique Identifier), if it is not set up in the BankOS CRM system then you can ignore this step
 
-[GET - {{URL}}/customers/{{customer_UID}}/contacts?accountNumber={{account_Number}}](http://localhost:3000/openapi/reference/operation/searchCustomerContactsV2/)
+[GET - {{URL}}/customers/{{customer_UID}}/contacts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)
 
 Where: 
 - **customer_UID:** This is the unique ID assigned to the customer.
