@@ -7,6 +7,7 @@ title: Wired Organization
 ## **Wire Origination**
 
 ![image info](./images/Wired.png)
+<br></br>
 
 Fedwire Funds service supports the following origination gateways for processing through BankOS 
 
