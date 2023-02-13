@@ -1,97 +1,135 @@
 training:
-  - page: developer-portal/index.md
-  - label: Use Cases
-    page:  developer-portal/demo.md
-  - label: Payment Solutions
-    page: developer-portal/overviewSection.md
-  - group: ACH
-    expanded: false
-    page: developer-portal/achOverview.md
-    pages:
-      - label: SEC Codes
-        page: developer-portal/secCodes.md
-      - label: ACH Processing
-        page: developer-portal/achTransaction.md
-      - label: ACH Positive Pay
-        page: developer-portal/achPositivePay.md
-      - label: Prefund vs Non-Prefund
-        page: developer-portal/prefund.md
-      - label: Bulk Upload
-        page: developer-portal/bulk.md
-  - group: Fedwire
-    expanded: false
-    page: developer-portal/fedwire.md 
-    pages:
-    - label: Business Codes
-      page: developer-portal/businessCode.md
-    - label: Wire Organization
-      page: developer-portal/wired.md
-    - label: Notifications
-      page: developer-portal/notification.md
-  - label: Instant Payments
-    page: developer-portal/instant.md
-  - label: International Payments
-    page: developer-portal/internationalPayment.md
-  - label: API Guide
-    page: developer-portal/sandbox.md
-  - label: Errors
-    page: developer-portal/errors.md
-  - group: Customer
-    expanded: false
-    pages:
-    - label: Customer Onboarding
-      page: developer-portal/customer-api.md
-    - label: Account Management
-      page:  developer-portal/customer-account-api.md
-    - label: Contact Management
-      page: developer-portal/customer-contact-api.md
-  - group: Payment
-    expanded: false
-    pages:
-    - label: Payment Origination
-      page: developer-portal/payments-api.md
-    - label: Instant Payment Request
-      page: developer-portal/instant-payment.md
-    - label : Positive Pay
-      page : developer-portal/positive-payment-api.md
-    - label : Bulk Payment
-      page : developer-portal/bulk-payment-api.md
-    - label: Book Transfer
-      page: developer-portal/bookTransfer.md
-    - Label: Foreign Exchange
-      page: developer-portal/foreign-exchange-api.md
-  - group: User Admin
-    expanded: false
-    pages:
-      - label: Applications
-        page: developer-portal/application-api.md
-      - label: Roles Management
-        page: developer-portal/roles-api.md
-      - label: Users Management
-        page : developer-portal/user-api.md 
-  - group: Payment Webhook
-    expanded: false
-    pages: 
-      - label: Webhook
-        page : developer-portal/webhooks.md 
-  - label: Finzly Connect API
-    page: 
-  - group: Open Banking APIs
-    expanded: true
-    pages:
-      - page: openapi/reference.page.yaml/*
-  - group: User Admin
-    expanded: true
-    pages:
-      - page: openapi/userReference.page.yaml/*
-  - group: Payment Status Notification
-    expanded: true
-    pages:
-      - page: openapi/paymentReference.page.yaml/*
-  - label : Frequently Asked Questions
-    page: developer-portal/faq.md
-  - label : Changelog & Feedback
-    page: developer-portal/changelog-feedback.md
+- page: developer-portal/index.md
+- label: Finzly Connect Open API
+  expanded: false
+  page: developer-portal/index.md
+  pages:
+    - label: Introduction to Finzly Connect
+      page: developer-portal/index.md #< Introduction to Finzly Connect API
+    - label: Use cases
+      page: developer-portal/demo.md #< Use Cases
+    - label: Getting Started with Finzly Connect
+      page: developer-portal/sandbox.md #< Getting started with Finzly Connect API
+- group: Payments
+  expanded: false
+  page: developer-portal/overviewSection.md #< Payments
+  pages:
+    - group: ACH
+      expanded: false
+      page: developer-portal/achOverview.md #< ACH
+      pages:
+        - label: SEC Code
+          page: developer-portal/secCodes.md #< NoChange
+        - label: ACH Processing
+          page: developer-portal/achTransaction.md #< Merge the Content of "achPositivePay.md", "prefund.md", "bulk.md" into achTransaction.md file in the last
+    - group: Fedwire
+      expanded: false
+      page: developer-portal/fedwire.md #< Fedwire
+      pages:
+        - label: Business Function Code
+          page: developer-portal/businessCode.md #<
+        - label: Wire Processing
+          page: developer-portal/wired.md #< Merger the content of notification.md file inot wired.md file at the last.
+    - label: Instant Payments
+      page: developer-portal/instant.md #< Instant payments
+    - label: International Payments
+      page: developer-portal/internationalPayment.md #< International Payments
+    - group: API Guide
+      expanded: false
+      # page: developer-portal/index.md
+      pages:
+        - group: Single Payments
+          expanded: false
+          # page: developer-portal/index.md
+          pages:
+          - label: Finzly Payout
+            page: developer-portal/finzlyPayout.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
+          - label: Finzly Payments
+            page: developer-portal/finzlyPayments.md #< NEW # Get the "Create Debit Payment" section from the "payments-api.md" and create new MD File 
+          - label: Instant Payments
+            page: developer-portal/instant-payment.md #< NoChange
+          - label: Search Payments
+            page: developer-portal/searchPayments.md #< NEW # Get the "Search Payment and Get Payment" section from the "payments-api.md" and create new MD File 
+          - label: Cancel Payments
+            page: developer-portal/cancelPayments.md #< NEW # Get the "Cancel Payment" section from the "payments-api.md" and create new MD File 
+          - label: Return Payments
+            page: developer-portal/returnPayments.md #< NEW # Get the "Return Payment" section from the "payments-api.md" and create new MD File 
+          - label: Reverse Payments
+            page: developer-portal/reversePayments.md #< NEW # Get the "Reverse Payment" section from the "payments-api.md" and create new MD File 
+          - label: Transfer Payments
+            page: developer-portal/bookTransfer.md #< NoChange
+- group: Customer and Accounts
+  expanded: false
+  page: developer-portal/accounts.md #< NEW # Accounts
+  pages:
+    - group: API Guide
+      expanded: false
+      # page: developer-portal/index.md
+      pages:
+        - label: Customer Onboarding
+          page: developer-portal/customer-api.md #< NoChange
+        - label: Account Onboarding
+          page: developer-portal/customer-account-api.md #< NoChange
+        - label: Beneficiary Management
+          page: developer-portal/customer-contact-api.md #< NoChange
+- group: FX
+  expanded: false
+  page: developer-portal/fx.md #< NEW # FX
+  pages:
+    - group: API Guide
+      expanded: false
+      # page: developer-portal/index.md
+      pages:
+        - label: Get FX Quote
+          page: developer-portal/getFXQ.md #< NEW # Get the "Get FX Quote" section from the "foreign-exchange-api.md" and create new MD File 
+        - label: Accept FX Quote
+          page: developer-portal/acceptFXQ.md #< NEW # Get the "Accept FX Quote" section from the "foreign-exchange-api.md" and create new MD File 
+        - label: Reject FX Quote
+          page: developer-portal/rejectFXQ.md #< NEW # Get the "Reject FX Quote" section from the "foreign-exchange-api.md" and create new MD File 
+        - label: Get FX Trade
+          page: developer-portal/getFXT.md #< NEW # Get the "Get FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
+        - label: Cover FX Trade
+          page: developer-portal/coverFXT.md #< NEW # Get the "Cover FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
+        - label: Cancel FX Trade
+          page: developer-portal/cancelFXT.md #< NEW # Get the "Cancel FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
+- group: User administration
+  expanded: false
+  # page: developer-portal/index.md
+  pages:
+    - label: Users Onboarding
+      page: developer-portal/user-api.md #< NoChange
+    - label: User Role Setup
+      page: developer-portal/roles-api.md #< NoChange
+    - label: Get Applications
+      page: developer-portal/application-api.md #< NoChange
+- label: Notifications
+  page: developer-portal/notifications.md #< NEW # Notifications
+- group: Webhooks
+  expanded: false
+  page: developer-portal/webhooksMain.md #< NEW # Webhooks
+  pages:
+    - label: Payments
+      page: developer-portal/webhooks.md #< NoChange
+- label: Errors
+  page: developer-portal/errors.md #< NoChange
+- label: Finzly Connect API
+  page: 
+- group: Open Banking APIs
+  expanded: true
+  pages:
+    - page: openapi/reference.page.yaml/*
+- group: User Admin
+  expanded: true
+  pages:
+    - page: openapi/userReference.page.yaml/*
+- group: Payment Status Notification
+  expanded: true
+  pages:
+    - page: openapi/paymentReference.page.yaml/*
+- label: Frequently Asked Questions
+  page: developer-portal/faq.md #< NoChange
+- label: Changelog & Feedback
+  page: developer-portal/changelog-feedback.md #< NoChange
   
 alternative:
   - page: developer-portal/sidebar-alternative.md

@@ -1,4 +1,4 @@
- <div id="formList">
+ <!-- <div id="formList">
         <div id="list">
             <div class="item">
             <a href="#insurance">
@@ -146,103 +146,92 @@
     <div class="direction">
         <button id="prev"> < </button>
         <button id="next"> > </button>
-    </div>
+    </div> -->
 
-# Usecases
+## **Use Cases**
 
-Our payment APIs help you create frictionless payment experiences in your platforms and applications.  Our APIs offer the flexibility to suit your payment needs – ACH, domestic and international wires, instant payments on the FedNow and RTP. We offer the flexibility and transparency to help you delight your customers, whatever your industry is.
+The Finzly Connect API has been designed to cater to a wide array of industry use cases, enabling frictionless payment experiences in your platforms and applications.  Our APIs offer the flexibility to suit your payment needs – ACH, domestic and international wires, instant payments on the FedNow and RTP. We offer the flexibility and transparency to help you delight your customers, whatever your industry is.
 
-**Sample use cases that can use our APIs:**
+Sample use cases that can use our APIs:
+<!-- **Sample use cases that can use our APIs:** -->
 
 ## Insurance
-Home, auto, travel, pet, health – whatever your insurance segment is, use payment APIs to build seamless experiences to settle claims, collect premium payments or recover debts. Differentiate by offering “getting insured in seconds” or “getting claims settled in seconds” using our instant payment APIs.
+Home, auto, travel, pet, health – whatever your insurance segment is, Finzly Connect APIs can help you build seamless experiences to settle claims, collect premium payments or recover debts. Differentiate by offering “getting insured in seconds” or “getting claims settled in seconds” using our instant payment APIs. 
 
+For instance, you can:
+- Disburse claim payments
 - Collect premium payments
+- Setup recovering collections
 - Recover debts
-- Settle claims
+
+## Lending
+Whether it is automobile, mortgage, or whatever lending is managed from your platforms, disburse and collect payments to/from borrowers from your lending platform using Finzly Connect APIs. 
+- Disbursement of loans
+- Adhoc pulling of monthly payment from borrower bank account
+- Schedule pulling of payments once or on a recurring basis
 
 ## Travel platforms
-Airlines, booking platforms, travel operators, timeshare holidays and other travel platforms can unlock opportunities through one-click payments to and from your customers. Accept recurring or regular payments, instant refunds for a friction-free customer experience during booking and at the time of travel.
-
+Airlines, booking platforms, travel operators, timeshare holidays and other travel platforms can unlock opportunities through one-click payments to and from your customers. Accept recurring or regular payments and provide instant refunds for a friction-free customer experience during booking and at the time of travel.
 - Make/Accept recurring payments
 - Split payments
 - Travel claims/refunds disbursements
+- Encourage bank-bank payments to reduce fees
 
 ## Healthcare
-Streamline payments and grow your customers through simple payment collections including simplified recurring billing and automatic payments. Decrease the cost of processing payments through cards and seamlessly manage to/from patients, suppliers and healthcare providers.
-
+Streamline payments and grow your customers through simple payment collections including simplified recurring billing and automatic payments. Decrease the cost of processing payments through cards and seamlessly manage payments to/from patients, suppliers, and healthcare providers.
 - Recurring billing
 - Automatic payments
-- Claims disbursements
 
 ## Payroll
-Enable businesses to wait until payday to release funds by supporting instant payrolls. Process traditional payroll using our APIs, also taking advantage of Same-day ACH provision by using our ability to accept ACH payments and payout to third parties.
-
+Enable businesses to wait until payday to release funds by supporting instant payrolls. Process traditional payroll using our APIs, also taking advantage of same-day ACH provision by using our ability to accept ACH payments and payout to third parties.
 - Instant payrolls
-- Pension payments
+- Early Wage Access
 - Automatic bulk payments
 
 ## Education
-Optimize the payment experience for students, agents and institutions through seamless payment and collection process using our APIs. Use our convenient instant notifications to provide superior customer experience, while improving operational efficiency.
-
+Optimize the payment experience for students, agents and institutions through seamless payment and collection processes using our APIs. Use our convenient instant notifications to provide superior customer experience, while improving operational efficiency.
 - Recurring/One-time fees collection
 - Scholarship disbursement
-- International student fees collection with exchange rate pricing
 
 ## Neobanks/Fintechs
-Drive more revenue through intuitive payment experiences to your customers through account transfers, subscription, instant payments and create and manage virtual accounts. Offer multicurrency accounts, FX trading and international payments to attract and retain commercial customers.
-
+Drive more revenue through intuitive payment experiences to your customers through account transfers, subscription, instant payments and effectively manage your customers using virtual accounts. Offer multicurrency accounts, FX trading and international payments to attract and retain commercial customers.
 - Set up and manage virtual accounts
 - Account validation and Payments
 - Account to account transfers
 - Instant loan disbursements
-- Instant account and digital wallet topup
+- Instant account and digital wallet top-up
 
 ## E-com platforms
-Delight your customers with a seamless checkout experience through instant checkouts, subscriptions and quick refunds through bank transfers by using our payment APIs for real-time payments and other payment rails. Reduce friction and costs associated with card payments using our payment APIs.
-
+Delight your customers with a seamless checkout experience through instant checkouts, subscriptions and quick refunds through bank transfers by using our payment APIs for real-time payments and other payment rails. Reduce friction and costs associated with card payments using our bank payment APIs.
 - Instant refunds
 - Friction-free checkout payments
 - Account validation
 
 ## Logistics platforms
-Simplify supply chain payments by connecting invoices to payments automating reconciliation. Enable carriers, shippers and receivers receive payments on time, saving costs using bank transfers for instant and worldwide payments.
-
-- Billing and invoicing
+Enable carriers, shippers, and receivers to enjoy payments on time. Save costs using bank transfers for instant and worldwide payments.
 - Instant payments on delivery
 - International supplier payments
 
 ## Wealth management and investment platforms
 Finzly APIs enable wealth management firms to help their customers send and receive payments instantly, with the additional ability to transfer money between investment and trading accounts. Offer fast payouts at significantly lower costs.
-
-- Instant payments for better cashflow 
+- Instant payments for better cashflow
 - Real-time payouts and refunds
-- Virtual accounts
-
-## Invoice payments
-Invoice processing firms to handle millions of invoices annually with a simple API integration to their existing channels. Settle invoices in real time or in bulk, automatically reconciling with payment notifications sent in real time.
-
-- Setup recurring/one-time invoices
-- Collect one-time/recurring invoices
-- Instant payment of invoices
+- Manage customers using virtual accounts
 
 ## Community payments
 Charity platforms can accept donations directly from customers’ bank accounts on their payment forms. Create a seamless experience for your customers for one-off and recurring payments that can be collected using instant and normal bank transfers, saving card transaction costs.
-
 - Instant bank transfers
 - Setup donation payments
 - Collect one-off and recurring social benefits
 
 ## Utility bill payments
-Raise invoices and get paid seamlessly from your customers. Allow customers to setup recurring payments and minimize costs and fraud. Process refunds, automatically reconcile, reducing human error while delivering brilliant customer experience.
-
+Raise invoices and get paid instantly from your customers. Allow customers to set up recurring payments and minimize costs and fraud. Process refunds, automatically reconcile and reduce human error while delivering brilliant customer experience.
 - Setup customers using virtual accounts
 - Request bill payments
 - Pay bills instantly 
 
 ## High volume payouts
 Process high volume of payments on multiple rails including domestic and international wires, ACH, RTP, and FedNow. We take care of routing it through the correct rail, while you enjoy straight through processing for payments.
-
 - Onboard payees on virtual accounts
 - Bulk payments collection for emergency, social care, government disbursements etc.
-- Real-time tracking of all transactions 
+- Real-time tracking of all transactions

@@ -75,3 +75,43 @@ ACH payments are usually processed with 2 days settlement, which means if a paym
 The Federal Reserve processes the files on all bank working days from x:00 to x:00. Same day ACH files are transmitted at the following times
 
 Standard ACH files are transmitted at the following times.
+
+---
+title: ACH Positive Pay
+---
+
+## **ACH Positive Pay** 
+
+Positive Pay services allow the bank, and the bank's clients (via APIs or Finzly Treasury Experience) to enable rules to determine if ACH debits should be paid against the receiver's bank account. The service allows users to review all incoming debits before they’re cleared to pay against their account or rejected and returned. The bank can define a “decision cutoff” time, along with a default decision to pay or reject any debits that have not been decisioned.
+
+## **Block List** 
+
+The Block List is a service which provides the user the ability to identify specific ACH debit entries to be "stopped" and either returned automatically or to be manually decisioned as to whether the item should be returned or posted.
+
+---
+title: Prefund vs Non-Prefund
+---
+
+
+
+## **Prefund vs Non-Prefund** 
+
+To support the ACH Prefunding requirements for ACH Credits, Payment Galaxy provides a Prefunding capability, which causes the originator's offset account to be debited on the day their ACH file is processed, instead of waiting until the effective date of the ACH credits. Prior to routing the ACH credits to the FedACH network, the system will verify sufficient funds are available in the originator's account to fund the ACH credits. Alternatively, prefunding can be disabled, allowing for settlement to the originator's account on the effective date. For non-prefunded originators, you can assign exposure limits to monitor the overall amount of exposure to the bank.
+
+---
+title: Bulk Upload
+---
+
+
+
+## **Bulk Upload** 
+
+Finzly system supports the ACH bulk payment processing in a NACHA format via FTP channel. The bank can create an FTP account to process the ACH bulk file in a Nacha format. The solution provided two types of FTP account.
+
+**Customer:** To be used by the corporate or Fintech to upload the bulk payments 
+
+**Channel:** To be used by the bank’s system to upload the payments in bulk associated with the multiple customers.
+
+### **Summary** 
+
+NACHA has various rules around each transaction processing. ACH is very complex to develop than other payment rails, but Finzly has made them simple with APIs. Finzly also offers file uploads of NACHA formatted files and returns NACHA formatted response files.

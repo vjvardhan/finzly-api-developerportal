@@ -1,17 +1,21 @@
 ---
-title: Overview 
+title: Introduction to Finzly Connect API
 ---
 
-## **Overview**
-Finzly Connect is a universal payment API for developers to access all the payment rails without stressing over the network and messaging rules. Finzly Connects offers REST API and webhook notifications to access any Finzly-powered bank. Finzly has standardized the payment data and made the payment processing super simple, so a bank customer, whether a fintech, business or an individual, doesn't have to worry about the messaging rules. A developer can access ACH, Domestic Wires, International Wires, RTP, and FedNow using Finzly Connect and connect to their favorite Finzly Bank.
+## **Introduction to Finzly Connect API**
+Finzly Connect is a universal API designed to serve as the conduit between platforms/developers and banks that have Finzly’s modern payment infrastructure. Using this universal API, banks, fintechs, platforms and enterprises can access all the payment rails without stressing over the network and messaging rules. Additionally, other banking services like managing accounts, FX and administrative features can also be used. 
 
-Finzly Connect offers instant payment access and notifications via simple REST API. It is designed to be simple to use and implement in any model computer language that allows you to generate web requests. It uses "REST-Like" RPC-style operations with parameters URL encoded into the request, and its response is encoded in JSON. 
+Finzly Connect runs on a real-time platform, FinzlyOS, that is connected to several US banks and offers a comprehensive repository of banking microservices that can be used to build platforms using APIs. Our products are delivered through a single API integration that can help you connect to a bank of your choice that is on the Finzly network.
 
-In this section, we will give a brief overview of the Finzly APIs: OpenBanking API, UserAdmin API and PaymentStatus-Notifications API. We'll get as much information as possible from the PDF and add some unique content. 
+Finzly Connect offers REST API and webhook notifications to access any Finzly-powered bank. Finzly has standardized the payment data and made the payment processing super simple, so a bank customer, whether a fintech, business or an individual, doesn't have to focus about the payment messaging rules, but just about their product innovation. Developers can access ACH, Domestic Wires, International Wires, RTP, and FedNow using Finzly Connect and process the payments through their favorite Finzly Bank.
 
-This page will also have a menu, as shown below. Using this menu, readers can easily access a specific section of the API documentation.
+Platforms benefit from a head start to accelerate their innovation as:
+- You can manage the money movement of your customers using a single API across multiple payment types.
+- All our products are interoperable – accounts, payments, customer management, giving them greater agility to combine the building blocks to build innovative products.
+- Finzly Connect API runs on a real-time, cloud-native platform that provides scalability to suit your growth needs.
+- Smart routing of payments gives you access to the most cost-effective rail based on the urgency of the payments – ACH, Fedwire, RTP, FedNow and SWIFT.
 
-<style>
+<!-- <style>
 .sub p strong a{
     position:absolute;
     top:0;
@@ -25,10 +29,10 @@ This page will also have a menu, as shown below. Using this menu, readers can ea
     font-size:16px !important;
 }
 
-</style>
+</style> -->
 
 
-<div class="main-sub">
+<!-- <div class="main-sub">
 
 
 <div class="sub">
@@ -40,63 +44,8 @@ This page will also have a menu, as shown below. Using this menu, readers can ea
 __[](overviewSection.md)__
 </div>
 
-<div class="sub">
-
-<p><strong>
-
-### Use Cases</strong></p>
-
-
-__[](usecase.md)__
-
-</div>
-</div>
+</div> -->
 
 
 
-
-<div class="main-sub">
-<div class="sub">
-
-<p><strong>
-
-### Authentication</strong></p>
-
-
-__[](sandbox.md)__
-</div>
-
-<div class="sub">
-<p><strong>
-
-### Error</strong></p>
-
-__[](errors.md)__
-</div>
-
-</div>
-
-<div class="main-sub">
-
-<div class="sub">
-
-<p><strong>
-
-### API Documentation
-</strong></p>
-
-__[](index.md)__
-</div>
-
-
-<div class="sub"> 
-
-<p><strong>
-
-### Frequentky Asked Questions</strong></p>
-
-__[](faq.md)__
-</div>
-
-</div>
 

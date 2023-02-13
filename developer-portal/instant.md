@@ -1,24 +1,42 @@
 ---
-title: Instant Payment
+title: Instant Payments
 ---
 
 
 ## **Instant Payments**
 
-While ACH is used for high volume or low value payments, and FEDWIRE is used for faster or high value payments, the new instant payment networks such as RTP and FEDNOW are emerging to enable instant payments that are processed in real-time within seconds and are irrevocable. It is important to note that Debit cards enable instant payments, those transactions are comparatively expensive than RTP or FEDNOW payments and requires a debit card in addition to the bank account. Finzly offers instant payments from a bank account to another bank account via either RTP or FEDNOW, based on the sender and receiver bank’s connectivity. 
+Instant payments settle in real time providing speed and immediacy for fund availability, creating a lot of value and convenience to consumers and businesses. 
 
-While there are other payment networks such as Zelle, Venmo, Cash App enable real-time settlement of funds at user’s accounts, these payment rails operate on top of other clearing networks such as ACH, RTP, FEDNOW or Card networks. 
+In the US, there are two instant payment networks.
+- RTP that settles on the Real-Time Payments network, facilitated by The Clearing House.
+- FedNow that settles on the FedNow network, facilitated by The Federal Reserve Board
 
-The following diagram explains the fund flow in FedNow and RTP payment network.
+It is important to note that while instant payments are also enabled by card providers, they are more expensive than RTP and FedNow payments. Finzly offers instant payments from one bank account to another bank account using both RTP and FedNow networks, depending on the sending/receiving banks’ connectivity. 
 
+For payments to be sent in real-time, the recipient banks must be able to receive instant payments either on RTP or FedNow, failing which the payments will be routed through the next fastest network or depending on the bespoke routing rules set up for the workflow.
 
+### **Key features of Finzly Connect instant payment API:**
+- Access to both RTP and FedNow networks with a single API
+- ISO20022 format messaging
+- Secure transactions with traceability for ongoing transactions
+- Automated reconciliation and error handling 
+- Initiate, Track and Search for payments
+- Access to network participant list and participation details
+- Fall back options to route payments depending on receiving banks’ participation in instant payment networks
 
-![image info](./images/service.png)
+<!-- ![image info](./images/service.png)
 
 <br>
 
 ![image info](./images/transaction.png)
 
-<br>
+<br> -->
 
-Finzly Connect offers instant payment access and notifications via simple REST API. Develop new financial products such as Point of Sale, QR based invoices, and get paid instantly from your customer’s bank and eliminate card transaction fees.
+### **Use case in action:**
+
+An insurance platform wants to settle claims to policyholders instantaneously using Finzly Connect APIs.
+1. Use Finzly Connect’s  Ledger-as-a-service to set up policy holders on virtual accounts 
+2. Initiate instant claim reimbursements for policy holders by initiating instant payments through our API
+3. Allow policy holders to receive reimbursements instantly into their accounts
+4. Track the status change for the reimbursements processed on the platform
+5. Update claim reimbursement status in your platform for each status change, delivering exceptional customer experience
