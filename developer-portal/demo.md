@@ -1,4 +1,4 @@
- <!-- <div id="formList">
+ <div id="formList">
         <div id="list">
             <div class="item">
             <a href="#insurance">
@@ -146,7 +146,7 @@
     <div class="direction">
         <button id="prev"> < </button>
         <button id="next"> > </button>
-    </div> -->
+    </div>
 
 ## **Use Cases**
 
