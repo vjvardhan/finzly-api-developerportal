@@ -9,6 +9,8 @@ Finzly Connect runs on a real-time platform, FinzlyOS, that is connected to seve
 
 Finzly Connect offers REST API and webhook notifications to access any Finzly-powered bank. Finzly has standardized the payment data and made the payment processing super simple, so a bank customer, whether a fintech, business or an individual, doesn't have to focus about the payment messaging rules, but just about their product innovation. Developers can access ACH, Domestic Wires, International Wires, RTP, and FedNow using Finzly Connect and process the payments through their favorite Finzly Bank.
 
+![image info](./images/finzly_connect.png)
+
 Platforms benefit from a head start to accelerate their innovation as:
 - You can manage the money movement of your customers using a single API across multiple payment types.
 - All our products are interoperable – accounts, payments, customer management, giving them greater agility to combine the building blocks to build innovative products.
