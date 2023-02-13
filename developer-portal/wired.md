@@ -59,10 +59,6 @@ Fedwire Funds service supports the following origination gateways for processing
   - Every Drawdown request initiated will be received as a Separate drawdown payment linking the original payment. 
 
 
----
-title: Notification
----
-
 
 ## **Notifications**
 Fedwire Incoming payment notification will be triggered with a source of Webhook notification. Customers can configure to receive these notifications. All the Inbound wire can be transmitted with a Raw Wire File message file received from Fed through the FTP source. Customer can configure an Inbound FTP account to receive the actual raw messages.

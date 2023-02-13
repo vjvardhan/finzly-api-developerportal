@@ -1,5 +1,5 @@
 training:
-- page: developer-portal/index.md
+# - page: developer-portal/index.md
 - label: Finzly Connect Open API
   expanded: false
   page: developer-portal/index.md
