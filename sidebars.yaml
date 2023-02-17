@@ -4,11 +4,11 @@ training:
   expanded: false
   page: developer-portal/index.md
   pages:
-    - label: Introduction to Finzly Connect
+    - label: Introduction
       page: developer-portal/index.md #< Introduction to Finzly Connect API
     - label: Use cases
       page: developer-portal/demo.md #< Use Cases
-    - label: Getting Started with Finzly Connect
+    - label: Getting Started
       page: developer-portal/sandbox.md #< Getting started with Finzly Connect API
 - group: Payments
   expanded: false
@@ -30,15 +30,17 @@ training:
           page: developer-portal/businessCode.md #<
         - label: Wire Processing
           page: developer-portal/wired.md #< Merger the content of notification.md file inot wired.md file at the last.
-    - label: Instant Payments
+    - group: Instant Payments
+      expanded: false
       page: developer-portal/instant.md #< Instant payments
-    - label: International Payments
+    - group: International Payments
+      expanded: false
       page: developer-portal/internationalPayment.md #< International Payments
     - group: API Guide
       expanded: false
       # page: developer-portal/index.md
       pages:
-        - group: Single Payments
+        - group: Initiateing Payout
           expanded: false
           # page: developer-portal/index.md
           pages:
