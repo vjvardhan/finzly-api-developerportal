@@ -1,19 +1,15 @@
 ---
-title: Business Codes
+title: Business Function Code
 ---
 
 
-## **Business Codes**
+## **Business Function Code**
 
-FEDWIRE payments are categorized into the following business codes. 
+Finzly Connect APIs support following business function code for the Fedwire payments.
 
 |**Business Codes**|**Description**|
 | :- | :-: |
 | CTR | Customer or Corporate Credit Transfer (Where Beneficiary is a Customer - Consumer/Corporate)|
-| BTR | Bank to Bank Transfer (where Beneficiary is Bank)|
 | CTP | Customer Transfer Plus (Where Beneficiary is a Customer - Consumer /Corporate with Additional remittance information) |
 | DRC | Customer or Corporate Drawdown Request|
-| DRB | Bank to Bank Drawdown Request |
 | DRW | Drawdown Payment |
-| SVC | Service message |
-

@@ -92,6 +92,17 @@ training:
           page: developer-portal/coverFXT.md #< NEW # Get the "Cover FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
         - label: Cancel FX Trade
           page: developer-portal/cancelFXT.md #< NEW # Get the "Cancel FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
+- group: User administration
+  expanded: false
+  # page: developer-portal/index.md
+  pages:
+    - label: Users Onboarding
+      page: developer-portal/user-api.md #< NoChange
+    - label: User Role Setup
+      page: developer-portal/roles-api.md #< NoChange
+    - label: Get Applications
+      page: developer-portal/application-api.md #< NoChange
+
 - label: Notifications
   page: developer-portal/notifications.md #< NEW # Notifications
 - group: Webhooks
@@ -108,6 +119,10 @@ training:
   expanded: true
   pages:
     - page: openapi/reference.page.yaml/*
+- group: User Admin
+  expanded: true
+  pages:
+    - page: openapi/userReference.page.yaml/*
 - group: Payment Status Notification
   expanded: true
   pages:

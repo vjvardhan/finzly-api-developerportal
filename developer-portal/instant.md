@@ -24,13 +24,13 @@ For payments to be sent in real-time, the recipient banks must be able to receiv
 - Access to network participant list and participation details
 - Fall back options to route payments depending on receiving banks’ participation in instant payment networks
 
-<!-- ![image info](./images/service.png)
+![image info](./images/fednow.png)
 
-<br>
+<br><br>
 
-![image info](./images/transaction.png)
+![image info](./images/rtp.png)
 
-<br> -->
+<br><br>
 
 ### **Use case in action:**
 
