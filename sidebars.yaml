@@ -28,9 +28,7 @@ training:
           page: developer-portal/wired.md #< Merger the content of notification.md file inot wired.md file at the last.
     - group: Instant Payments
       expanded: true
-      pages:
-        - label: Overview
-          page: developer-portal/instant.md #< Merger the content of notification.md file inot wired.md file at the last.        
+      page: developer-portal/instant.md #< Merger the content of notification.md file inot wired.md file at the last.        
     - group: International Payments
       expanded: true
       pages:
