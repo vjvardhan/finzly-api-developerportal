@@ -65,13 +65,11 @@ On-us transactions in ACH is when a bank’s customer initiates ACH transfers fo
 
 **Same-day and Standard ACH** 
 
-ACH payments are usually processed with 2 days settlement, which means if a payment is initiated, it would take two business days for the payment to get credited in the customer account. In 20xx, NACHA required the clearing houses to support same-day ACH payments to allow same day processing and settlement. For some weird reason, several financial institution’s ACH system does not support same day ACH and can only process regular ACH payments.
+ACH payments are usually processed with 2 days settlement, which means if a payment is initiated, it would take two business days for the payment to get credited in the customer account. NACHA required the clearing houses to support same-day ACH payments to allow same day processing and settlement. For some weird reason, several financial institution’s ACH system does not support same day ACH and can only process regular ACH payments.
 
 **Cutoff Times** 
 
-The federal reserve processes the files on all bank working days from x:00 to x:00. Same day ACH files are transmitted at the following times
-
-Standard ACH files are transmitted at the following times.
+The federal reserve processes the files on all bank working days. Same day ACH transactions will be processed by 16:00 PM (EST) and Standard ACH files are transmitted at the following times '10:00 AM', '14:00 PM', '16:00 PM', '19:30 PM', '22:30 PM' (EST).
 
 <!--
 ## **ACH Positive Pay** 

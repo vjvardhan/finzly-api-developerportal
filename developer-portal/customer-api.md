@@ -1,13 +1,13 @@
 ---
-title: Customer API Traning Progrme
+title: Customer Onboarding
 ---
 
 ## Customer Onboarding
 Customer APIs entitle the downstream partners, Banks, and associates to formally onboard clients with all the required information to perform financial operations.
 These APIs will also enable users to search & maintain these onboarded clients, update any modifications in client information and create/update their beneficiaries (contacts).
 Following use cases helps you to understand the current customer capabilities exposed via APIs
-1.	Search Customer
-2.	Create Customer
+1.	Create Customer
+2. 	Search Customer
 3.	Get Customer By CustomerUID
 4.	Update Customer
 

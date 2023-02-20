@@ -1,387 +1,365 @@
 openapi: 3.0.0
 info:
-  title: Payment Status Notification
-  description: This API allows third-parties, bank's customers to receive payments details whenever there is an update to the payment in the payment system. Basic authentication is supported security protocols by Finzly. Finzly can also share the FinzlyOS public IPs with the third parties or bank's customers to whitelist at their end for an additional security.
-  termsOfService: https://finzly.com/terms/
-  contact:
-    name: support@finzly.com
-    url: https://finzly.com
-    email: support@finzly.com
-  license:
-    name: Commercial Finzly License
-    url: https://finzly.com
   version: 1.2.0
-servers:
-  - url: https://{tenant}-security-{environment}.{dns}/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token
-    description: FinzlyOS Open Banking APIs
-    variables:
-      tenant:
-        description: Tenant Code
-        default: sandbox
-      environment:
-        description: Environment Name
-        default: uat
-      dns:
-        description: DNS Name
-        default: finzly.io
+  title: Payment Webhook Notifications
+  description: This API allows third-parties, bank's customers to receive payments details whenever there is an update to the payment in the payment system. 
+    Basic authentication is supported security protocols by Finzly. Finzly can also share the FinzlyOS public IPs with the third parties or bank's customers to whitelist at their end for an additional security.
 tags:
-  - name: Payment Notifications
+  - name: Payment Webhook Notifications
     description: Payment Notification to third-parties whenever there is an update to the payment status in the finzly payment system.
 paths:
   /payments:
     post:
       tags:
-        - Payment Notifications
+        - Payment Webhook Notifications
+      description: Notify payment information to the client or third-party. 
       summary: Payment notification details including payment Id, source reference and status are pushed via this webhook whenever there is an update to the payment status.
-      description: Notify payment information to the client or third-party.
       operationId: notifyPaymentStatus
       requestBody:
+        required: true
         content:
           application/json:
-            schema:
+           schema:
               $ref: '#/components/schemas/payment'
-        required: true
       responses:
-        '200':
-          description: Successfully posted payment status
-        '400':
-          description: Bad request
-        '401':
-          description: Unauthorized
-        '402':
-          description: Request Failed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '409':
-          description: The request conflict with other requests
-        '429':
-          description: Too many requests
-        '500':
-          description: Server Errored out.
-        '502':
-          description: Server Errored out
-        '503':
-          description: Server Errored out
-        '504':
-          description: Server Errored out
+         200:
+            description: Successfully posted payment status
+         400:    
+            description: Bad request
+         401:
+            description: Unauthorized
+         402:
+            description: Request Failed
+         403:
+            description: Forbidden
+         404:
+            description: Not Found
+         409:
+            description: The request conflict with other requests
+         429:
+            description: Too many requests
+         500:
+            description: Server Errored out. 
+         502:
+            description: Server Errored out
+         503:
+            description: Server Errored out
+         504:
+            description: Server Errored out
 components:
-  schemas:
-    payment:
-      type: object
-      properties:
-        paymentId:
-          type: integer
-          description: Payment Identifier
-          nullable: false
-        sourceReferenceId:
-          type: string
-          description: External system idetifier
-        paymentStatus:
-          maxLength: 35
-          type: string
-          description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc..
-          nullable: false
-        bulkFileName:
-          maxLength: 100
-          type: string
-          description: Bulk File Name
-        counterParty:
-          maxLength: 50
-          type: string
-          description: Counterparty shortname
-        deliveryDate:
-          type: string
-          description: Effective Entry Date
-          format: date
-        deliveryMethod:
-          maxLength: 20
-          type: string
-          description: Delivery method - ACH for Fed transmission OR BOOK_TRANSFER if sender & receiver routing numbers are same
-        feeAmount:
-          maximum: 10000000000000000
-          minimum: 0
-          type: number
-          description: Fee amount in USD
-          format: decimal
-        paymentDate:
-          type: string
-          description: Payment date
-          format: date
-        channel:
-          type: string
-          description: Channel associated with the payment
-          example: API, ONLINE, FTP etc.
-        paymentIOType:
-          maxLength: 3
-          type: string
-          description: Inbound or Outbound Payment Indicator.
-          example: IN or OUT
-        paymentNote1:
-          maxLength: 35
-          type: string
-          description: Payment Notes
-        paymentNote2:
-          maxLength: 35
-          type: string
-          description: Additional Payment Notes
-        paymentRemittanceInfo:
-          maxLength: 35
-          type: string
-          description: Payment Remittance Information from NACHA addenda record
-        paymentType:
-          maxLength: 35
-          type: string
-          description: Type of Payment - Same Day or Regular ACH. Possible values - REGULAR_ACH, SAME_DAY_ACH, WIRE etc.
-          example: SAME_DAY_ACH, WIRE etc.
-        forexContract:
-          type: string
-          description: FX contract number associated with the SWIFT payment
-          example: '12398'
-        paymentNocDetails:
-          $ref: '#/components/schemas/payment_paymentNocDetails'
-        imad:
-          type: string
-          description: It is a unique number given to each FedWire payment
-          example: 20220627MMQCTR7B000012
-        omad:
-          type: string
-          description: It is a unique number given to each FedWire payment
-        receiverAccountNumber:
-          maxLength: 20
-          type: string
-          description: Account number of the receiver
-        receiverAccountType:
-          maxLength: 35
-          type: string
-          description: Receiver Account Type
-        receiverAddress1:
-          maxLength: 35
-          type: string
-          description: Receiver Address
-        receiverAmount:
-          maximum: 10000000000000000
-          minimum: 0
-          type: number
-          description: Amount received by recipient
-          format: decimal
-        receiverBankName:
-          maxLength: 255
-          type: string
-          description: Recipient's Bank Name
-        receiverBankState:
-          maxLength: 35
-          type: string
-          description: Recipient's Bank State
-        receiverDiscretionaryData:
-          maxLength: 35
-          type: string
-          description: Receiver's discretionary data
-        receiverEmail:
-          maxLength: 50
-          type: string
-          description: Receiver's Email
-          format: email
-        receiverId:
-          maxLength: 35
-          type: string
-          description: Receiver Identifier
-        receiverIdType:
-          maxLength: 35
-          type: string
-          description: Receiver Identifier Type
-        receiverName:
-          maxLength: 35
-          type: string
-          description: Receiver name associated with the payment.
-        originalReceiverName:
-          maxLength: 35
-          type: string
-          description: The original receiver name recieved from the payment network for the inbound payment request.
-        receiverPhoneNumber:
-          maxLength: 35
-          type: string
-          description: Receiver Phone Number
-        receiverRoutingNumber:
-          maxLength: 9
-          type: string
-          description: Receiver Routing Number
-        receiverState:
-          maxLength: 35
-          type: string
-          description: Receiver State
-        receiverTemplateName:
-          maxLength: 35
-          type: string
-          description: Receiver Template Name
-        receiverType:
-          maxLength: 35
-          type: string
-          description: Receiver Type
-        receiverZip:
-          maxLength: 10
-          type: string
-          description: Receiver's zipcode
-        ultimateReceiverName:
-          type: string
-        ultimateReceiverAccountNumber:
-          type: string
-        ultimateReceiverAddress1:
-          type: string
-        ultimateReceiverAddress2:
-          type: string
-        ultimateReceiverTaxId:
-          type: string
-        ultimateReceiverCity:
-          type: string
-        ultimateReceiverState:
-          type: string
-        ultimateReceiverZip:
-          type: string
-        ultimateReceiverCountry:
-          type: string
-        senderAccountNumber:
-          maxLength: 20
-          type: string
-          description: Sender's Account Number
-        senderAccountType:
-          maxLength: 35
-          type: string
-          description: Sender's Account Type
-        senderAddress1:
-          maxLength: 35
-          type: string
-          description: Sender's Address
-        senderAmount:
-          maximum: 10000000000000000
-          minimum: 0
-          type: number
-          description: Sender's Amount
-          format: decimal
-        senderBankName:
-          maxLength: 255
-          type: string
-          description: Sender's Bank name
-        senderBankState:
-          maxLength: 35
-          type: string
-          description: Sender's Bank State
-        senderDiscretionaryData:
-          maxLength: 35
-          type: string
-          description: Sender's Discretionary Data
-        senderEmail:
-          maxLength: 50
-          type: string
-          description: Sender's Email
-          format: email
-        senderId:
-          maxLength: 35
-          type: string
-          description: Sender's Identifier
-        senderIdType:
-          maxLength: 35
-          type: string
-          description: Sender's Identifier type
-        senderName:
-          type: string
-          description: Sender Name
-        senderRoutingNumber:
-          maxLength: 9
-          type: string
-          description: Sender's Routing Number
-        senderState:
-          maxLength: 35
-          type: string
-          description: Sender's State
-        senderType:
-          maxLength: 35
-          type: string
-          description: Sender Type - CORPORATE or CONSUMER
-        senderZip:
-          maxLength: 10
-          type: string
-          description: Sender's zipcode
-        ultimateSenderName:
-          type: string
-        ultimateSenderAccountNumber:
-          type: string
-        ultimateSenderAddress1:
-          type: string
-        ultimateSenderAddress2:
-          type: string
-        ultimateSenderTaxId:
-          type: string
-        ultimateSenderCity:
-          type: string
-        ultimateSenderState:
-          type: string
-        ultimateSenderZip:
-          type: string
-        ultimateSenderCountry:
-          type: string
-        bulkFileNumber:
-          type: integer
-          description: Bulk File Identifier
-        entryType:
-          type: string
-          description: Payment type
-          example: CREDIT or DEBIT
-        paymentReturnDetails:
-          type: array
-          description: Payment return details. This will be populated for the returned payment.
-          items:
-            $ref: '#/components/schemas/payment_paymentReturnDetails'
-        creationDateTime:
-          type: string
-          description: Date and Time payment is created
-          format: date-time
-        lastUpdatedTime:
-          type: string
-          description: Date and Time payment got updated last
-          format: date-time
-    payment_paymentNocDetails:
-      type: object
-      properties:
-        nocCode:
-          type: string
-          description: Code assciated with NOC
-          example: C01, C02 etc.
-        originalAccountNumber:
-          type: string
-          description: Original account number
-          example: '112233'
-        correctedAccountNumber:
-          type: string
-          description: Corrected account number
-          example: '112244'
-        originalRoutingNumber:
-          type: string
-          description: Original routing number
-          example: '70192837'
-        correctedRoutingNumber:
-          type: string
-          description: Corrected routing number
-          example: '70192832'
-        originalTranCode:
-          type: string
-          description: Original tran code
-          example: '27'
-        correctedTranCode:
-          type: string
-          description: Corrected tran code
-          example: '26'
-        receivedDateTime:
-          type: string
-          description: NOC received date and time
-          example: 2022-06-30T01:30:48.342+0000
-      example: '{"nocCode ": "CO2","originalAccountNumber": 112233,"correctedAccountNumber": 223344,"originalRoutingNumber": 1111222,"correctedRoutingNumber": 332222,  "originalTranCode": "27","correctedTranCode ": "26 ","receivedDateTime ": "2022 - 06 - 30 T01: 30: 48.342 Z"}'
-    payment_paymentReturnDetails:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-      example: '{"code":"R02 etc.","description":"Account closed etc."}'
+    schemas:
+      payment:
+        type: object
+        properties:
+          paymentId:
+             type: integer
+             description: Payment Identifier
+             nullable: false
+          sourceReferenceId:
+             type: string
+             description: External system idetifier
+          paymentStatus:
+             type: string
+             nullable: false
+             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc..
+             maxLength : 35
+          bulkFileName:
+              type: string
+              description: Bulk File Name
+              maxLength: 100
+          counterParty:
+             type: string
+             description: Counterparty shortname
+             maxLength: 50
+          deliveryDate:
+             type: string
+             format: date
+             description: Effective Entry Date
+          deliveryMethod:  
+             type: string
+             description: Delivery method - ACH for Fed transmission OR BOOK_TRANSFER if sender & receiver routing numbers are same 
+             maxLength : 20
+          feeAmount:
+            type: number
+            format: decimal
+            description: Fee amount in USD
+            minimum: 0.00
+            maximum: 9999999999999999.99
+          paymentDate:
+            type: string
+            format: date
+            description: Payment date
+          channel:
+            type: string
+            description: Channel associated with the payment
+            example: API, ONLINE, FTP etc.
+          paymentIOType:
+            type: string
+            description: Inbound or Outbound Payment Indicator.
+            example: IN or OUT
+            maxLength : 3
+          paymentNote1:
+            type: string
+            description: Payment Notes
+            maxLength : 35
+          paymentNote2:
+            type: string
+            description: Additional Payment Notes
+            maxLength : 35
+          paymentRemittanceInfo:
+            type: string
+            description: Payment Remittance Information from NACHA addenda record
+            maxLength : 35
+          paymentType: 
+            type: string
+            description: Type of Payment - Same Day or Regular ACH. Possible values - REGULAR_ACH, SAME_DAY_ACH, WIRE etc.
+            example: SAME_DAY_ACH, WIRE etc.
+            maxLength : 35
+          forexContract: 
+            type: string
+            description: FX contract number associated with the SWIFT payment
+            example: 12398
+          paymentNocDetails:
+            type: object
+            example: "{\"nocCode \": \"CO2\",\"originalAccountNumber\": 112233,\"correctedAccountNumber\": 223344,\"originalRoutingNumber\": 1111222,\"correctedRoutingNumber\": 332222,  \"originalTranCode\": \"27\",\"correctedTranCode \": \"26 \",\"receivedDateTime \": \"2022 - 06 - 30 T01: 30: 48.342 Z\"}"
+            properties:
+              nocCode:
+                type: string
+                description: Code assciated with NOC
+                example: C01, C02 etc.
+              originalAccountNumber:
+                type: string
+                description: Original account number
+                example: 112233
+              correctedAccountNumber:
+                type: string
+                description: Corrected account number
+                example: 112244
+              originalRoutingNumber:
+                type: string
+                description: Original routing number
+                example: 70192837
+              correctedRoutingNumber:
+                type: string
+                description: Corrected routing number
+                example: 70192832
+              originalTranCode:
+                type: string
+                description: Original tran code
+                example: 27
+              correctedTranCode:
+                type: string
+                description: Corrected tran code
+                example: 26
+              receivedDateTime:
+                type: string
+                description: NOC received date and time
+                example: 2022-06-30T01:30:48.342Z
+          imad: 
+            type: string
+            description: It is a unique number given to each FedWire payment
+            example: 20220627MMQCTR7B000012
+          omad: 
+            type: string
+            description: It is a unique number given to each FedWire payment
+          receiverAccountNumber:
+            type: string
+            description: Account number of the receiver
+            maxLength : 20
+          receiverAccountType:
+            type: string
+            description: Receiver Account Type
+            maxLength : 35
+          receiverAddress1:
+            type: string
+            description: Receiver Address
+            maxLength : 35
+          receiverAmount:
+            type: number
+            format: decimal
+            description: Amount received by recipient
+            minimum: 0.00
+            maximum: 9999999999999999.00
+          receiverBankName:
+            type: string
+            description: Recipient's Bank Name
+            maxLength : 255
+          receiverBankState:
+            type: string
+            description: Recipient's Bank State
+            maxLength : 35
+          receiverDiscretionaryData:
+            type: string
+            description: Receiver's discretionary data
+            maxLength : 35
+          receiverEmail:
+            type: string
+            description: Receiver's Email
+            format: email
+            maxLength : 50
+          receiverId:
+            type: string
+            description: Receiver Identifier
+            maxLength : 35
+          receiverIdType:
+            type: string
+            description: Receiver Identifier Type
+            maxLength : 35
+          receiverName:
+            type: string
+            description: Receiver name associated with the payment. 
+            maxLength : 35
+          originalReceiverName:
+            type: string
+            description: The original receiver name recieved from the payment network for the inbound payment request. 
+            maxLength : 35
+          receiverPhoneNumber:
+            type: string
+            description: Receiver Phone Number
+            maxLength : 35
+          receiverRoutingNumber:
+            type: string
+            description: Receiver Routing Number
+            maxLength : 9
+          receiverState:
+            type: string
+            description: Receiver State
+            maxLength : 35
+          receiverTemplateName:
+            type: string
+            description: Receiver Template Name
+            maxLength : 35
+          receiverType:
+            type: string
+            description: Receiver Type
+            maxLength : 35
+          receiverZip:
+            type: string
+            description: Receiver's zipcode
+            maxLength : 10
+          ultimateReceiverName:
+            type: string
+          ultimateReceiverAccountNumber:
+            type: string
+          ultimateReceiverAddress1:
+            type: string
+          ultimateReceiverAddress2:
+            type: string
+          ultimateReceiverTaxId:
+            type: string
+          ultimateReceiverCity:
+            type: string
+          ultimateReceiverState:
+            type: string
+          ultimateReceiverZip:
+            type: string
+          ultimateReceiverCountry:
+            type: string
+          senderAccountNumber:
+            type: string
+            description: Sender's Account Number
+            maxLength: 20
+          senderAccountType:
+            type: string
+            description: Sender's Account Type
+            maxLength : 35
+          senderAddress1:
+            type: string
+            description: Sender's Address
+            maxLength : 35
+          senderAmount:
+            type: number
+            format: decimal
+            description: Sender's Amount
+            minimum: 0.00
+            maximum: 9999999999999999.99
+          senderBankName:
+            type: string
+            description: Sender's Bank name
+            maxLength : 255
+          senderBankState:
+            type: string
+            description: Sender's Bank State
+            maxLength : 35
+          senderDiscretionaryData:
+            type: string
+            description: Sender's Discretionary Data
+            maxLength : 35
+          senderEmail:
+            type: string
+            description: Sender's Email
+            format: email
+            maxLength : 50
+          senderId:
+            type: string
+            description: Sender's Identifier
+            maxLength: 35
+          senderIdType:
+            type: string
+            description: Sender's Identifier type
+            maxLength: 35
+          senderName:
+            type: string
+            description: Sender Name
+          senderRoutingNumber:
+            type: string
+            description: Sender's Routing Number
+            maxLength: 9
+          senderState:
+            type: string
+            description: Sender's State
+            maxLength: 35
+          senderType:
+            type: string
+            description: Sender Type - CORPORATE or CONSUMER
+            maxLength: 35
+          senderZip:
+            type: string
+            description: Sender's zipcode
+            maxLength: 10
+          ultimateSenderName:
+            type: string
+          ultimateSenderAccountNumber:
+            type: string
+          ultimateSenderAddress1:
+            type: string
+          ultimateSenderAddress2:
+            type: string
+          ultimateSenderTaxId:
+            type: string
+          ultimateSenderCity:
+            type: string
+          ultimateSenderState:
+            type: string
+          ultimateSenderZip:
+            type: string
+          ultimateSenderCountry:
+            type: string
+          bulkFileNumber:
+            type: integer
+            description: Bulk File Identifier
+          entryType:
+            type: string
+            description: Payment type
+            example: CREDIT or DEBIT
+          paymentReturnDetails:
+            type: array
+            items:
+              type: object
+              properties:
+                code:
+                  type: string
+                description:
+                  type: string
+              example: 
+                code: R02 etc.
+                description: Account closed etc.
+            description: Payment return details. This will be populated for the returned payment.
+          creationDateTime:
+            type: string
+            format: date-time
+            description: Date and Time payment is created
+          lastUpdatedTime:
+            type: string
+            format: date-time  
+            description: Date and Time payment got updated last

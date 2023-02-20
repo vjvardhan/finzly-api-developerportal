@@ -24,8 +24,6 @@ training:
       expanded: false
       page: developer-portal/fedwire.md #< Fedwire
       pages:
-        - label: Business Function Code
-          page: developer-portal/businessCode.md #<
         - label: Wire Transactions
           page: developer-portal/wired.md #< Merger the content of notification.md file inot wired.md file at the last.
     - group: Instant Payments
@@ -70,7 +68,7 @@ training:
           page: developer-portal/customer-api.md #< NoChange
         - label: Account Onboarding
           page: developer-portal/customer-account-api.md #< NoChange
-        - label: Beneficiary Management
+        - label: Contact Management
           page: developer-portal/customer-contact-api.md #< NoChange
 - group: FX
   expanded: false
@@ -102,13 +100,13 @@ training:
       page: developer-portal/webhooks.md #< NoChange
 - label: Errors
   page: developer-portal/errors.md #< NoChange
-- label: API Sandbox
+- label: Sandbox
   page: 
 - group: Payments
   expanded: true
   pages:
     - page: openapi/reference.page.yaml/*
-- group: Payment Status Notification
+- group: Webhook
   expanded: true
   pages:
     - page: openapi/paymentReference.page.yaml/*
