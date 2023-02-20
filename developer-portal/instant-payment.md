@@ -110,7 +110,7 @@ curl -X POST [URL]
 
 ### **Step 4: Execute an instant payment request.** 
 
-Prepare the payment request object using the sender and receiver account UID along with the speed associated with the instant payment that is **“Instant”**.
+Prepare the payment request object using the sender and receiver UID along with the speed associated with the instant payment rail i.e. **"Instant"**.
 
 ```yaml Before
 
@@ -132,7 +132,7 @@ Prepare the payment request object using the sender and receiver account UID alo
 
 **Payment Speed Details**
 
-The speed of the payment defines the user prefrence while initiating the payment. The preference is based upon the cost and time associated with the payment transactions (defined within the BankOS platform by the Bank) for instance "Instant" is associated with the realtime payment rail (RTP or FedNow) where the payment will be processes instantly in comparison with the Speed "Economy" which is associated with the regular ACH payment rail, the payment will be processed within 2-3 business days.
+The speed of the payment defines the user preference on the money movement while initiating the payments. The user preference is depends upon the cost and time associated with the payment transaction (Defined as per the bank in the BankOS platform), for instance  "Express" as a speed is associated with the Fedwire payment rail where the payment will be processed within a day in comparison with the "Economy" as a speed which is associated with the regular ACH payment rail where the payment will be processed within 2-3 business days.
 
 |**Speed**|**Speed Description**|
 | :- | :- |

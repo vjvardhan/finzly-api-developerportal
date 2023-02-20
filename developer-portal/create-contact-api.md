@@ -1,11 +1,9 @@
 ---
 title: Create Contact
 ---
-## **Create Contact/Beneficiary**
+## **Create Beneficiary/Contact**
 
-This API allows the user to add a customer beneficiaries to the customer profile in the CRM system. 
-
-Customer Contact/Beneficiary API help to manage the customer beneficiaries (contacts) in the Finzly CRM system. Once the beneficiaries are defined in the system the contactUID can be used to initiate a payment.
+You can use this API to add a beneficiaries/contacts to an existing customer profile in the CRM system. Once the beneficiaries are defined in the system use can use the contactUID to initiate a payment. This will reduce the complexity or error during the initiation of the payments. 
 
 ### **Creating Customer Contact**
 [POST /customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)
@@ -18,8 +16,73 @@ Customer Contact/Beneficiary API help to manage the customer beneficiaries (cont
 
 |**Name** |**In**|**Type** |**Required** |**Description**|
 | :- | :- | :- | :- | :- |
-|customerUID|path|integer|true|none|
-|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)|true|Account Info|
+|customerUID|path|integer|true|The unique identifier associated with the customer|
+|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)|true|Contact Info|
+
+**CustomerContact**
+
+```yaml Before
+{
+  "externalReferenceId": "string",
+  "templateName": "string",
+  "name": "string",
+  "address": {
+    "addressLine1": "111 My Street",
+    "addressLine2": "Suite 210",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "postalCode": "28269",
+    "countryCode": "USA",
+    "country": "UNITED STATES OF AMERICA"
+  },
+  "emailAddress": "abc@abc.com",
+  "phoneNumber": "123-124-9877",
+  "contactBank": {
+    "country": "string",
+    "accountNo": "string",
+    "accountCcy": "string",
+    "name": "string",
+    "address": {
+      "addressLine1": "111 My Street",
+      "addressLine2": "Suite 210",
+      "city": "Charlotte",
+      "state": "North Carolina",
+      "postalCode": "28269",
+      "countryCode": "USA",
+      "country": "UNITED STATES OF AMERICA"
+    },
+    "nationalCode": "0125487",
+    "swiftCode": "USBNX000"
+  },
+  "intermediaryBank": {
+    "country": "string",
+    "name": "string",
+    "nationalCode": "string",
+    "swiftCode": "string",
+    "coverMessageRequired": "string",
+    "address": {
+      "addressLine1": "111 My Street",
+      "addressLine2": "Suite 210",
+      "city": "Charlotte",
+      "state": "North Carolina",
+      "postalCode": "28269",
+      "countryCode": "USA",
+      "country": "UNITED STATES OF AMERICA"
+    }
+  },
+  "otherInfo": {
+    "beneficiaryNotes": "string",
+    "otherBeneBankInfo": "string"
+  },
+  "regulartoryReporting": [
+    {
+      "key": "string",
+      "value": "string"
+    }
+  ]
+}
+```
+
 
 **JSON Response**
 
@@ -43,4 +106,12 @@ A successful POST request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[CreateCustomerContactResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)|false|none|none|
+|data|CreateCustomerContactResponse_data|false|none|Response Data|
+
+
+**CreateCustomerContactResponse_data**
+
+|**Name**|**Type**|**Description**|
+| :- | :- | :- | :- | :- |
+|customerContactUID|string|Unique identifier assigned by the system|
+|externalReferenceId|string|External referenceID provided to the API|

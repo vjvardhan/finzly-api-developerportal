@@ -26,14 +26,10 @@ training:
       pages:
         - label: Wire Transactions
           page: developer-portal/wired.md #< Merger the content of notification.md file inot wired.md file at the last.
-    - group: Instant Payments
-      expanded: true
+    - label: Instant Payments
       page: developer-portal/instant.md #< Merger the content of notification.md file inot wired.md file at the last.        
-    - group: International Payments
-      expanded: true
-      pages:
-        - label: Overview
-          page: developer-portal/internationalPayment.md #< Merger the content of notification.md file inot wired.md file at the last.        
+    - label: International Payments
+      page: developer-portal/internationalPayment.md #< Merger the content of notification.md file inot wired.md file at the last.        
     - group: API Guide
       expanded: false
       # page: developer-portal/index.md
@@ -96,13 +92,11 @@ training:
           page: developer-portal/coverFXT.md #< NEW # Get the "Cover FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
         - label: Cancel FX Trade
           page: developer-portal/cancelFXT.md #< NEW # Get the "Cancel FX Trade" section from the "foreign-exchange-api.md" and create new MD File 
-- label: Notifications
-  page: developer-portal/notifications.md #< NEW # Notifications
 - group: Webhooks
   expanded: false
   page: developer-portal/webhooksMain.md #< NEW # Webhooks
   pages:
-    - label: Payments
+    - label: Payment Webhooks
       page: developer-portal/webhooks.md #< NoChange
 - label: Errors
   page: developer-portal/errors.md #< NoChange

@@ -15,7 +15,7 @@ Execute the below API to get the accountUID (Unique Identifier) associated with 
 
 Where: 
 - **customer_UID:** This is the unique ID associated with customer.
-- **account_Number:** This is the account number.
+- **account_Number:** This is the bank account number.
 
 
 **Bank Account Response:**
@@ -49,9 +49,9 @@ Execute the below API to get the contactUID (Unique Identifier) associated with 
 
 Where: 
 - **customer_UID:** This is the unique ID associated with the customer.
-- **account_Number:** This is the account number.
+- **account_Number:** This is the bank account number.
 
-**Bank Account Response:**  
+**Customer Contact Response:**  
 
 ```yaml Before
 {
@@ -66,7 +66,7 @@ Where:
     },
     "data": [
         {
-            "externalReferenceId": null,
+            "externalReferenceId": 1234456,
             "contactUID": "29",
             "templateName": "John Electric",
             "name": "John Electric LLC",
@@ -78,7 +78,7 @@ Where:
 
 ```
 
-***Note: Get the receiver bank account IDF from the “contactUID” attribute.***
+***Note: Get the receiver bank account ID from the “contactUID” attribute.***
 
 
 
@@ -133,11 +133,11 @@ Prepare the payment request object using the sender and receiver UID along with 
 
 ```
 
-Note: Using the payment date attribute one can schedule the payment in the future date. The system will automaticially process the payment on the payment date as per the user payment details and preference.
+Note: Using the **paymentDate** attribute one can schedule the payment for the future date. The system will automaticially pick up the payment on the payment date and process the transaction as per the payment details.
 
-**Payment Speed details**
+**Payment Speed Details**
 
-The speed of the payment defines the user prefrence on the money movement while initiating the payment. The speed preference is based upon the cost and time associated with the payment transaction (defined within the BankOS platform by the bank) for instance speed "Express" is associated with the Fedwire payment rail where the payment will be processed normaly within a day in comparison with the speed "Economy" which is associated with the regular ACH payment rail where the payment will be processed within 2-3 business days.
+The speed of the payment defines the user preference on the money movement while initiating the payments. The user preference is depends upon the cost and time associated with the payment transaction (Defined as per the bank in the BankOS platform), for instance  "Express" as a speed is associated with the Fedwire payment rail where the payment will be processed within a day in comparison with the "Economy" as a speed which is associated with the regular ACH payment rail where the payment will be processed within 2-3 business days.
 
 |**Speed**|**Speed Description**|
 | :- | :- |

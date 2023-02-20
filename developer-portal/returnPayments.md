@@ -44,10 +44,11 @@ You can use below API to return a payment as long as it allowed as per the payme
 
 {
   "status": "Success or Failure",
-  "code": "PAYMENT001 etc.",
-  "message": "Failed to cancel a payment: ",
+  "code": "PAYMENT003 etc.",
+  "message": "Failed to return a payment: ",
   "data": {
-    "paymentUID": "string"
+    "paymentUID": "string",
+	"status": "string"
   }
 }
 
@@ -65,11 +66,13 @@ You can use below API to return a payment as long as it allowed as per the payme
 
 ```yaml Before
 {
-  "paymentUID": "string"
+  "paymentUID": "string",
+  "status": "string"
 }
 
 ```
 
-|**Name**|**Type**|**Required**|**Description**|
-| :- | :- | :- | :- | :- |
-|paymentUID|string|false|Payment unique refrence ID|
+|**Name**|**Type**|**Description**|
+| :- | :- | :- |
+|paymentUID|string|Payment unique preference ID|
+|status|string|Payment response status|

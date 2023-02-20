@@ -8,6 +8,9 @@ title: ACH
 
 ACH is the is the most popular, and highly used payment network known for being cost effective for electronic payments. Typically, they take 1-2 days to settle. ACH payments are exchanged in NACHA-formatted files. NACHA sets the rules and guidelines for the processing of ACH payments. ACH APIs are becoming popular due to their ability to integrate into a variety of systems for automation of manually intensive payments. Finzly Connect APIs give access to the ACH network.
 
+<!-- ## **ACH Payment** -->
+![image info](./images/ach-payment.png)
+
 ### **Key features of Finzly Connect ACH APIs:**
 
 - Complete payment automation to initiate ACH credit and debit

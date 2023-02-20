@@ -48,13 +48,11 @@ You can use below API to cancel a payment as long as it does not send to the pay
 
 ```yaml Before
 {
-	"paymentUID": "string",
-	"status": "string"
+	"paymentUID": "string"
 }
 
 ```
 
-|**Name**|**Type**|**Required**|**Description**|
-| :- | :- | :- | :- | :- |
-|paymentUID|string|false|Payment unique refrence ID|
-|status|string|false|Payment return status|
+|**Name**|**Type**|**Description**|
+| :- | :- | :- |
+|paymentUID|string|Payment unique refrence ID|
