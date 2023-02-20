@@ -27,11 +27,15 @@ training:
         - label: Wire Transactions
           page: developer-portal/wired.md #< Merger the content of notification.md file inot wired.md file at the last.
     - group: Instant Payments
-      expanded: false
-      page: developer-portal/instant.md #< Instant payments
+      expanded: true
+      pages:
+        - label: Overview
+          page: developer-portal/instant.md #< Merger the content of notification.md file inot wired.md file at the last.        
     - group: International Payments
-      expanded: false
-      page: developer-portal/internationalPayment.md #< International Payments
+      expanded: true
+      pages:
+        - label: Overview
+          page: developer-portal/internationalPayment.md #< Merger the content of notification.md file inot wired.md file at the last.        
     - group: API Guide
       expanded: false
       # page: developer-portal/index.md
@@ -40,21 +44,25 @@ training:
           expanded: false
           # page: developer-portal/index.md
           pages:
-          - label: Finzly Payout
-            page: developer-portal/finzlyPayout.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
-          - label: Finzly Payments
-            page: developer-portal/finzlyPayments.md #< NEW # Get the "Create Debit Payment" section from the "payments-api.md" and create new MD File 
+          - label: Create Beneficiary/Contact
+            page: developer-portal/create-contact-api.md 
+          - label: Initiate Payout
+            page: developer-portal/initiate-payment.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
+          - label: Scheduling a Payout
+            page: developer-portal/scheduling-payment.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
+          - label: Scheduling Recurring Payout
+            page: developer-portal/recurring-payment.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
           - label: Instant Payments
             page: developer-portal/instant-payment.md #< NoChange
           - label: Search Payments
             page: developer-portal/searchPayments.md #< NEW # Get the "Search Payment and Get Payment" section from the "payments-api.md" and create new MD File 
-          - label: Cancel Payments
+          - label: Cancel a Payment
             page: developer-portal/cancelPayments.md #< NEW # Get the "Cancel Payment" section from the "payments-api.md" and create new MD File 
-          - label: Return Payments
+          - label: Return a Payment
             page: developer-portal/returnPayments.md #< NEW # Get the "Return Payment" section from the "payments-api.md" and create new MD File 
-          - label: Reverse Payments
+          - label: Reverse a Payment
             page: developer-portal/reversePayments.md #< NEW # Get the "Reverse Payment" section from the "payments-api.md" and create new MD File 
-          - label: Transfer Payments
+          - label: Transfer a Payment
             page: developer-portal/bookTransfer.md #< NoChange
 - group: Customer and Accounts
   expanded: false
@@ -100,7 +108,7 @@ training:
       page: developer-portal/webhooks.md #< NoChange
 - label: Errors
   page: developer-portal/errors.md #< NoChange
-- label: Sandbox
+- label: Sandbox APIs
   page: 
 - group: Payments
   expanded: true

@@ -1,8 +1,8 @@
 ---
-title: Finzly Customer Account API
+title: Account Onboarding
 ---
 
-## Account Management
+## Account Onboarding
 
 Customer Accounts APIs help users get all the accounts associated with their customer in a single call. You can enhance the customer experience by providing them with the most updated balance. Besides, you can further add value by tracking payment transactions related to these individual accounts.
 

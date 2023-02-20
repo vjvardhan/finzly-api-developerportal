@@ -1,13 +1,13 @@
 ---
-title: Instant Payment  
+title: Initiate Payment  
 ---
 
-## How to initiate an instant payment
+## How to initiate a payment
 
-You can initiate an instant payment using the following simple steps. The Finzly's Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and Instant based upon the speed preference.
+You can initiate a payment using the following simple steps. The Finzly's Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and RTP/FedNow based upon the speed preference.
 
 
-### **Step 1: Identify the sender bank account (funding)  unique identifier (accountUID)**
+### **Step 1: Identify the sender bank (funding) account unique identifier (accountUID)**
 
 Execute the below API to get the accountUID (Unique Identifier) associated with the sender bank account.
 
@@ -38,7 +38,7 @@ Where:
 
 ```
 
-**Note: Get the sender bank account ID from the "accountUID" attribute.**
+**Note: Get the sender bank (funding) account ID from the "accountUID" attribute.**
 
 
 ### **Step 2: Identify the receiver’s account unique identifier (contactUID)**
@@ -80,6 +80,8 @@ Where:
 
 ***Note: Get the receiver bank account IDF from the “contactUID” attribute.***
 
+
+
 ### **Step 3: Get the auth token using the "API key" and "API secret" provided by the financial institution.**
 
 **Auth Request**
@@ -110,7 +112,7 @@ curl -X POST [URL]
 
 ### **Step 4: Execute an instant payment request.** 
 
-Prepare the payment request object using the sender and receiver account UID along with the speed associated with the instant payment that is **“Instant”**.
+Prepare the payment request object using the sender and receiver UID along with the speed associated with the payment.
 
 ```yaml Before
 
@@ -118,7 +120,7 @@ Prepare the payment request object using the sender and receiver account UID alo
 	"externalReferenceId": "PaymentRef100",
 	"paymentAmount": 100,
 	"paymentCurrency": "USD",
-	"speed": "Instant",
+	"speed": "Economy Plus",
 	"paymentNotes": "Notes",
 	"sender": {
 		"accountUID": "58"
@@ -132,7 +134,7 @@ Prepare the payment request object using the sender and receiver account UID alo
 
 **Payment Speed Details**
 
-The speed of the payment defines the user prefrence while initiating the payment. The preference is based upon the cost and time associated with the payment transactions (defined within the BankOS platform by the Bank) for instance "Instant" is associated with the realtime payment rail (RTP or FedNow) where the payment will be processes instantly in comparison with the Speed "Economy" which is associated with the regular ACH payment rail, the payment will be processed within 2-3 business days.
+The speed of the payment defines the user prefrence on the money movement while initiating the payment. The speed preference is based upon the cost and time associated with the payment transaction (defined within the BankOS platform by the bank) for instance speed "Express" is associated with the Fedwire payment rail where the payment will be processed normaly within a day in comparison with the speed "Economy" which is associated with the regular ACH payment rail where the payment will be processed within 2-3 business days.
 
 |**Speed**|**Speed Description**|
 | :- | :- |
@@ -143,8 +145,6 @@ The speed of the payment defines the user prefrence while initiating the payment
 |SPOT|Spot international payment|
 |ON|Same day international payment|
 |TN|Next day international payment|
-
-
 
 
 

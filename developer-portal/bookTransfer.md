@@ -1,9 +1,9 @@
 ---
-title: Transfer Transfer
+title: Transfer Payment
 ---
 
-## **Transfer Transfer**
-Transfer transfers are used to move money within a bank or within a ledger. These transfers do not require any payment rail for the money movement. 
+## **Transfer Payment**
+Transfer payment is used to move money within a bank or within a ledger. The book transfer does not require any payment rail for the money movement. 
 
 [POST /payments/booktransfer](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/booktransfer/)
 

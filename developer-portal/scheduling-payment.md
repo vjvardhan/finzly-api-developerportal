@@ -1,10 +1,10 @@
 ---
-title: Instant Payment  
+title: Schedule Payment  
 ---
 
-## How to initiate an instant payment
+## How to schedule a payment
 
-You can initiate an instant payment using the following simple steps. The Finzly's Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and Instant based upon the speed preference.
+You the can schedule a payment using the following simple steps
 
 
 ### **Step 1: Identify the sender bank account (funding)  unique identifier (accountUID)**
@@ -80,6 +80,8 @@ Where:
 
 ***Note: Get the receiver bank account IDF from the “contactUID” attribute.***
 
+
+
 ### **Step 3: Get the auth token using the "API key" and "API secret" provided by the financial institution.**
 
 **Auth Request**
@@ -110,7 +112,7 @@ curl -X POST [URL]
 
 ### **Step 4: Execute an instant payment request.** 
 
-Prepare the payment request object using the sender and receiver account UID along with the speed associated with the instant payment that is **“Instant”**.
+Prepare the payment request object using the sender and receiver UID along with the speed associated with the payment.
 
 ```yaml Before
 
@@ -118,8 +120,9 @@ Prepare the payment request object using the sender and receiver account UID alo
 	"externalReferenceId": "PaymentRef100",
 	"paymentAmount": 100,
 	"paymentCurrency": "USD",
-	"speed": "Instant",
+	"speed": "Economy Plus",
 	"paymentNotes": "Notes",
+	"paymentDate":"2023-05-01"
 	"sender": {
 		"accountUID": "58"
 	},
@@ -130,9 +133,11 @@ Prepare the payment request object using the sender and receiver account UID alo
 
 ```
 
-**Payment Speed Details**
+Note: Using the payment date attribute one can schedule the payment in the future date. The system will automaticially process the payment on the payment date as per the user payment details and preference.
 
-The speed of the payment defines the user prefrence while initiating the payment. The preference is based upon the cost and time associated with the payment transactions (defined within the BankOS platform by the Bank) for instance "Instant" is associated with the realtime payment rail (RTP or FedNow) where the payment will be processes instantly in comparison with the Speed "Economy" which is associated with the regular ACH payment rail, the payment will be processed within 2-3 business days.
+**Payment Speed details**
+
+The speed of the payment defines the user prefrence on the money movement while initiating the payment. The speed preference is based upon the cost and time associated with the payment transaction (defined within the BankOS platform by the bank) for instance speed "Express" is associated with the Fedwire payment rail where the payment will be processed normaly within a day in comparison with the speed "Economy" which is associated with the regular ACH payment rail where the payment will be processed within 2-3 business days.
 
 |**Speed**|**Speed Description**|
 | :- | :- |
@@ -143,8 +148,3 @@ The speed of the payment defines the user prefrence while initiating the payment
 |SPOT|Spot international payment|
 |ON|Same day international payment|
 |TN|Next day international payment|
-
-
-
-
-
