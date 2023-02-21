@@ -2,10 +2,10 @@
 title: Payment Webhooks
 ---
 
-## **Payment Webhooks**
-Payment webhook is used to get notified by Finzly bank whenever a payment event happens in your account. Your bank will help you setup a webhook for your accounts. The following events are sent to webhooks.
+## **Payment Webhook**
 
-**Payment Webhooks**
+Payment webhook notify whenever a payment event happens in your account. Your bank will help you setup a webhook for your accounts. The following events are sent to webhooks.
+
 
 1. Outgoing credit payment 
 2. Outgoing debit payment 

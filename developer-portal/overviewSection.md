@@ -4,7 +4,7 @@ title: Payments
  
 ## **Payments**
 
-We believe in taking the complexity out of payments. By providing one single API for instant, domestic and international payments, you can access multiple rails like ACH, Fedwire, RTP and FedNow using Finzly Connect. Our payment engine powers this API, smartly routing it through the appropriate rail, based on rule-based workflows. 
+We believe in taking the complexity out of payments. By using one single API for instant, domestic and international payments, you can access multiple rails like ACH, Fedwire, RTP and FedNow. Our payment engine powers this API, smartly routing it through the appropriate rail, based on rule-based workflows. 
 
 Using the APIs, users can originate payments, request and process collection through US Fedwire, US ACH, RTP, FedNow and SWIFT. Several use cases can be brought to life through the application of these APIs in customer-facing apps. They can also be used to automate internal payment processes like invoice payments. The payment status APIs help in providing full transparency of the payments throughout the lifecycle of the payments.
 

@@ -4,7 +4,7 @@ title: Cancel Payment
 
 ### **Cancel a Payment**
 
-You can use below API to cancel a payment as long as it does not send to the payment network. Once the payment is tranmitted to the respective payment network user can't cancel the payment.
+You can cancel payments using this API as long as it has not been transmitted to the respective payment network.
 
 [PUT /payments/{paymentUID}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/cancelPaymentV3/)
 

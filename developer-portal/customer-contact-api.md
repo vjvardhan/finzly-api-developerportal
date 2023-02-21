@@ -3,21 +3,14 @@ title: Customer Contact
 ---
 ## **Contact Management**
 
+This API allows the creation of customer contacts by setting up their account information.  The user can use the account unique identifier (UID) in the payment request. The customer account can be a type of Checking, Saving or Virtual (Fintech account). Customer Contact APIs help manage the customer beneficiaries (contacts) in the Finzly CRM system. Once the contacts are set up, their UID can be used in the payment APIs as a receiverAccountId.
 
-This API allows the user to add a customer account to the customer profile in the CRM system. The user can use the account unique identifier (UID) in the payment request. The customer account can be a type of Checking, Saving or Virtual (Fintech account).
+Using the API, you can:
+- Search Customer Contact
+- Create Customer Contact
+- Get Customer Contacts By ContactUID
+- Update Customer Contact
 
-Customer Contacts
-
-Customer Contact APIs help manage the customer beneficiaries (contacts) in the Finzly CRM system.
-
-Once the contacts are defined as the template contact, UID can be used in the payment APIs as a receiverAccountId.
-
-Following use cases helps you to understand the current customer contacts capabilities exposed via APIs
-
-1. Search Customer Contact
-2. Create Customer Contact
-3. Get Customer Contacts By ContactUID
-4. Update Customer Contact 
 
 ## Customer Contact API
 

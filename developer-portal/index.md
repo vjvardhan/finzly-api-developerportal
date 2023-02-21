@@ -12,9 +12,9 @@ Finzly Connect offers REST API and webhook notifications to access any Finzly-po
 ![image info](./images/finzly_connect.png)
 <br></br>
 
-Platforms benefit from a head start to accelerate their innovation as:
+Platforms benefit from a head start to accelerate innovation as:
 - You can manage the money movement of your customers using a single API across multiple payment types.
-- All our products are interoperable – accounts, payments, customer management, giving them greater agility to combine the building blocks to build innovative products.
+- All our products are interoperable – accounts, payments, customer management, giving you greater agility to combine the building blocks to build innovative products.
 - Finzly Connect API runs on a real-time, cloud-native platform that provides scalability to suit your growth needs.
 - Smart routing of payments gives you access to the most cost-effective rail based on the urgency of the payments – ACH, Fedwire, RTP, FedNow and SWIFT.
 

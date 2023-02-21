@@ -4,14 +4,13 @@ title: Initiate Payment
 
 ## How to initiate a payment
 
-You can initiate a payment using the following simple steps. The Finzly's Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and RTP/FedNow based upon the speed preference.
-
+You can initiate a payment using the following simple steps. The Finzly Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and RTP/FedNow based upon the speed preference.
 
 ### **Step 1: Identify the sender bank (funding) account unique identifier (accountUID)**
 
-Execute the below API to get the accountUID (Unique Identifier) associated with the sender bank account.
+Execute the below API to get the accountUID (Unique Identifier) associated with the sender’s bank account.
 
-[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPaymentV3/)
+[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerByCustomerUIDV2/)
 
 Where: 
 - **customer_UID:** This is the unique ID associated with customer.
@@ -31,8 +30,7 @@ Where:
         "type": "DEPOSIT",
         "subType": "CHECKING",
         "systemOfRecords": "Other Core",
-        "balanceType": "Available",
-        "ledgerBalance": null ……
+        "balanceType": "Available", ...
     }
 } 
 
@@ -45,7 +43,7 @@ Where:
 
 Execute the below API to get the contactUID (Unique Identifier) associated with the receiver/beneficiary bank account.
 
-[GET - {{URL}}/customers/{{customer_UID}}/contacts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/searchCustomerContactsV2/)
+[GET - {{URL}}/customers/{{customer_UID}}/contacts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomerContactsV2/)
 
 Where: 
 - **customer_UID:** This is the unique ID associated with the customer.
@@ -83,6 +81,9 @@ Where:
 
 ### **Step 3: Get the auth token using the "API key" and "API secret" provided by the financial institution.**
 
+[POST /auth/realms/{{TENANT-CODE}}/protocol/openid-connect/token/)]
+
+
 **Auth Request**
 
 ```yaml Before
@@ -113,6 +114,11 @@ curl -X POST [URL]
 
 Prepare the payment request object using the sender and receiver accountUID along with the speed associated with the payment.
 
+[POST /payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPaymentV3/)
+
+**HTTP Method: POST**
+
+
 ```yaml Before
 
 {
@@ -133,7 +139,8 @@ Prepare the payment request object using the sender and receiver accountUID alon
 
 **Payment Speed Details**
 
-The speed of the payment defines the user preference on the money movement while initiating the payments. The user preference is depends upon the cost and time associated with the payment transaction (Defined as per the bank in the BankOS platform), for instance  "Express" as a speed is associated with the Fedwire payment rail where the payment will be processed within a day in comparison with the "Economy" as a speed which is associated with the regular ACH payment rail where the payment will be processed within 2-3 business days.
+The user can define the speed of money movement as part of their preference to execute the payment. The cost of the payment depends on the sponsor bank, while the speed is setup using different parameters that correspond to different payment rails that determine how quickly money can be moved.
+
 
 |**Speed**|**Speed Description**|
 | :- | :- |

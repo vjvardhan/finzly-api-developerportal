@@ -38,6 +38,8 @@ training:
           expanded: false
           # page: developer-portal/index.md
           pages:
+          - label: Get Funding Account
+            page: developer-portal/get-customer-account.md 
           - label: Create Beneficiary/Contact
             page: developer-portal/create-contact-api.md 
           - label: Initiate Payout
@@ -96,22 +98,22 @@ training:
   expanded: false
   page: developer-portal/webhooksMain.md #< NEW # Webhooks
   pages:
-    - label: Payment Webhooks
+    - label: Payment Webhook
       page: developer-portal/webhooks.md #< NoChange
 - label: Errors
   page: developer-portal/errors.md #< NoChange
 - label: Sandbox APIs
   page: 
 - group: Payments
-  expanded: true
+  expanded: false
   pages:
     - page: openapi/paymentAPI.page.yaml/*
-- group: Customer and Account
-  expanded: true
+- group: Customer and Accounts
+  expanded: false
   pages:
     - page: openapi/customerAPI.page.yaml/*
-- group: Webhook
-  expanded: true
+- group: Webhooks
+  expanded: false
   pages:
     - page: openapi/paymentWebhook.page.yaml/*
 - label: Frequently Asked Questions

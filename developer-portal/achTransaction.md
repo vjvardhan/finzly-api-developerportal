@@ -61,15 +61,16 @@ When the RDFI returns the credit or debit request, the ODFI may accept the retur
 
 **On-us Transactions** 
 
-On-us transactions in ACH is when a bank’s customer initiates ACH transfers for which the bank is both ODFI and RDFI. For such transactions, bank can settle within its ledger without having to clear thru ACH network.
+When a bank’s customer initiates ACH transfers for which the bank acts in the capacity of both ODFI and RDFI, the transactions are referred to as “on-us” transactions. For such transactions, the bank can settle within its ledger without having to clear through ACH network.
 
 **Same-day and Standard ACH** 
 
-ACH payments are usually processed with 2 days settlement, which means if a payment is initiated, it would take two business days for the payment to get credited in the customer account. NACHA required the clearing houses to support same-day ACH payments to allow same day processing and settlement. For some weird reason, several financial institution’s ACH system does not support same day ACH and can only process regular ACH payments.
+Standard ACH payments usually take 2-3 business days to get posted into customer accounts. Same Day ACH is an improvement to the ACH network. It allows both credit and debit transactions to be processed several times daily, resulting in same-day processing and settlement of ACH transactions.  
+Same-day ACH is finding several uses in bill payments, same-day payrolls and B2B payments.
 
 **Cutoff Times** 
 
-The federal reserve processes the files on all bank working days. Same day ACH transactions will be processed by 16:00 PM (EST) and Standard ACH files are transmitted at the following times '10:00 AM', '14:00 PM', '16:00 PM', '19:30 PM', '22:30 PM' (EST).
+The Federal Reserve processes the files on all bank working days. Same day ACH transactions will be processed by 16:00 PM (EST) and Standard ACH files are transmitted at the following times (EST) 10:00 AM, 14:00 PM, 16:00 PM, 19:30 PM, 22:30 PM.
 
 <!--
 ## **ACH Positive Pay** 

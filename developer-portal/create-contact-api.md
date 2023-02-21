@@ -10,7 +10,7 @@ You can use this API to add a beneficiaries/contacts to an existing customer pro
 
 **HTTP Method: POST** 
 
-**Description -** Sending a POST request to "/customers/{customerUID}/contacts" endpoint allows users to create a new contact for an existing customer. Corporate entities acting as a customers can create a contacts, so thus in the future, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity.
+**Description -** Sending a POST request to "/customers/{customerUID}/contacts" endpoint allows users to create new contacts for an existing customer. Corporate entities acting as customers can create contacts. Once created, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity.
 
 **Request Parameters**
 

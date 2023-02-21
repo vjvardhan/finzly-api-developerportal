@@ -3,13 +3,13 @@ title: Customer Onboarding
 ---
 
 ## Customer Onboarding
-Customer APIs entitle the downstream partners, Banks, and associates to formally onboard clients with all the required information to perform financial operations.
-These APIs will also enable users to search & maintain these onboarded clients, update any modifications in client information and create/update their beneficiaries (contacts).
-Following use cases helps you to understand the current customer capabilities exposed via APIs
-1.	Create Customer
-2. 	Search Customer
-3.	Get Customer By CustomerUID
-4.	Update Customer
+
+Customer APIs entitle the setup of clients as part of customer onboarding to enable them to perform financial transactions on their behalf. These APIs will also enable users to search & maintain these onboarded clients, update any modifications in client information and create/update their beneficiaries (contacts). The APIs support the following:
+
+- Create Customer
+- Search Customer
+- Get Customer By CustomerUID
+- Update Customer
 
 __Add Client (of Fintech)__
 
@@ -30,8 +30,7 @@ __Description__ - A GET request containing a series of parameters and objects to
 
 __Request Parameters__
 
-Page and Limits are the mandatory parameters that provide the list of Corporate Entities, like how many records we want to get through the API request. Here are some of the other optional Parameters which can also be passed as per the user requirements
-
+Using Page and Limits which are the mandatory parameters, we can set the number of search result records we want to get through the API request. Other optional parameters can be passed according to the user requirements as follows:
 
 |Name | In | Data Type | Required | Description |
 |---|---|---|---|---|
