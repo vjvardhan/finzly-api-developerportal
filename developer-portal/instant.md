@@ -1,4 +1,4 @@
-	---
+---
 title: Instant Payments
 ---
 

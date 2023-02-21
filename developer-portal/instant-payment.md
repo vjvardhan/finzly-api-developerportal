@@ -110,7 +110,7 @@ curl -X POST [URL]
 
 ### **Step 4: Execute an instant payment request.** 
 
-Prepare the payment request object using the sender and receiver UID along with the speed associated with the instant payment rail i.e. **"Instant"**.
+Prepare the payment request object using the sender and receiver accountUID along with the speed associated with the instant payment rail i.e. **"Instant"**.
 
 ```yaml Before
 

@@ -110,9 +110,9 @@ curl -X POST [URL]
 ```
 
 
-### **Step 4: Execute an instant payment request.** 
+### **Step 4: Initiate a Recurring schedule payment request.** 
 
-Prepare the payment request object using the sender and receiver UID along with the speed associated with the payment.
+Prepare the payment request object using the sender, receiver, recurrence information along with the speed associated with the payment.
 
 ```yaml Before
 
