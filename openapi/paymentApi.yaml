@@ -18,39 +18,31 @@ info:
 tags:
   - name: Payments
     description: |
-      Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.
-      
-      The single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.
+        Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.
 
-      Following use cases helps you to understand the current payment capabilities exposed via APIs.       
-      
-      1. Initiate Credit Payment
-      2. Initiate Debit Payment
-      3. Get Payment ByUID
-      4. Search Payments
-      5. Cancel Payment
-      6. Return Payment
-      7. Reverse Payment
-      8. Book Transfer
+        The single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.
 
-  - name: Positive Pay
-    description: |
-      Payments Postive Pay has two sets of APIs.
-      
-      Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules to monitor ACH debits, setup fedwire drawdown requests and "request for pay - RFP" rules for the instant payments.
-      
-      Postive Pay Decision APIs are used to approve or reject the exceptions identified by the postive pay rules engine.
-      
+        Following use cases helps you to understand the current payment capabilities exposed via APIs.       
+
+        1. Initiate Credit Payment (Payout)
+        2. Initiate Debit Payment (Collections)
+        3. Get Payment
+        4. Search Payments
+        5. Cancel Payment
+        6. Return Payment
+        7. Reverse Payment
+        8. Transfer (Book) Payment
+
   - name: Foreign Exchange
     description: | 
-      Foreign Exchange (forex or FX) is the trading of one currency for another.
-      
-      For example, one can swap the U.S. dollar for the euro. 
-      
-      Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
+        Foreign Exchange (forex or FX) is the trading of one currency for another.
+
+        For example, one can swap the U.S. dollar for the euro. 
+
+        Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
 
         Following use cases helps you to understand the current FX capabilities exposed via APIs
-        
+
         1. FX Quote
         2. FX Quote Accept/Reject
         3. Get Trade By ForexContractNo
@@ -58,7 +50,6 @@ tags:
         4. Delete Trade By ForexContractNo
 
 paths:
-  
 
   /v3/payments/search:
     post:
