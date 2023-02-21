@@ -4,8 +4,7 @@ title: Return Payments
 
 ### **Return a payment**
 
-You can use below API to return a payment as long as it allowed as per the payment rail return rules.
-
+You can return a payment using this API if the payment rail supports the return of payments.
 
 [PUT/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/returnPaymentV3/)
 
