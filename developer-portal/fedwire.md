@@ -24,39 +24,6 @@ A corporate treasurer wants to make high-value, time-sensitive payments through 
 	2. Status update of payments at various stages of processing 
 	3. Update payment status in payroll processing platform for each status change
 
-### **Business codes**
-
-Finzly Connect supports the following categories of Fedwire payment business codes.
-
-|**Business Codes**|**Description**|
-| :- | :- |
-|CTR|Customer or Corporate Credit Transfer (Where Beneficiary is a Customer - Consumer/Corporate)|
-|BTR|Bank to Bank Transfer (where Beneficiary is Bank)|
-|CTP|Customer Transfer Plus (Where Beneficiary is a Customer - Consumer /Corporate with Additional remittance information)|
-|DRC|Customer or Corporate Drawdown Request|
-|DRB|Bank to Bank Drawdown Request|
-|DRW|Drawdown Payment|
-|SVC|Service message|
-
-### **Drawdowns**
-- Drawdown initiation is possible using the open Banking API and Bulk Files
-- Every Drawdown request initiated will be received as a separate drawdown payment linking the original payment
-
-### **Cut-off times**
-
-The Fedwire Funds Service business day begins at 9:00 p.m. Eastern Time (ET) on the preceding calendar day and ends at 7:00 p.m. ET, Monday through Friday, excluding designated holidays. However, wire payments can be scheduled anytime as long as it is to be processed in the future
-
-### **Payment Notifications**
-
-Clients can enjoy notifications about the status of the wire payments if they subscribe to webhooks. All the inbound wires can be transmitted with a raw wire message file received from Fed through the FTP source. Customers can configure an inbound FTP account to receive the actual raw messages.
-
-Inbound Drawdown requests are triggered with E-mail notifications to the bank to take an action depending on positive rules set up by the customer.
-
-Payment Status Notification for every event on the wire life cycle will be notified. This will be applied for both outgoing and incoming payments.
-- Validation Failed - Fedwire Payment with the Exception status will be notified
-- OFAC Review/Reject - Fedwire Payment with OFAC compliance Exception will be notified
-- Memo Post Status - Fedwire Payment with memo post status failure will be notified
-- Processed - Notification back to the Customer on payment processing
 
 <!-- Fedwire Funds Services (Fedwire) is a real-time gross settlement transfer system that allows participating financial institutions to send and receive same-day fund transfers. Federal Reserve operates the FEDWIRE payment network and is typically used to process high value payments or the payments that are required to be delivered faster, typically within an hour. Note: There could be delay due to compliance and other bank policies.
 

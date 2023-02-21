@@ -28,7 +28,6 @@ For payments to be sent in real-time, the recipient banks must be able to receiv
 ![image info](./images/fednow.png)
 
 <br><br>
-
 ![image info](./images/rtp.png)
 
 <br>

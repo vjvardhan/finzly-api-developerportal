@@ -4,7 +4,7 @@ title: Search Payments
 
 ### **Search Payments**
 
-[POST /payments/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPaymentsV3/)
+[POST /payments/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/searchPaymentsV3/)
 
 **HTTP  Method: GET**
 
@@ -17,7 +17,7 @@ No argument is required. Only payment details will be passed in the body of the 
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[PaymentSearch](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchPaymentsV3/)|false|none|
+|body|body|[PaymentSearch](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/searchPaymentsV3/)|false|none|
 
 **JSON Response**
 
@@ -118,7 +118,7 @@ No argument is required. Only payment details will be passed in the body of the 
 |data|[Payment]|false|none|none|
 
 ### **Get Payment by UID**
-[GET /payments/{paymentUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPaymentByUIDV3/)
+[GET /payments/{paymentUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/getPaymentByUIDV3/)
 
 **HTTP Method: GET**
 
@@ -227,4 +227,4 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|data|[Payment](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getPaymentByUIDV3/)|false|none|none|
+|data|[Payment](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/getPaymentByUIDV3/)|false|none|none|

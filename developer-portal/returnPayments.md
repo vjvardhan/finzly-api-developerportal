@@ -7,7 +7,7 @@ title: Return Payments
 You can use below API to return a payment as long as it allowed as per the payment rail return rules.
 
 
-[PUT/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/returnPaymentV3/)
+[PUT/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/returnPaymentV3/)
 
 **HTTP Method: PUT**
 
@@ -18,7 +18,7 @@ You can use below API to return a payment as long as it allowed as per the payme
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |paymentUID|path|string|true|none|
-|body|body|[ReturnPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/returnPaymentV3/)|false |Payment unique refrence ID|
+|body|body|[ReturnPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/returnPaymentV3/)|false |Payment unique refrence ID|
 
 **ReturnPaymentRequest**
 

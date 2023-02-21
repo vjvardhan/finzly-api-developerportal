@@ -7,7 +7,7 @@ title: Reverse Payments
 You can use below API to reverse a payment as long as it allowed as per the payment rail rules.
 
 
-[PUT /payments/{paymentUID}/reverse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/reversePaymentV3/)
+[PUT /payments/{paymentUID}/reverse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/reversePaymentV3/)
 
 **HTTP Method: PUT**
 

@@ -11,7 +11,7 @@ You the can schedule a recurring payment using the following simple steps
 
 Execute the below API to get the accountUID (Unique Identifier) associated with the sender bank account.
 
-[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCreditPaymentV3/)
+[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPaymentV3/)
 
 Where: 
 - **customer_UID:** This is the unique ID associated with customer.
@@ -45,7 +45,7 @@ Where:
 
 Execute the below API to get the contactUID (Unique Identifier) associated with the receiver/beneficiary bank account.
 
-[GET - {{URL}}/customers/{{customer_UID}}/contacts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/searchCustomerContactsV2/)
+[GET - {{URL}}/customers/{{customer_UID}}/contacts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/searchCustomerContactsV2/)
 
 Where: 
 - **customer_UID:** This is the unique ID associated with the customer.

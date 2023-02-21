@@ -2,9 +2,7 @@ openapi: 3.0.0
 info:
   version: 1.2.0
   title: Payment Webhook
-tags:
-  - name: Payment Webhook
-    description: Payment webhook API allows third-parties or external systems to recieve realtime payment data updates on various payment event change in the payment galaxy system.
+
 paths:
   /payments:
     post:
