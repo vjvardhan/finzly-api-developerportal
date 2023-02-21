@@ -14,9 +14,10 @@ logo:
 toc:
   enable: true
 oasDefinitions:
-  openApi: ./openapi/openBankingApi.yaml
+  paymentApi: ./openapi/paymentApi.yaml
+  customerApi: ./openapi/customerApi.yaml
   userApi: ./openapi/userAPI.yaml
-  paymentApi: ./openapi/paymentStatus.yaml
+  paymentWebhookApi: ./openapi/paymentWebhook.yaml
 
 # postBodyScripts:
 scripts:

@@ -105,11 +105,11 @@ training:
 - group: Payments
   expanded: true
   pages:
-    - page: openapi/reference.page.yaml/*
+    - page: openapi/paymentAPI.page.yaml/*
 - group: Webhook
   expanded: true
   pages:
-    - page: openapi/paymentReference.page.yaml/*
+    - page: openapi/paymentWebhook.page.yaml/*
 - label: Frequently Asked Questions
   page: developer-portal/faq.md #< NoChange
 - label: Changelog & Feedback
