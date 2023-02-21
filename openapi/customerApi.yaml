@@ -29,19 +29,6 @@ tags:
       3. Search Customer
       4. Get Customer By CustomerUID
 
-  - name: Customer Contacts
-    description: |
-      Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. 
-      
-      Once the contacts are defined the template contact UID can be used in the payment APIs as a receiverAccountId. 
-    
-      Following use cases helps you to understand the current customer contacts capabilities exposed via APIs
-      
-      1. Create Customer Contact
-      2. Update Customer Contact
-      3. Search Customer Contacts
-      4. Get Customer Contact By ContactUID
-      
   - name: Customer Accounts
     description: |
       Customer Accounts APIs helps you can get all the accounts associated for your customer in a single call, you can enhance their experience by providing them most updated balance.
@@ -54,6 +41,19 @@ tags:
       2. Update Customer Account
       3. Search Customer Accounts
       4. Get Customer Account By AccountUID
+
+  - name: Customer Contacts
+    description: |
+      Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. 
+      
+      Once the contacts are defined the template contact UID can be used in the payment APIs as a receiverAccountId. 
+    
+      Following use cases helps you to understand the current customer contacts capabilities exposed via APIs
+      
+      1. Create Customer Contact
+      2. Update Customer Contact
+      3. Search Customer Contacts
+      4. Get Customer Contact By ContactUID
 
 paths: 
   /v2/customers:  

@@ -17,7 +17,7 @@ You can use this API to add a beneficiaries/contacts to an existing customer pro
 |**Name** |**In**|**Type** |**Required** |**Description**|
 | :- | :- | :- | :- | :- |
 |customerUID|path|integer|true|The unique identifier associated with the customer|
-|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomerContactV2/)|true|Contact Info|
+|body|body|CustomerContact|true|Contact Info|
 
 **CustomerContact**
 

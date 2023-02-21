@@ -11,13 +11,14 @@ You the can schedule a recurring payment using the following simple steps
 
 Execute the below API to get the accountUID (Unique Identifier) associated with the sender bank account.
 
-[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerByCustomerUIDV2/)
+[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomerAccountsV2/)
+
 Where: 
 - **customer_UID:** This is the unique ID associated with customer.
-- **account_Number:** This is the account number.
+- **account_Number:** This is the sender's (funding) bank account number.
 
 
-**Bank Account Response:**
+**JSON Response**
 
 ```yaml Before
 {
@@ -30,8 +31,7 @@ Where:
         "type": "DEPOSIT",
         "subType": "CHECKING",
         "systemOfRecords": "Other Core",
-        "balanceType": "Available",
-        "ledgerBalance": null ……
+        "balanceType": "Available", ...
     }
 } 
 

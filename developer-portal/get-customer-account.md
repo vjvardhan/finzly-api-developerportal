@@ -6,7 +6,7 @@ title: Get Funding Account
 
 You can use this API to get the funding bank account details from the CRM system required to originate a payment.
 
-[GET /customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerByCustomerUIDV2/)
+[GET /customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerAccountByAccountUIDV2/)
 
 **HTTP  Method: GET**	
 
