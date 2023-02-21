@@ -1,4 +1,4 @@
----
+	---
 title: Instant Payments
 ---
 
@@ -25,8 +25,7 @@ For payments to be sent in real-time, the recipient banks must be able to receiv
 - Fall back options to route payments depending on receiving banks’ participation in instant payment networks
 
 <br>
-![image info](./images/fednow.png)
-
+![image info](./images/fed.png)
 <br><br>
 ![image info](./images/rtp.png)
 

@@ -3,7 +3,7 @@ title: Reject FX Quote
 ---
 
 ### **Reject FX Quote**
-[PUT /fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)
+[PUT /fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/rejectFXQuoteV2/)
 
 **HTTP Method: PUT**
 
@@ -40,7 +40,7 @@ A successful PUT request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXRejectQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)</p><p></p>|false|none|none|
+|data|<p>[FXRejectQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/rejectFXQuoteV2/)</p><p></p>|false|none|none|
 
 **FX Reject Quote Response Data**
 ```yaml Before

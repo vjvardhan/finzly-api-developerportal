@@ -6,7 +6,7 @@ title: Create Contact
 You can use this API to add a beneficiaries/contacts to an existing customer profile in the CRM system. Once the beneficiaries are defined in the system use can use the contactUID to initiate a payment. This will reduce the complexity or error during the initiation of the payments. 
 
 ### **Creating Customer Contact**
-[POST /customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)
+[POST /customers/{customerUID}/contacts](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomerContactV2/)
 
 **HTTP Method: POST** 
 
@@ -17,7 +17,7 @@ You can use this API to add a beneficiaries/contacts to an existing customer pro
 |**Name** |**In**|**Type** |**Required** |**Description**|
 | :- | :- | :- | :- | :- |
 |customerUID|path|integer|true|The unique identifier associated with the customer|
-|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/createCustomerContactV2/)|true|Contact Info|
+|body|body|[CustomerContact](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomerContactV2/)|true|Contact Info|
 
 **CustomerContact**
 

@@ -3,7 +3,7 @@ title: Cancel FX Trade
 ---
 
 ### **Cancel FX Trade**
-[DELETE /fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)
+[DELETE /fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/cancelFXTradeV2/)
 
 **HTTP Method: Delete**
 
@@ -40,7 +40,7 @@ A successful Delete request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXTradeCancelResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)</p><p></p>|false|none|none|
+|data|<p>[FXTradeCancelResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/cancelFXTradeV2/)</p><p></p>|false|none|none|
 
 **FX Trade Cancel Response Data**
 ```yaml Before

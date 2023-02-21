@@ -3,7 +3,7 @@ title: Accept FX Quote
 ---
 
 ### **Accept FX Quote** 
-[PUT /fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)
+[PUT /fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/acceptFXQuoteV2/)
 
 **HTTP Method: PUT**
 
@@ -14,7 +14,7 @@ title: Accept FX Quote
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[FXAcceptQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)|false|none|
+|body|body|[FXAcceptQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/acceptFXQuoteV2/)|false|none|
 
 **JSON Response**
 
@@ -54,7 +54,7 @@ A successful GET request to this endpoint returns the following data-
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXAcceptQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)</p><p></p>|false|none|none|
+|data|<p>[FXAcceptQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/acceptFXQuoteV2/)</p><p></p>|false|none|none|
 
 **FX Accept Quote Response Data**
 
