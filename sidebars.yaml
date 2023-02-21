@@ -106,6 +106,10 @@ training:
   expanded: true
   pages:
     - page: openapi/paymentAPI.page.yaml/*
+- group: Payments
+  expanded: true
+  pages:
+    - page: openapi/customerAPI.page.yaml/*
 - group: Webhook
   expanded: true
   pages:
