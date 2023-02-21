@@ -1,5 +1,5 @@
 type: reference-docs
-definitionId: openBankingApi
+definitionId: openApi
 settings:
   generateCodeSamples:
     languages:
