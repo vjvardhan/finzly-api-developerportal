@@ -1,7 +1,7 @@
 training:
 # - page: developer-portal/index.md
 - label: Finzly Connect Open API
-  expanded: false
+  expanded: true
   page: developer-portal/index.md
   pages:
     - label: Use cases

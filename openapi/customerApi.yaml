@@ -2034,4 +2034,4 @@ components:
           description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
           example: "Failed to get a customer contact: <Reason>"
         data:
-          $ref: '#/components/schemas/CustomerContact'   
+          $ref: '#/components/schemas/CustomerContact'
