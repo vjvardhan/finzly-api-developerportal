@@ -21,6 +21,7 @@ import {
 import icon1 from './images/payment.png';
 import launchFastIcon from './images/CRM.png';
 import icon3 from './images/useradmin.png';
+import sandboxicon from './images/sandbox.png';
 import bookManagementIcon from './images/book-management.svg';
 import foundOrPrivate from './images/found-or-private.svg';
 
@@ -30,7 +31,7 @@ export default LandingLayout;
 <Jumbotron>
   <NavBar location={props.location} standalone={false} />
   <H1>Finzly Connect API Developer Portal</H1>
-  <H2>Build the Bank Your Customers Need!</H2>
+  <H2>Embed pioneering financial services into your innovative platforms using Finzly Connect</H2>
   <Flex p={20} justifyContent="center">
     {/* <Button size="xlarge" to="#">
       Redocly app
@@ -47,14 +48,15 @@ export default LandingLayout;
 <Box my={25}>
 <br/><br/>
  <FlexSection justifyContent="space-around" flexWrap="wrap">
-    <ThinTile to="developer-portal/payments-api/" icon={icon1} header="Payment APIs" class="main-link">
-       The only true payment hub that unifies your fragmented payment systems and offers central 
-       processing for all your payment rails - domestic, instant, and international payments
+    <ThinTile to="developer-portal/overviewSection.md" icon={icon1} header="Payment APIs" class="main-link">
+       A single API for instant, domestic and international payments to access multiple rails like ACH, Fedwire, RTP and FedNow.
     </ThinTile>
-    <ThinTile to="developer-portal/customer-api.md" icon={launchFastIcon} header="Customer APIs" class="main-link">
-       The Customer API allows sponsored bank to onboard and manage their customers,
-        bank accounts, contacts (beneficiary) in FinzlyOS to allow money movement easily
+    <ThinTile to="developer-portal/accounts.md" icon={launchFastIcon} header="Customer APIs" class="main-link">
+       Manage customers, accounts and beneficiaries for seamless money movement
     </ThinTile>
+    <ThinTile to="openapi/paymentAPI.page.yaml/*" icon={sandboxicon} header="Try Finzly Connect" class="main-link">
+       Try our Finzly Connect sandbox API access to simulate your use cases in a dedicated testing environment.
+    </ThinTile>	
   </FlexSection>
   {/* <Jumbotron parallaxEffect bgImage={icon1}>
     <H1>Tutorials</H1>

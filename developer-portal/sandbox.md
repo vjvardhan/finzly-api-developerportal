@@ -8,7 +8,7 @@ Let your imagination and creativity run wild as you build your embedded experien
 
 ### **Sandbox access:**
 
-Our sandbox provides a test environment where you can start testing and experiencing our APIs to manage accounts, payments and more. To request access to our sandbox environment, follow this [**https://finzly.com/api-access**](https://finzly.com/api-access). For regulatory, suitability evaluation and validation purposes, our team must approve access. 
+Our sandbox provides a test environment where you can start testing and experiencing our APIs to manage accounts, payments and more. To request access to our sandbox environment, submit your information at [**https://finzly.com/api-access**](https://finzly.com/api-access). For regulatory, suitability evaluation and validation purposes, our team must approve access. 
 
 
 ### **Authentication**

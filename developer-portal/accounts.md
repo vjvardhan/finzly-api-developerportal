@@ -18,7 +18,7 @@ Virtual accounts replace the need to create many individual bank accounts, while
 
 The flexible virtual account setup through Ledger-as-a-service can be used for client money management for Asset management, Pension Funds, Real estate, Digital wallets, Virtual cash management (POBO, COBO) and many more use cases.
 
-Ledger-as-a-service model:
+### **Ledger-as-a-service model**
 
 <!-- ## **ACH Payment** -->
 ![image info](./images/fbo-account.png)

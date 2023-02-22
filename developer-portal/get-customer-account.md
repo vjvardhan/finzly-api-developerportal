@@ -6,24 +6,13 @@ title: Get Funding Account
 
 You can use this API to get the funding bank account details from the CRM system required to originate a payment.
 
-[GET /customers/{customerUID}/accounts/{accountUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerAccountByAccountUIDV2/)
+Execute the below API to get the accountUID (Unique Identifier) associated with the sender’s bank account.
 
-**HTTP  Method: GET**	
+[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomerAccountsV2/)
 
-**Description -** Sending a GET request to **/customers/{customerUID}/accounts/{accountUID}** endpoint allows users to retrieve a customer account associated with parameters including customerUID and accountUID. All parameters and objects are specified below -
-
-**Request Parameters**
-
-Two parameters need to be passed in the path of the API request, customerUID and account UID of the user registered with customer/corporate.
-
-
-|**Name**|**In**|**Data Type**|**Required**|**Description**|
-| :- | :- | :- | :- | :- |
-|customerUID|path|string|true|none|
-|accountUID|path|string|true|none|
-|includeAccountBalance|query|string|false|<p></p><p>none</p>|
-|page|query|string|false|none|
-|limit|query|string|false|none|
+Where: 
+- **customer_UID:** This is the unique ID associated with customer.
+- **account_Number:** This is the sender's (funding) bank account number.
 
 
 **JSON Response**

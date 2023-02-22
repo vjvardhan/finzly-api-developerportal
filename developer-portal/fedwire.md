@@ -6,7 +6,11 @@ title: Fedwire
 
 ## **Fedwire** 
 
-Fedwire Funds Services (Fedwire) is a real-time gross settlement transfer system that allows participating financial institutions to send and receive same-day fund transfers. Federal Reserve operates the Fedwire payment network, typically used to process high value payments or payments that are required to be delivered faster, generally in a matter of hours. Wire APIs are increasingly being used to build cash management applications and ESCROW services for real estate, broker-dealer payments and many more B2B use cases.
+Fedwire Funds Services (Fedwire) is a real-time gross settlement (RTGS) transfer system that allows participating financial institutions to send and receive same-day fund transfers. Federal Reserve operates the Fedwire payment network, typically used to process high value payments or payments that are required to be delivered faster, generally in a matter of hours. Wire APIs are increasingly being used to build cash management applications and ESCROW services for real estate, broker-dealer payments and many more B2B use cases.
+
+<!-- ## **Fedwire Payment** -->
+![image info](./images/fedwire-payment.png)
+
 
 ### **Key features of Finzly Connect wire API:**
 

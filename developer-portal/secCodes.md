@@ -26,7 +26,7 @@ Each payment entry must be categorized under one of the several Service Entry Cl
 |WEB|Internet-Initiated/Mobile Entries|Credit WEB Entries: A Person-to-Person entry transmitted on behalf of one natural person to another natural person, or between accounts belonging to the same natural person. <br><br>Debit WEB Entries: ACH entry initiated according to an authorization obtained via the internet or a wireless network (e.g. mobile device) except for an oral authorization via a telephone call.|Credit / Debit|Corporate to Consumer|
 |DNE|Death Notification Entry|Federal Govt. Agency Use Only |Non-Monetary|Consumer|
 
-***Note:BankOS payment platform supports all above SEC codes from RDFI perspective. However, from the ODFI perspective the following SEC codes are supported in the platfrom BOC, CCD, CIE, CTX, IAT, POP, POS, PPD, TEL and WEB.***
+***Note: Finzly Connects supports all above SEC codes from RDFI perspective. However, from the ODFI perspective the following SEC codes are supported in the platfrom BOC, CCD, CIE, CTX, IAT, POP, POS, PPD, TEL and WEB.***
 
 **Addenda Record** 
 

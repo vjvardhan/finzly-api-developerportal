@@ -2,15 +2,16 @@
 title: International Payments
 ---
 
-
-
 ## **International Payments**
 
 International payments are made over the SWIFT network. Businesses and consumers can send and receive payments from global vendors and customers. As the sending and receiving parties are in different countries, payments are made using the SWIFT network.
 
 Finzly Connect API simplifies sending and receiving global payments, allowing customers to track the payment status through timely notifications. Our APIs can connect your platform to banks that are connected to SWIFT, either through a correspondent bank or directly to the SWIFT network.
 
-<!-- Diagram -->
+<!-- ## **SWIFT Payment** -->
+![image info](./images/swift-payment.png)
+
+
 ### **Key features of Finzly Connect International payments API:**
 - Secure international transactions with traceability for ongoing transactions
 - Combine our multi-currency account feature for greater flexibility to build innovative solutions

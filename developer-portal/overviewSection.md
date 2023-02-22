@@ -13,7 +13,8 @@ Using the APIs, users can originate payments, request and process collection thr
 
 <br/><br/>
 
-Benefits of Finzly Connect Payments API:
+**Benefits**
+
 - Payments are optimized based on acceptance, speed of delivery and/or cost
 - Event-driven notifications when payment statuses change, helping you offer exceptional CX
 - Accepts payment instructions in different formats - ISO20022, SWIFT MT, custom and NACHA formats

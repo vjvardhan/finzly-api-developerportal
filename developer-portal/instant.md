@@ -8,8 +8,8 @@ title: Instant Payments
 Instant payments settle in real time providing speed and immediacy for fund availability, creating a lot of value and convenience to consumers and businesses. 
 
 In the US, there are two instant payment networks.
-- RTP that settles on the Real-Time Payments network, facilitated by The Clearing House.
-- FedNow that settles on the FedNow network, facilitated by The Federal Reserve Board
+- [**RTP**](https://www.theclearinghouse.org/payment-systems/rtp) that settles on the Real-Time Payments network, facilitated by The Clearing House.
+- [**FedNow**](https://www.frbservices.org/financial-services/fednow) that settles on the FedNow network, facilitated by The Federal Reserve Board
 
 It is important to note that while instant payments are also enabled by card providers, they are more expensive than RTP and FedNow payments. Finzly offers instant payments from one bank account to another bank account using both RTP and FedNow networks, depending on the sending/receiving banks’ connectivity. 
 
