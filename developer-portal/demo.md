@@ -1,5 +1,4 @@
 ## **Use Cases**
-
  <div id="formList">
         <div id="list">
             <div class="item">
@@ -151,11 +150,10 @@
     </div>
 
 
-
+<br><br><br>
 The Finzly Connect API has been designed to cater to a wide array of industry use cases, enabling frictionless payment experiences in your platforms and applications.  Our APIs offer the flexibility to suit your payment needs – ACH, domestic and international wires, instant payments on the FedNow and RTP. We offer the flexibility and transparency to help you delight your customers, whatever your industry is.
 
 Sample use cases that can use our APIs:
-<!-- **Sample use cases that can use our APIs:** -->
 
 ### **Insurance**
 

@@ -15,6 +15,11 @@ It is important to note that while instant payments are also enabled by card pro
 
 For payments to be sent in real-time, the recipient banks must be able to receive instant payments either on RTP or FedNow, failing which the payments will be routed through the next fastest network or depending on the bespoke routing rules set up for the workflow.
 
+
+![image info](./images/fed.png)
+
+![image info](./images/rtp.png)
+
 ### **Key features of Finzly Connect instant payment API:**
 - Access to both RTP and FedNow networks with a single API
 - ISO20022 format messaging
@@ -23,12 +28,6 @@ For payments to be sent in real-time, the recipient banks must be able to receiv
 - Initiate, Track and Search for payments
 - Access to network participant list and participation details
 - Fall back options to route payments depending on receiving banks’ participation in instant payment networks
-
-
-![image info](./images/fed.png)
-
-![image info](./images/rtp.png)
-
 
 ### **Use case in action:**
 
