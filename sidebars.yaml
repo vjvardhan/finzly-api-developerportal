@@ -66,9 +66,9 @@ training:
           expanded: false
           # page: developer-portal/index.md
           pages:
-            - label: Customer Onboarding
+            - label: Customer Management
               page: developer-portal/customer-api.md #< NoChange
-            - label: Account Onboarding
+            - label: Account Management
               page: developer-portal/customer-account-api.md #< NoChange
             - label: Contact Management
               page: developer-portal/customer-contact-api.md #< NoChange

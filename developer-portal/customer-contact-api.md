@@ -1,5 +1,5 @@
 ---
-title: Customer Contact
+title: Contact Management
 ---
 ## **Contact Management**
 

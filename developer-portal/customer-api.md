@@ -1,8 +1,8 @@
 ---
-title: Customer Onboarding
+title: Customer Management
 ---
 
-## Customer Onboarding
+## Customer Management
 
 Customer APIs entitle the setup of clients as part of customer onboarding to enable them to perform financial transactions on their behalf. These APIs will also enable users to search & maintain these onboarded clients, update any modifications in client information and create/update their beneficiaries (contacts). The APIs support the following:
 

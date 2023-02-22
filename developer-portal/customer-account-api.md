@@ -1,8 +1,8 @@
 ---
-title: Account Onboarding
+title: Account Management
 ---
 
-## Account Onboarding
+## Account Management
 
 Customer Accounts APIs help users get all the accounts associated with their customer in a single call. You can enhance the customer experience by providing them with the most updated balance. Besides, you can further add value by tracking payment transactions related to these individual accounts.
 
@@ -126,7 +126,7 @@ A successful GET request to this endpoint returns the following data -
 
 **HTTP Method: POST**	
 
-**Description -** Sending a POST request to **/customers/{customerUID}/accounts** endpoint allows users to create a customer account using parameters including customerUID. All parameters and objects are specified below:
+**Description -** Sending a POST request to "/customers/{customerUID}/contacts" endpoint allows users to create new contacts for an existing customer. Corporate entities acting as customers can create contacts. Once created, they don't need to enter the details for payment/transaction purposes. It is a one-time registration for each corporate entity.
 
 **Request Parameters**
 

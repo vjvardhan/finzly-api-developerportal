@@ -1,10 +1,10 @@
 ---
-title: Finzly API Changelog and Feedback
+title: Finzly Connetc Changelog
 ---
 
 
 
-## **Changelog & Feedback** 
+## **Changelog** 
 
 ### **April 7th,2023**
 

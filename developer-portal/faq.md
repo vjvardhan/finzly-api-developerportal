@@ -1,5 +1,5 @@
 ---
-title: Finzly API FAQ section 
+title: Finzly Connect FAQ section 
 ---
 
 # **Frequently Asked Questions**

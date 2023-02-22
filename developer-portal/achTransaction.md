@@ -18,7 +18,7 @@ In case the receiving party’s information is changed for a Credit or Debit req
 
 **Returns**
 
-When the RDFI returns the credit or debit request, the ODFI may accept the return or dishonor the return.
+When the RDFI returns the credit or debit request, the ODFI may accept the return or dishonor the return. The following return codes are available in the system
 
 |**Return Code**|**Return Title**|**Return Description**|
 | :- | :- | :- | 
@@ -68,9 +68,12 @@ When a bank’s customer initiates ACH transfers for which the bank acts in the 
 Standard ACH payments usually take 2-3 business days to get posted into customer accounts. Same Day ACH is an improvement to the ACH network. It allows both credit and debit transactions to be processed several times daily, resulting in same-day processing and settlement of ACH transactions.  
 Same-day ACH is finding several uses in bill payments, same-day payrolls and B2B payments.
 
-**Cutoff Times** 
+**Processing Times** 
 
-The Federal Reserve processes the files on all bank working days. Same day ACH transactions will be processed by 16:00 PM (EST) and Standard ACH files are transmitted at the following times (EST) 10:00 AM, 14:00 PM, 16:00 PM, 19:30 PM, 22:30 PM.
+The Federal Reserve processes the files on all bank working days. 
+
+Same day ACH transactions will be processed at the following times (EST) 10:00 AM, 14:00 PM, 16:00 PM
+Standard ACH files are transmitted at the following times (EST) 10:00 AM, 14:00 PM, 16:00 PM, 19:30 PM, 22:30 PM.
 
 <!--
 ## **ACH Positive Pay** 

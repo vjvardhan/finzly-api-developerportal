@@ -6,7 +6,6 @@ title: Finzly API Errors
 
 Each time an API request fails, a HTTP status code is sent in response indicating an error. The associated information elaborates on the error, helping developers to troubleshoot effectively.
 
-[Finzly API Errors (redoc.ly)](https://finzlyconnect-api-developer-portal.redoc.ly/developer-portal/errors/)
 <br></br>
 
 **Http Response Codes**
