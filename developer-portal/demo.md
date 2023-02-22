@@ -208,7 +208,7 @@ Delight your customers with a seamless checkout experience through instant check
 - Friction-free checkout payments
 - Account validation
 
-### **Logistics platforms*
+### **Logistics platforms**
 Enable carriers, shippers, and receivers to enjoy payments on time. Save costs using bank transfers for instant and worldwide payments.
 - Instant payments on delivery
 - International supplier payments
