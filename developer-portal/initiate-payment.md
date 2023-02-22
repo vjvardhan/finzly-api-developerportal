@@ -4,7 +4,7 @@ title: Initiate a payout
 
 ## How to initiate a payout
 
-You can initiate a payment using the following simple steps. The Finzly Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and RTP/FedNow based upon the speed preference.
+You can initiate a payment using the following simple steps. Finzly Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and RTP/FedNow based upon the speed preference.
 
 ### **Step 1: Identify the sender bank (funding) account unique identifier (accountUID)**
 

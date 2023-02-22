@@ -4,7 +4,7 @@ title: Instant Payment
 
 ## How to initiate an instant payment
 
-You can initiate an instant payment using the following simple steps. The Finzly's Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and Instant based upon the speed preference.
+You can initiate an instant payment using the following simple steps. Finzly Connect single payment API supports the payment origination for the various payment rails such as ACH, Fedwire, SWIFT, and Instant based upon the speed preference.
 
 
 ### **Step 1: Identify the sender bank account (funding)  unique identifier (accountUID)**

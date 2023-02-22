@@ -1,12 +1,12 @@
 ---
-title: Sandbox and Testing
+title: Getting started
 ---
 
-## **Getting started with Finzly Connect API**
+## **Getting started with Finzly Connect**
 
 Let your imagination and creativity run wild as you build your embedded experience to delight your customers. We have designed an intuitive sandbox that is as self-service as possible, so that you can begin building using the blocks that Finzly Connect provides.
 
-### **Sandbox access:**
+### **Sandbox access**
 
 Our sandbox provides a test environment where you can start testing and experiencing our APIs to manage accounts, payments and more. To request access to our sandbox environment, submit your information at [**https://finzly.com/api-access**](https://finzly.com/api-access). For regulatory, suitability evaluation and validation purposes, our team must approve access. 
 
