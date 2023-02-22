@@ -55,7 +55,7 @@ paths:
     post:
       tags: 
          - Payments
-      summary: Search payments (v3)
+      summary: Search payments
       operationId: searchPaymentsV3
       description: Retrieve list of payments.
       requestBody:
@@ -100,7 +100,7 @@ paths:
     post:
       tags: 
         - Payments
-      summary: Create a Credit Payment (v3)
+      summary: Create a Credit Payment
       operationId: createCreditPaymentV3
       description: |
         Submit domestic or international one time or recurring payments
@@ -149,7 +149,7 @@ paths:
     post:
       tags: 
         - Payments
-      summary: Create a Debit Payment (v3)
+      summary: Create a Debit Payment
       operationId: createDebitPaymentV3
       description: |
         Submit domestic or international one time or recurring payments
@@ -199,9 +199,9 @@ paths:
     post:
       tags: 
         - Payments
-      summary: Initiate a Book Transfer Request (v3)
+      summary: Initiate a Book (Transfer) Payment
       operationId: booktransfer
-      description: Initiate Book Transfer 
+      description: Initiate Book Transfer
       requestBody:
         content:
           application/json:
@@ -247,8 +247,8 @@ paths:
     get:
       tags: 
          - Payments
-      summary: Get Payment by paymentUID (v3)
-      operationId: getPaymentByUIDV3
+      summary: Get Payment
+      operationId: getPaymentByUID
       description: Retrieve a payment using payment uid.
       parameters:
       - name: paymentUID
@@ -293,7 +293,7 @@ paths:
     put:
       tags: 
          - Payments
-      summary: Cancel Payment by paymentUID (v3)
+      summary: Cancel Payment
       operationId: cancelPaymentV3
       description: Cancel a payment.
       parameters:
@@ -339,7 +339,7 @@ paths:
     put:
       tags: 
          - Payments
-      summary: Return a payment by paymentUID (v3)
+      summary: Return a payment
       operationId: returnPaymentV3
       description: Return a payment.
       parameters:
@@ -449,7 +449,7 @@ paths:
     post:
       tags: 
         - Foreign Exchange
-      summary: Get FX Quote (v2)
+      summary: Get FX Quote
       operationId: getFXQuoteV2
       description: Request quote for FX trade      
       requestBody:
@@ -497,7 +497,7 @@ paths:
     put:
       tags: 
         - Foreign Exchange
-      summary: Accept FX Quote (v2)
+      summary: Accept FX Quote
       operationId: acceptFXQuoteV2
       description: Accept FX Quote using quoteUUID
       requestBody:
@@ -543,7 +543,7 @@ paths:
     put:
       tags: 
         - Foreign Exchange
-      summary: Reject FX Quote (v2)
+      summary: Reject FX Quote
       operationId: rejectFXQuoteV2
       description: Reject FX Quote using quoteUUID
       parameters:
@@ -591,7 +591,7 @@ paths:
     get:
       tags: 
         - Foreign Exchange
-      summary: Get FX trade information (v2)
+      summary: Get FX trade
       operationId: getFXTradeInformationV2
       description: Get FX trade information using forexContractNo
       parameters:
@@ -638,7 +638,7 @@ paths:
     get:
       tags: 
         - Foreign Exchange
-      summary: Cover FX trade (v2)
+      summary: Cover FX trade
       operationId: coverFXTradeV2
       description: Cover FX trade using the forexContractNo
       parameters:
@@ -688,7 +688,7 @@ paths:
     delete:
       tags: 
         - Foreign Exchange
-      summary: Cancel FX trade (v2)
+      summary: Cancel FX trade
       operationId: cancelFXTradeV2
       description: Cancel FX Trade using forexContractNo
       parameters:

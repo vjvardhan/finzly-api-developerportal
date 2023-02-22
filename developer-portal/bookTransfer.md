@@ -5,7 +5,7 @@ title: Transfer Payment
 ## **Transfer Payment**
 Transfer payment is used to move money within a bank or within a ledger. The book transfer does not require any payment rail for the money movement. 
 
-[POST /payments/booktransfer](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/booktransfer/)
+[POST /payments/booktransfer](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/booktransfer/)
 
 **HTTP Method: POST**
 
@@ -17,7 +17,7 @@ All details will be passed in the body of the API request.
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[BookTransferRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/booktransfer/)|true|Payment fields|
+|body|body|[BookTransferRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/booktransfer/)|true|Payment fields|
 
 
 

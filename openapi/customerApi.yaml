@@ -60,7 +60,7 @@ paths:
     post:
       tags:
         - Customers
-      summary: Add customer (v2)
+      summary: Add customer
       operationId: createCustomerV2
       description: Create an customer to the finzly CRM system
       requestBody:
@@ -112,7 +112,7 @@ paths:
     get:
       tags:
          - Customers
-      summary: Search customers (v2)
+      summary: Search customers
       operationId: searchCustomersV2
       description: Search customers using various customer parameters such as legal name, short name etc.
       parameters:
@@ -217,7 +217,7 @@ paths:
     get:
       tags: 
          - Customers
-      summary: Get customer (v2)
+      summary: Get customer
       operationId: getCustomerByCustomerUIDV2
       description: Retrieve the customer information from the system, using the unique identifier associated with the customer
       parameters:
@@ -270,7 +270,7 @@ paths:
     put:
       tags:
         - Customers
-      summary: Update customer (v2)
+      summary: Update customer
       operationId: updateCustomerByCustomerUIDV2
       description: Update an existing customer information
       parameters:
@@ -331,7 +331,7 @@ paths:
     post:
       tags: 
          - Customer Contacts
-      summary: Create customer contact (v2)
+      summary: Create customer contact
       operationId: createCustomerContactV2
       description: Create a new contact for the  existing customer
       parameters:
@@ -382,7 +382,7 @@ paths:
     get:
       tags: 
          - Customer Contacts
-      summary: Search customer contacts (v2)
+      summary: Search customer contacts
       operationId: searchCustomerContactsV2
       description: Search customer contacts using various parameters
       parameters:
@@ -453,7 +453,7 @@ paths:
     get:
       tags: 
          - Customer Contacts
-      summary: Get customer contact (v2)
+      summary: Get customer contact
       operationId: getCustomerContactByUIDV2
       description: Retrieve customer contact details.
       parameters:
@@ -504,7 +504,7 @@ paths:
     put:
       tags: 
          - Customer Contacts
-      summary: Update customer contact (v2)
+      summary: Update customer contact
       operationId: updateCustomerContactByUIDV2
       description: Update customer contact details.
       parameters:
@@ -558,16 +558,12 @@ paths:
                   $ref: '#/components/schemas/Error'
         '503':
           description: Service unavailable    
-          
-              
-
- 
 
   /v2/customers/{customerUID}/accounts:
     post:
       tags: 
          - Customer Accounts
-      summary: Create customer account (v2)
+      summary: Create customer account
       operationId: createCustomerAccountV2
       description: Create an customer account.
       parameters:
@@ -618,7 +614,7 @@ paths:
     get:
       tags: 
          - Customer Accounts
-      summary: Search Customer Accounts (v2)
+      summary: Search customer accounts
       operationId: searchCustomerAccountsV2
       description: Search the customer accounts using various account parameters.
       parameters:
@@ -699,7 +695,7 @@ paths:
     get:
       tags: 
          - Customer Accounts
-      summary: Get customer account (v2)
+      summary: Get customer account
       operationId: getCustomerAccountByAccountUIDV2
       description: Retrieve a customer account associated with customerUID and accountUID
       parameters:
@@ -770,7 +766,7 @@ paths:
     put:
       tags: 
          - Customer Accounts
-      summary: Update customer account (v2)
+      summary: Update customer account
       operationId: updateCustomerAccountByAccountUIDV2
       description: Update Customer Account
       parameters:
