@@ -354,12 +354,12 @@ div [data-cy="sidebar-item-Customer Onboarding"], div [data-cy="sidebar-item-Acc
     margin-left: 32px;
 }
 
-div [data-cy="sidebar-item-Sandbox APIs"]{
-    color:#9b9da1;
+div [data-cy="sidebar-item-Try Finzly Connect"]{
+    color:#314F61;
 }
-div [data-cy="sidebar-item-Sandbox APIs"]:hover{
+div [data-cy="sidebar-item-Try Finzly Connect"]:hover{
     background-color: transparent;
-    color:#9b9da1;
+    color:#314F61;
 }
 .gbwUkf table ul,.fmDiqV table ul{
     padding-left: 20px!important;
