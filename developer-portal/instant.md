@@ -15,14 +15,17 @@ It is important to note that while instant payments are also enabled by card pro
 
 For payments to be sent in real-time, the recipient banks must be able to receive instant payments either on RTP or FedNow, failing which the payments will be routed through the next fastest network or depending on the bespoke routing rules set up for the workflow.
 
-### **Fednow Payment Flow:**
+### **FedNow Payment Flow:**
  
 ![image info](./images/fed.png)
+
+Source: https://www.frbservices.org/financial-services/fednow/about.html
 
 ### **RTP Payment Flow:**
 
 ![image info](./images/rtp.png)
 
+Source: https://www.theclearinghouse.org/payment-systems/rtp
 
 <br>
 
