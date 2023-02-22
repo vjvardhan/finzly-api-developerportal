@@ -112,6 +112,6 @@ A successful POST request to this endpoint returns the following data -
 **CreateCustomerContactResponse_data**
 
 |**Name**|**Type**|**Description**|
-| :- | :- | :- | :- | :- |
+| :- | :- | :- |
 |customerContactUID|string|Unique identifier assigned by the system|
 |externalReferenceId|string|External referenceID provided to the API|
