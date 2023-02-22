@@ -1,10 +1,12 @@
 ---
-title: Return Payments
+title: Return a Payment
 ---
 
 ### **Return a payment**
 
 You can return a payment using this API if the payment rail supports the return of payments.
+
+<br>
 
 [PUT/payments/{paymentUID}/return](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/returnPaymentV3/)
 

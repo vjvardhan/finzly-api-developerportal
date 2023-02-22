@@ -46,7 +46,7 @@ training:
             page: developer-portal/scheduling-payment.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
           - label: Scheduling Recurring Payout
             page: developer-portal/recurring-payment.md #< NEW # Get the "Create Credit Payment" section from the "payments-api.md" and create new MD File 
-          - label: Instant Payments
+          - label: Instant Payment
             page: developer-portal/instant-payment.md #< NoChange
           - label: Search Payments
             page: developer-portal/searchPayments.md #< NEW # Get the "Search Payment and Get Payment" section from the "payments-api.md" and create new MD File 

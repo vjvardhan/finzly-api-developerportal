@@ -1,8 +1,8 @@
 ---
-title: Schedule Payment  
+title: Schedule a Payout  
 ---
 
-## How to schedule a payment
+## How to schedule a payout
 
 You can schedule a payment using the following simple steps
 

@@ -1,8 +1,8 @@
 ---
-title: Schedule Recurring Payment  
+title: Schedule Recurring Payout  
 ---
 
-## How to schedule a recurring payment
+## How to schedule a recurring payout
 
 You the can schedule a recurring payment using the following simple steps
 
