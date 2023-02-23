@@ -14,9 +14,9 @@ servers:
         description: DNS
 info:
   version: 2.2.0
-  title: Customer API
+  title: Customer and Account API
 tags:
-  - name: Customers
+  - name: Customer
     description: |
       Customer APIs entitles the downstream partners, Banks and their associates to formally onboard clients with all the necessary information required to perform financial operations. 
       
@@ -27,9 +27,9 @@ tags:
       1. Create Customer
       2. Update Customer
       3. Search Customer
-      4. Get Customer By CustomerUID
+      4. Get Customer
 
-  - name: Customer Accounts
+  - name: Customer Account
     description: |
       Customer Accounts APIs helps you can get all the accounts associated for your customer in a single call, you can enhance their experience by providing them most updated balance.
       
@@ -40,9 +40,9 @@ tags:
       1. Create Customer Account
       2. Update Customer Account
       3. Search Customer Accounts
-      4. Get Customer Account By AccountUID
+      4. Get Customer Account
 
-  - name: Customer Contacts
+  - name: Customer Contact
     description: |
       Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. 
       
@@ -53,13 +53,13 @@ tags:
       1. Create Customer Contact
       2. Update Customer Contact
       3. Search Customer Contacts
-      4. Get Customer Contact By ContactUID
+      4. Get Customer Contact
 
 paths: 
   /v2/customers:  
     post:
       tags:
-        - Customers
+        - Customer
       summary: Add customer
       operationId: createCustomerV2
       description: Create an customer to the finzly CRM system
@@ -111,7 +111,7 @@ paths:
           description: Service unavailable      
     get:
       tags:
-         - Customers
+         - Customer
       summary: Search customers
       operationId: searchCustomersV2
       description: Search customers using various customer parameters such as legal name, short name etc.
@@ -216,7 +216,7 @@ paths:
   /v2/customers/{customerUID}:
     get:
       tags: 
-         - Customers
+         - Customer
       summary: Get customer
       operationId: getCustomerByCustomerUIDV2
       description: Retrieve the customer information from the system, using the unique identifier associated with the customer
@@ -269,7 +269,7 @@ paths:
           description: Service unavailable   
     put:
       tags:
-        - Customers
+        - Customer
       summary: Update customer
       operationId: updateCustomerByCustomerUIDV2
       description: Update an existing customer information
@@ -330,7 +330,7 @@ paths:
   /v2/customers/{customerUID}/contacts:
     post:
       tags: 
-         - Customer Contacts
+         - Customer Contact
       summary: Create customer contact
       operationId: createCustomerContactV2
       description: Create a new contact for the  existing customer
@@ -381,7 +381,7 @@ paths:
           description: Service unavailable
     get:
       tags: 
-         - Customer Contacts
+         - Customer Contact
       summary: Search customer contacts
       operationId: searchCustomerContactsV2
       description: Search customer contacts using various parameters
@@ -452,7 +452,7 @@ paths:
   /v2/customers/{customerUID}/contacts/{contactUID}:
     get:
       tags: 
-         - Customer Contacts
+         - Customer Contact
       summary: Get customer contact
       operationId: getCustomerContactByUIDV2
       description: Retrieve customer contact details.
@@ -503,7 +503,7 @@ paths:
       
     put:
       tags: 
-         - Customer Contacts
+         - Customer Contact
       summary: Update customer contact
       operationId: updateCustomerContactByUIDV2
       description: Update customer contact details.
@@ -562,7 +562,7 @@ paths:
   /v2/customers/{customerUID}/accounts:
     post:
       tags: 
-         - Customer Accounts
+         - Customer Account
       summary: Create customer account
       operationId: createCustomerAccountV2
       description: Create an customer account.
@@ -613,7 +613,7 @@ paths:
           description: Service unavailable  
     get:
       tags: 
-         - Customer Accounts
+         - Customer Account
       summary: Search customer accounts
       operationId: searchCustomerAccountsV2
       description: Search the customer accounts using various account parameters.
@@ -694,7 +694,7 @@ paths:
   /v2/customers/{customerUID}/accounts/{accountUID}:
     get:
       tags: 
-         - Customer Accounts
+         - Customer Account
       summary: Get customer account
       operationId: getCustomerAccountByAccountUIDV2
       description: Retrieve a customer account associated with customerUID and accountUID
@@ -765,7 +765,7 @@ paths:
           
     put:
       tags: 
-         - Customer Accounts
+         - Customer Account
       summary: Update customer account
       operationId: updateCustomerAccountByAccountUIDV2
       description: Update Customer Account
@@ -822,8 +822,8 @@ paths:
           description: Service unavailable
     delete:
       tags: 
-         - Customer Accounts
-      summary: Delete customer account (v2)
+         - Customer Account
+      summary: Delete customer account
       operationId: deleteCustomerAccountByAccountUIDV2
       description: Delete Customer Account
       parameters:

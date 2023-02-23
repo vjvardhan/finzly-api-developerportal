@@ -25,7 +25,7 @@ tags:
         Following use cases helps you to understand the current payment capabilities exposed via APIs.       
 
         1. Initiate Credit Payment (Payout)
-        2. Initiate Debit Payment (Collections)
+        2. Initiate Debit Payment (Collection)
         3. Get Payment
         4. Search Payments
         5. Cancel Payment
@@ -35,22 +35,20 @@ tags:
 
   - name: Foreign Exchange
     description: | 
-        Foreign Exchange (forex or FX) is the trading of one currency for another.
-
-        For example, one can swap the U.S. dollar for the euro. 
+        Foreign Exchange (FX) is the trading of one currency for another. For example, one can swap the U.S. dollar for the euro. 
 
         Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
 
         Following use cases helps you to understand the current FX capabilities exposed via APIs
 
-        1. FX Quote
-        2. FX Quote Accept/Reject
-        3. Get Trade By ForexContractNo
-        4. Delete Trade By ForexContractNo
-        4. Delete Trade By ForexContractNo
-
+        1. Get FX Quote
+        2. Accept FX Quote
+        3. Reject FX Quote
+        4. Get FX Trade
+        5. Cover FX Trade
+        6. Cancel FX Trade 
+        
 paths:
-
   /v3/payments/search:
     post:
       tags: 
@@ -100,7 +98,7 @@ paths:
     post:
       tags: 
         - Payments
-      summary: Create a Credit Payment
+      summary: Initiate a Credit Payment (Payout)
       operationId: createCreditPaymentV3
       description: |
         Submit domestic or international one time or recurring payments
@@ -149,7 +147,7 @@ paths:
     post:
       tags: 
         - Payments
-      summary: Create a Debit Payment
+      summary: Initiate a Debit Payment (Collection)
       operationId: createDebitPaymentV3
       description: |
         Submit domestic or international one time or recurring payments
@@ -394,7 +392,7 @@ paths:
     put:
       tags: 
          - Payments
-      summary: Reverse a payment by paymentUID (v3)
+      summary: Reverse a payment
       operationId: reversePaymentV3
       description: Reverse a payment.
       parameters:
