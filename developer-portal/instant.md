@@ -19,13 +19,17 @@ For payments to be sent in real-time, the recipient banks must be able to receiv
  
 ![image info](./images/fed.png)
 
-Source: https://www.frbservices.org/financial-services/fednow/about.html
+
+<br>
+Image Source: https://www.frbservices.org/financial-services/fednow/about.html
 
 ### **RTP Payment Flow:**
 
 ![image info](./images/rtp.png)
 
-Source: https://www.theclearinghouse.org/payment-systems/rtp
+
+<br>
+Image Source: https://www.theclearinghouse.org/payment-systems/rtp
 
 <br>
 
