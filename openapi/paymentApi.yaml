@@ -1,17 +1,11 @@
 openapi: 3.0.0
 servers:
   - description: FinzlyConnect Payment APIs
-    url: https://sandbox-digitalbanking-uat.finzly.io/auth/realms/SANDBOX/protocol/openid-connect/token
+    url: https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token
     variables:
       tenant:
         default: sandbox
-        description: Tenant
-      environment:
-        default: uat
-        description: Environment
-      dns:
-        default: finzly.io
-        description: DNS
+        description: BankOS tenant code
 info:
   version: 2.2.0
   title: Payment API
