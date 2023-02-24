@@ -1,8 +1,8 @@
 meta:
-  title: Finzly API  Training
-  description: The best API documentation generator ever.
-  siteUrl: https://developer-portal-starter.redoc.ly
-  keywords: redocly developer portal, api portal starter, api reference docs
+  title: Finzly Connect
+  description: Embed pioneering financial services into your innovative platforms using Finzly Connect
+  siteUrl: https://api.finzly.io/
+  keywords: Finzly, API , BaaS, Payment Hub, Payments, FX, International payments, Foreign Exchange, BankOS, FinzlyOS, open Banking API
   lang: en-US
 linkChecker:
   severity: warning
@@ -10,7 +10,7 @@ linkChecker:
     CheckExternal: false
 logo:
   image: ./images/logo.png
-  altText: Finzly API 
+  altText: Finzly Connect 
 toc:
   enable: true
 oasDefinitions:
@@ -44,7 +44,7 @@ nav:
   - label: API Docs
     page: developer-portal/index.md
 
-  - label: Main Site
+  - label: Finzly.com
     icon: ./images/logo.png
     href: https://finzly.com/
 

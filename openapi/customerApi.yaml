@@ -1,7 +1,7 @@
 openapi: 3.0.0
 servers:
   - description: FinzlyConnect Customer APIs
-    url: https://sandbox-digitalbanking-uat.finzly.io/api/openbanking
+    url: https://sandbox-digitalbanking-uat.finzly.io/auth/realms/SANDBOX/protocol/openid-connect/token
     variables:
       tenant:
         default: sandbox
