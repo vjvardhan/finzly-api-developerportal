@@ -776,7 +776,7 @@ components:
         countryCode:
           type: string
           description: ISO country code
-          example: 'USA'
+          example: 'US'
 
     Approver:
       properties:
@@ -830,7 +830,7 @@ components:
         countryCode: 
           type: string
           description: Country Code in ISO format.
-          example: 'USA'
+          example: 'US'
         address:
           $ref: '#/components/schemas/Address'
 
