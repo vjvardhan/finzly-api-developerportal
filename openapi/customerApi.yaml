@@ -14,49 +14,47 @@ tags:
     description: |
       Customer APIs entitles the downstream partners, Banks and their associates to formally onboard clients with all the necessary information required to perform financial operations. 
       
-      These API's will further help to search & maintain these onboarded clients, update any changes in client information and create/update their beneficiaries (contacts).
+      These API's will further help to search & maintain these onboarded clients, update any changes in client information.
 
       Following use cases helps you to understand the current customer capabilities exposed via APIs
       
       1. Create Customer
       2. Update Customer
-      3. Search Customer
-      4. Get Customer
+      3. Search Customers
+      4. Get Customer Details
 
   - name: Customer Account
     description: |
-      Customer Accounts APIs helps you can get all the accounts associated for your customer in a single call, you can enhance their experience by providing them most updated balance.
-      
-      You can further add value by tracking payment transaction related to these individual accounts. 
+      Customer Accounts APIs helps you to manage the accounts associated with the customer.
       
       Following use cases helps you to understand the current customer accounts capabilities exposed via APIs
       
       1. Create Customer Account
       2. Update Customer Account
       3. Search Customer Accounts
-      4. Get Customer Account
+      4. Get Customer Account Details
 
   - name: Customer Contact
     description: |
       Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. 
       
-      Once the contacts are defined the template contact UID can be used in the payment APIs as a receiverAccountId. 
+      Once the contacts are defined the contact UID can be used in the payment API as a receiver [accountUID] to initiate a payment request. 
     
       Following use cases helps you to understand the current customer contacts capabilities exposed via APIs
       
       1. Create Customer Contact
       2. Update Customer Contact
       3. Search Customer Contacts
-      4. Get Customer Contact
-
+      4. Get Customer Contact Details
+      
 paths: 
   /v2/customers:  
     post:
       tags:
         - Customer
       summary: Add customer
-      operationId: createCustomerV2
-      description: Create an customer to the finzly CRM system
+      operationId: createCustomer
+      description: Create a customer in the BankOS CRM system
       requestBody:
         content:
           application/json:
@@ -107,8 +105,8 @@ paths:
       tags:
          - Customer
       summary: Search customers
-      operationId: searchCustomersV2
-      description: Search customers using various customer parameters such as legal name, short name etc.
+      operationId: searchCustomers
+      description: Search customers
       parameters:
       - name: legalName
         in: query
@@ -212,8 +210,8 @@ paths:
       tags: 
          - Customer
       summary: Get customer
-      operationId: getCustomerByCustomerUIDV2
-      description: Retrieve the customer information from the system, using the unique identifier associated with the customer
+      operationId: getCustomerByCustomerUID
+      description: Retrieve the customer information from the system
       parameters:
       - name: customerUID
         in: path
@@ -265,7 +263,7 @@ paths:
       tags:
         - Customer
       summary: Update customer
-      operationId: updateCustomerByCustomerUIDV2
+      operationId: updateCustomerByCustomerUID
       description: Update an existing customer information
       parameters:
       - name: customerUID
@@ -319,247 +317,15 @@ paths:
                 items:
                   $ref: '#/components/schemas/Error'
         '503':
-          description: Service unavailable  
-
-  /v2/customers/{customerUID}/contacts:
-    post:
-      tags: 
-         - Customer Contact
-      summary: Create customer contact
-      operationId: createCustomerContactV2
-      description: Create a new contact for the  existing customer
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Unique Customer Id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerContact'
-        description: Account Info
-        required: true
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
           description: Service unavailable
-    get:
-      tags: 
-         - Customer Contact
-      summary: Search customer contacts
-      operationId: searchCustomerContactsV2
-      description: Search customer contacts using various parameters
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Unique Customer Id
-      - name: contactName
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Contact name
-      - name: accountNumber
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Contact Account Number
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: string
-          description: Which page of results are to be returned
-      - name: limit
-        in: query
-        required: true
-        schema:
-          type: string
-          description: How many records are returned in the result set
-          maximum: 1000
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/SearchCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/SearchCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-          
-  /v2/customers/{customerUID}/contacts/{contactUID}:
-    get:
-      tags: 
-         - Customer Contact
-      summary: Get customer contact
-      operationId: getCustomerContactByUIDV2
-      description: Retrieve customer contact details.
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique id in finzly system
-      - name: contactUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Contact unique id in finzly system
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/GetCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-      
-    put:
-      tags: 
-         - Customer Contact
-      summary: Update customer contact
-      operationId: updateCustomerContactByUIDV2
-      description: Update customer contact details.
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique id in finzly system
-      - name: contactUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Contact unique id in finzly system
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerContact'
-        description: Account Info
-        required: true
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable    
 
   /v2/customers/{customerUID}/accounts:
     post:
       tags: 
          - Customer Account
       summary: Create customer account
-      operationId: createCustomerAccountV2
-      description: Create an customer account.
+      operationId: createCustomerAccount
+      description: Create a customer account
       parameters:
       - name: customerUID
         in: path
@@ -608,9 +374,9 @@ paths:
     get:
       tags: 
          - Customer Account
-      summary: Search customer accounts
-      operationId: searchCustomerAccountsV2
-      description: Search the customer accounts using various account parameters.
+      summary: Search Customer Accounts
+      operationId: searchCustomerAccounts
+      description: Search the customer accounts for a given customer
       parameters:
       - name: customerUID
         in: path
@@ -690,8 +456,8 @@ paths:
       tags: 
          - Customer Account
       summary: Get customer account
-      operationId: getCustomerAccountByAccountUIDV2
-      description: Retrieve a customer account associated with customerUID and accountUID
+      operationId: getCustomerAccountByAccountUID
+      description: Retrieve an account details
       parameters:
       - name: customerUID
         in: path
@@ -761,7 +527,7 @@ paths:
       tags: 
          - Customer Account
       summary: Update customer account
-      operationId: updateCustomerAccountByAccountUIDV2
+      operationId: updateCustomerAccountByAccountUID
       description: Update Customer Account
       parameters:
       - name: customerUID
@@ -818,7 +584,7 @@ paths:
       tags: 
          - Customer Account
       summary: Delete customer account
-      operationId: deleteCustomerAccountByAccountUIDV2
+      operationId: deleteCustomerAccountByAccountUID
       description: Delete Customer Account
       parameters:
       - name: customerUID
@@ -863,7 +629,239 @@ paths:
                 items:
                   $ref: '#/components/schemas/Error'
         '503':
+          description: Service unavailable          
+
+  /v2/customers/{customerUID}/contacts:
+    post:
+      tags: 
+         - Customer Contact
+      summary: Create customer contact
+      operationId: createCustomerContact
+      description: Create a new customer contact (Beneficiary)
+      parameters:
+      - name: customerUID
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Unique Customer Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerContact'
+        description: Account Info
+        required: true
+      responses:
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCustomerContactResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                  $ref: '#/components/schemas/CreateCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
           description: Service unavailable
+    get:
+      tags: 
+         - Customer Contact
+      summary: Search customer contacts
+      operationId: searchCustomerContacts
+      description: Search customer contacts for a given customer
+      parameters:
+      - name: customerUID
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Unique Customer Id
+      - name: contactName
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Contact name
+      - name: accountNumber
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Contact Account Number
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Which page of results are to be returned
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: string
+          description: How many records are returned in the result set
+          maximum: 1000
+      responses:
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchCustomerContactResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                  $ref: '#/components/schemas/SearchCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+          
+  /v2/customers/{customerUID}/contacts/{contactUID}:
+    get:
+      tags: 
+         - Customer Contact
+      summary: Get customer contact
+      operationId: getCustomerContactByUID
+      description: Retrieve customer contact details
+      parameters:
+      - name: customerUID
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Customer unique id in finzly system
+      - name: contactUID
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Contact unique id in finzly system
+      responses:
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCustomerContactResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                  $ref: '#/components/schemas/GetCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+      
+    put:
+      tags: 
+         - Customer Contact
+      summary: Update customer contact
+      operationId: updateCustomerContactByUID
+      description: Update customer contact details
+      parameters:
+      - name: customerUID
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Customer unique id in finzly system
+      - name: contactUID
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Contact unique id in finzly system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerContact'
+        description: Account Info
+        required: true
+      responses:
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCustomerContactResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                  $ref: '#/components/schemas/CreateCustomerContactResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable    
 
 security: 
   - oAuth2:

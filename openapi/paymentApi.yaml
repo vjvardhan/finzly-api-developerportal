@@ -1,55 +1,576 @@
 openapi: 3.0.0
 servers:
-  - description: Auth API
+  - description: Authentication
     url: https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token
     variables:
       tenant:
         default: sandbox
-        description: BankOS tenant code
+        description: Tenant
 info:
-  version: 2.2.0
+  version: 2.2.1
   title: Payment API
 tags:
   - name: Payments
     description: |
-        Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.
+      Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.
+      
+      The single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.
 
-        The single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.
+      Following use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       
+      
+      1. Initiate Credit Payment (Payout)
+      2. Initiate Debit Payment (Collection)
+      3. Get Payment Details
+      4. Search Payments
+      5. Cancel a Payment
+      6. Return a Payment
+      7. Reverse a Payment
+      8. Transfer (Book) Payment
 
-        Following use cases helps you to understand the current payment capabilities exposed via APIs.       
-
-        1. Initiate Credit Payment (Payout)
-        2. Initiate Debit Payment (Collection)
-        3. Get Payment
-        4. Search Payments
-        5. Cancel Payment
-        6. Return Payment
-        7. Reverse Payment
-        8. Transfer (Book) Payment
-
+  - name: Positive Pay
+    description: |
+      Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules for ACH debits or Fedwire drawdown requests or RFP (Request For Pay) request.
+      
+      Postive Pay Exeption APIs enable users to approve or reject the exceptions identified by the postive pay rules engine.
+      
   - name: Foreign Exchange
     description: | 
-        Foreign Exchange (FX) is the trading of one currency for another. For example, one can swap the U.S. dollar for the euro. 
-
-        Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
-
-        Following use cases helps you to understand the current FX capabilities exposed via APIs
-
-        1. Get FX Quote
-        2. Accept FX Quote
-        3. Reject FX Quote
-        4. Get FX Trade
-        5. Cover FX Trade
-        6. Cancel FX Trade 
+     Foreign Exchange (FX) is the trading of one currency for another. For example, one can swap the U.S. dollar for the euro.
+     
+     Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
+     
+     Following use cases helps you to understand the current FX capabilities exposed via Finzly Connect APIs
         
+      1. Get FX Quote
+      2. Accept FX Quote
+      3. Reject FX Quote
+      4. Get FX Trade
+      5. Cover FX Trade
+      6. Cancel FX Trade
+
 paths:
+
+  /v2/positivepay/rules/search:
+    post:
+      tags: 
+        - Positive Pay
+      summary: Search PositivePay Rules
+      operationId: searchPositivePayRules
+      description: Search positive pay rules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPositivePayRuleRequest'
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayRuleResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+          
+  /v2/positivepay/rules:  
+    post:
+      tags: 
+        - Positive Pay
+      summary: Add PositivePay Rule
+      operationId: addPositiveRules
+      description: Add positive pay rule.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPositivePayRule'
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostPositivePayRuleResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostPositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable    
+    put:
+      tags: 
+        - Positive Pay
+      summary: Update PositivePay Rule
+      operationId: updateRules
+      description: Update Positive Pay Rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositivePayRule'
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePositivePayRuleResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable 
+ 
+  
+  /v2/positivepay/rules/{ruleUID}:  
+    get:
+      tags: 
+         - Positive Pay
+      summary: Get PositivePay Rule By RuleUID
+      operationId: getPostivePayRule
+      description: Get Positive Pay Rule
+      parameters:
+        - name: ruleUID
+          in: path
+          description: Positive Pay Rule unique id
+          required: true
+          schema:
+            type: string
+            default: 11223
+      responses:
+        default:
+          description: Successful
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPositivePayRuleUIDResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPositivePayRuleUIDResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+    delete:
+      tags: 
+        - Positive Pay
+      summary: Delete PositivePay
+      operationId: deleteRules
+      description: Delete positive pay rule.
+      parameters:
+        - name: ruleUID
+          in: path
+          description: Positive Pay Rule Unique Id
+          required: true
+          schema:
+            type: number
+            format: int64
+            example: 1
+      responses:
+        default:
+          description: delete positive rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePositivePayRuleResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable   
+
+  /v2/positivepay/rules/{ruleUID}/activate:
+    put:
+      tags: 
+        - Positive Pay
+      summary: Activate PositivePay Rule
+      operationId: activatePositivePayRule
+      description: Activate positive pay rule
+      parameters:
+      - name: ruleUID
+        in: path
+        required: true
+        description: Positive Pay Rule Unique Id
+        schema:
+          type: string
+      responses:
+        default:
+          description: activate positive rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable  
+
+  /v2/positivepay/rules/{ruleUID}/suspend:
+    put:
+      tags: 
+        - Positive Pay
+      summary: Suspend PositivePay Rule
+      operationId: suspendPositivePayRule
+      description: Suspend positive pay rule.
+      parameters:
+      - name: ruleUID
+        in: path
+        required: true
+        description: Positive Pay Rule Unique Id
+        schema:
+          type: string
+      responses:
+        default:
+          description: suspend positive rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable  
+
+  /v2/positivepay/exception/search:
+    post:
+      tags: 
+        - Positive Pay
+      summary: Search PositivePay Exceptions
+      operationId: searchPositivePayExceptions
+      description: Return positive pay exceptions for a given criteria.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPositivePayDecisionRequest'
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayDecisionResponse'
+        '200':
+          description: Successfully processed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPositivePayDecisionResponse'
+        '400':
+          description: bad input parameter environment
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+          
+  /v2/positivepay/exception/{exceptionUID}/approve:  
+    put:
+      tags: 
+         - Positive Pay
+      summary: Approve PositivePay Exception
+      operationId: approvePositivePayException
+      description: Approve Positive Pay Exceptions
+      parameters:
+      - name: exceptionUID
+        in: path
+        required: true
+        description: A unique identifier associated with the positive pay rule exception
+        schema:
+          type: string
+          
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+
+  /v2/positivepay/exception/{exceptionUID}/reject:  
+    put:
+      tags: 
+         - Positive Pay
+      summary: Reject Positive Pay Exception
+      operationId: rejectExceptions
+      description: Reject Positive Pay Exceptions
+      parameters:
+      - name: exceptionUID
+        in: path
+        required: true
+        description: A unique identifier associated with the positive pay exception
+        schema:
+          type: string
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+  
+  /v2/positivepay/exception/approveall:
+    put:
+      tags: 
+         - Positive Pay
+      summary: Approve All PositivePay Exceptions
+      operationId: approveAllExceptions
+      description: Approve all positivepay exceptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproveAllPositivePayExceptionRequest'
+      responses:
+        default:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositivePayExceptionApproveAllResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PositivePayExceptionApproveAllResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: You are not authorized to access the resource
+        '403':
+          description: Accessing the resource you were trying to reach is forbidden
+        '404':
+          description: The resource you were trying to reach is not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable
+  
+
+          
+   
   /v3/payments/search:
     post:
       tags: 
          - Payments
       summary: Search payments
-      operationId: searchPaymentsV3
-      description: Retrieve list of payments.
+      operationId: searchPayments
+      description: Search payments
       requestBody:
         content:
           application/json:
@@ -93,9 +614,9 @@ paths:
       tags: 
         - Payments
       summary: Initiate a Credit Payment (Payout)
-      operationId: createCreditPaymentV3
+      operationId: createCreditPayment
       description: |
-        Submit domestic or international one time or recurring payments
+        Initiate a domestic or international credit payment [one time or recurring]
       requestBody:
         content:
           application/json:
@@ -142,9 +663,9 @@ paths:
       tags: 
         - Payments
       summary: Initiate a Debit Payment (Collection)
-      operationId: createDebitPaymentV3
+      operationId: createDebitPayment
       description: |
-        Submit domestic or international one time or recurring payments
+        Initiate a domestic or international debit payment [one time or recurring]
       requestBody:
         content:
           application/json:
@@ -193,7 +714,7 @@ paths:
         - Payments
       summary: Initiate a Book (Transfer) Payment
       operationId: booktransfer
-      description: Initiate Book Transfer
+      description: Initiate a transfer payment request 
       requestBody:
         content:
           application/json:
@@ -241,7 +762,7 @@ paths:
          - Payments
       summary: Get Payment
       operationId: getPaymentByUID
-      description: Retrieve a payment using payment uid.
+      description: Retrieve a payment using a payment unique identifier.
       parameters:
       - name: paymentUID
         in: path
@@ -286,8 +807,8 @@ paths:
       tags: 
          - Payments
       summary: Cancel Payment
-      operationId: cancelPaymentV3
-      description: Cancel a payment.
+      operationId: cancelPayment
+      description: Initoate a cancel payment request
       parameters:
       - name: paymentUID
         in: path
@@ -332,8 +853,8 @@ paths:
       tags: 
          - Payments
       summary: Return a payment
-      operationId: returnPaymentV3
-      description: Return a payment.
+      operationId: returnPayment
+      description: Return a payment
       parameters:
       - name: paymentUID
         in: path
@@ -387,8 +908,8 @@ paths:
       tags: 
          - Payments
       summary: Reverse a payment
-      operationId: reversePaymentV3
-      description: Reverse a payment.
+      operationId: reversePayment
+      description: Initiate a reverse payment request.
       parameters:
       - name: paymentUID
         in: path
@@ -442,7 +963,7 @@ paths:
       tags: 
         - Foreign Exchange
       summary: Get FX Quote
-      operationId: getFXQuoteV2
+      operationId: getFXQuote
       description: Request quote for FX trade      
       requestBody:
         content:
@@ -490,8 +1011,8 @@ paths:
       tags: 
         - Foreign Exchange
       summary: Accept FX Quote
-      operationId: acceptFXQuoteV2
-      description: Accept FX Quote using quoteUUID
+      operationId: acceptFXQuote
+      description: Accept FX Quote
       requestBody:
         content:
           application/json:
@@ -536,8 +1057,8 @@ paths:
       tags: 
         - Foreign Exchange
       summary: Reject FX Quote
-      operationId: rejectFXQuoteV2
-      description: Reject FX Quote using quoteUUID
+      operationId: rejectFXQuote
+      description: Reject FX Quote
       parameters:
         - name: quoteUUID
           in: path
@@ -583,9 +1104,9 @@ paths:
     get:
       tags: 
         - Foreign Exchange
-      summary: Get FX trade
-      operationId: getFXTradeInformationV2
-      description: Get FX trade information using forexContractNo
+      summary: Get FX Trade information
+      operationId: getFXTradeInformation
+      description: Get FX trade information
       parameters:
         - name: forexContractNo
           in: path
@@ -631,8 +1152,8 @@ paths:
       tags: 
         - Foreign Exchange
       summary: Cover FX trade
-      operationId: coverFXTradeV2
-      description: Cover FX trade using the forexContractNo
+      operationId: coverFXTrade
+      description: Cover FX trade
       parameters:
         - name: forexContractNo
           in: path
@@ -681,8 +1202,8 @@ paths:
       tags: 
         - Foreign Exchange
       summary: Cancel FX trade
-      operationId: cancelFXTradeV2
-      description: Cancel FX Trade using forexContractNo
+      operationId: cancelFXTrade
+      description: Cancel FX Trade
       parameters:
         - name: forexContractNo
           in: path
@@ -782,24 +1303,24 @@ components:
       properties:
         approverId:
           type: string
-          description: Id of the Approver
-          example: '12345'
+          description: User ID of the Approver
+          example: 'johndoe'
         approvedDate:
           type: string
           format: dateTime
-          description: Date transaction was updated
-          example: '3-3-2020' 
+          description: Approver Date 
+          example: '03-03-2023' 
     Audit:
       properties:
         submitterId:
           type: string
           description: User that submitted transaction
-          example: '1234567'
+          example: 'johndoe'
         submissionDate:
           type: string
           format: dateTime
-          description: Date transaction was submitted
-          example: '3-3-2020'
+          description: Submission Date
+          example: '03-03-2023'
         approvers:
           type: array
           items: 
@@ -813,29 +1334,34 @@ components:
           example: 'XYZ Bank'
         bankIdType:
           type: string
-          description: The bank unique identifier type. Use BY SWIFT for  international money transfer. Use BY NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.
+          description: The bank unique identifier type. Use BY SWIFT for  international money transfer. Use NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.
           enum:
-            - By NID
-            - BY ADDRESS
-            - BY SWIFT
-          example: 'By NID, BY ADDRESS, BY SWIFT'
+            - NID
+            - ADDRESS
+            - SWIFT
+          example: 'NID, ADDRESS, SWIFT'
         bankId: 
           type: string
-          description: Bank unique id or routing number or routing code. This is needed when the bankIdType is set to 'BY NID'
-          example: '023423'
+          description: Bank routing number or routing code. This is needed when the bankIdType is set to 'NID'
+          example: '072000326'
         swiftCode:
           type: string
-          description: BIC Code. This is needed when the bankIdType is set to 'BY SWIFT'
-          example: 'USBNX000'
+          description: BIC Code. This is needed when the bankIdType is set to 'SWIFT'
+          example: 'CHASUS33XXX'
         countryCode: 
           type: string
-          description: Country Code in ISO format.
+          description: Country Code in ISO format
           example: 'US'
         address:
           $ref: '#/components/schemas/Address'
 
     Fee:
       properties:
+        feeName:
+          type: string
+          description: Fee Name
+          example: Custom etc.
+          maxLength: 20
         currency:
           type: string
           description: Fee Currency
@@ -867,31 +1393,27 @@ components:
            - BiWeekly
            - Monthly
            - Quarterly
-           - SemiAnnual
+           - SemiAnnually
            - Yearly
-        startDate:
-          type: string
-          format: date
-          example: '2020-01-01'
+          example: Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly
+          description: 'Payment occurrence frequency'
         payUntil:
           type: string
           enum: 
            - Cancelled
            - EndDate
            - NumberOfPayments
+          example: Cancelled, EndDate, NumberOfPayments
+          description: 'Pay until'
         endDate:
           type: string
           format: date
           example: '2020-01-29'
-          description: 'This is applicable only if payUntil is EndDate'
+          description: 'This is applicable if the payUntil is set to EndDate'
         numberOfPayments: 
           type: integer
           example: 10
-          description: 'This is applicable only if payUntil is NumberOfPayments'
-        status:
-          type: string
-          example: 'Active'
-          description: 'Payment occurence status'
+          description: 'This is applicable if the payUntil is set to NumberOfPayments'
 
     FXQuoteRequest:
       required:
@@ -2542,8 +3064,66 @@ components:
           type: string
         senderName:
           type: string
+        senderCity:
+          type: string
+        senderState:
+          type: string
+        senderZip:
+          type: string
+        senderCountry:
+          type: string
+        senderAddress1:
+          type: string
+        senderAddress2:
+          type: string
+        senderIdType:
+          type: string
+        senderIdType2:
+          type: string
+        senderId2:
+          type: string
+        senderCountryCode:
+          type: string
+        senderBankId:
+          type: string
+        senderBankName:
+          type: string
+        senderBankIdType:
+          type: string
+        senderBankAddress1:
+          type: string
+        senderBankAddress2:
+          type: string
+        senderBankCity:
+          type: string
+        senderBankState:
+          type: string
+        senderBankZip:
+          type: string
+        senderBankCountry:
+          type: string           
         senderAccountType:
           type: string
+        isIntermediarySender:
+          type: boolean
+        intermediarySenderName:
+          type: string
+        intermediarySenderAddress1:
+          type: string
+        intermediarySenderAddress2:
+          type: string
+        intermediarySenderCity:
+          type: string
+        intermediarySenderState:
+          type: string  
+        intermediarySenderZip:
+          type: string
+        intermediarySenderCountry:
+          type: string
+        intermediarySenderId:
+          type: string
+        intermediarySenderIdType:
+          type: string          
         ultimateSenderName:
           type: string
         ultimateSenderAccountNumber:
@@ -2584,6 +3164,72 @@ components:
           example: 'ACH'
         receiverAccountNumber:
           type: string
+        receiverName:
+          type: string
+        receiverAccountType:
+          type: string
+        receiverType:
+          type: string  
+        receiverAddress1:
+          type: string
+        receiverAddress2:
+          type: string
+        receiverCity:
+          type: string
+        receiverState:
+          type: string  
+        receiverZip:
+          type: string
+        receiverPhoneNumber:
+          type: string  
+        receiverEmail:
+          type: string
+        receiverCountry:
+          type: string  
+        receiverIdType:
+          type: string
+        receiverIdType2:
+          type: string  
+        receiverId2:
+          type: string
+        receiverBankId:
+          type: string
+        receiverBankName:
+          type: string
+        receiverBankIdType:
+          type: string  
+        receiverBankAddress1:
+          type: string
+        receiverBankAddress2:
+          type: string  
+        receiverBankCity:
+          type: string
+        receiverBankState:
+          type: string  
+        receiverBankZip:
+          type: string
+        receiverBankCountry:
+          type: string
+        isIntermediaryReceiver:
+          type: boolean
+        intermediaryReceiverName:
+          type: string
+        intermediaryReceiverAddress1:
+          type: string
+        intermediaryReceiverAddress2:
+          type: string
+        intermediaryReceiverCity:
+          type: string
+        intermediaryReceiverState:
+          type: string
+        intermediaryReceiverZip:
+          type: string
+        intermediaryReceiverCountry:
+          type: string
+        intermediaryReceiverId:
+          type: string
+        intermediaryReceiverIdType:
+          type: string            
         ultimateReceiverName:
           type: string
         ultimateReceiverAccountNumber:

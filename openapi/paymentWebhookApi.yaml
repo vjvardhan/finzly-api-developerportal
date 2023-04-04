@@ -1,8 +1,7 @@
 openapi: 3.0.0
 info:
-  version: 1.2.0
+  version: 1.2.1
   title: Payment Webhook
-
 paths:
   /payments:
     post:
@@ -51,44 +50,45 @@ components:
              type: integer
              description: Payment Identifier
              nullable: false
-          sourceReferenceId:
+          externalReferenceId:
              type: string
-             description: External system idetifier
+             description: External reference id set by the originator system
+             maxLength : 50
           paymentStatus:
              type: string
              nullable: false
-             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc..
+             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc.
              maxLength : 35
-          bulkFileName:
-              type: string
-              description: Bulk File Name
-              maxLength: 100
           counterParty:
              type: string
-             description: Counterparty shortname
+             description: Legal entity (Counterparty) shortname associated with the payment
              maxLength: 50
-          deliveryDate:
-             type: string
-             format: date
-             description: Effective Entry Date
+          paymentDate:
+            type: string
+            format: date
+            description: Payment date
           deliveryMethod:  
              type: string
              description: Delivery method - ACH for Fed transmission OR BOOK_TRANSFER if sender & receiver routing numbers are same 
              maxLength : 20
+          deliveryDate:
+             type: string
+             format: date
+             description: Effective Entry Date
+          bulkFileName:
+              type: string
+              description: Bulk File Name
+              maxLength: 100
+          sourceReferenceId:
+             type: string
+             description: Unique bulk file id set by the sytem when the payment is originated via bulk file upload
+             maxLength : 50
           feeAmount:
             type: number
             format: decimal
             description: Fee amount in USD
             minimum: 0.00
             maximum: 9999999999999999.99
-          paymentDate:
-            type: string
-            format: date
-            description: Payment date
-          channel:
-            type: string
-            description: Channel associated with the payment
-            example: API, ONLINE, FTP etc.
           paymentIOType:
             type: string
             description: Inbound or Outbound Payment Indicator.
@@ -113,7 +113,7 @@ components:
             maxLength : 35
           forexContract: 
             type: string
-            description: FX contract number associated with the SWIFT payment
+            description: FX contract number associated with the SWIFT/International payment
             example: 12398
           paymentNocDetails:
             type: object
@@ -153,11 +153,12 @@ components:
                 example: 2022-06-30T01:30:48.342Z
           imad: 
             type: string
-            description: It is a unique number given to each FedWire payment
+            description: It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers
             example: 20220627MMQCTR7B000012
           omad: 
             type: string
-            description: It is a unique number given to each FedWire payment
+            description: The OMAD indicates a unique number assigned to each transfer providing delivery-related information
+            example: 0328QMGFNP6400002503281343FT0120232023
           receiverAccountNumber:
             type: string
             description: Account number of the receiver
@@ -231,10 +232,11 @@ components:
             maxLength : 35
           receiverZip:
             type: string
-            description: Receiver's zipcode
+            description: Receiver zipcode
             maxLength : 10
           ultimateReceiverName:
             type: string
+            description: Ultimate receiver name. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
           ultimateReceiverAccountNumber:
             type: string
           ultimateReceiverAddress1:
@@ -315,6 +317,7 @@ components:
             maxLength: 10
           ultimateSenderName:
             type: string
+            description: Ultimate sender name. This will be used for the fintech scenario when the virtual account range is used to process a payment.
           ultimateSenderAccountNumber:
             type: string
           ultimateSenderAddress1:
