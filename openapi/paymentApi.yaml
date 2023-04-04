@@ -1346,7 +1346,7 @@ components:
           example: '072000326'
         swiftCode:
           type: string
-          description: BIC Code. This is needed when the bankIdType is set to 'SWIFT'
+          description: SWIFT Code. This is needed when the bankIdType is set to 'SWIFT'
           example: 'CHASUS33XXX'
         countryCode: 
           type: string
@@ -2223,14 +2223,14 @@ components:
           $ref: '#/components/schemas/Address'
         bankIdType:
           type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or BIC. BIC stands for Bank Identifier Code. It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
+          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
           enum:
             - NID
-            - BIC
-          example: 'NID or BIC'
+            - SWIFT
+          example: 'NID or SWIFT'
         bankId: 
           type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or BIC code as per the bankIdType.
+          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.
           example: '101206101 or FBOLUS6LXXX'
         phone:
           type: string
@@ -2290,7 +2290,121 @@ components:
           description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
         swiftNote:
           type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS        
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS   
+
+    PaymentCreditor:
+      properties:
+        accountUID:
+          type: string
+          example: '123452334'
+          description: Sender account unique identifier
+        achCompanyID:
+          type: string
+          example: '122334789'
+          description: ACH company/origination id is a 10-digit identifier used by bank and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
+        accountNumber:
+          type: string
+          example: '123452334 etc.'
+          description: Sender bank account number from where the money will be withdrawn
+        accountType:
+          type: string
+          example: 'Deposit, GL or MCA'
+          enum:
+           - Deposit
+           - GL
+           - MCA
+          description: Account type
+        subAccountType:
+          type: string
+          example: 'Checking or Savings'
+          enum:
+           - Checking
+           - Savings
+          description: Sub type of the account whether Checking or Savings
+        name:
+          type: string
+          example: 'Customer account'
+          description: Name associated with the account
+        entityType:
+          type: string
+          enum:
+           - Consumer
+           - Corporate
+          example: 'Consumer or Corporate' 
+          description: Type of the entity
+        address:
+          $ref: '#/components/schemas/Address'
+        bankIdType:
+          type: string
+          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC).  It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
+          enum:
+            - NID
+            - SWIFT
+          example: 'NID or SWIFT'
+        bankId: 
+          type: string
+          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.
+          example: '101206101 or FBOLUS6LXXX'
+        phone:
+          type: string
+          example: '18001236754'
+          description: Phone number associated with the sender
+        email:
+          type: string
+          example: 'email@domain.com'
+          description: Email associated with the sender
+        swiftTag:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
+        swiftNote:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
+          
+    PaymentDebtor:
+      properties:
+        accountUID:
+          type: string
+          example: 12334989
+          description: Receiver account unique indentifier exist in the FinzlyOS system
+        accountNumber:
+          type: string
+          example: '123422434'
+          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc.  
+        accountType:
+          type: string
+          example: 'Deposit'
+          enum:
+           - Deposit
+          description: Account type
+        subAccountType:
+          type: string
+          example: 'Checking, Savings'
+          description: Sub type of the account whether Checking or Savings
+        name:
+          type: string
+          example: 'XYZ Name'
+          description: Name associated with the account
+        address:
+          $ref: '#/components/schemas/Address'
+        phone:
+          type: string
+          example: '18001236754'
+          description: Phone number associated with the receiver
+        email:
+          type: string
+          example: 'email@domain.com'
+          description: Email associated with the receiver
+        bank:
+          $ref: '#/components/schemas/Bank'
+        intermediaryBank:
+          $ref: '#/components/schemas/Bank'
+        swiftTag:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
+        swiftNote:
+          type: string
+          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS   
+          
     SearchPositivePayDecisionRequest:
       properties:
         paymentUID:
@@ -2925,9 +3039,9 @@ components:
           type: string
           example: 'Standard, Economy, Express'
         debtor:
-          $ref: '#/components/schemas/PaymentSender'
+          $ref: '#/components/schemas/PaymentDebtor'
         creditor:
-          $ref: '#/components/schemas/PaymentReceiver'
+          $ref: '#/components/schemas/PaymentCreditor'
         fee:
           $ref: '#/components/schemas/Fee'
         recurrence:
