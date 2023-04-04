@@ -2253,7 +2253,7 @@ components:
         accountNumber:
           type: string
           example: '123422434'
-          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc.  
+          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc. 
         accountType:
           type: string
           example: 'Deposit'
@@ -2264,6 +2264,10 @@ components:
           type: string
           example: 'Checking, Savings'
           description: Sub type of the account whether Checking or Savings
+        accountCurrency:
+          type: string
+          example: 'USD, EUR etc.'
+          description: Receiver currency
         name:
           type: string
           example: 'XYZ Name'
@@ -2366,7 +2370,7 @@ components:
         accountNumber:
           type: string
           example: '123422434'
-          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc.  
+          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc. 
         accountType:
           type: string
           example: 'Deposit'
@@ -2377,6 +2381,10 @@ components:
           type: string
           example: 'Checking, Savings'
           description: Sub type of the account whether Checking or Savings
+        accountCurrency:
+          type: string
+          example: 'USD, EUR etc.'
+          description: Debtor currency
         name:
           type: string
           example: 'XYZ Name'
