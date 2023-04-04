@@ -15,6 +15,7 @@ toc:
   enable: true
 oasDefinitions:
   paymentApi: ./openapi/paymentApi.yaml
+  fxApi: ./openapi/fxApi.yaml
   customerApi: ./openapi/customerApi.yaml
   userApi: ./openapi/userAPI.yaml
   paymentWebhookApi: ./openapi/paymentWebhookApi.yaml

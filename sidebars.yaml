@@ -107,6 +107,10 @@ training:
       expanded: false
       pages:
         - page: openapi/paymentAPI.page.yaml/*
+    - group: Foreign Exchange
+      expanded: false
+      pages:
+        - page: openapi/fxAPI.page.yaml/*
     - group: Customer and Accounts
       expanded: false
       pages:
