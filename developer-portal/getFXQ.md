@@ -3,7 +3,7 @@ title: Get FX Quote
 ---
 
 ### **Get FX Quote**
-[POST /fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXQuoteV2/)
+[POST /fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXQuote/)
 
 **HTTP Method: GET**
 
@@ -14,7 +14,7 @@ title: Get FX Quote
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[FXQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXQuoteV2/)|true|Quote request attributes to get the quote for a given ccy pair|
+|body|body|[FXQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXQuote/)|true|Quote request attributes to get the quote for a given ccy pair|
 
 **JSON Response**
 
@@ -51,4 +51,4 @@ A successful POST request to this endpoint returns the following data-
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXQuoteV2/)</p><p></p>|false|none|none|
+|data|<p>[FXQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXQuote/)</p><p></p>|false|none|none|
