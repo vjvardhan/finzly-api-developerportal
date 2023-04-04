@@ -1408,12 +1408,12 @@ components:
         endDate:
           type: string
           format: date
-          example: '2020-01-29'
-          description: 'This is applicable if the payUntil is set to EndDate'
+          example: '01-29-2023'
+          description: 'This is mandatory when the payUntil is set to EndDate. Date in mm-dd-yyyy format.'
         numberOfPayments: 
           type: integer
           example: 10
-          description: 'This is applicable if the payUntil is set to NumberOfPayments'
+          description: 'This is mandatory when the payUntil is set to NumberOfPayments'
 
     FXQuoteRequest:
       required:
