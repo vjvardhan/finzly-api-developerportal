@@ -1,5 +1,5 @@
 ---
-title: Finzly Connetc Changelog
+title: Finzly Connect API Changelog
 ---
 
 

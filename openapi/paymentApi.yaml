@@ -1559,16 +1559,13 @@ components:
           example: 123e4567-e89b-12d3-a456-426614174000
           description: FX Quote universally unique identifier (UUID)
         autoCover:
-          type: string
-          example: "Yes or No"
-          enum:
-           - Yes
-           - No
-          description: This is an optional field. It is needed if the auto cover is needed during the acceptance of FX quote.
+          type: boolean
+          example: "true or false"
+          description: This is an optional field. Set the value to true if auto cover is needed during the acceptance of FX quote.
         autoCoverDelay:
           type: integer
           example: 30
-          description: This is an optional field. It is required if the auto cover is set to Yes. For the FX quote associated with the consumer then the allowed autoCoverDelay is from 30 minutes to 120 minutes. For non-consumer the allowed autoCoverDelay is from 0 to 120 minutes.
+          description: This is an optional field. It is required if the auto cover is set to true. For the FX quote associated with the consumer then the allowed autoCoverDelay is from 30 minutes to 120 minutes. For non-consumer the allowed autoCoverDelay is from 0 to 120 minutes.
           
     FXAcceptQuoteResponse:
       properties:
