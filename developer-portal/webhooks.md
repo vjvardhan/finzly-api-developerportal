@@ -18,8 +18,9 @@ Payment webhook notify whenever a payment event happens in your account. Your ba
 
 |**Attribute**|**Type**|**Restrictions**|**Notes**|
 | :-: | :-: | :- | :-: |
-|paymentId|integer|none|Payment unique identifier assigned by the system to the payment object.|
-|sourceReferenceId|string|none|Unique identifier assigned by th external system to the payment object.|
+|paymentId|integer|none|Payment unique identifier assigned by the bankos system to the payment request.|
+|externalReferenceId|string|none|External reference id set by the originator/external system.|
+|sourceReferenceId|string|none|Unique bulk file id set by the sytem when the payment is originated via bulk file upload.|
 |paymentStatus|string|none|Payment status such as VALIDATED, VALIDATION_FAILURE, TRANSMITTED, PROCESSED, CANCELLED etc|
 |bulkFileName|string|none|Name of the file, if the payment is uploaded from the file to the finzly payment hub system via FTP or API channel.|
 |counterParty|string|none|Shortname associated with the legal entity defined in the CRM system.|

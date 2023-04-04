@@ -2409,6 +2409,8 @@ components:
         counterPartyId:
           type: string
           description: "Customer UID associated with the payment."
+        externalReferenceId:
+          type: string
         senderUID:
           type: string
         senderAccountNumber:

@@ -3,7 +3,7 @@ title: Cover FX Trade
 ---
 
 ### **Cover FX Trade**
-[GET /fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/coverFXTradeV2/)
+[GET /fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/coverFXTradeV2/)
 
 **HTTP Method: GET**
 
@@ -53,7 +53,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXCoverTradeResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/coverFXTradeV2/)</p><p></p>|false|none|none|
+|data|<p>[FXCoverTradeResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/coverFXTradeV2/)</p><p></p>|false|none|none|
 
 **FX Cover Trader Response Data**
 

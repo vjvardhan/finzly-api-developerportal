@@ -4,7 +4,7 @@ title: Get FX Trade
 
 ### **Get FX trade information (v2)**
 
-[GET /fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/getFXTradeInformationV2/)
+[GET /fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXTradeInformationV2/)
 
 **HTTP Method: GET**
 
@@ -55,7 +55,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXTradeInfoResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/getFXTradeInformationV2/)</p><p></p>|false|none|none|
+|data|<p>[FXTradeInfoResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/fxapi/operation/getFXTradeInformationV2/)</p><p></p>|false|none|none|
 
 **FX Trade Response Data**
 
