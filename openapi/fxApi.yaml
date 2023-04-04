@@ -8,58 +8,53 @@ servers:
         description: Tenant
 info:
   version: 2.2.1
-  title: Payment API
+  title: Foreign Exchange API
 tags:
-  - name: Payments
-    description: |
-      Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.
-      
-      The single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.
 
-      Following use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       
-      
-      1. Initiate Credit Payment (Payout)
-      2. Initiate Debit Payment (Collection)
-      3. Get Payment Details
-      4. Search Payments
-      5. Cancel a Payment
-      6. Return a Payment
-      7. Reverse a Payment
-      8. Transfer (Book) Payment
+  - name: Foreign Exchange
+    description: | 
+     Foreign Exchange (FX) is the trading of one currency for another. For example, one can swap the U.S. dollar for the euro.
+     
+     Foreign Exchange Finzly FX APIs enables third-parties, banks, and bank's downstream partners to initiate and manage FX trades for their customers.
+     
+     Following use cases helps you to understand the current FX capabilities exposed via Finzly Connect APIs
+        
+      1. Get FX Quote
+      2. Accept FX Quote
+      3. Reject FX Quote
+      4. Get FX Trade
+      5. Cover FX Trade
+      6. Cancel FX Trade
 
-  - name: Positive Pay
-    description: |
-      Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules for ACH debits or Fedwire drawdown requests or RFP (Request For Pay) request.
-      
-      Postive Pay Exeption APIs enable users to approve or reject the exceptions identified by the postive pay rules engine.
-      
 paths:
 
-  /v2/positivepay/rules/search:
+  /v2/fx/quote:
     post:
       tags: 
-        - Positive Pay
-      summary: Search PositivePay Rules
-      operationId: searchPositivePayRules
-      description: Search positive pay rules
+        - Foreign Exchange
+      summary: Get FX Quote
+      operationId: getFXQuote
+      description: Request quote for FX trade      
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SearchPositivePayRuleRequest'
+              $ref: '#/components/schemas/FXQuoteRequest'
+        description: Quote request attributes to get the quote for a given ccy pair
+        required: true
       responses:
         default:
-          description: search results matching criteria
+          description: Response to the Get FX Quote
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchPositivePayRuleResponse'
+                $ref: '#/components/schemas/FXQuoteResponse'
         '200':
           description: Successfully processed request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchPositivePayRuleResponse'
+                $ref: '#/components/schemas/FXQuoteResponse'
         '400':
           description: bad input parameter environment
         '401':
@@ -80,172 +75,32 @@ paths:
                   $ref: '#/components/schemas/Error'
         '503':
           description: Service unavailable
-          
-  /v2/positivepay/rules:  
-    post:
-      tags: 
-        - Positive Pay
-      summary: Add PositivePay Rule
-      operationId: addPositiveRules
-      description: Add positive pay rule.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddPositivePayRule'
-      responses:
-        default:
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PostPositivePayRuleResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PostPositivePayRuleResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable    
+
+  /v2/fx/accept:
     put:
       tags: 
-        - Positive Pay
-      summary: Update PositivePay Rule
-      operationId: updateRules
-      description: Update Positive Pay Rule
+        - Foreign Exchange
+      summary: Accept FX Quote
+      operationId: acceptFXQuote
+      description: Accept FX Quote
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PositivePayRule'
+                $ref: '#/components/schemas/FXAcceptQuoteRequest'      
       responses:
         default:
-          description: search results matching criteria
+          description: FX Quote acceptance response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdatePositivePayRuleResponse'
+                $ref: '#/components/schemas/FXAcceptQuoteResponse'
         '200':
           description: Successfully processed request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdatePositivePayRuleResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable 
- 
-  
-  /v2/positivepay/rules/{ruleUID}:  
-    get:
-      tags: 
-         - Positive Pay
-      summary: Get PositivePay Rule By RuleUID
-      operationId: getPostivePayRule
-      description: Get Positive Pay Rule
-      parameters:
-        - name: ruleUID
-          in: path
-          description: Positive Pay Rule unique id
-          required: true
-          schema:
-            type: string
-            default: 11223
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetPositivePayRuleUIDResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetPositivePayRuleUIDResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-    delete:
-      tags: 
-        - Positive Pay
-      summary: Delete PositivePay
-      operationId: deleteRules
-      description: Delete positive pay rule.
-      parameters:
-        - name: ruleUID
-          in: path
-          description: Positive Pay Rule Unique Id
-          required: true
-          schema:
-            type: number
-            format: int64
-            example: 1
-      responses:
-        default:
-          description: delete positive rule
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeletePositivePayRuleResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeletePositivePayRuleResponse'
+                $ref: '#/components/schemas/FXAcceptQuoteResponse'
         '400':
           description: bad input parameter environment
         '401':
@@ -266,34 +121,34 @@ paths:
                   $ref: '#/components/schemas/Error'
         '503':
           description: Service unavailable   
-
-  /v2/positivepay/rules/{ruleUID}/activate:
+          
+  /v2/fx/{quoteUUID}/reject:
     put:
       tags: 
-        - Positive Pay
-      summary: Activate PositivePay Rule
-      operationId: activatePositivePayRule
-      description: Activate positive pay rule
+        - Foreign Exchange
+      summary: Reject FX Quote
+      operationId: rejectFXQuote
+      description: Reject FX Quote
       parameters:
-      - name: ruleUID
-        in: path
-        required: true
-        description: Positive Pay Rule Unique Id
-        schema:
-          type: string
+        - name: quoteUUID
+          in: path
+          required: true
+          schema:
+            type: string
+            description: FX Quote universally unique identifier (UUID)   
       responses:
         default:
-          description: activate positive rule
+          description: FX Quote rejection response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+                $ref: '#/components/schemas/FXRejectQuoteResponse'
         '200':
           description: Successfully processed request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
+                $ref: '#/components/schemas/FXRejectQuoteResponse'
         '400':
           description: bad input parameter environment
         '401':
@@ -313,469 +168,45 @@ paths:
                 items:
                   $ref: '#/components/schemas/Error'
         '503':
-          description: Service unavailable  
+          description: Service unavailable             
 
-  /v2/positivepay/rules/{ruleUID}/suspend:
-    put:
-      tags: 
-        - Positive Pay
-      summary: Suspend PositivePay Rule
-      operationId: suspendPositivePayRule
-      description: Suspend positive pay rule.
-      parameters:
-      - name: ruleUID
-        in: path
-        required: true
-        description: Positive Pay Rule Unique Id
-        schema:
-          type: string
-      responses:
-        default:
-          description: suspend positive rule
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActivatePositivePayRuleResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable  
-
-  /v2/positivepay/exception/search:
-    post:
-      tags: 
-        - Positive Pay
-      summary: Search PositivePay Exceptions
-      operationId: searchPositivePayExceptions
-      description: Return positive pay exceptions for a given criteria.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SearchPositivePayDecisionRequest'
-      responses:
-        default:
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SearchPositivePayDecisionResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SearchPositivePayDecisionResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-          
-  /v2/positivepay/exception/{exceptionUID}/approve:  
-    put:
-      tags: 
-         - Positive Pay
-      summary: Approve PositivePay Exception
-      operationId: approvePositivePayException
-      description: Approve Positive Pay Exceptions
-      parameters:
-      - name: exceptionUID
-        in: path
-        required: true
-        description: A unique identifier associated with the positive pay rule exception
-        schema:
-          type: string
-          
-      responses:
-        default:
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-
-  /v2/positivepay/exception/{exceptionUID}/reject:  
-    put:
-      tags: 
-         - Positive Pay
-      summary: Reject Positive Pay Exception
-      operationId: rejectExceptions
-      description: Reject Positive Pay Exceptions
-      parameters:
-      - name: exceptionUID
-        in: path
-        required: true
-        description: A unique identifier associated with the positive pay exception
-        schema:
-          type: string
-      responses:
-        default:
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivatePositivePayExceptionResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-  
-  /v2/positivepay/exception/approveall:
-    put:
-      tags: 
-         - Positive Pay
-      summary: Approve All PositivePay Exceptions
-      operationId: approveAllExceptions
-      description: Approve all positivepay exceptions
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ApproveAllPositivePayExceptionRequest'
-      responses:
-        default:
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PositivePayExceptionApproveAllResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/PositivePayExceptionApproveAllResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-  
-
-          
-   
-  /v3/payments/search:
-    post:
-      tags: 
-         - Payments
-      summary: Search payments
-      operationId: searchPayments
-      description: Search payments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PaymentSearch'
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/PaymentSearchResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/PaymentSearchResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable 
-          
-          
-  /v3/payments/creditrequest:
-    post:
-      tags: 
-        - Payments
-      summary: Initiate a Credit Payment (Payout)
-      operationId: createCreditPayment
-      description: |
-        Initiate a domestic or international credit payment [one time or recurring]
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreditPaymentRequest'
-        description: Payment fields
-        required: true
-      responses:
-        default:
-          description: return payment response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentResponse'
-        '200':
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable          
-          
-  /v3/payments/debitrequest:
-    post:
-      tags: 
-        - Payments
-      summary: Initiate a Debit Payment (Collection)
-      operationId: createDebitPayment
-      description: |
-        Initiate a domestic or international debit payment [one time or recurring]
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DebitPaymentRequest'
-        description: Payment fields
-        required: true
-      responses:
-        default:
-          description: return payment response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentResponse'
-        '200':
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable            
-         
-
-  /v3/payments/booktransfer:
-    post:
-      tags: 
-        - Payments
-      summary: Initiate a Book (Transfer) Payment
-      operationId: booktransfer
-      description: Initiate a transfer payment request 
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookTransferRequest'
-        description: Payment fields
-        required: true
-      responses:
-        default:
-          description: return payment response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookTransferResponse'
-        '200':
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BookTransferResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: bad input parameter environment
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable           
-          
-  /v3/payments/{paymentUID}:
+  /v2/fx/{forexContractNo}:
     get:
       tags: 
-         - Payments
-      summary: Get Payment
-      operationId: getPaymentByUID
-      description: Retrieve a payment using a payment unique identifier.
+        - Foreign Exchange
+      summary: Get FX Trade information
+      operationId: getFXTradeInformation
+      description: Get FX trade information
       parameters:
-      - name: paymentUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Payment Unique Identifier
+        - name: forexContractNo
+          in: path
+          required: true
+          schema:
+            type: string
+            description: FX Contract Number
       responses:
         default:
-          description: Successful
+          description: Response to the Get FXTrade request
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/GetPaymentResponse'
+                $ref: '#/components/schemas/FXTradeInfoResponse'
         '200':
-          description: OK
+          description: Successfully processed request
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/GetPaymentResponse'
+                $ref: '#/components/schemas/FXTradeInfoResponse'
         '400':
-          description: Bad request
+          description: bad input parameter environment
         '401':
           description: You are not authorized to access the resource
         '403':
           description: Accessing the resource you were trying to reach is forbidden
         '404':
           description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
         '500':
           description: Internal server error
           content:
@@ -785,43 +216,44 @@ paths:
                 items:
                   $ref: '#/components/schemas/Error'
         '503':
-          description: Service unavailable 
-
-  /v3/payments/{paymentUID}/cancel:
-    put:
+          description: Service unavailable
+  /v2/fx/{forexContractNo}/cover:
+    get:
       tags: 
-         - Payments
-      summary: Cancel Payment
-      operationId: cancelPayment
-      description: Initiate a cancel payment request
+        - Foreign Exchange
+      summary: Cover FX trade
+      operationId: coverFXTrade
+      description: Cover FX trade
       parameters:
-      - name: paymentUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Unique payment Id
+        - name: forexContractNo
+          in: path
+          required: true
+          schema:
+            type: string
+            description: FX Contract Number
       responses:
         default:
-          description: Successful
+          description: Response to the cover trade request
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/CancelPaymentResponse'
+                $ref: '#/components/schemas/FXCoverTradeResponse'
         '200':
-          description: OK
+          description: Successfully processed request
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/CancelPaymentResponse'
+                $ref: '#/components/schemas/FXCoverTradeResponse'
         '400':
-          description: Bad request
+          description: bad input parameter environment
         '401':
           description: You are not authorized to access the resource
         '403':
           description: Accessing the resource you were trying to reach is forbidden
         '404':
           description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
         '500':
           description: Internal server error
           content:
@@ -831,107 +263,47 @@ paths:
                 items:
                   $ref: '#/components/schemas/Error'
         '503':
-          description: Service unavailable 
+          description: Service unavailable
+
           
-  /v3/payments/{paymentUID}/return:
-    put:
-      tags: 
-         - Payments
-      summary: Return a payment
-      operationId: returnPayment
-      description: Return a payment
-      parameters:
-      - name: paymentUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Payment Unique Identifier
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReturnPaymentRequest'
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReturnPaymentResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReturnPaymentResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable 
 
-  /v3/payments/{paymentUID}/reverse:
-    put:
+  /v2/fx/{forexContractNo}/cancel:
+    delete:
       tags: 
-         - Payments
-      summary: Reverse a payment
-      operationId: reversePayment
-      description: Initiate a reverse payment request.
+        - Foreign Exchange
+      summary: Cancel FX trade
+      operationId: cancelFXTrade
+      description: Cancel FX Trade
       parameters:
-      - name: paymentUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Payment Unique Identifier
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReversePaymentRequest'
+        - name: forexContractNo
+          in: path
+          required: true
+          schema:
+            type: string
+            description: FX Contract Number
       responses:
         default:
-          description: Successful
+          description: FX Trade cancelation response
           content:
-            '*/*':
+            application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReversePaymentResponse'
+                $ref: '#/components/schemas/FXTradeCancelResponse'
         '200':
-          description: OK
+          description: Successfully processed request
           content:
-            '*/*':
+            application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReturnPaymentResponse'
+                $ref: '#/components/schemas/FXTradeCancelResponse'
         '400':
-          description: Bad request
+          description: bad input parameter environment
         '401':
           description: You are not authorized to access the resource
         '403':
           description: Accessing the resource you were trying to reach is forbidden
         '404':
           description: The resource you were trying to reach is not found
+        '405':
+          description: bad input parameter environment
         '500':
           description: Internal server error
           content:
@@ -941,7 +313,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Error'
         '503':
-          description: Service unavailable 
+          description: Service unavailable             
           
 security: 
   - oAuth2:
@@ -970,1708 +342,468 @@ components:
           description: Error description to provide addtional details about the error code
 
  
-    Address:
-      properties:
-        addressLine1:
-          type: string
-          description: Address line 1
-          example: '111 My Street'
-        addressLine2:
-          type: string
-          description: Address Line 2
-          example: 'Suite 210'
-        city:
-          type: string
-          description: City
-          example: 'Charlotte'
-        state:
-          type: string
-          description: State
-          example: 'North Carolina'
-        postalCode:
-          type: string
-          description: Postal code
-          example: '28269'
-        countryCode:
-          type: string
-          description: ISO country code
-          example: 'US'
 
-    Approver:
-      properties:
-        approverId:
-          type: string
-          description: User ID of the Approver
-          example: 'johndoe'
-        approvedDate:
-          type: string
-          format: dateTime
-          description: Approver Date 
-          example: '03-03-2023' 
-    Audit:
-      properties:
-        submitterId:
-          type: string
-          description: User that submitted transaction
-          example: 'johndoe'
-        submissionDate:
-          type: string
-          format: dateTime
-          description: Submission Date
-          example: '03-03-2023'
-        approvers:
-          type: array
-          items: 
-            $ref: '#/components/schemas/Approver'
-    Bank:
-      description: "The bank details is used to process the payment and it is required when the sender or receiver is not configured in the Finzly CRM system. Based on the bankIDType either bankId or swiftCode or address is needed."
-      properties:
-        name:
-          type: string
-          description: Name of the bank. This is an optional field
-          example: 'XYZ Bank'
-        bankIdType:
-          type: string
-          description: The bank unique identifier type. Use BY SWIFT for  international money transfer. Use NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.
-          enum:
-            - NID
-            - ADDRESS
-            - SWIFT
-          example: 'NID, ADDRESS, SWIFT'
-        bankId: 
-          type: string
-          description: Bank routing number or routing code. This is needed when the bankIdType is set to 'NID'
-          example: '072000326'
-        swiftCode:
-          type: string
-          description: SWIFT Code. This is needed when the bankIdType is set to 'SWIFT'
-          example: 'CHASUS33XXX'
-        countryCode: 
-          type: string
-          description: Country Code in ISO format
-          example: 'US'
-        address:
-          $ref: '#/components/schemas/Address'
 
-    Fee:
-      properties:
-        feeName:
-          type: string
-          description: Fee Name
-          example: Custom etc.
-          maxLength: 20
-        currency:
-          type: string
-          description: Fee Currency
-          example: USD
-        amount:
-          type: number
-          example: 10.00
-          description: Fee amount
-          
-    Notification:
-      properties:
-        emailAddress: 
-          type: string
-          example: 'me@gmail.com'
-        phoneNumber:
-          type: string
-          example: '111223333 or 111-22-3333'
-        message:
-          type: string
-          example: 'Payment to XXX'
-
-    PaymentOccurrence:
-      properties:
-        frequency:
-          type: string
-          enum:
-           - Daily
-           - Weekly
-           - BiWeekly
-           - Monthly
-           - Quarterly
-           - SemiAnnually
-           - Yearly
-          example: Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly
-          description: 'Payment occurrence frequency'
-        payUntil:
-          type: string
-          enum: 
-           - Cancelled
-           - EndDate
-           - NumberOfPayments
-          example: Cancelled, EndDate, NumberOfPayments
-          description: 'Pay until'
-        endDate:
-          type: string
-          format: date
-          example: '01-29-2023'
-          description: 'This is mandatory when the payUntil is set to EndDate. Date in mm-dd-yyyy format.'
-        numberOfPayments: 
-          type: integer
-          example: 10
-          description: 'This is mandatory when the payUntil is set to NumberOfPayments'
-
-    PaymentSearch:
-      properties:
-        fromDate:
-          type: string
-          format: date
-          description: "From date"
-        toDate:
-          type: string
-          format: date      
-          description: "To date"
-        currency:
-          type: string   
-          description: "Payment currency"
-        minPaymentAmount:
-          type: number
-          description: "Payment amount"
-        maxPaymentAmount:
-          type: number    
-          description: "Payment amount"
-        forexContractNo:
-          type: string 
-          description: "FX contract number"
-        paymentType:
-          type: string
-          description: "Payment type"
-        receiverAccountNo:
-          type: string
-          description: "Receiver account number"
-        receiverName:
-          type: string
-          description: "Receiver name"
-        senderAccountNo:
-          type: string
-          description: "Sender account number"
-        sourceRefNo:
-          type: string 
-          description: "Payment external reference number"
-        status:
-          type: string
-          description: "Payment status"
-        page:
-          type: integer
-          description: Which page of results are to be returned
-          example: 1
-        limit:
-          type: integer
-          description: How many records are returned in the result set
-          example: 10
- 
-    Groups:
-      type: object
-      properties:
-        condition: 
-          type: string
-          example: OR
-        type: 
-          type: string
-        groups: 
-          type: array
-          items: 
-            $ref: '#/components/schemas/Groups'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fields'
-            
-    Fields:
-      type: object
-      properties:
-        id: 
-          type: string
-          example: beneficiaryBankSWIFT
-        displayName: 
-          type: string
-          example: Beneficiary Bank SWIFT
-        swiftCode: 
-          type: string
-        swiftTag: 
-          type: string
-        fieldLength: 
-          type: integer
-  
-    PaymentNoteOptionValueChildren:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            displayName:
-              type: string
-              example: Drivers Licence
-            swiftCode:
-              type: string
-              example: DVB001
-            group:
-              type: boolean
-              example: false
-            children:
-              $ref: '#/components/schemas/PaymentNoteOptionValueChildren'
- 
-    AdditionalInfoCreditPayment:
-      properties:
-        channel:
-          type: string
-          description: The payment origination system such as API, TELLER etc.
-          example: API, TELLER etc.
-        requestMethod:
-          type: string
-          example: WALK-IN, PHONE-IN etc.
-          description: Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
-        detailsOfCharges:
-          type: string
-          description: who pays the payment charges
-          example: OUR, BEN, or SHA
-        secCode:
-          type: string
-          example: CCD, PPD etc.
-          description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction
-        transactionTypeCode:
-          type: string
-          example: ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc.
-          description: This is an optional field. This is a secondary SEC code can be set when the sec code is set to IAT.
-        receiverIdentificationNumber:
-          type: string
-          example: 12334356 etc.
-          description: This is an optional field. This is Receiver’s DFI Identification Number can be set when the sec code is set to IAT
-        fullAmount:
-          type: number
-          example: 100.00
-          description: Full payment amount and applicable for request for payment (RFP) request. 
-        discountAmount:
-          type: number
-          example: 100.00
-          description: Discounted amount and applicable for request for payment (RFP) request. 
-        discountExpiryDateTime:
-          type: string
-          format: date-time
-          example: "2022-01-01T17:32:25Z"
-          description: Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.
-        fxContractNumber:
-          type: string
-          example: "111234 etc."
-          description: Unique identifier associated with the FX trade applicable for the international payment
-        originatortoBeneficiary:
-          type: string
-          description: Any additional information to be provided to the wire recipient. This is an optional field
-          example: Notes        
-        senderToReceiverNotes:
-          type: string
-          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field
-          example: Notes
-        remittanceMethod:
-          type: string
-          enum:
-            - EMAIL
-            - URID
-          description: This is applicable for the RTP payment. This is an optional field
-          example: EMAIL or URID        
-        paymentRemittanceNotes:
-          type: string
-          description: This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field
-          example: Remittance Notes          
-        localInstruments:
-          type: string
-          description: Local instrument code applicable for the CTP fedwire payment or RTP payment
-          example: 'COVS, ANSI, STANDARD, ZELLE etc.'
-          enum:
-           - COVS
-           - ANSI
-           - GXML
-           - IXML
-           - NARR
-           - S820
-           - SWIF
-           - UEDI
-           - RRMT
-           - PROP
-           - STANDARD
-           - ZELLE
-           - INTERMEDIARY
-           - FOREIGN_AFFILIATE          
-        referenceForBeneficiary:
-          type: string
-          description: This is applicable for the fedwire payment where the local instrument set to COVS. This specifies the reference details for the beneficiary.
-          example: Notes
-        unstructuredAddendaInfo:
-          type: object
-          description: This is applicable for the fedwire payment where the local instrument can be S820, GXML, ANSI, IXML, NARR, SWIF, UEDI
-          properties:
-            addendaLength:
-              type: integer
-            addendaInformation:
-              type: string
-        proprietaryCode:
-          type: string
-          description: This is applicable for the fedwire payment where the local instrument set to PROP
-          
-    AdditionalInfoDebitPayment:
-      properties:
-        channel:
-          type: string
-          description: The payment origination system such as API, TELLER etc.
-          example: API, TELLER etc.
-        requestMethod:
-          type: string
-          example: WALK-IN, PHONE-IN etc.
-          description: Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
-        detailsOfCharges:
-          type: string
-          description: who pays the payment charges
-          example: OUR, BEN, or SHA
-        secCode:
-          type: string
-          example: CCD, PPD etc.
-          description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction
-        transactionTypeCode:
-          type: string
-          example: ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc.
-          description: This is an optional field. This is a secondary SEC code can be set when the sec code is set to IAT.
-        receiverIdentificationNumber:
-          type: string
-          example: 12334356 etc.
-          description: This is an optional field. This is Receiver’s DFI Identification Number can be set when the sec code is set to IAT
-        fullAmount:
-          type: number
-          example: 100.00
-          description: Full payment amount and applicable for request for payment (RFP) request. 
-        discountAmount:
-          type: number
-          example: 100.00
-          description: Discounted amount and applicable for request for payment (RFP) request. 
-        discountExpiryDateTime:
-          type: string
-          format: date-time
-          example: "2022-01-01T17:32:25Z"
-          description: Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.
-        fxContractNumber:
-          type: string
-          example: "111234 etc."
-          description: Unique identifier associated with the FX trade applicable for the international payment
-        originatortoBeneficiary:
-          type: string
-          description: Any additional information to be provided to the wire recipient. This is an optional field
-          example: Notes        
-        senderToReceiverNotes:
-          type: string
-          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field
-          example: Notes
-        paymentRemittanceNotes:
-          type: string
-          description: This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field
-          example: Remittance Notes          
-
-    BookTransferSender:
-      properties:
-        accountUID:
-          type: string
-          example: '123452334'
-          description: Sender account unique identifier
-        accountNumber:
-          type: string
-          example: '123452334 etc.'
-          description: Sender account number
-        accountType:
-          type: string
-          example: 'DDA or GL'
-          description: Account type
-          enum:
-           - DDA
-           - GL
-        currency:
-          type: string
-          description: Sender Currency
-          example: 'USD'
-
-    BookTransferReceiver:
-      properties:
-        accountUID:
-          type: string
-          example: '123452334'
-          description: Sender account unique identifier
-        accountNumber:
-          type: string
-          example: '123452334 etc.'
-          description: Sender account number
-        accountType:
-          type: string
-          example: 'DDA or GL'
-          description: Account type
-          enum:
-           - DDA
-           - GL
-        currency:
-          type: string
-          description: Sender Currency
-          example: 'USD'
-          
-    PaymentSender:
-      properties:
-        accountUID:
-          type: string
-          example: '123452334'
-          description: Sender account unique identifier
-        achCompanyID:
-          type: string
-          example: '122334789'
-          description: ACH company/origination id is a 10-digit identifier used by bank and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
-        accountNumber:
-          type: string
-          example: '123452334 etc.'
-          description: Sender bank account number from where the money will be withdrawn
-        accountType:
-          type: string
-          example: 'Deposit, GL or MCA'
-          enum:
-           - Deposit
-           - GL
-           - MCA
-          description: Account type
-        subAccountType:
-          type: string
-          example: 'Checking or Savings'
-          enum:
-           - Checking
-           - Savings
-          description: Sub type of the account whether Checking or Savings
-        name:
-          type: string
-          example: 'Customer account'
-          description: Name associated with the account
-        entityType:
-          type: string
-          enum:
-           - Consumer
-           - Corporate
-          example: 'Consumer or Corporate' 
-          description: Type of the entity
-        address:
-          $ref: '#/components/schemas/Address'
-        bankIdType:
-          type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
-          enum:
-            - NID
-            - SWIFT
-          example: 'NID or SWIFT'
-        bankId: 
-          type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.
-          example: '101206101 or FBOLUS6LXXX'
-        phone:
-          type: string
-          example: '18001236754'
-          description: Phone number associated with the sender
-        email:
-          type: string
-          example: 'email@domain.com'
-          description: Email associated with the sender
-        swiftTag:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
-        swiftNote:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
-          
-    PaymentReceiver:
-      properties:
-        accountUID:
-          type: string
-          example: 12334989
-          description: Receiver account unique indentifier exist in the FinzlyOS system
-        accountNumber:
-          type: string
-          example: '123422434'
-          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc. 
-        accountType:
-          type: string
-          example: 'Deposit'
-          enum:
-           - Deposit
-          description: Account type
-        subAccountType:
-          type: string
-          example: 'Checking, Savings'
-          description: Sub type of the account whether Checking or Savings
-        accountCurrency:
-          type: string
-          example: 'USD, EUR etc.'
-          description: Receiver currency
-        name:
-          type: string
-          example: 'XYZ Name'
-          description: Name associated with the account
-        address:
-          $ref: '#/components/schemas/Address'
-        phone:
-          type: string
-          example: '18001236754'
-          description: Phone number associated with the receiver
-        email:
-          type: string
-          example: 'email@domain.com'
-          description: Email associated with the receiver
-        bank:
-          $ref: '#/components/schemas/Bank'
-        intermediaryBank:
-          $ref: '#/components/schemas/Bank'
-        swiftTag:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
-        swiftNote:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS   
-
-    PaymentCreditor:
-      properties:
-        accountUID:
-          type: string
-          example: '123452334'
-          description: Sender account unique identifier
-        achCompanyID:
-          type: string
-          example: '122334789'
-          description: ACH company/origination id is a 10-digit identifier used by bank and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
-        accountNumber:
-          type: string
-          example: '123452334 etc.'
-          description: Sender bank account number from where the money will be withdrawn
-        accountType:
-          type: string
-          example: 'Deposit, GL or MCA'
-          enum:
-           - Deposit
-           - GL
-           - MCA
-          description: Account type
-        subAccountType:
-          type: string
-          example: 'Checking or Savings'
-          enum:
-           - Checking
-           - Savings
-          description: Sub type of the account whether Checking or Savings
-        name:
-          type: string
-          example: 'Customer account'
-          description: Name associated with the account
-        entityType:
-          type: string
-          enum:
-           - Consumer
-           - Corporate
-          example: 'Consumer or Corporate' 
-          description: Type of the entity
-        address:
-          $ref: '#/components/schemas/Address'
-        bankIdType:
-          type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC).  It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
-          enum:
-            - NID
-            - SWIFT
-          example: 'NID or SWIFT'
-        bankId: 
-          type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.
-          example: '101206101 or FBOLUS6LXXX'
-        phone:
-          type: string
-          example: '18001236754'
-          description: Phone number associated with the sender
-        email:
-          type: string
-          example: 'email@domain.com'
-          description: Email associated with the sender
-        swiftTag:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
-        swiftNote:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
-          
-    PaymentDebtor:
-      properties:
-        accountUID:
-          type: string
-          example: 12334989
-          description: Receiver account unique indentifier exist in the FinzlyOS system
-        accountNumber:
-          type: string
-          example: '123422434'
-          description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc. 
-        accountType:
-          type: string
-          example: 'Deposit'
-          enum:
-           - Deposit
-          description: Account type
-        subAccountType:
-          type: string
-          example: 'Checking, Savings'
-          description: Sub type of the account whether Checking or Savings
-        accountCurrency:
-          type: string
-          example: 'USD, EUR etc.'
-          description: Debtor currency
-        name:
-          type: string
-          example: 'XYZ Name'
-          description: Name associated with the account
-        address:
-          $ref: '#/components/schemas/Address'
-        phone:
-          type: string
-          example: '18001236754'
-          description: Phone number associated with the receiver
-        email:
-          type: string
-          example: 'email@domain.com'
-          description: Email associated with the receiver
-        bank:
-          $ref: '#/components/schemas/Bank'
-        intermediaryBank:
-          $ref: '#/components/schemas/Bank'
-        swiftTag:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
-        swiftNote:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS   
-          
-    SearchPositivePayDecisionRequest:
-      properties:
-        paymentUID:
-          type: string
-          description: A unique identifier associated with the payment
-          example: 112233
-        customerUID:
-          type: string
-          description: Customer unique identifier associated with the customer in the Finzly's CRM system
-          example: 112233          
-        customerName:
-          type: string
-          example: ABC Company
-          description: Customer name associated with the payment positive rule
-        customerAccountNumber:
-          type: string
-          description: Bank Account Number
-          example: 12387878
-        decisionDateTime:
-          type: string
-          format: date
-          description: Decision date and time in (EST)
-          example: 11-01-2022 15:30:00
-        amount:
-          type: number
-          example: 10.00
-          description: Payment amount        
-        positivePayDecisionStatus:
-          type: string
-          description: Decision status
-          example: PENDING, APPROVED, REJECTED etc.
-        secCode:
-          type: string
-          example: CCD, PPD etc.
-          description: SEC code associated with the ACH postive rule
-          
-    SearchPositivePayDecisionResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PPD001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to get the positive pay exception information: <Failure Reason>."      
-        data: 
-          type: array
-          items:
-            $ref: '#/components/schemas/PositivePayExceptionDecision'
-
-          
-    PositivePayExceptionDecision:
-      properties:
-        exceptionUID:
-          type: string
-          description: Unique identifier associated with positive pay exception  
-        paymentUID:
-          type: string
-          description: Unique identifier associated with payment
-          example: '100100'
-        paymentRuleType:
-          type: string
-          example: ACH, FEDWIRE, RFP
-          description: Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.
-        amount:
-          type: number
-          format: int64
-          description: Payment Amounnt 
-          example: 123456789
-        achCompanyID:
-          type: number
-          example: 122334789
-          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”) 
-        customerAccountNumber:
-          type: string
-          example: 12387878
-          description: Bank Account Number          
-        beneName:
-          type: string
-          example: 'XYZ Name'
-          description: A beneficiary is the person or entity that will receive the payment
-        exceptionReason:
-          type: string
-          description: Reason for the positive pay exception
-          example: "Amount Mismatch"
-        exceptionDateTime:
-          type: string
-          format: date
-          description: Decision date and time in (EST)
-          example: 11-01-2022 15:30:00
-        expiryDateTime:
-          type: string
-          format: date
-          example: 11-01-2022 15:30:00
-          description: Positive Pay Rule Exception expiry date time in (EST)
-        positivePayDecisionStatus:
-          type: string
-          description: Decision status
-        secCode:
-          type: string
-          example: CCD, PPD etc.
-        approvedBy:
-          type: string
-          description: User who approved the exception
-          example: user001
-        approvedDate:
-          type: string
-          format: date
-          description: Approval date and time in (EST)
-          example: 11-01-2022 15:30:00
-
-    ActivatePositivePayExceptionResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PPD001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to activate or suspend a positive pay exception: <Failure Reason>."
-        exceptionUID:
-          type: number
-          format: int64
-          description: Unique identifier associated with positive pay exception  
-          example: 123456789
-
-    PositivePayExceptionApproveAllResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PPD001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to approve all positive pay rule exception: <Failure Reason>."
-
-    SearchPositivePayRuleRequest:
-      properties:
-        companyBankId:
-          type: string
-          example: 12345678
-          description: Bank unique id or routing number that is used to identify a specific bank
-        companyName:
-          type: string
-          example: 'XYZ Name'
-          description: The name of the company or entity that originated the payment request
-        companyBankName:
-          type: string
-          example: 'XYZ Bank'
-          description: Bank name where the company account is held. 
-        companyAccountNumber:
-          type: string
-          example: 12345678
-          description: A company bank account number
-        amount:
-          type: number
-          example: 10.00
-          description: Payment amount  
-        customerName:
-          type: string
-          example: 
-          description: Name of the customer who created the positive rule
-        customerAccountNumber:
-          type: string
-          example: 12387878
-          description: Customer bank account number on which the positive rule is defined.
-        effectiveDate:
-          type: string
-          format: date
-          example: '11-01-2022'
-          description: Rule effective date in mm-dd-yyyy format
-        expiryDate:
-          type: string
-          format: date
-          example: '11-01-2022'
-          description: Rule expiration date in mm-dd-yyyy format
-        status:
-          type: string
-          example: Active or Expired
-          description: Current state of the rule whether Active or Expired etc.
-          
-    SearchPositivePayRuleResponse:
-      type: object
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PP001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to get positive rules: <Reason>"      
-        data: 
-          type: array
-          items:
-            $ref: '#/components/schemas/PositivePayRule'
-
-    GetPositivePayRuleUIDResponse:
-      type: object
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PP001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to get positive rule: <Reason>"
-        data: 
-          $ref: '#/components/schemas/PositivePayRule'
-
-    UpdatePositivePayRuleResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PP001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to update a positive rule: <Failure Reason>."
-        ruleUID:
-          type: number
-          format: int64
-          description: Positive rule unique id 
-          example: 123456789
-
-    PostPositivePayRuleResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PP001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to add a positive rule: <Failure Reason>."
-        ruleUID:
-          type: number
-          format: int64
-          description: Positive rule unique id 
-          example: 123456789
-
-    DeletePositivePayRuleResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PP001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to delete a positive rule: <Failure Reason>."
-        ruleUID:
-          type: number
-          format: int64
-          description: Positive rule unique id 
-          example: 123456789
-
-    ActivatePositivePayRuleResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "PP001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to activate or suspend a positive rule: <Failure Reason>."
-        ruleUID:
-          type: number
-          format: int64
-          description: Positive rule unique id 
-          example: 123456789
-          
-                    
-    PositivePayRule:
-      type: object
-      properties:
-        ruleUID:
-          type: number
-          format: int64
-          example: 123456789
-          description: Positive rule unique reference id
-        paymentRuleType:
-          type: string
-          example: ACH, FEDWIRE, RFP
-          description: Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.
-        customerName:
-          type: string
-          example: ABC Company
-          description: Customer name associated with the payment positive rule
-        customerAccountNumber:
-          type: string
-          example: 12387878
-          description: Bank Account Number
-        achCompanyID:
-          type: number
-          example: 122334789
-          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”) 
-        beneBankId:
-          type: string
-          example: 12345678
-          description: Bank unique id that is used to identify a specific bank
-        beneName:
-          type: string
-          example: 'XYZ Name'
-          description: A beneficiary is the person or entity that will receive the payment
-        beneBankName:
-          type: string
-          example: 'Bank Name'
-          description: Beneficiary bank name
-        beneAccountNumber:
-          type: string
-          example: 12345678
-          description: A beneficiary bank account number         
-        amount:
-          type: number
-          example: 10.00
-          description: Payment amount         
-        currency:
-          type: string
-          example: USD
-          description: Currency Code
-          default: USD
-        amountType:
-          type: string
-          example: Exact or Maximum
-          description: Type of amount associated with the postive pay rule.          
-        frequency:
-          type: string
-          example: Onetime, Weekly etc.
-          description: Positive pay rule frequency
-        secCode:
-          type: string
-          example: CCD, PPD etc.
-          description: SEC code associated with the ACH postive rule
-        status:
-          type: string
-          example: Active, Expired
-          description: Current state of the rule whether Active or Expired etc.
-        effectiveDate:
-          type: string
-          format: date
-          example: '11-01-2022'
-          description: Rule effective date in mm-dd-yyyy format
-        expiryDate:
-          type: string
-          format: date
-          example: '11-01-2022'
-          description: Rule effective date in mm-dd-yyyy format
-
-    AddPositivePayRule:
-      type: object
-      properties:
-        paymentRuleType:
-          type: string
-          example: ACH, FEDWIRE, RFP
-          description: Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.
-        customerName:
-          type: string
-          example: ABC Company
-          description: Customer name associated with the payment positive rule
-        customerAccountNumber:
-          type: string
-          example: 12387878
-          description: Bank Account Number
-        achCompanyID:
-          type: number
-          example: 1234567899
-          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”) 
-        beneBankId:
-          type: string
-          example: 12345678
-          description: Bank unique id that is used to identify a specific bank
-        beneName:
-          type: string
-          example: 'XYZ Name'
-          description: A beneficiary is the person or entity that will receive the payment
-        beneBankName:
-          type: string
-          example: 'Bank Name'
-          description: Beneficiary bank name
-        beneAccountNumber:
-          type: string
-          example: 12345678
-          description: A beneficiary bank account number         
-        amount:
-          type: number
-          example: 10.00
-          description: Payment amount         
-        currency:
-          type: string
-          example: USD
-          description: Currency Code
-        amountType:
-          type: string
-          example: Exact or Maximum
-          description: Type of amount associated with the postive pay rule.          
-        frequency:
-          type: string
-          example: Onetime, Weekly etc.
-          description: Positive pay rule frequency
-        secCode:
-          type: string
-          example: CCD, PPD etc.
-          description: SEC code associated with the ACH postive rule
-        effectiveDate:
-          type: string
-          format: date
-          example: '11-01-2022'
-          description: Rule effective date in mm-dd-yyyy format
-        expiryDate:
-          type: string
-          format: date
-          example: '11-01-2022'
-          description: Rule effective date in mm-dd-yyyy format
-          
-    ApproveAllPositivePayExceptionRequest:
-      properties:
-        paymentUID:
-          type: array
-          items:
-            type: string
-            example: [112233,132311]
-            description: A unique identifier associated with the payment requires decision. 
-              
-
-    
-    CreditPaymentRequest:
+    FXQuoteRequest:
       required:
         - externalReferenceId
-        - sender
-        - receiver
-        - paymentDate    
-        - paymentAmount
-        - paymentCurrency
-        - speed
-        - paymentNotes
-      properties:
-        externalReferenceId:
-          type: string
-          description: 'Unique reference id set by the originator system.'
-          example: 'PaymentRef100'
-        paymentDate:
-          type: string
-          format: date 
-          example: 07-21-2022
-          description: Payment date in mm-dd-yyyy format.
-        paymentCurrency:
-          type: string
-          description: Payment currency
-          example: 'USD'
-        paymentAmount:
-          type: number
-          example: 100.00
-          description: Payment amount
-        speed:
-          type: string
-          example: 'Standard, Economy, Express'
-          description: Speed associated with the payment based on the delivery time and fee.    
-        paymentNotes:
-          type: string
-          default: 'Notes'
-          description: Payment notes provided by the payment originator.
-        sender:
-          $ref: '#/components/schemas/PaymentSender'
-        receiver:
-          $ref: '#/components/schemas/PaymentReceiver'
-        fee:
-          $ref: '#/components/schemas/Fee'
-        recurrence:
-          $ref: '#/components/schemas/PaymentOccurrence'
-        additionalInfo:
-          $ref: '#/components/schemas/AdditionalInfoCreditPayment'
-
-    BookTransferRequest:
-      required:
-        - externalReferenceId
-        - sender
-        - receiver
-        - paymentAmount
-        - paymentDate
+        - customerId
+        - customerIdType
+        - productType
       properties:
         externalReferenceId:
           type: string
           description: "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed)."
-          example: 'Payment101'
-          
-        senderAccount:
-          $ref: '#/components/schemas/BookTransferSender'
-        receiverAccount:
-          $ref: '#/components/schemas/BookTransferReceiver'
-        paymentAmount:
-          type: number
-          example: 100.00
-        paymentDate:
-          type: string
-          format: date 
-          example: 07-21-2022
-          description: Payment date in mm-dd-yyyy format.
+          example: "REQ123 or 1274878"
         channel:
           type: string
-          description: Channel associated with the payment
-          example: API, TELLER etc.
-
-          
-    BookTransferResponse:
-      properties:
-        status: 
+          description: FX quote request origination source
+          example: ONLINE, FXDesk etc.
+        customerId:
           type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
+          description: The value based on the customerIdType
+          example: "112344 for DDA"
+        customerIdType:
           type: string
-          description: "Code associated with the error."
-          example: "BOOKTRF001 etc."
-        message:
+          enum:  
+            - CustomerUID
+            - CustomerShortName
+            - CustomerId
+            - DDA
+          description: CustomerId type
+          example: CustomerUID, CustomerShortName,CustomerId, DDA
+        sellCurrency:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to create a book transfer payment: <Reason>"
-        data:
-          type: object
-          properties:
-            paymentUID:
-              type: string
-            paymentStatus:
-              type: string
-            externalReferenceId:
-              type: string
-              
-
-    PaymentResponse:
-      properties:
-        status: 
+          example: EUR
+          description: Sell Currency
+        buyCurrency:
           type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PAYMENT001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to create a payment: <Reason>"
-        data:
-          type: object
-          properties:
-            paymentUID:
-              type: string
-            paymentStatus:
-              type: string
-            externalReferenceId:
-              type: string
-
-    DebitPaymentRequest:
-      properties:
-        externalReferenceId:
-          type: string
-          description: 'Unique reference id set by the originator system.'
-          example: 'PaymentRef100'
-        paymentAmount:
+          example: INR
+          description: Buy Currency
+        fundingAmount:
           type: number
-          example: 100.00
-        paymentDate:
-          type: string
-          format: date 
-          example: 07-21-2022
-          description: Payment date in mm-dd-yyyy format.
-        paymentCurrency:
-          type: string
-          description: Payment Currency
-          example: 'USD'
-        paymentNotes:
-          type: string
-          default: 'Notes'
-          description: Payment notes provided by the originator
-        speed:
-          type: string
-          example: 'Standard, Economy, Express'
-        debtor:
-          $ref: '#/components/schemas/PaymentDebtor'
-        creditor:
-          $ref: '#/components/schemas/PaymentCreditor'
-        fee:
-          $ref: '#/components/schemas/Fee'
-        recurrence:
-          $ref: '#/components/schemas/PaymentOccurrence'
-        additionalInfo:
-          $ref: '#/components/schemas/AdditionalInfoDebitPayment'
-
-    
-    CancelPaymentResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PAYMENT001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to cancel a payment: <Reason>"
-        data:
-          type: object
-          properties:
-            paymentUID:
-              type: string
-
-    ReturnPaymentRequest:
-     properties:
-        achReturnCode: 
-          type: string
-          description: "Valid ACH return code such as R01,R02 etc."
-          example: "R01"
-        returnNotes:
-          type: string
-          description: "Return notes"
-          example: "Invalid payment request."    
-          
-    ReturnPaymentResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PAYMENT003 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to return a payment: <Reason>"
-        data:
-          type: object
-          properties:
-            paymentUID:
-              type: string
-            status:
-              type: string
-              description: "Payment status."
-              
-
-    ReversePaymentRequest:
-     properties:
-        reversalNotes:
-          type: string
-          description: "Reversal notes"
-
-    ReversePaymentResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PAYMENT004 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to reverse a payment: <Reason>"
-        data:
-          type: object
-          properties:
-            paymentUID:
-              type: string
-              description: "Payment unique identifier."
-
-    GetPaymentResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "PAYMENT001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to retrieve a payment: <Reason>"
-        data:
-          $ref: '#/components/schemas/Payment'
-            
-    Payment:
-      properties:
-        paymentUID:
-          type: integer
-          description: "Payment unique identifier assigned by the system."
-          example: "12341"
-        counterPartyId:
-          type: string
-          description: "Customer UID associated with the payment."
-        senderUID:
-          type: string
-        senderAccountNumber:
-          type: string
-        senderAccountName:
-          type: string
-        senderName:
-          type: string
-        senderCity:
-          type: string
-        senderState:
-          type: string
-        senderZip:
-          type: string
-        senderCountry:
-          type: string
-        senderAddress1:
-          type: string
-        senderAddress2:
-          type: string
-        senderIdType:
-          type: string
-        senderIdType2:
-          type: string
-        senderId2:
-          type: string
-        senderCountryCode:
-          type: string
-        senderBankId:
-          type: string
-        senderBankName:
-          type: string
-        senderBankIdType:
-          type: string
-        senderBankAddress1:
-          type: string
-        senderBankAddress2:
-          type: string
-        senderBankCity:
-          type: string
-        senderBankState:
-          type: string
-        senderBankZip:
-          type: string
-        senderBankCountry:
-          type: string           
-        senderAccountType:
-          type: string
-        isIntermediarySender:
-          type: boolean
-        intermediarySenderName:
-          type: string
-        intermediarySenderAddress1:
-          type: string
-        intermediarySenderAddress2:
-          type: string
-        intermediarySenderCity:
-          type: string
-        intermediarySenderState:
-          type: string  
-        intermediarySenderZip:
-          type: string
-        intermediarySenderCountry:
-          type: string
-        intermediarySenderId:
-          type: string
-        intermediarySenderIdType:
-          type: string          
-        ultimateSenderName:
-          type: string
-        ultimateSenderAccountNumber:
-          type: string
-        ultimateSenderAddress1:
-          type: string
-        ultimateSenderAddress2:
-          type: string
-        ultimateSenderTaxId:
-          type: string
-        ultimateSenderCity:
-          type: string
-        ultimateSenderState:
-          type: string
-        ultimateSenderZip:
-          type: string
-        ultimateSenderCountry:
-          type: string
-        beneficiaryUID:
-          type: string
-        beneficiaryName:
-          type: string
-        senderAmount:
-          type: string
-        paymentDate:
-          type: string
-        receiverCurrency:
-          type: string
-          description: ISO Currency Code
-        senderCurrency:
-          type: string
-          description: ISO Currency Code
-        receiverAmount:
+          example: 10000
+          description: Funding Amount. Only one is needed between fundingAmount and transferAmount
+        transferAmount:
           type: number
-        deliveryMethod:
-          type: string
-          description: One of the payment network delivery methods that includes Same Day ACH, Regular ACH, RTP, Fedwire
-          example: 'ACH'
-        receiverAccountNumber:
-          type: string
-        receiverName:
-          type: string
-        receiverAccountType:
-          type: string
-        receiverType:
-          type: string  
-        receiverAddress1:
-          type: string
-        receiverAddress2:
-          type: string
-        receiverCity:
-          type: string
-        receiverState:
-          type: string  
-        receiverZip:
-          type: string
-        receiverPhoneNumber:
-          type: string  
-        receiverEmail:
-          type: string
-        receiverCountry:
-          type: string  
-        receiverIdType:
-          type: string
-        receiverIdType2:
-          type: string  
-        receiverId2:
-          type: string
-        receiverBankId:
-          type: string
-        receiverBankName:
-          type: string
-        receiverBankIdType:
-          type: string  
-        receiverBankAddress1:
-          type: string
-        receiverBankAddress2:
-          type: string  
-        receiverBankCity:
-          type: string
-        receiverBankState:
-          type: string  
-        receiverBankZip:
-          type: string
-        receiverBankCountry:
-          type: string
-        isIntermediaryReceiver:
-          type: boolean
-        intermediaryReceiverName:
-          type: string
-        intermediaryReceiverAddress1:
-          type: string
-        intermediaryReceiverAddress2:
-          type: string
-        intermediaryReceiverCity:
-          type: string
-        intermediaryReceiverState:
-          type: string
-        intermediaryReceiverZip:
-          type: string
-        intermediaryReceiverCountry:
-          type: string
-        intermediaryReceiverId:
-          type: string
-        intermediaryReceiverIdType:
-          type: string            
-        ultimateReceiverName:
-          type: string
-        ultimateReceiverAccountNumber:
-          type: string
-        ultimateReceiverAddress1:
-          type: string
-        ultimateReceiverAddress2:
-          type: string
-        ultimateReceiverTaxId:
-          type: string
-        ultimateReceiverCity:
-          type: string
-        ultimateReceiverState:
-          type: string
-        ultimateReceiverZip:
-          type: string
-        ultimateReceiverCountry:
-          type: string
-        createdBy:
-          type: string
-        bankFeePayer:
+          description: Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount
+          example: 1000          
+        productType:
           type: string
           enum:
-           - remitter
-           - beneficiary
-        paymentNotes:
+            - SPOT
+            - FORWARD
+          example: SPOT or FORWARD
+          description: FX financial instrument such SPOT or FORWARD
+        tenor:
           type: string
-          description: "Notes associated with the payment."
-          example: 'payment for invoice ABC123'
-        forexContract:
+          example: "SPOT, ON, TN, nW, nM, nY where n is a number"
+          description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+        valueDate:
           type: string
-          example: '1325'
-        occurrences:
-          $ref: '#/components/schemas/PaymentOccurrence'
+          example: '2020-01-01'
+          format: date
+          description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate.The date format is in yyyy-mm-dd.
+
+    FXQuoteResponse:
+      properties:
         status:
           type: string
-          example: FUTURE_DATED
-        displayStatus:
-          type: string
-          example: Scheduled
-        notification:
-          $ref: '#/components/schemas/Notification'
-        audit:
-          $ref: '#/components/schemas/Audit'
-        creationDateTime:
-          type: string
-        customerType:
-          type: string
-          description: "Customer type associated with the payment."
-          example: "Corporate or Consumer"
-        deliveryAgentType:
-          type: string
-        quoteId:
-          type: string
-        wireType:
-          type: string
-        counterParty:
-          type: string
-        businessUnit:
-          type: string
-          description: "Processing org name assigned to the payment."
-        channel:
-          type: string
-        costCenter:
-          type: string
-        book:
-          type: string
-        businessUnitId:
-         type: string
-         description: "Processing org id assigned to the payment."
-  
-    PaymentSearchResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
+          description: "This will return Success/Failed"
           example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
         code:
           type: string
-          description: "Code associated with the error."
-          example: "PAYMENT001 etc."
+          description: "This will indicate the error code in case of API error"
+          example: "FXQUOTE001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to search a payment: <Reason>"
+          description: "This will be the detailed error message indicating what failed and how to fix the issue"
+          example: "Failed to get a FX Quote due to the mandatory attribute <attribute-name> is not provide."
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
+          type: object
+          properties:
+            externalReferenceId:
+              type: string
+              description: "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed)."
+              example: "REQ123 or 1274878"
+            quoteUUID:
+              type: string
+              example: 123e4567-e89b-12d3-a456-426614174000
+              description: FX Quote universally unique identifier (UUID)
+            expirySeconds:
+              type: integer
+              example: 30
+              description: Time in seconds after which the FX quote will expire
+            exchangeRate:
+              type: number
+              example: 1.20
+              description: The price of one currency in terms of the other
+              default: 0
+            invertedRate:
+              type: number
+              example: 0.83
+              description: Time in seconds after which the FX quote will expire
+              default: 0
+            sellCurrency:
+              type: string
+              example: EUR
+              description: Sell Currency
+            buyCurrency:
+              type: string
+              example: INR
+              description: Buy Currency
+            fundingAmount:
+              type: number
+              example: 10000
+              description: Funding Amount. Only one is needed between fundingAmount and transferAmount
+            transferAmount:
+              type: number
+              description: Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount
+              example: 1000          
+            productType:
+              type: string
+              enum:
+                - SPOT
+                - FORWARD
+              example: SPOT or FORWARD
+              description: FX financial instrument such SPOT or FORWARD
+            tenor:
+              type: string
+              example: "SPOT, ON, TN, nW, nM, nY where n is a number"
+              description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+            valueDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.
+            externalPricingSystemRefId:
+              type: string
+              description: "Unique reference id returned by the external system provider."
+              example: "R1274878 etc."
+              
+    FXAcceptQuoteRequest:
+      properties:
+        quoteUUID:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+          description: FX Quote universally unique identifier (UUID)
+        autoCover:
+          type: boolean
+          example: "true or false"
+          description: This is an optional field. Set the value to true if auto cover is needed during the acceptance of FX quote.
+        autoCoverDelay:
+          type: integer
+          example: 30
+          description: This is an optional field. It is required if the auto cover is set to true. For the FX quote associated with the consumer then the allowed autoCoverDelay is from 30 minutes to 120 minutes. For non-consumer the allowed autoCoverDelay is from 0 to 120 minutes.
+          
+    FXAcceptQuoteResponse:
+      properties:
+        status:
+          type: string
+          description: "This will return Success/Failed"
+          example: "Success or Failure"
+        code:
+          type: string
+          description: "This will indicate the error code in case of API error"
+          example: "FXQUOTE002 etc."
+        message:
+          type: string
+          description: "This will be the detailed error message indicating what failed and how to fix the issue"
+          example: "Failed to accept a quote: <failure reason>"
+        data:
+          type: object
+          properties:
+            quoteUUID:
+              type: string
+              example: 123e4567-e89b-12d3-a456-426614174000
+              description: FX Quote universally unique identifier (UUID)
+            forexContractNo:
+              type: string
+              example: "123898"
+              description: FX contract number assigned by the system after acceptance.
+            tradeStatus:
+              type: string
+              example: Booked etc.
+              description: Trade status after acceptance of fx quote
+            tradeDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.  
+            ccyPair:
+              type: string
+              example: USDEUR
+              description: A currency pair is the quotation of two different currencies, with the value of one currency being quoted against the other
+            direction:
+              type: string
+              example: Buy or Sell
+              description: Buy or Sell
+            baseCcy:
+              type: string
+              example: USD
+              description: The base currency is the first currency stated in a currency pair quote
+            baseAmount:
+              type: number
+              description: Base currency amount
+              example: 1000                
+            quoteCcy:
+              type: string
+              example: USD
+              description: The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.
+            quoteAmount:
+              type: number
+              description: Quote currency amount
+              example: 900                
+            tenor:
+              type: string
+              example: "SPOT, ON, TN, nW, nM, nY where n is a number"
+              description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+            exchangeRate:
+              type: number
+              example: 1.20
+              description: The price of one currency in terms of the other
+              default: 0
+            valueDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.    
+            referenceSpotRate:
+              type: number
+              example: 100
+              description:  the offered rate   
+            referenceFwdPoints:
+              type: number
+              example: 100
+              description: The number of basis points added to or subtracted from the current spot rate of a currency pair to determine the forward rate for delivery on a specific value date   
+            executionTime:
+              type: string
+              format: date
+              description: The execution time
+            externalPricingSystemRefId:
+              type: string
+              description: "Unique reference id returned by the external system provider."
+              example: "R1274878 etc."            
+              
+    FXRejectQuoteResponse:
+      properties:
+        status:
+          type: string
+          description: "This will return Success/Failed"
+          example: "Success or Failure"
+        code:
+          type: string
+          description: "This will indicate the error code in case of API error"
+          example: "FXQUOTE003 etc."
+        message:
+          type: string
+          description: "This will be the detailed error message indicating what failed and how to fix the issue"
+          example: "Failed to reject a quote: <failure reason>"
+        data:
+          type: object
+          properties:
+            quoteUUID:
+              type: string
+              example: 123e4567-e89b-12d3-a456-426614174000
+              description: FX Quote universally unique identifier (UUID)
+            fxQuoteStatus:
+              type: string
+              description: FX Quote status after rejection 
+              example: "Rejected"
+
+    FXCoverTradeResponse:
+      properties:
+        status:
+          type: string
+          description: "This will return Success/Failed"
+          example: "Success or Failure"
+        code:
+          type: string
+          description: "This will indicate the error code in case of API error"
+          example: "FX001 etc."
+        message:
+          type: string
+          description: "This will be the detailed error message indicating what failed and how to fix the issue"
+          example: "Failed to perform the cover trade: <failure reason>"
+        data:
+          type: object
+          properties:
+            forexContractNo:
+              type: string
+              example: "123898"
+              description: FX contract number assigned by the system for a given customer trade.
+            coverTradeNo:
+              type: string
+              example: "990919"
+              description: Unique cover trade number assigned by the system.
+            externalPricingSystemRefId:
+              type: string
+              description: "Unique reference id provided by the external system"
+              example: "R1274878 etc."              
+            channel:
+              type: string
+              example: "API"
+              description: Channel associated with the cover trade. 
+            customerIdType:
+              type: string
+              enum:  
+                - CustomerUID
+                - CustomerShortName
+                - CustomerId
+                - DDA
+              description: CustomerId type associated with the cover trade
+              example: CustomerUID, CustomerShortName,CustomerId, DDA
+            customerId:
+              type: string
+              description: The value based on the customerIdType associated with the cover trade
+              example: "112344 for DDA"
+            tradeDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.  
+            valueDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.    
+            ccyPair:
+              type: string
+              example: USDEUR
+              description: A currency pair is the quotation of two different currencies, with the value of one currency being quoted against the other
+            direction:
+              type: string
+              example: Buy or Sell
+              description: Buy or Sell
+            baseCcy:
+              type: string
+              example: USD
+              description: The base currency is the first currency stated in a currency pair quote
+            baseAmount:
+              type: number
+              description: Base currency amount
+              example: 1000.00               
+            quoteCcy:
+              type: string
+              example: EUR
+              description: The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.
+            quoteAmount:
+              type: number
+              description: Quote currency amount
+              example: 955.08                
+            tenor:
+              type: string
+              example: "SPOT, ON, TN, nW, nM, nY where n is a number"
+              description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+            allInRate:
+              type: number
+              example: .98
+              description: The all in rate associated with the cover trade
+              default: 0
+            referenceSpotRate:
+              type: number
+              example: 100
+              description:  the offered rate   
+
+    FXTradeInfoResponse:
+      properties:
+        status:
+          type: string
+          description: "This will return Success/Failed"
+          example: "Success or Failure"
+        code:
+          type: string
+          description: "This will indicate the error code in case of API error"
+          example: "FX001 etc."
+        message:
+          type: string
+          description: "This will be the detailed error message indicating what failed and how to fix the issue"
+          example: "Failed to get trade information: <failure reason>"
+        data:
+          type: object
+          properties:
+            forexContractNo:
+              type: string
+              example: "123898"
+              description: FX contract number assigned by the system for a given trade.
+            tradeDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.  
+            ccyPair:
+              type: string
+              example: USDEUR
+              description: A currency pair is the quotation of two different currencies, with the value of one currency being quoted against the other
+            direction:
+              type: string
+              example: Buy or Sell
+              description: Buy or Sell
+            baseCcy:
+              type: string
+              example: USD
+              description: The base currency is the first currency stated in a currency pair quote
+            baseAmount:
+              type: number
+              description: Base currency amount
+              example: 1000                
+            quoteCcy:
+              type: string
+              example: USD
+              description: The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.
+            quoteAmount:
+              type: number
+              description: Quote currency amount
+              example: 900                
+            tenor:
+              type: string
+              example: "SPOT, ON, TN, nW, nM, nY where n is a number"
+              description: The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.
+            exchangeRate:
+              type: number
+              example: 1.20
+              description: The price of one currency in terms of the other
+              default: 0
+            valueDate:
+              type: string
+              example: '2020-01-01'
+              format: date
+              description: The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.    
+            referenceSpotRate:
+              type: number
+              example: 100
+              description:  the offered rate   
+            referenceFwdPoints:
+              type: number
+              example: 100
+              description: The number of basis points added to or subtracted from the current spot rate of a currency pair to determine the forward rate for delivery on a specific value date   
+            executionTime:
+              type: string
+              format: date
+              description: The execution time 
+
+    FXTradeCancelResponse:
+      properties:
+        status:
+          type: string
+          description: "This will return Success/Failed"
+          example: "Success or Failure"
+        code:
+          type: string
+          description: "This will indicate the error code in case of API error"
+          example: "FX001 etc."
+        message:
+          type: string
+          description: "This will be the detailed error message indicating what failed and how to fix the issue"
+          example: "Failed to cancel a trade: <failure reason>"
+        data:
+          type: object
+          properties:
+            forexContractNo:
+              type: string
+              example: "123898"
+              description: FX contract number assigned by the system for a given trade.
+            tradeStatus:
+              type: string
+              example: Cancelled etc.
+              description: Trade status after trade cancelation
