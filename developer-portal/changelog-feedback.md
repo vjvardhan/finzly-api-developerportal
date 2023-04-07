@@ -6,7 +6,7 @@ title: Finzly Connect API Changelog
 
 ## **Changelog** 
 
-### **April 7th,2023**
+### **April 14th,2023**
 
 |**Change**|**Category**|**Description**|
 | :- | :- | :- | 
