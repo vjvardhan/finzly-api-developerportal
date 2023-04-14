@@ -4,16 +4,16 @@ title: Instant Payment
 
 ## How to initiate an instant payment
 
-You can initiate an instant payment using the simple instructions defined below. We have exposed a single Finzly Connect API that supports the initiation of any types of payment using the speed preference choosen by the user. Once the API is executed using speed associated with the instant payment rail, the payment hub system applies the smart routing rules to process and settle the payment via FedNow or RTP payment network.
+You can initiate an instant payment using the simple instructions [defined below]. Finzly has exposed a single payment API that supports the initiation of various types of payments [Domestic or International] using the speed preference. If a user would like to initiate an instant payment request, they can choose the speed name as [**Instant**], which is associated with the instant payment rail, then the payment hub system applies the smart-routing rules to process and settle the payment via FedNow or RTP payment network.
 
 
-### **Sceanrio 1: Execute an instant payment request [Sender and Receiver already exist in the BankOS system]**
+### **Scenario 1: Execute an instant payment request [Sender and Receiver already exist in the BankOS system]**
 
 [POST /payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPayment/)
 
 **HTTP Method: POST**
 
-Prepare the instant payment request object by providing the simple payment instructions such as sender, receiver, payment amount, notes and set the speed as **"Instant"**.
+Prepare the instant payment request by providing the simple payment instructions such as sender ID, receiver ID, payment amount, notes and set the speed as **"Instant"**.
 
 
 ```yaml Before
@@ -34,14 +34,13 @@ Prepare the instant payment request object by providing the simple payment instr
 ```
 
 
-### **Sceanrio 2: Execute an instant payment request [Sender and Receiver does exist in the BankOS system]**
+### **Scenario 2: Execute an instant payment request [Sender and Receiver does exist in the BankOS system]**
 
 [POST /payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPayment/)
 
 **HTTP Method: POST**
 
-Prepare the instant payment request object by providing the simple payment instructions such as sender, receiver, payment amount, notes and set the speed as **"Instant"**.
-
+Prepare the instant payment request by providing the following payment instructions such as sender details, receiver details, payment amount, notes and set the speed as **"Instant"**.
 
 ```yaml Before
 
@@ -114,7 +113,7 @@ The user can define the speed of money movement as part of their preference to e
 
 
 
-### **How to identify the sender unique identifier id (accountUID)**
+### **>> Identify the sender unique identifier value (accountUID)**
 
 Execute the below API to get the accountUID (Unique Identifier) associated with the sender bank account number.
 
@@ -148,7 +147,7 @@ Where:
 **Note: Use the "accountUID" attribute value for the sender accountUID.**
 
 
-### **How to Identify the receiver unique identifier id (accountUID)**
+### **>> Identify the receiver unique identifier value (accountUID)**
 
 Execute the below API to get the contactUID (Unique Identifier) associated with the contact/beneficiary/receiver bank account.
 
@@ -188,7 +187,8 @@ Where:
 
 ***Note: Use the "contactUID" attribute value for the receiver accountUID.***
 
-### **Get the auth token using the "API key" and "API secret" provided by the financial institution.**
+
+### **>> Get the auth access token using the "API key" and "API secret" provided by the financial institution**
 
 
 [POST /auth/realms/{{TENANT-CODE}}/protocol/openid-connect/token/)]
