@@ -23,9 +23,9 @@ A successful GET request to this endpoint returns the following data -
 
 ```yaml Before
 {
-  "status": "Success or Failure",
-  "code": "ACC001 etc.",
-  "message": "Failed to get an account: ",
+  "status": "Success",
+  "code": null,
+  "message": null,
   "data": {
     "accountUID": "100100",
     "name": "Checking",
@@ -72,27 +72,27 @@ A successful GET request to this endpoint returns the following data -
 
 |**Name**|**Type**|**Description**|
 | :- | :- | :- |
-|accountUID|string|Account unique identifier assigned by the system|
+|accountUID|string|Account unique identifier id assigned by the system|
 |name|string|Account Name|
 |accountNumber|string|Account Number|
-|fboAccountNumber|string|FBO Account Number|
-|type|string|Account Type|
-|subType|string|Account Type|
-|systemOfRecord|string|Identifier of the system of record|
-|balanceType|string|Account balance type in the bank core system|
-|ledgerBalance|string|Account ledger balance amount in the bank core system|
-|availableBalance|string|Account balance amount in the bank core system|
-|availableBalanceStatus|string|Account balance status in the bank core system|
+|fboAccountNumber|string|FBO/Virtual Account Number|
+|type|string|Account Type such as Deposit, Loan etc.|
+|subType|string|Account Sub Type such as Checking, Savings|
+|systemOfRecord|string|Which system the bank account holds such as Finzly core, Other Core or External|
+|balanceType|string|Account balance type in the core system|
+|ledgerBalance|string|Account ledger balance in the core system|
+|availableBalance|string|Available balance in the core system|
+|availableBalanceStatus|string|Account balance status|
 |amountPrecision|string|Amount amountPrecision|
 |currency|string|Currency code is ISO format|
 |country|string|Country name|
+|bankIdType|string|Bank identifier type|
 |bankId|string|Bank routing number|
 |bankName|string|Name of the bank associated with the bankId|
-|bankIdType|string|Bank identifier type|
 |enableWires|boolean|Wire status|
-|enableOffset|boolean|Whether the accountNumber is a Offset account|
-|defaultOffset|boolean|Default offset account|
-|feeAccount|boolean|Whether the accountNumber is a Fee account|
-|returnAccount|boolean|Whether the accountNumber is a Return account|
-|status|string|Account Status|
-|externalAccount|AccountExternal|none|
+|enableOffset|boolean|Whether this bank account is an offset account|
+|defaultOffset|boolean|Set this bank account as default offset account|
+|feeAccount|boolean|Set the bank account as a fee account|
+|returnAccount|boolean|Set the bank account as a return account|
+|status|string|Account Status such as Active or InActive|
+|externalAccount|AccountExternal|Details of the external account if type is set to External |
