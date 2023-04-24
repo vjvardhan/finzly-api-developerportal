@@ -1,0 +1,3640 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Payment API",
+    "version" : "2.2.1"
+  },
+  "servers" : [ {
+    "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
+    "description" : "Authentication",
+    "variables" : {
+      "tenant" : {
+        "description" : "Tenant",
+        "default" : "sandbox"
+      }
+    }
+  } ],
+  "security" : [ {
+    "oAuth2" : [ "roles" ]
+  } ],
+  "tags" : [ {
+    "name" : "Payments",
+    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
+  }, {
+    "name" : "Positive Pay",
+    "description" : "Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules for ACH debits or Fedwire drawdown requests or RFP (Request For Pay) request.\n\nPostive Pay Exeption APIs enable users to approve or reject the exceptions identified by the postive pay rules engine.\n"
+  } ],
+  "paths" : {
+    "/v2/positivepay/rules/search" : {
+      "post" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Search PositivePay Rules",
+        "description" : "Search positive pay rules",
+        "operationId" : "searchPositivePayRules",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SearchPositivePayRuleRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchPositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchPositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/rules" : {
+      "put" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Update PositivePay Rule",
+        "description" : "Update Positive Pay Rule",
+        "operationId" : "updateRules",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PositivePayRule"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UpdatePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UpdatePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Add PositivePay Rule",
+        "description" : "Add positive pay rule.",
+        "operationId" : "addPositiveRules",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AddPositivePayRule"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PostPositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PostPositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/rules/{ruleUID}" : {
+      "get" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Get PositivePay Rule By RuleUID",
+        "description" : "Get Positive Pay Rule",
+        "operationId" : "getPostivePayRule",
+        "parameters" : [ {
+          "name" : "ruleUID",
+          "in" : "path",
+          "description" : "Positive Pay Rule unique id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "11223"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetPositivePayRuleUIDResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetPositivePayRuleUIDResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Delete PositivePay",
+        "description" : "Delete positive pay rule.",
+        "operationId" : "deleteRules",
+        "parameters" : [ {
+          "name" : "ruleUID",
+          "in" : "path",
+          "description" : "Positive Pay Rule Unique Id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "number",
+            "format" : "int64",
+            "example" : 1
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "delete positive rule",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DeletePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DeletePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/rules/{ruleUID}/activate" : {
+      "put" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Activate PositivePay Rule",
+        "description" : "Activate positive pay rule",
+        "operationId" : "activatePositivePayRule",
+        "parameters" : [ {
+          "name" : "ruleUID",
+          "in" : "path",
+          "description" : "Positive Pay Rule Unique Id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "activate positive rule",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/rules/{ruleUID}/suspend" : {
+      "put" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Suspend PositivePay Rule",
+        "description" : "Suspend positive pay rule.",
+        "operationId" : "suspendPositivePayRule",
+        "parameters" : [ {
+          "name" : "ruleUID",
+          "in" : "path",
+          "description" : "Positive Pay Rule Unique Id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "suspend positive rule",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayRuleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/exception/search" : {
+      "post" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Search PositivePay Exceptions",
+        "description" : "Return positive pay exceptions for a given criteria.",
+        "operationId" : "searchPositivePayExceptions",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SearchPositivePayDecisionRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchPositivePayDecisionResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchPositivePayDecisionResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/exception/{exceptionUID}/approve" : {
+      "put" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Approve PositivePay Exception",
+        "description" : "Approve Positive Pay Exceptions",
+        "operationId" : "approvePositivePayException",
+        "parameters" : [ {
+          "name" : "exceptionUID",
+          "in" : "path",
+          "description" : "A unique identifier associated with the positive pay rule exception",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayExceptionResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayExceptionResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/exception/{exceptionUID}/reject" : {
+      "put" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Reject Positive Pay Exception",
+        "description" : "Reject Positive Pay Exceptions",
+        "operationId" : "rejectExceptions",
+        "parameters" : [ {
+          "name" : "exceptionUID",
+          "in" : "path",
+          "description" : "A unique identifier associated with the positive pay exception",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayExceptionResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActivatePositivePayExceptionResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/positivepay/exception/approveall" : {
+      "put" : {
+        "tags" : [ "Positive Pay" ],
+        "summary" : "Approve All PositivePay Exceptions",
+        "description" : "Approve all positivepay exceptions",
+        "operationId" : "approveAllExceptions",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ApproveAllPositivePayExceptionRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositivePayExceptionApproveAllResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PositivePayExceptionApproveAllResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/search" : {
+      "post" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Search payments",
+        "description" : "Search payments",
+        "operationId" : "searchPayments",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PaymentSearch"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaymentSearchResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaymentSearchResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/creditrequest" : {
+      "post" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Initiate a Credit Payment (Payout)",
+        "description" : "Initiate a domestic or international credit payment [one time or recurring]\n",
+        "operationId" : "createCreditPayment",
+        "requestBody" : {
+          "description" : "Payment fields",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreditPaymentRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "return payment response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaymentResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaymentResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/debitrequest" : {
+      "post" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Initiate a Debit Payment (Collection)",
+        "description" : "Initiate a domestic or international debit payment [one time or recurring]\n",
+        "operationId" : "createDebitPayment",
+        "requestBody" : {
+          "description" : "Payment fields",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DebitPaymentRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "return payment response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaymentResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaymentResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/booktransfer" : {
+      "post" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Initiate a Book (Transfer) Payment",
+        "description" : "Initiate a transfer payment request",
+        "operationId" : "booktransfer",
+        "requestBody" : {
+          "description" : "Payment fields",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BookTransferRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "return payment response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BookTransferResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BookTransferResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/{paymentUID}" : {
+      "get" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Get Payment",
+        "description" : "Retrieve a payment using a payment unique identifier.",
+        "operationId" : "getPaymentByUID",
+        "parameters" : [ {
+          "name" : "paymentUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Payment Unique Identifier"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetPaymentResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetPaymentResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/{paymentUID}/cancel" : {
+      "put" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Cancel Payment",
+        "description" : "Initiate a cancel payment request",
+        "operationId" : "cancelPayment",
+        "parameters" : [ {
+          "name" : "paymentUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Unique payment Id"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CancelPaymentResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CancelPaymentResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/{paymentUID}/return" : {
+      "put" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Return a payment",
+        "description" : "Return a payment",
+        "operationId" : "returnPayment",
+        "parameters" : [ {
+          "name" : "paymentUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Payment Unique Identifier"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReturnPaymentRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ReturnPaymentResponse"
+                  }
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ReturnPaymentResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v3/payments/{paymentUID}/reverse" : {
+      "put" : {
+        "tags" : [ "Payments" ],
+        "summary" : "Reverse a payment",
+        "description" : "Initiate a reverse payment request.",
+        "operationId" : "reversePayment",
+        "parameters" : [ {
+          "name" : "paymentUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Payment Unique Identifier"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReversePaymentRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ReversePaymentResponse"
+                  }
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ReturnPaymentResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Error" : {
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Error code assigned by the system",
+            "example" : "invalidMethod"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Error description to provide addtional details about the error code",
+            "example" : "Invalid HTTP method used"
+          }
+        }
+      },
+      "SenderReceiverCreditorDebtorAddress" : {
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
+        "properties" : {
+          "addressLine1" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Bank address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Bank address line 2",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "City",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "State",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Country specific postal/zip code",
+            "example" : "28269 etc."
+          },
+          "countryCode" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string",
+            "description" : "Country codes per ISO 3166",
+            "example" : "US, CN, AR etc."
+          }
+        },
+        "description" : "The address related to either sender,receiver,creditor, or debtor. This is an optional field and needed only when the account does not exist in the Finzly-CRM system."
+      },
+      "BankAddress" : {
+        "properties" : {
+          "addressLine1" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Bank address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Bank address line 2",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "City",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "State",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Country specific postal/zip code",
+            "example" : "28269 etc."
+          },
+          "countryCode" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string",
+            "description" : "Country codes per ISO 3166",
+            "example" : "US, CN, AR etc."
+          }
+        },
+        "description" : "The bank address details and it is required for the bank not in US country code."
+      },
+      "Approver" : {
+        "properties" : {
+          "approverId" : {
+            "type" : "string",
+            "description" : "User ID of the Approver",
+            "example" : "johndoe"
+          },
+          "approvedDate" : {
+            "type" : "string",
+            "description" : "Approver Date",
+            "format" : "dateTime",
+            "example" : "03-03-2023"
+          }
+        }
+      },
+      "Audit" : {
+        "properties" : {
+          "submitterId" : {
+            "type" : "string",
+            "description" : "User that submitted transaction",
+            "example" : "johndoe"
+          },
+          "submissionDate" : {
+            "type" : "string",
+            "description" : "Submission Date",
+            "format" : "dateTime",
+            "example" : "03-03-2023"
+          },
+          "approvers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Approver"
+            }
+          }
+        }
+      },
+      "Bank" : {
+        "properties" : {
+          "bankIdType" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "The bank unique identifier type. Use SWIFT for the international money transfer. Use NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.",
+            "example" : "NID, SWIFT"
+          },
+          "bankId" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "This is needed when the bankIdType is set to 'NID'",
+            "example" : "072000326 [ABA], 002665000000000001 [CLABE] etc."
+          },
+          "swiftCode" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "SWIFT Code. This is needed when the bankIdType is set to 'SWIFT'",
+            "example" : "CHASUS33XXX"
+          },
+          "name" : {
+            "maxLength" : 200,
+            "type" : "string",
+            "description" : "Name of the bank. This is an optional field",
+            "example" : "XYZ Bank"
+          },
+          "countryCode" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string",
+            "description" : "Country codes per ISO 3166. This is an optional field",
+            "example" : "US, CN, AR etc."
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/BankAddress"
+          }
+        },
+        "description" : "The bank or intermediary bank details is needed to process the payment and it is required when the sender/receiver/debtor/creditor are not configured in the Finzly-CRM system. Based on the bankIDType either bankId or swiftCode is required."
+      },
+      "Fee" : {
+        "properties" : {
+          "feeName" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Fee Name. This is an optional field.",
+            "example" : "Custom etc."
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Fee Currency defaulted to USD if not provided, currenlty only USD is the supported currency for the fee amount.",
+            "example" : "USD"
+          },
+          "amount" : {
+            "maxLength" : 9,
+            "type" : "number",
+            "description" : "Fee amount"
+          }
+        }
+      },
+      "Notification" : {
+        "properties" : {
+          "emailAddress" : {
+            "type" : "string",
+            "example" : "me@gmail.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "example" : "111223333 or 111-22-3333"
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Payment to XXX"
+          }
+        }
+      },
+      "PaymentOccurrence" : {
+        "required" : [ "frequency", "payUntil" ],
+        "properties" : {
+          "frequency" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Payment occurrence frequency. The valid values are Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly.",
+            "example" : "Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly",
+            "enum" : [ "Daily", "Weekly", "BiWeekly", "Monthly", "Quarterly", "SemiAnnually", "Yearly" ]
+          },
+          "payUntil" : {
+            "maxLength" : 25,
+            "type" : "string",
+            "description" : "Pay until type. If it is set to Cancelled that means payment will be processing as per the frequency until it cancelled. If it is set to EndDate that means payment will be processing per the frequency until the defined EndDate. If it is set to NumberOfPayments that means payment will be processing per the frequency until the defined number of payments. ",
+            "example" : "Cancelled, EndDate, NumberOfPayments",
+            "enum" : [ "Cancelled", "EndDate", "NumberOfPayments" ]
+          },
+          "endDate" : {
+            "type" : "string",
+            "description" : "This is needed when the payUntil is set to EndDate. The valid date fromat is MM-dd-yyyy.",
+            "format" : "date",
+            "example" : "0008-11-12"
+          },
+          "numberOfPayments" : {
+            "maxLength" : 1000,
+            "type" : "integer",
+            "description" : "This is needed when the payUntil is set to NumberOfPayments",
+            "example" : 10
+          }
+        }
+      },
+      "PaymentSearch" : {
+        "properties" : {
+          "fromDate" : {
+            "type" : "string",
+            "description" : "From date",
+            "format" : "date"
+          },
+          "toDate" : {
+            "type" : "string",
+            "description" : "To date",
+            "format" : "date"
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Payment currency"
+          },
+          "minPaymentAmount" : {
+            "type" : "number",
+            "description" : "Payment amount"
+          },
+          "maxPaymentAmount" : {
+            "type" : "number",
+            "description" : "Payment amount"
+          },
+          "forexContractNo" : {
+            "type" : "string",
+            "description" : "FX contract number"
+          },
+          "paymentType" : {
+            "type" : "string",
+            "description" : "Payment type"
+          },
+          "receiverAccountNo" : {
+            "type" : "string",
+            "description" : "Receiver account number"
+          },
+          "receiverName" : {
+            "type" : "string",
+            "description" : "Receiver name"
+          },
+          "senderAccountNo" : {
+            "type" : "string",
+            "description" : "Sender account number"
+          },
+          "sourceRefNo" : {
+            "type" : "string",
+            "description" : "Payment external reference number"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Payment status"
+          },
+          "page" : {
+            "type" : "integer",
+            "description" : "Which page of results are to be returned",
+            "example" : 1
+          },
+          "limit" : {
+            "type" : "integer",
+            "description" : "How many records are returned in the result set",
+            "example" : 10
+          }
+        }
+      },
+      "Groups" : {
+        "type" : "object",
+        "properties" : {
+          "condition" : {
+            "type" : "string",
+            "example" : "OR"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "groups" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Groups"
+            }
+          },
+          "fields" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Fields"
+            }
+          }
+        }
+      },
+      "Fields" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "example" : "beneficiaryBankSWIFT"
+          },
+          "displayName" : {
+            "type" : "string",
+            "example" : "Beneficiary Bank SWIFT"
+          },
+          "swiftCode" : {
+            "type" : "string"
+          },
+          "swiftTag" : {
+            "type" : "string"
+          },
+          "fieldLength" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "PaymentNoteOptionValueChildren" : {
+        "type" : "object",
+        "properties" : {
+          "data" : {
+            "$ref" : "#/components/schemas/PaymentNoteOptionValueChildren_data"
+          }
+        }
+      },
+      "AdditionalInfoCreditPayment" : {
+        "properties" : {
+          "channel" : {
+            "maxLength" : 25,
+            "type" : "string",
+            "description" : "The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
+            "example" : "API, TELLER etc."
+          },
+          "requestMethod" : {
+            "maxLength" : 25,
+            "type" : "string",
+            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
+            "example" : "WALK-IN, PHONE-IN etc."
+          },
+          "detailsOfCharges" : {
+            "maxLength" : 3,
+            "minLength" : 3,
+            "type" : "string",
+            "description" : "who pays the payment charges",
+            "example" : "OUR, BEN, or SHA"
+          },
+          "secCode" : {
+            "type" : "string",
+            "description" : "An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. This is an optional field needed only for the speed associated with the ACH payment rail.",
+            "example" : "CCD, PPD etc."
+          },
+          "transactionTypeCode" : {
+            "maxLength" : 3,
+            "minLength" : 3,
+            "type" : "string",
+            "description" : "This is an optional field. This is a secondary secCode can be set when the sec code is set to IAT.",
+            "example" : "ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc."
+          },
+          "receiverIdentificationNumber" : {
+            "maxLength" : 50,
+            "type" : "string",
+            "description" : "This is an optional field. This is Receiver’s DFI Identification Number can be set when the secCode is set to IAT",
+            "example" : "12334356 etc."
+          },
+          "fullAmount" : {
+            "type" : "number",
+            "description" : "Full payment amount and applicable for request for payment (RFP) request.",
+            "example" : 100.0
+          },
+          "discountAmount" : {
+            "type" : "number",
+            "description" : "Discounted amount and applicable for request for payment (RFP) request.",
+            "example" : 100.0
+          },
+          "discountExpiryDateTime" : {
+            "type" : "string",
+            "description" : "Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.",
+            "format" : "date-time",
+            "example" : "2022-01-01T17:32:25Z"
+          },
+          "fxContractNumber" : {
+            "type" : "string",
+            "description" : "Unique identifier associated with the FX trade applicable for the international payment",
+            "example" : "111234 etc."
+          },
+          "originatortoBeneficiary" : {
+            "type" : "string",
+            "description" : "Any additional information to be provided to the wire recipient. This is an optional field",
+            "example" : "Notes"
+          },
+          "senderToReceiverNotes" : {
+            "type" : "string",
+            "description" : "This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field",
+            "example" : "Notes"
+          },
+          "remittanceMethod" : {
+            "type" : "string",
+            "description" : "This is applicable for the RTP payment. This is an optional field",
+            "example" : "EMAIL or URID",
+            "enum" : [ "EMAIL", "URID" ]
+          },
+          "paymentRemittanceNotes" : {
+            "type" : "string",
+            "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field",
+            "example" : "Remittance Notes"
+          },
+          "localInstruments" : {
+            "type" : "string",
+            "description" : "Local instrument code applicable for the CTP fedwire payment or RTP payment",
+            "example" : "COVS, ANSI, STANDARD, ZELLE etc.",
+            "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE" ]
+          },
+          "referenceForBeneficiary" : {
+            "type" : "string",
+            "description" : "This is applicable for the fedwire payment where the local instrument set to COVS. This specifies the reference details for the beneficiary.",
+            "example" : "Notes"
+          },
+          "unstructuredAddendaInfo" : {
+            "$ref" : "#/components/schemas/AdditionalInfoCreditPayment_unstructuredAddendaInfo"
+          },
+          "proprietaryCode" : {
+            "type" : "string",
+            "description" : "This is applicable for the fedwire payment where the local instrument set to PROP"
+          }
+        }
+      },
+      "AdditionalInfoDebitPayment" : {
+        "properties" : {
+          "channel" : {
+            "type" : "string",
+            "description" : "The payment origination system such as API, TELLER etc.",
+            "example" : "API, TELLER etc."
+          },
+          "requestMethod" : {
+            "type" : "string",
+            "description" : "Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
+            "example" : "WALK-IN, PHONE-IN etc."
+          },
+          "detailsOfCharges" : {
+            "type" : "string",
+            "description" : "who pays the payment charges",
+            "example" : "OUR, BEN, or SHA"
+          },
+          "secCode" : {
+            "type" : "string",
+            "description" : "An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction",
+            "example" : "CCD, PPD etc."
+          },
+          "transactionTypeCode" : {
+            "type" : "string",
+            "description" : "This is an optional field. This is a secondary SEC code can be set when the sec code is set to IAT.",
+            "example" : "ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc."
+          },
+          "receiverIdentificationNumber" : {
+            "type" : "string",
+            "description" : "This is an optional field. This is Receiver’s DFI Identification Number can be set when the sec code is set to IAT",
+            "example" : "12334356 etc."
+          },
+          "fullAmount" : {
+            "type" : "number",
+            "description" : "Full payment amount and applicable for request for payment (RFP) request.",
+            "example" : 100.0
+          },
+          "discountAmount" : {
+            "type" : "number",
+            "description" : "Discounted amount and applicable for request for payment (RFP) request.",
+            "example" : 100.0
+          },
+          "discountExpiryDateTime" : {
+            "type" : "string",
+            "description" : "Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.",
+            "format" : "date-time",
+            "example" : "2022-01-01T17:32:25Z"
+          },
+          "fxContractNumber" : {
+            "type" : "string",
+            "description" : "Unique identifier associated with the FX trade applicable for the international payment",
+            "example" : "111234 etc."
+          },
+          "originatortoBeneficiary" : {
+            "type" : "string",
+            "description" : "Any additional information to be provided to the wire recipient. This is an optional field",
+            "example" : "Notes"
+          },
+          "senderToReceiverNotes" : {
+            "type" : "string",
+            "description" : "This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field",
+            "example" : "Notes"
+          },
+          "paymentRemittanceNotes" : {
+            "type" : "string",
+            "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field",
+            "example" : "Remittance Notes"
+          }
+        }
+      },
+      "BookTransferSender" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Sender account unique identifier",
+            "example" : "123452334"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Sender account number",
+            "example" : "123452334 etc."
+          },
+          "accountType" : {
+            "type" : "string",
+            "description" : "Account type",
+            "example" : "DDA or GL",
+            "enum" : [ "DDA", "GL" ]
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Sender Currency",
+            "example" : "USD"
+          }
+        }
+      },
+      "BookTransferReceiver" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Sender account unique identifier",
+            "example" : "123452334"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Sender account number",
+            "example" : "123452334 etc."
+          },
+          "accountType" : {
+            "type" : "string",
+            "description" : "Account type",
+            "example" : "DDA or GL",
+            "enum" : [ "DDA", "GL" ]
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Sender Currency",
+            "example" : "USD"
+          }
+        }
+      },
+      "PaymentSender" : {
+        "properties" : {
+          "accountUID" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "description" : "Sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.",
+            "example" : "1021 etc."
+          },
+          "achCompanyID" : {
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "ACH origination/company id is a 10-digit identifier used for ACH payment processing, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”). This is an optional field, it is required when the accountUID is not provided and payment speed associated with the ACH payment rail.",
+            "example" : "122334789"
+          },
+          "accountNumber" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Sender bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.",
+            "example" : "123452334 etc."
+          },
+          "accountType" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided.",
+            "example" : "Deposit",
+            "enum" : [ "Deposit" ]
+          },
+          "subAccountType" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Whether the sender account is a Checking or Savings. This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code).",
+            "example" : "Checking or Savings"
+          },
+          "name" : {
+            "maxLength" : 50,
+            "type" : "string",
+            "description" : "Sender name associated with the payment. This is an optional field, it is required when the accountUID is not provided.",
+            "example" : "Sender Account"
+          },
+          "entityType" : {
+            "maxLength" : 45,
+            "type" : "string",
+            "description" : "Type of the entity. It is required when the accountUID is not provided. The valid values are Consumer or Corporate.",
+            "example" : "Consumer or Corporate",
+            "enum" : [ "Consumer", "Corporate" ]
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+          },
+          "bankIdType" : {
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "This is an optional field, it is required when the accountUID is not provided. The unique identifier type to identifiy the bank details. You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.",
+            "example" : "NID or SWIFT",
+            "enum" : [ "NID", "SWIFT" ]
+          },
+          "bankId" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.",
+            "example" : "101206101 or FBOLUS6LXXX"
+          },
+          "phone" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Phone number associated with the sender. This is an optional field.",
+            "example" : "18001236754"
+          },
+          "email" : {
+            "maxLength" : 100,
+            "type" : "string",
+            "description" : "Email associated with the sender. This is an optional field.",
+            "example" : "email@domain.com"
+          },
+          "swiftTag" : {
+            "type" : "string",
+            "description" : "This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          },
+          "swiftNote" : {
+            "type" : "string",
+            "description" : "This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          }
+        }
+      },
+      "PaymentReceiver" : {
+        "properties" : {
+          "accountUID" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "description" : "Receiver bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the receiver information are not needed.",
+            "example" : "209219 etc."
+          },
+          "accountNumber" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Receiver bank account number to which money will be deposited. This is the country specific bank account number such as ABA for USA, CLABE for Mexico,IBAN mainly for european countries  etc. This is required if accountUID is not provided.",
+            "example" : "123422434"
+          },
+          "accountType" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided.",
+            "example" : "Deposit",
+            "enum" : [ "Deposit" ]
+          },
+          "subAccountType" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Whether the receiver account is a Checking or Savings. This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code).",
+            "example" : "Checking, Savings"
+          },
+          "accountCurrency" : {
+            "maxLength" : 3,
+            "minLength" : 3,
+            "type" : "string",
+            "description" : "Receiver currency. The valid currency code should be per ISO 4217 standard.",
+            "example" : "USD, EUR etc."
+          },
+          "name" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Receiver name associated with the payment. This is an optional field, it is required when the accountUID is not provided.",
+            "example" : "Receiver name"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+          },
+          "phone" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Phone number associated with the receiver. This is an optional field.",
+            "example" : "18001236754"
+          },
+          "email" : {
+            "maxLength" : 100,
+            "type" : "string",
+            "description" : "Email associated with the receiver. This is an optional field.",
+            "example" : "email@domain.com"
+          },
+          "bank" : {
+            "$ref" : "#/components/schemas/Bank"
+          },
+          "intermediaryBank" : {
+            "$ref" : "#/components/schemas/Bank"
+          },
+          "swiftTag" : {
+            "type" : "string",
+            "description" : "Beneficiary customer swift tag. This is applicable for the CTP fedwire payment where the local instrument set to COVS."
+          },
+          "swiftNote" : {
+            "type" : "string",
+            "description" : "Beneficiary customer swift note.This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          }
+        }
+      },
+      "PaymentCreditor" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Sender account unique identifier",
+            "example" : "123452334"
+          },
+          "achCompanyID" : {
+            "type" : "string",
+            "description" : "ACH company/origination id is a 10-digit identifier used by bank and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : "122334789"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Sender bank account number from where the money will be withdrawn",
+            "example" : "123452334 etc."
+          },
+          "accountType" : {
+            "type" : "string",
+            "description" : "Account type",
+            "example" : "Deposit, GL or MCA",
+            "enum" : [ "Deposit", "GL", "MCA" ]
+          },
+          "subAccountType" : {
+            "type" : "string",
+            "description" : "Sub type of the account whether Checking or Savings",
+            "example" : "Checking or Savings",
+            "enum" : [ "Checking", "Savings" ]
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name associated with the account",
+            "example" : "Customer account"
+          },
+          "entityType" : {
+            "type" : "string",
+            "description" : "Type of the entity",
+            "example" : "Consumer or Corporate",
+            "enum" : [ "Consumer", "Corporate" ]
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+          },
+          "bankIdType" : {
+            "type" : "string",
+            "description" : "This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC).  It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.",
+            "example" : "NID or SWIFT",
+            "enum" : [ "NID", "SWIFT" ]
+          },
+          "bankId" : {
+            "type" : "string",
+            "description" : "This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.",
+            "example" : "101206101 or FBOLUS6LXXX"
+          },
+          "phone" : {
+            "type" : "string",
+            "description" : "Phone number associated with the sender",
+            "example" : "18001236754"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "Email associated with the sender",
+            "example" : "email@domain.com"
+          }
+        }
+      },
+      "PaymentDebtor" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Receiver account unique indentifier exist in the FinzlyOS system",
+            "example" : "12334989"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc.",
+            "example" : "123422434"
+          },
+          "accountType" : {
+            "type" : "string",
+            "description" : "Account type",
+            "example" : "Deposit",
+            "enum" : [ "Deposit" ]
+          },
+          "subAccountType" : {
+            "type" : "string",
+            "description" : "Sub type of the account whether Checking or Savings",
+            "example" : "Checking, Savings"
+          },
+          "accountCurrency" : {
+            "type" : "string",
+            "description" : "Debtor currency",
+            "example" : "USD, EUR etc."
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name associated with the account",
+            "example" : "XYZ Name"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+          },
+          "phone" : {
+            "type" : "string",
+            "description" : "Phone number associated with the receiver",
+            "example" : "18001236754"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "Email associated with the receiver",
+            "example" : "email@domain.com"
+          },
+          "bank" : {
+            "$ref" : "#/components/schemas/Bank"
+          },
+          "intermediaryBank" : {
+            "$ref" : "#/components/schemas/Bank"
+          },
+          "swiftTag" : {
+            "type" : "string",
+            "description" : "This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          },
+          "swiftNote" : {
+            "type" : "string",
+            "description" : "This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          }
+        }
+      },
+      "SearchPositivePayDecisionRequest" : {
+        "properties" : {
+          "paymentUID" : {
+            "type" : "string",
+            "description" : "A unique identifier associated with the payment",
+            "example" : "112233"
+          },
+          "customerUID" : {
+            "type" : "string",
+            "description" : "Customer unique identifier associated with the customer in the Finzly's CRM system",
+            "example" : "112233"
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Customer name associated with the payment positive rule",
+            "example" : "ABC Company"
+          },
+          "customerAccountNumber" : {
+            "type" : "string",
+            "description" : "Bank Account Number",
+            "example" : "12387878"
+          },
+          "decisionDateTime" : {
+            "type" : "string",
+            "description" : "Decision date and time in (EST)",
+            "format" : "date"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Payment amount",
+            "example" : 10.0
+          },
+          "positivePayDecisionStatus" : {
+            "type" : "string",
+            "description" : "Decision status",
+            "example" : "PENDING, APPROVED, REJECTED etc."
+          },
+          "secCode" : {
+            "type" : "string",
+            "description" : "SEC code associated with the ACH postive rule",
+            "example" : "CCD, PPD etc."
+          }
+        }
+      },
+      "SearchPositivePayDecisionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PPD001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to get the positive pay exception information: <Failure Reason>."
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PositivePayExceptionDecision"
+            }
+          }
+        }
+      },
+      "PositivePayExceptionDecision" : {
+        "properties" : {
+          "exceptionUID" : {
+            "type" : "string",
+            "description" : "Unique identifier associated with positive pay exception"
+          },
+          "paymentUID" : {
+            "type" : "string",
+            "description" : "Unique identifier associated with payment",
+            "example" : "100100"
+          },
+          "paymentRuleType" : {
+            "type" : "string",
+            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
+            "example" : "ACH, FEDWIRE, RFP"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Payment Amounnt",
+            "format" : "int64",
+            "example" : 123456789
+          },
+          "achCompanyID" : {
+            "type" : "number",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : 122334789
+          },
+          "customerAccountNumber" : {
+            "type" : "string",
+            "description" : "Bank Account Number",
+            "example" : "12387878"
+          },
+          "beneName" : {
+            "type" : "string",
+            "description" : "A beneficiary is the person or entity that will receive the payment",
+            "example" : "XYZ Name"
+          },
+          "exceptionReason" : {
+            "type" : "string",
+            "description" : "Reason for the positive pay exception",
+            "example" : "Amount Mismatch"
+          },
+          "exceptionDateTime" : {
+            "type" : "string",
+            "description" : "Decision date and time in (EST)",
+            "format" : "date"
+          },
+          "expiryDateTime" : {
+            "type" : "string",
+            "description" : "Positive Pay Rule Exception expiry date time in (EST)",
+            "format" : "date"
+          },
+          "positivePayDecisionStatus" : {
+            "type" : "string",
+            "description" : "Decision status"
+          },
+          "secCode" : {
+            "type" : "string",
+            "example" : "CCD, PPD etc."
+          },
+          "approvedBy" : {
+            "type" : "string",
+            "description" : "User who approved the exception",
+            "example" : "user001"
+          },
+          "approvedDate" : {
+            "type" : "string",
+            "description" : "Approval date and time in (EST)",
+            "format" : "date"
+          }
+        }
+      },
+      "ActivatePositivePayExceptionResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PPD001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to activate or suspend a positive pay exception: <Failure Reason>."
+          },
+          "exceptionUID" : {
+            "type" : "number",
+            "description" : "Unique identifier associated with positive pay exception",
+            "format" : "int64",
+            "example" : 123456789
+          }
+        }
+      },
+      "PositivePayExceptionApproveAllResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PPD001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to approve all positive pay rule exception: <Failure Reason>."
+          }
+        }
+      },
+      "SearchPositivePayRuleRequest" : {
+        "properties" : {
+          "companyBankId" : {
+            "type" : "string",
+            "description" : "Bank unique id or routing number that is used to identify a specific bank",
+            "example" : "12345678"
+          },
+          "companyName" : {
+            "type" : "string",
+            "description" : "The name of the company or entity that originated the payment request",
+            "example" : "XYZ Name"
+          },
+          "companyBankName" : {
+            "type" : "string",
+            "description" : "Bank name where the company account is held.",
+            "example" : "XYZ Bank"
+          },
+          "companyAccountNumber" : {
+            "type" : "string",
+            "description" : "A company bank account number",
+            "example" : "12345678"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Payment amount",
+            "example" : 10.0
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Name of the customer who created the positive rule"
+          },
+          "customerAccountNumber" : {
+            "type" : "string",
+            "description" : "Customer bank account number on which the positive rule is defined.",
+            "example" : "12387878"
+          },
+          "effectiveDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "format" : "date",
+            "example" : "0016-07-14"
+          },
+          "expiryDate" : {
+            "type" : "string",
+            "description" : "Rule expiration date in mm-dd-yyyy format",
+            "format" : "date",
+            "example" : "0016-07-14"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current state of the rule whether Active or Expired etc.",
+            "example" : "Active or Expired"
+          }
+        }
+      },
+      "SearchPositivePayRuleResponse" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PP001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to get positive rules: <Reason>"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PositivePayRule"
+            }
+          }
+        }
+      },
+      "GetPositivePayRuleUIDResponse" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PP001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to get positive rule: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/PositivePayRule"
+          }
+        }
+      },
+      "UpdatePositivePayRuleResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PP001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to update a positive rule: <Failure Reason>."
+          },
+          "ruleUID" : {
+            "type" : "number",
+            "description" : "Positive rule unique id",
+            "format" : "int64",
+            "example" : 123456789
+          }
+        }
+      },
+      "PostPositivePayRuleResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PP001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to add a positive rule: <Failure Reason>."
+          },
+          "ruleUID" : {
+            "type" : "number",
+            "description" : "Positive rule unique id",
+            "format" : "int64",
+            "example" : 123456789
+          }
+        }
+      },
+      "DeletePositivePayRuleResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PP001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to delete a positive rule: <Failure Reason>."
+          },
+          "ruleUID" : {
+            "type" : "number",
+            "description" : "Positive rule unique id",
+            "format" : "int64",
+            "example" : 123456789
+          }
+        }
+      },
+      "ActivatePositivePayRuleResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "PP001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to activate or suspend a positive rule: <Failure Reason>."
+          },
+          "ruleUID" : {
+            "type" : "number",
+            "description" : "Positive rule unique id",
+            "format" : "int64",
+            "example" : 123456789
+          }
+        }
+      },
+      "PositivePayRule" : {
+        "type" : "object",
+        "properties" : {
+          "ruleUID" : {
+            "type" : "number",
+            "description" : "Positive rule unique reference id",
+            "format" : "int64",
+            "example" : 123456789
+          },
+          "paymentRuleType" : {
+            "type" : "string",
+            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
+            "example" : "ACH, FEDWIRE, RFP"
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Customer name associated with the payment positive rule",
+            "example" : "ABC Company"
+          },
+          "customerAccountNumber" : {
+            "type" : "string",
+            "description" : "Bank Account Number",
+            "example" : "12387878"
+          },
+          "achCompanyID" : {
+            "type" : "number",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : 122334789
+          },
+          "beneBankId" : {
+            "type" : "string",
+            "description" : "Bank unique id that is used to identify a specific bank",
+            "example" : "12345678"
+          },
+          "beneName" : {
+            "type" : "string",
+            "description" : "A beneficiary is the person or entity that will receive the payment",
+            "example" : "XYZ Name"
+          },
+          "beneBankName" : {
+            "type" : "string",
+            "description" : "Beneficiary bank name",
+            "example" : "Bank Name"
+          },
+          "beneAccountNumber" : {
+            "type" : "string",
+            "description" : "A beneficiary bank account number",
+            "example" : "12345678"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Payment amount",
+            "example" : 10.0
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency Code",
+            "example" : "USD",
+            "default" : "USD"
+          },
+          "amountType" : {
+            "type" : "string",
+            "description" : "Type of amount associated with the postive pay rule.",
+            "example" : "Exact or Maximum"
+          },
+          "frequency" : {
+            "type" : "string",
+            "description" : "Positive pay rule frequency",
+            "example" : "Onetime, Weekly etc."
+          },
+          "secCode" : {
+            "type" : "string",
+            "description" : "SEC code associated with the ACH postive rule",
+            "example" : "CCD, PPD etc."
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current state of the rule whether Active or Expired etc.",
+            "example" : "Active, Expired"
+          },
+          "effectiveDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "format" : "date",
+            "example" : "0016-07-14"
+          },
+          "expiryDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "format" : "date",
+            "example" : "0016-07-14"
+          }
+        }
+      },
+      "AddPositivePayRule" : {
+        "type" : "object",
+        "properties" : {
+          "paymentRuleType" : {
+            "type" : "string",
+            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
+            "example" : "ACH, FEDWIRE, RFP"
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Customer name associated with the payment positive rule",
+            "example" : "ABC Company"
+          },
+          "customerAccountNumber" : {
+            "type" : "string",
+            "description" : "Bank Account Number",
+            "example" : "12387878"
+          },
+          "achCompanyID" : {
+            "type" : "number",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : 1234567899
+          },
+          "beneBankId" : {
+            "type" : "string",
+            "description" : "Bank unique id that is used to identify a specific bank",
+            "example" : "12345678"
+          },
+          "beneName" : {
+            "type" : "string",
+            "description" : "A beneficiary is the person or entity that will receive the payment",
+            "example" : "XYZ Name"
+          },
+          "beneBankName" : {
+            "type" : "string",
+            "description" : "Beneficiary bank name",
+            "example" : "Bank Name"
+          },
+          "beneAccountNumber" : {
+            "type" : "string",
+            "description" : "A beneficiary bank account number",
+            "example" : "12345678"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Payment amount",
+            "example" : 10.0
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency Code",
+            "example" : "USD"
+          },
+          "amountType" : {
+            "type" : "string",
+            "description" : "Type of amount associated with the postive pay rule.",
+            "example" : "Exact or Maximum"
+          },
+          "frequency" : {
+            "type" : "string",
+            "description" : "Positive pay rule frequency",
+            "example" : "Onetime, Weekly etc."
+          },
+          "secCode" : {
+            "type" : "string",
+            "description" : "SEC code associated with the ACH postive rule",
+            "example" : "CCD, PPD etc."
+          },
+          "effectiveDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "format" : "date",
+            "example" : "0016-07-14"
+          },
+          "expiryDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "format" : "date",
+            "example" : "0016-07-14"
+          }
+        }
+      },
+      "ApproveAllPositivePayExceptionRequest" : {
+        "properties" : {
+          "paymentUID" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "description" : "A unique identifier associated with the payment requires decision.",
+              "example" : "[112233,132311]"
+            }
+          }
+        }
+      },
+      "CreditPaymentRequest" : {
+        "required" : [ "externalReferenceId", "paymentAmount", "paymentCurrency", "paymentNotes", "receiver", "sender", "speed" ],
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id set by the originator system.",
+            "example" : "pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc."
+          },
+          "paymentDate" : {
+            "type" : "string",
+            "description" : "The date on which the system will pick up and process the payment. This is an optional field and It will be defaulted to the current date if it is not provided. The valid date should be in [MM-dd-yyyy] format.",
+            "format" : "date",
+            "example" : "0014-03-15"
+          },
+          "paymentCurrency" : {
+            "maxLength" : 3,
+            "minLength" : 3,
+            "type" : "string",
+            "description" : "Sender payment currency code. The valid country currency code should be per ISO 4217 standard.",
+            "example" : "USD or EUR etc."
+          },
+          "paymentAmount" : {
+            "type" : "number",
+            "description" : "Payment amount. The payment amount are validated as per the limit set by the payment rails or by the bank for the customer. The payment rail limit per transaction are RTP upto 1M$, FedNow upto $500K, Fedwire upto $9,999,999,999.99, Same Day ACH upto 1M$.",
+            "format" : "double"
+          },
+          "speed" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Speed associated with the payment based on the delivery time and fee. The Speed types are defined by the bank/financial institutions and they are associated with the payment rails such as ACH, Fedwire, SWIFT, RTP/FedNow.",
+            "example" : "Economy, Economy Plus, Express, Instant etc."
+          },
+          "paymentNotes" : {
+            "maxLength" : 200,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Payment notes provided by the payment originator. These notes are passed to the payment network as per the specification such as for ACH upto 10 chars, Fedwire upto 35 chars [Tag 6400 - Beneficiary information], SWIFT upto 140 chars [Tag 70], RTP/FedNow upto 140 chars [ISO 20022 - RmtInf Tag]. The value will be truncated if it exceeds the data length limit.",
+            "default" : "Payment Notes"
+          },
+          "sender" : {
+            "$ref" : "#/components/schemas/PaymentSender"
+          },
+          "receiver" : {
+            "$ref" : "#/components/schemas/PaymentReceiver"
+          },
+          "fee" : {
+            "$ref" : "#/components/schemas/Fee"
+          },
+          "recurrence" : {
+            "$ref" : "#/components/schemas/PaymentOccurrence"
+          },
+          "additionalInfo" : {
+            "$ref" : "#/components/schemas/AdditionalInfoCreditPayment"
+          }
+        }
+      },
+      "BookTransferRequest" : {
+        "required" : [ "externalReferenceId", "paymentAmount", "paymentDate", "receiver", "sender" ],
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "Payment101"
+          },
+          "senderAccount" : {
+            "$ref" : "#/components/schemas/BookTransferSender"
+          },
+          "receiverAccount" : {
+            "$ref" : "#/components/schemas/BookTransferReceiver"
+          },
+          "paymentAmount" : {
+            "type" : "number",
+            "example" : 100.0
+          },
+          "paymentDate" : {
+            "type" : "string",
+            "description" : "Payment date in mm-dd-yyyy format.",
+            "format" : "date",
+            "example" : "0014-03-15"
+          },
+          "channel" : {
+            "type" : "string",
+            "description" : "Channel associated with the payment",
+            "example" : "API, TELLER etc."
+          }
+        }
+      },
+      "BookTransferResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "BOOKTRF001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to create a book transfer payment: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/BookTransferResponse_data"
+          }
+        }
+      },
+      "PaymentResponse" : {
+        "properties" : {
+          "status" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PAYMENT001 etc."
+          },
+          "message" : {
+            "maxLength" : 250,
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to create a payment: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/PaymentResponse_data"
+          }
+        }
+      },
+      "DebitPaymentRequest" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id set by the originator system.",
+            "example" : "PaymentRef100"
+          },
+          "paymentAmount" : {
+            "type" : "number",
+            "example" : 100.0
+          },
+          "paymentDate" : {
+            "type" : "string",
+            "description" : "Payment date in mm-dd-yyyy format.",
+            "format" : "date",
+            "example" : "0014-03-15"
+          },
+          "paymentCurrency" : {
+            "type" : "string",
+            "description" : "Payment Currency",
+            "example" : "USD"
+          },
+          "paymentNotes" : {
+            "type" : "string",
+            "description" : "Payment notes provided by the originator",
+            "default" : "Notes"
+          },
+          "speed" : {
+            "type" : "string",
+            "example" : "Standard, Economy, Express"
+          },
+          "debtor" : {
+            "$ref" : "#/components/schemas/PaymentDebtor"
+          },
+          "creditor" : {
+            "$ref" : "#/components/schemas/PaymentCreditor"
+          },
+          "fee" : {
+            "$ref" : "#/components/schemas/Fee"
+          },
+          "recurrence" : {
+            "$ref" : "#/components/schemas/PaymentOccurrence"
+          },
+          "additionalInfo" : {
+            "$ref" : "#/components/schemas/AdditionalInfoDebitPayment"
+          }
+        }
+      },
+      "CancelPaymentResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Failure code associated with the error.",
+            "example" : "PAYMENT001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to cancel a payment: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CancelPaymentResponse_data"
+          }
+        }
+      },
+      "ReturnPaymentRequest" : {
+        "properties" : {
+          "achReturnCode" : {
+            "type" : "string",
+            "description" : "Valid ACH return code such as R01,R02 etc.",
+            "example" : "R01"
+          },
+          "returnNotes" : {
+            "type" : "string",
+            "description" : "Return notes",
+            "example" : "Invalid payment request."
+          }
+        }
+      },
+      "ReturnPaymentResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PAYMENT003 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to return a payment: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ReturnPaymentResponse_data"
+          }
+        }
+      },
+      "ReversePaymentRequest" : {
+        "properties" : {
+          "reversalNotes" : {
+            "type" : "string",
+            "description" : "Reversal notes"
+          }
+        }
+      },
+      "ReversePaymentResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PAYMENT004 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to reverse a payment: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ReversePaymentResponse_data"
+          }
+        }
+      },
+      "GetPaymentResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PAYMENT001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to retrieve a payment: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Payment"
+          }
+        }
+      },
+      "Payment" : {
+        "properties" : {
+          "paymentUID" : {
+            "type" : "integer",
+            "description" : "Payment unique identifier assigned by the system.",
+            "example" : 12341
+          },
+          "counterPartyId" : {
+            "type" : "string",
+            "description" : "Customer UID associated with the payment."
+          },
+          "senderUID" : {
+            "type" : "string"
+          },
+          "senderAccountNumber" : {
+            "type" : "string"
+          },
+          "senderAccountName" : {
+            "type" : "string"
+          },
+          "senderName" : {
+            "type" : "string"
+          },
+          "senderCity" : {
+            "type" : "string"
+          },
+          "senderState" : {
+            "type" : "string"
+          },
+          "senderZip" : {
+            "type" : "string"
+          },
+          "senderCountry" : {
+            "type" : "string"
+          },
+          "senderAddress1" : {
+            "type" : "string"
+          },
+          "senderAddress2" : {
+            "type" : "string"
+          },
+          "senderIdType" : {
+            "type" : "string"
+          },
+          "senderIdType2" : {
+            "type" : "string"
+          },
+          "senderId2" : {
+            "type" : "string"
+          },
+          "senderCountryCode" : {
+            "type" : "string"
+          },
+          "senderBankId" : {
+            "type" : "string"
+          },
+          "senderBankName" : {
+            "type" : "string"
+          },
+          "senderBankIdType" : {
+            "type" : "string"
+          },
+          "senderBankAddress1" : {
+            "type" : "string"
+          },
+          "senderBankAddress2" : {
+            "type" : "string"
+          },
+          "senderBankCity" : {
+            "type" : "string"
+          },
+          "senderBankState" : {
+            "type" : "string"
+          },
+          "senderBankZip" : {
+            "type" : "string"
+          },
+          "senderBankCountry" : {
+            "type" : "string"
+          },
+          "senderAccountType" : {
+            "type" : "string"
+          },
+          "isIntermediarySender" : {
+            "type" : "boolean"
+          },
+          "intermediarySenderName" : {
+            "type" : "string"
+          },
+          "intermediarySenderAddress1" : {
+            "type" : "string"
+          },
+          "intermediarySenderAddress2" : {
+            "type" : "string"
+          },
+          "intermediarySenderCity" : {
+            "type" : "string"
+          },
+          "intermediarySenderState" : {
+            "type" : "string"
+          },
+          "intermediarySenderZip" : {
+            "type" : "string"
+          },
+          "intermediarySenderCountry" : {
+            "type" : "string"
+          },
+          "intermediarySenderId" : {
+            "type" : "string"
+          },
+          "intermediarySenderIdType" : {
+            "type" : "string"
+          },
+          "ultimateSenderName" : {
+            "type" : "string"
+          },
+          "ultimateSenderAccountNumber" : {
+            "type" : "string"
+          },
+          "ultimateSenderAddress1" : {
+            "type" : "string"
+          },
+          "ultimateSenderAddress2" : {
+            "type" : "string"
+          },
+          "ultimateSenderTaxId" : {
+            "type" : "string"
+          },
+          "ultimateSenderCity" : {
+            "type" : "string"
+          },
+          "ultimateSenderState" : {
+            "type" : "string"
+          },
+          "ultimateSenderZip" : {
+            "type" : "string"
+          },
+          "ultimateSenderCountry" : {
+            "type" : "string"
+          },
+          "beneficiaryUID" : {
+            "type" : "string"
+          },
+          "beneficiaryName" : {
+            "type" : "string"
+          },
+          "senderAmount" : {
+            "type" : "string"
+          },
+          "paymentDate" : {
+            "type" : "string"
+          },
+          "receiverCurrency" : {
+            "type" : "string",
+            "description" : "ISO Currency Code"
+          },
+          "senderCurrency" : {
+            "type" : "string",
+            "description" : "ISO Currency Code"
+          },
+          "receiverAmount" : {
+            "type" : "number"
+          },
+          "deliveryMethod" : {
+            "type" : "string",
+            "description" : "One of the payment network delivery methods that includes Same Day ACH, Regular ACH, RTP, Fedwire",
+            "example" : "ACH"
+          },
+          "receiverAccountNumber" : {
+            "type" : "string"
+          },
+          "receiverName" : {
+            "type" : "string"
+          },
+          "receiverAccountType" : {
+            "type" : "string"
+          },
+          "receiverType" : {
+            "type" : "string"
+          },
+          "receiverAddress1" : {
+            "type" : "string"
+          },
+          "receiverAddress2" : {
+            "type" : "string"
+          },
+          "receiverCity" : {
+            "type" : "string"
+          },
+          "receiverState" : {
+            "type" : "string"
+          },
+          "receiverZip" : {
+            "type" : "string"
+          },
+          "receiverPhoneNumber" : {
+            "type" : "string"
+          },
+          "receiverEmail" : {
+            "type" : "string"
+          },
+          "receiverCountry" : {
+            "type" : "string"
+          },
+          "receiverIdType" : {
+            "type" : "string"
+          },
+          "receiverIdType2" : {
+            "type" : "string"
+          },
+          "receiverId2" : {
+            "type" : "string"
+          },
+          "receiverBankId" : {
+            "type" : "string"
+          },
+          "receiverBankName" : {
+            "type" : "string"
+          },
+          "receiverBankIdType" : {
+            "type" : "string"
+          },
+          "receiverBankAddress1" : {
+            "type" : "string"
+          },
+          "receiverBankAddress2" : {
+            "type" : "string"
+          },
+          "receiverBankCity" : {
+            "type" : "string"
+          },
+          "receiverBankState" : {
+            "type" : "string"
+          },
+          "receiverBankZip" : {
+            "type" : "string"
+          },
+          "receiverBankCountry" : {
+            "type" : "string"
+          },
+          "isIntermediaryReceiver" : {
+            "type" : "boolean"
+          },
+          "intermediaryReceiverName" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverAddress1" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverAddress2" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverCity" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverState" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverZip" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverCountry" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverId" : {
+            "type" : "string"
+          },
+          "intermediaryReceiverIdType" : {
+            "type" : "string"
+          },
+          "ultimateReceiverName" : {
+            "type" : "string"
+          },
+          "ultimateReceiverAccountNumber" : {
+            "type" : "string"
+          },
+          "ultimateReceiverAddress1" : {
+            "type" : "string"
+          },
+          "ultimateReceiverAddress2" : {
+            "type" : "string"
+          },
+          "ultimateReceiverTaxId" : {
+            "type" : "string"
+          },
+          "ultimateReceiverCity" : {
+            "type" : "string"
+          },
+          "ultimateReceiverState" : {
+            "type" : "string"
+          },
+          "ultimateReceiverZip" : {
+            "type" : "string"
+          },
+          "ultimateReceiverCountry" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "bankFeePayer" : {
+            "type" : "string",
+            "enum" : [ "remitter", "beneficiary" ]
+          },
+          "paymentNotes" : {
+            "type" : "string",
+            "description" : "Notes associated with the payment.",
+            "example" : "payment for invoice ABC123"
+          },
+          "forexContract" : {
+            "type" : "string",
+            "example" : "1325"
+          },
+          "occurrences" : {
+            "$ref" : "#/components/schemas/PaymentOccurrence"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "FUTURE_DATED"
+          },
+          "displayStatus" : {
+            "type" : "string",
+            "example" : "Scheduled"
+          },
+          "notification" : {
+            "$ref" : "#/components/schemas/Notification"
+          },
+          "audit" : {
+            "$ref" : "#/components/schemas/Audit"
+          },
+          "creationDateTime" : {
+            "type" : "string"
+          },
+          "customerType" : {
+            "type" : "string",
+            "description" : "Customer type associated with the payment.",
+            "example" : "Corporate or Consumer"
+          },
+          "deliveryAgentType" : {
+            "type" : "string"
+          },
+          "quoteId" : {
+            "type" : "string"
+          },
+          "wireType" : {
+            "type" : "string"
+          },
+          "counterParty" : {
+            "type" : "string"
+          },
+          "businessUnit" : {
+            "type" : "string",
+            "description" : "Processing org name assigned to the payment."
+          },
+          "channel" : {
+            "type" : "string"
+          },
+          "costCenter" : {
+            "type" : "string"
+          },
+          "book" : {
+            "type" : "string"
+          },
+          "businessUnitId" : {
+            "type" : "string",
+            "description" : "Processing org id assigned to the payment."
+          },
+          "externalReferenceId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PaymentSearchResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "PAYMENT001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "example" : "Failed to search a payment: <Reason>"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Payment"
+            }
+          }
+        }
+      },
+      "PaymentNoteOptionValueChildren_data" : {
+        "type" : "object",
+        "properties" : {
+          "displayName" : {
+            "type" : "string",
+            "example" : "Drivers Licence"
+          },
+          "swiftCode" : {
+            "type" : "string",
+            "example" : "DVB001"
+          },
+          "group" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "children" : {
+            "$ref" : "#/components/schemas/PaymentNoteOptionValueChildren"
+          }
+        }
+      },
+      "AdditionalInfoCreditPayment_unstructuredAddendaInfo" : {
+        "type" : "object",
+        "properties" : {
+          "addendaLength" : {
+            "type" : "integer"
+          },
+          "addendaInformation" : {
+            "type" : "string"
+          }
+        },
+        "description" : "This is applicable for the fedwire payment where the local instrument can be S820, GXML, ANSI, IXML, NARR, SWIF, UEDI"
+      },
+      "BookTransferResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "paymentUID" : {
+            "type" : "string"
+          },
+          "paymentStatus" : {
+            "type" : "string"
+          },
+          "externalReferenceId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PaymentResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "paymentUID" : {
+            "type" : "string",
+            "description" : "The unique payment reference id assigned by the Finzly-Payment system.",
+            "example" : "12930 etc."
+          },
+          "paymentStatus" : {
+            "type" : "string",
+            "description" : "The payment status assigned by the system upon creation.",
+            "example" : "INITTIATED, FUTURE_DATED etc."
+          },
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Returing the unique reference id provided by the originator system.",
+            "example" : "pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc."
+          }
+        }
+      },
+      "CancelPaymentResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "paymentUID" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReturnPaymentResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "paymentUID" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Payment status."
+          }
+        }
+      },
+      "ReversePaymentResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "paymentUID" : {
+            "type" : "string",
+            "description" : "Payment unique identifier."
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "oAuth2" : {
+        "type" : "oauth2",
+        "description" : "Finzly Connect API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow.",
+        "flows" : {
+          "authorizationCode" : {
+            "authorizationUrl" : "https://sandbox-security-uat.finzly.io/auth",
+            "tokenUrl" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
+            "scopes" : {
+              "roles" : "manage"
+            }
+          }
+        }
+      }
+    }
+  }
+}
