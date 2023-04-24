@@ -8,7 +8,7 @@ You can use this API to get the funding bank account details from the CRM system
 
 Execute the below API to get the accountUID (Unique Identifier) associated with the sender’s bank account.
 
-[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomerAccountsV2/)
+[GET - {{URL}}/customers/{{customer_UID}}/accounts?accountNumber={{account_Number}}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomerAccounts/)
 
 Where: 
 - **customer_UID:** This is the unique ID associated with customer.

@@ -4,10 +4,10 @@ title: Instant Payment
 
 ## How to initiate an instant payment
 
-You can initiate an instant payment using the simple instructions [defined below]. Finzly has exposed a single payment API that supports the initiation of various types of payments [Domestic or International] using the speed preference. If a user would like to initiate an instant payment request, they can choose the speed name as [**Instant**], which is associated with the instant payment rail, then the payment hub system applies the smart-routing rules to process and settle the payment via FedNow or RTP payment network.
+You can initiate an instant payment using the simple instructions shown below. Finzly has exposed a single payment API that supports the initiation of various types of payments, both Domestic and International, using the speed preference. If a user would like to initiate an instant payment request, they can choose the speed name as "instant". The payment hub applies the smart-routing rules to process and instantly settle the payment via FedNow or RTP payment network.
 
 
-### **Scenario 1: Execute an instant payment request [Sender and Receiver already exist in the BankOS system]**
+### **Scenario 1: Execute an instant payment request [Sender and Receiver set up on Finzly]**
 
 [POST /payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPayment/)
 
@@ -34,7 +34,7 @@ Prepare the instant payment request by providing the simple payment instructions
 ```
 
 
-### **Scenario 2: Execute an instant payment request [Sender and Receiver does exist in the BankOS system]**
+### **Scenario 2: Execute an instant payment request [Sender and Receiver are not setup on Finzly]**
 
 [POST /payments/creditrequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/createCreditPayment/)
 
@@ -178,7 +178,8 @@ Where:
             "templateName": "John Electric",
             "name": "John Electric LLC",
             "phoneNumber": "23499089727",
-            "email": "john1201@gmail.com" ....
+            "email": "john1201@gmail.com"
+			....
         }
     ]
 }
