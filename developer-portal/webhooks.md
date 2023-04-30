@@ -20,12 +20,12 @@ Payment webhook notify whenever a payment event happens in your account. Your ba
 | :-: | :-: | :- | :-: |
 |paymentId|integer|none|Payment unique identifier assigned by the bankos system to the payment request.|
 |externalReferenceId|string|none|External reference id set by the originator/external system.|
-|sourceReferenceId|string|none|Unique bulk file id set by the sytem when the payment is originated via bulk file upload.|
+|sourceReferenceId|string|none|Unique bulk file id set by the system when the payment is originated via bulk file upload.|
 |paymentStatus|string|none|Payment status such as VALIDATED, VALIDATION_FAILURE, TRANSMITTED, PROCESSED, CANCELLED etc|
 |bulkFileName|string|none|Name of the file, if the payment is uploaded from the file to the finzly payment hub system via FTP or API channel.|
 |counterParty|string|none|Shortname associated with the legal entity defined in the CRM system.|
 |deliveryDate|string(date)|none|Delivery date refers to the date on which payment is settle|
-|deliveryMethod|string|none|The delivery method used to setlle the payment such as ACH, WIRE, RTP,FEDNOW, SWIFT, etc.|
+|deliveryMethod|string|none|The delivery method used to settle the payment such as ACH, WIRE, RTP,FEDNOW, SWIFT, etc.|
 |feeAmount|number(decimal)|none|Fee amount|
 |paymentDate|string(date)|none|Date on which the payment is originated in the system.|
 |channel|string|none|Channel represents the system that originates the payment for example API, TELLER, CASHOS, ONLINE etc.|

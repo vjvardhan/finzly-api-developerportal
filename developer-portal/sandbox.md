@@ -44,4 +44,4 @@ curl -X POST [URL]
 
 ```
 
-Note: Our support team creates an API key and secert for you. Using the API credentials, you can access the Finzly Connect APIs.
+Note: Our support team creates an API key and secret for you. Using the API credentials, you can access the Finzly Connect APIs.

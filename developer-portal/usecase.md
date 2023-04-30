@@ -63,7 +63,7 @@ Customer onboarding is the next step after your customers have registered for th
 - Landmark celebrations for customer engagement and satisfaction.
 
 ### **Benefits of accelerated onboarding**
-- Having clear policies and procedures highlights to customers that an institution is not only aware of and actively trying to win their customers but also that they are compliant with regulations and within the confines of the law.
+- Having clear policies and procedures shows to customers that an institution is not only aware of and actively trying to win their customers but also that they are compliant with regulations and within the confines of the law.
 
 Illustrating to customers how a bank is actively working with regulations secures its reputation as a trustworthy institution that will keep money and other assets safe.
 

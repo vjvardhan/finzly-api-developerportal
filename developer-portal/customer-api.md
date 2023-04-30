@@ -294,7 +294,7 @@ __API Response Objects-__
 
 **HTTP Method:** **POST**
 
-**Description -** Sending a POST request to Customers Endpoint will allow the users to create a customer as a Corporate Account for getting the features and using further options. Finzy is providing a dashboard where corporate customers can create their account and use the settings later on as per their convenience. In order to create a customer a POST request containing a series of parameters and objects to the **POST /customers** endpoint is required. All parameters and objects are specified below -
+**Description -** Sending a POST request to Customers Endpoint will allow the users to create a customer as a Corporate Account for getting the features and using further options. Finzly is providing a dashboard where corporate customers can create their account and use the settings later on as per their convenience. In order to create a customer a POST request containing a series of parameters and objects to the **POST /customers** endpoint is required. All parameters and objects are specified below -
 
 **Request Parameters**
 

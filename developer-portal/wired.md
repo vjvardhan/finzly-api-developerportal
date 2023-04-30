@@ -7,7 +7,7 @@ title: Wired Transactions
 
 ### **Business Function Codes**
 
-Finzly Connect APIs support following business function codes for the Fedwire payments.
+Finzly Connect APIs support the following business function codes for the Fedwire payments.
 
 |**Business Function Codes**|**Description**|
 | :- | :-: |
@@ -17,7 +17,7 @@ Finzly Connect APIs support following business function codes for the Fedwire pa
 | DRW | Drawdown Payment |
 
 
-### **Payment Status Updates**
+### **Payment Status Update**
 - Payment Status Notification for every event on the wire lifecycle will be notified. This will be applied for both outgoing and incoming payments.
 - Validation Failed - Fedwire Payment with the Exception status will be notified.
 - OFAC Review/Reject - Fedwire Payment with OFAC compliance Exception will be notified.
@@ -34,4 +34,4 @@ Fedwire incoming payment notification will be triggered through webhooks. Custom
 
 ### **Processing times**
 
-The [**Fedwire Funds Service**](https://www.federalreserve.gov/paymentsystems/fedfunds_about.htm) business day begins at 9:00 A.M. (EST) on the calendar day and ends at 7:00 P.M. (EST), Monday through Friday, excluding designated holidays. However, wire payments can be scheduled anytime and it will be processed on the scheduled date.
+The [**Fedwire Funds Service**](https://www.federalreserve.gov/paymentsystems/fedfunds_about.htm) business day begins at 9:00 A.M. (EST) on the calendar day and ends at 7:00 P.M. (EST), Monday through Friday, excluding designated holidays. However, wire payments can be scheduled anytime, and it will be processed on the scheduled date.

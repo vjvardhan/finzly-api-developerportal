@@ -14,7 +14,7 @@ Many platform providers prefer to set up their accounts as FBO accounts or For B
 
 Finzly Connect supports the creation and setting up of customer relationships using virtual accounts. Virtual accounts serve as subledgers allowing downstream setup associations to an existing deposit account. Platform providers can use these accounts to set up their customers or downstream partners, in turn, moving money in and out of these virtual accounts without latency and manual reconciliation. The Finzly Connect API allows virtual accounts to be assigned to consumers, suppliers, locations, or any other entity that needs tracking at an atomic level. 
 
-Virtual accounts replace the need to create many individual bank accounts, while providing platform providers the ability to reconcile money movement at a granular level. Businesses and platform providers can bypass the need to manually manage client money, giving the flexibility to aggregate and segregate client money, with up-to-date visibility of funds.
+Virtual accounts replace the need to create many individual bank accounts, while providing platform providers the ability to reconcile money movement at a granular level. Businesses and platform providers can bypass the need to manually manage client money, giving the flexibility to aggregate and segregate client money with up-to-date visibility of funds.
 
 The flexible virtual account setup through Ledger-as-a-service can be used for client money management for Asset management, Pension Funds, Real estate, Digital wallets, Virtual cash management (POBO, COBO) and many more use cases.
 

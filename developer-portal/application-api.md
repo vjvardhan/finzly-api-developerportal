@@ -46,7 +46,7 @@ A successful GET request to this endpoint will return the following data
       "description": "Payment Hub etc.",
       "status": "ACTIVE or INACTIVE",
       "type": "BANK or CUSTOMER",
-      "entilements": [
+      "entitlements": [
         {
           "UUID": "string",
           "entitlementCode": "aBlkFil etc.",

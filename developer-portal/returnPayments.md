@@ -19,7 +19,7 @@ You can return a payment using this API if the payment rail supports the return 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |paymentUID|path|string|true|none|
-|body|body|[ReturnPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/returnPaymentV3/)|false |Payment unique refrence ID|
+|body|body|[ReturnPaymentRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/paymentapi/operation/returnPaymentV3/)|false |Payment unique reference ID|
 
 **ReturnPaymentRequest**
 

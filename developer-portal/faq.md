@@ -25,7 +25,7 @@ NACHA has various rules around each transaction processing. ACH is very complica
 
 Finzly Connect offers instant payment access and notifications via simple REST API. Develop new financial products such as Point of Sale, QR based invoices, and get paid instantly from your customer’s bank and eliminate card transaction fees
 
-### &nbsp;**How does Fizly Connect secure payment access?**
+### &nbsp;**How does Finzly Connect secure payment access?**
 
 Our APIs use the oAuth 2.0 authentication protocol to provide secure access. You will use our API keys with grant type “Client Credentials” to fetch an access token. This token is digitally signed and contains access information such as user role mapping. The access token is short-lived (30 sec). To authenticate and authorize your API calls, you must pass the access token in the authorization header with the “bearer” prefix.
 

@@ -11,7 +11,7 @@ Each payment entry must be categorized under one of the several Service Entry Cl
 | :- | :-: | :-: | :- | :- |
 |ARC|Accounts Receivable Entries|A single ACH debit used by originator for the conversion of an eligible source document received via the U.S. mail or delivery service; at a lockbox location; or in person at a manned location for the payment of a bill.|Debit|Consumer to Corporate|
 |ACK|ACH Payment Acknowledge |RDFI to acknowledge the receipt of ACH credit payments originated using the CCD formats|Non-Monetary|N/A|
-|ADV|Automated Accounting Advice|identifies automated accounting advice of ACH accounting information in machinereadable format to facilitate the automation of accounting information for participating DFIs |Non-Monetary |N/A|
+|ADV|Automated Accounting Advice|identifies automated accounting advice of ACH accounting information in machine readable format to facilitate the automation of accounting information for participating DFIs |Non-Monetary |N/A|
 |ATX|Financial EDI Acknowledgment|RDFI to acknowledge the receipt of ACH credit payments originated using the CTX formats|Non-Monetary|N/A|
 |BOC|Back Office Conversion|A single ACH debit initiated by an originator based on an eligible source document provided at the point-of-purchase or at a manned bill payment location for subsequent conversion during back-office conversion. |Debit|Consumer to Corporate|
 |CCD|Corporate Credit or Debit|A single or a recurring ACH credit or debit originated to a corporate account. They are commonly used by Originators to pay vendors, concentrate funds from outlying accounts (cash concentration), to fund payroll, petty cash, or other disbursement accounts.|Credit / Debit/ Nonmonetary|Corporate to Corporate|
@@ -26,7 +26,7 @@ Each payment entry must be categorized under one of the several Service Entry Cl
 |WEB|Internet-Initiated/Mobile Entries|Credit WEB Entries: A Person-to-Person entry transmitted on behalf of one natural person to another natural person, or between accounts belonging to the same natural person. <br><br>Debit WEB Entries: ACH entry initiated according to an authorization obtained via the internet or a wireless network (e.g. mobile device) except for an oral authorization via a telephone call.|Credit / Debit|Corporate to Consumer|
 |DNE|Death Notification Entry|Federal Govt. Agency Use Only |Non-Monetary|Consumer|
 
-***Note: Finzly Connects supports all above SEC codes from RDFI perspective. However, from the ODFI perspective the following SEC codes are supported in the platfrom BOC, CCD, CIE, CTX, IAT, POP, POS, PPD, TEL and WEB.***
+***Note: Finzly Connects supports all above SEC codes from RDFI perspective. However, from the ODFI perspective the following SEC codes are supported in the platform BOC, CCD, CIE, CTX, IAT, POP, POS, PPD, TEL and WEB.***
 
 **Addenda Record** 
 

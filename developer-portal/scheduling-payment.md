@@ -138,7 +138,7 @@ Prepare the payment request object using the sender and receiver accountUID alon
 
 ```
 
-Note: Using the **paymentDate** attribute one can schedule the payment for the future date. The system will automaticially pick up the payment on the payment date and process the transaction as per the payment details.
+Note: Using the **paymentDate** attribute one can schedule the payment for the future date. The system will automatically pick up the payment on the payment date and process the transaction as per the payment details.
 
 **Payment Speed Details**
 

@@ -44,7 +44,7 @@ When the RDFI returns the credit or debit request, the ODFI may accept the retur
 |R23|Credit Entry Refused by Receiver|Any credit Entry that is refused by the Receiver may be returned by the RDFI. |
 |R24|Duplicate Entry|The RDFI has received what appears to be a duplicate entry; i .e., the trace number, date, dollar amount and/or other data matches another transaction. |
 |R26|Mandatory Field Error |Improper information in one of the mandatory fields|
-|R29|Corporate Customer Advises Not Authorized|he RDFI has been notified by the Receiver (nonconsumer) that the Originator of a given transaction has not been authorized to debit the Receiver account.|
+|R29|Corporate Customer Advises Not Authorized|The RDFI has been notified by the Receiver (nonconsumer) that the Originator of a given transaction has not been authorized to debit the Receiver account.|
 |R31|Permissible Return Entry (CCD and CTX only) |The RDFI may return a CCD or CTX Entry that the ODFI agrees to accept.|
 |R61|Misrouted Return|The financial institution preparing the Return Entry (The RDFI of the original Entry) has placed the incorrect Routing Number in the Receiving DFI Identification field. |
 |R67|Duplicate Return |The ODFI has received more than one Return for the same Entry.|

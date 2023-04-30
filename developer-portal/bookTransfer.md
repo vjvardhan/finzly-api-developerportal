@@ -74,6 +74,6 @@ A successful POST request to this endpoint returns the following data
 | :-: | :- | :- | :- | :-: |
 |paymentUID|string|FALSE|none|Payment unique identifier.|
 |externalReferenceId|string|FALSE|none|External reference id provided by the origination system|
-|paymentStatus|String|FALASE|Valid Payment Status|Payment status|
+|paymentStatus|String|FALSE|Valid Payment Status|Payment status|
 
 
