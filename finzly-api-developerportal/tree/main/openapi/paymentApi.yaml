@@ -1920,24 +1920,29 @@
         "properties" : {
           "accountUID" : {
             "type" : "string",
-            "description" : "Sender account unique identifier",
+            "description" : "Sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the information are not needed.",
             "example" : "123452334"
           },
           "accountNumber" : {
             "type" : "string",
-            "description" : "Sender account number",
+            "description" : "Sender bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.",
             "example" : "123452334 etc."
           },
           "accountType" : {
             "type" : "string",
-            "description" : "Account type",
+            "description" : "Account type associated with the account.",
             "example" : "DDA or GL",
             "enum" : [ "DDA", "GL" ]
           },
           "currency" : {
             "type" : "string",
-            "description" : "Sender Currency",
+            "description" : "Sender Currency [optional]. It will be defaulted to USD. The valid country currency code should be per ISO 4217 standard.",
             "example" : "USD"
+          },
+          "routingNumber" : {
+            "type" : "string",
+            "description" : "Optional field, only required when accountUID is not provided and accountType is DDA",
+            "example" : "123452334"
           }
         }
       },
@@ -1945,24 +1950,29 @@
         "properties" : {
           "accountUID" : {
             "type" : "string",
-            "description" : "Sender account unique identifier",
+            "description" : "Receiver bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the information are not needed.",
             "example" : "123452334"
           },
           "accountNumber" : {
             "type" : "string",
-            "description" : "Sender account number",
+            "description" : "Receiver bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.",
             "example" : "123452334 etc."
           },
           "accountType" : {
             "type" : "string",
-            "description" : "Account type",
+            "description" : "Account type associated with the account.",
             "example" : "DDA or GL",
             "enum" : [ "DDA", "GL" ]
           },
           "currency" : {
             "type" : "string",
-            "description" : "Sender Currency",
+            "description" : "Receiver Currency [optional]. It will be defaulted to USD. The valid country currency code should be per ISO 4217 standard.",
             "example" : "USD"
+          },
+          "routingNumber" : {
+            "type" : "string",
+            "description" : "Optional field, only required when accountUID is not provided and accountType is DDA",
+            "example" : "123452334"
           }
         }
       },
@@ -3131,23 +3141,130 @@
         "properties" : {
           "paymentUID" : {
             "type" : "integer",
-            "description" : "Payment unique identifier assigned by the system.",
-            "example" : 12341
+            "description" : "The unique payment reference id assigned by the Finzly-Payment system."
+          },
+          "externalReferenceId" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "description" : "Unique reference id set by the originator system.",
+            "example" : "pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc."
+          },
+          "counterParty" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "description" : "Legal entity name exist in the Finzly-CRM system and associated with the payment.",
+            "example" : "ABC Shipping etc."
           },
           "counterPartyId" : {
+            "maxLength" : 11,
             "type" : "string",
-            "description" : "Customer UID associated with the payment."
+            "description" : "Legal entity [CustomerUID] exist in the Finzly-CRM system and associated with the payment.",
+            "example" : "10920 etc."
+          },
+          "customerType" : {
+            "maxLength" : 45,
+            "type" : "string",
+            "description" : "Customer type associated with the payment.",
+            "example" : "Corporate or Consumer"
+          },
+          "businessUnit" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "description" : "Processing org name assigned to the payment.",
+            "example" : "Bank Name etc."
+          },
+          "businessUnitId" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "description" : "Processing org id assigned to the payment.",
+            "example" : "189 etc."
+          },
+          "channel" : {
+            "maxLength" : 50,
+            "type" : "string",
+            "description" : "The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
+            "example" : "API, TELLER etc."
+          },
+          "costCenter" : {
+            "maxLength" : 100,
+            "type" : "string",
+            "description" : "The cost center associated with the payment. A cost center is also known as a cost pool or expense center",
+            "example" : "562687, Global etc."
+          },
+          "book" : {
+            "maxLength" : 100,
+            "type" : "string",
+            "description" : "The book associated with the payment. The book is needed to assign proper GL accounts.",
+            "example" : "ACH, Wire etc."
+          },
+          "senderAmount" : {
+            "type" : "string"
+          },
+          "paymentDate" : {
+            "type" : "string"
+          },
+          "receiverCurrency" : {
+            "type" : "string",
+            "description" : "ISO Currency Code"
+          },
+          "senderCurrency" : {
+            "type" : "string",
+            "description" : "ISO Currency Code"
+          },
+          "receiverAmount" : {
+            "type" : "number"
+          },
+          "deliveryMethod" : {
+            "type" : "string",
+            "description" : "One of the payment network delivery methods that includes Same Day ACH, Regular ACH, RTP, Fedwire",
+            "example" : "ACH"
+          },
+          "paymentNotes" : {
+            "maxLength" : 200,
+            "type" : "string",
+            "description" : "Notes associated with the payment.",
+            "example" : "Payment for the invoice ABC123"
+          },
+          "deliveryAgentType" : {
+            "type" : "string"
+          },
+          "quoteId" : {
+            "maxLength" : 200,
+            "type" : "string",
+            "description" : "FX quote associated with the SWIFT payment.",
+            "example" : "Payment for the invoice ABC123"
+          },
+          "wireType" : {
+            "type" : "string"
           },
           "senderUID" : {
-            "type" : "string"
-          },
-          "senderAccountNumber" : {
-            "type" : "string"
-          },
-          "senderAccountName" : {
-            "type" : "string"
+            "maxLength" : 11,
+            "type" : "string",
+            "description" : "Sender [customerUID] defined in the Finzly-CRM system and associated with the payment.",
+            "example" : "3248 etc."
           },
           "senderName" : {
+            "maxLength" : 50,
+            "type" : "string",
+            "description" : "Sender name associated with the payment. This is an optional field, it is required when the accountUID is not provided.",
+            "example" : "Sender Name"
+          },
+          "senderAccountNumber" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Sender bank account number and associated with the payment.",
+            "example" : "8982618 etc."
+          },
+          "senderAccountName" : {
+            "maxLength" : 50,
+            "type" : "string",
+            "description" : "Sender account name",
+            "example" : "DDA Account"
+          },
+          "senderAddress1" : {
+            "type" : "string"
+          },
+          "senderAddress2" : {
             "type" : "string"
           },
           "senderCity" : {
@@ -3159,13 +3276,13 @@
           "senderZip" : {
             "type" : "string"
           },
+          "senderCountryCode" : {
+            "type" : "string"
+          },
           "senderCountry" : {
             "type" : "string"
           },
-          "senderAddress1" : {
-            "type" : "string"
-          },
-          "senderAddress2" : {
+          "senderAccountType" : {
             "type" : "string"
           },
           "senderIdType" : {
@@ -3175,9 +3292,6 @@
             "type" : "string"
           },
           "senderId2" : {
-            "type" : "string"
-          },
-          "senderCountryCode" : {
             "type" : "string"
           },
           "senderBankId" : {
@@ -3205,9 +3319,6 @@
             "type" : "string"
           },
           "senderBankCountry" : {
-            "type" : "string"
-          },
-          "senderAccountType" : {
             "type" : "string"
           },
           "isIntermediarySender" : {
@@ -3272,28 +3383,6 @@
           },
           "beneficiaryName" : {
             "type" : "string"
-          },
-          "senderAmount" : {
-            "type" : "string"
-          },
-          "paymentDate" : {
-            "type" : "string"
-          },
-          "receiverCurrency" : {
-            "type" : "string",
-            "description" : "ISO Currency Code"
-          },
-          "senderCurrency" : {
-            "type" : "string",
-            "description" : "ISO Currency Code"
-          },
-          "receiverAmount" : {
-            "type" : "number"
-          },
-          "deliveryMethod" : {
-            "type" : "string",
-            "description" : "One of the payment network delivery methods that includes Same Day ACH, Regular ACH, RTP, Fedwire",
-            "example" : "ACH"
           },
           "receiverAccountNumber" : {
             "type" : "string"
@@ -3424,18 +3513,6 @@
           "ultimateReceiverCountry" : {
             "type" : "string"
           },
-          "createdBy" : {
-            "type" : "string"
-          },
-          "bankFeePayer" : {
-            "type" : "string",
-            "enum" : [ "remitter", "beneficiary" ]
-          },
-          "paymentNotes" : {
-            "type" : "string",
-            "description" : "Notes associated with the payment.",
-            "example" : "payment for invoice ABC123"
-          },
           "forexContract" : {
             "type" : "string",
             "example" : "1325"
@@ -3447,54 +3524,13 @@
             "type" : "string",
             "example" : "FUTURE_DATED"
           },
-          "displayStatus" : {
-            "type" : "string",
-            "example" : "Scheduled"
-          },
-          "notification" : {
-            "$ref" : "#/components/schemas/Notification"
-          },
           "audit" : {
             "$ref" : "#/components/schemas/Audit"
           },
+          "createdBy" : {
+            "type" : "string"
+          },
           "creationDateTime" : {
-            "type" : "string"
-          },
-          "customerType" : {
-            "type" : "string",
-            "description" : "Customer type associated with the payment.",
-            "example" : "Corporate or Consumer"
-          },
-          "deliveryAgentType" : {
-            "type" : "string"
-          },
-          "quoteId" : {
-            "type" : "string"
-          },
-          "wireType" : {
-            "type" : "string"
-          },
-          "counterParty" : {
-            "type" : "string"
-          },
-          "businessUnit" : {
-            "type" : "string",
-            "description" : "Processing org name assigned to the payment."
-          },
-          "channel" : {
-            "type" : "string"
-          },
-          "costCenter" : {
-            "type" : "string"
-          },
-          "book" : {
-            "type" : "string"
-          },
-          "businessUnitId" : {
-            "type" : "string",
-            "description" : "Processing org id assigned to the payment."
-          },
-          "externalReferenceId" : {
             "type" : "string"
           }
         }
