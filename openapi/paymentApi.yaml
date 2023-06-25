@@ -555,7 +555,7 @@ paths:
          - Payments
       summary: Search payments
       operationId: searchPayments
-      description: Search payments based on various parameters. This operation retrieve limited payment data form the system
+      description: Search payments based on various parameters. This operation retrieve limited payment data from the system
       requestBody:
         content:
           application/json:
@@ -747,7 +747,7 @@ paths:
          - Payments
       summary: Get Payment
       operationId: getPaymentByUID
-      description: Retrieve a payment data using a payment unique identifier. This operation retrieve details payment data form the system
+      description: Retrieve a payment data using a payment unique identifier. This operation retrieve deatiled payment data from the system
       parameters:
       - name: paymentUID
         in: path
@@ -3319,7 +3319,6 @@ components:
           type: string
           description: FBO account type
           maxLength: 30
-
         receiverName:
           type: string
           description: Receiver name
@@ -3486,6 +3485,14 @@ components:
           example: '1325'
           description: Receiver Bank Address 1
           maxLength: 255
+        imad: 
+          type: string
+          description: It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers
+          example: 20220627MMQCTR7B000012
+        omad: 
+          type: string
+          description: The OMAD indicates a unique number assigned to each transfer providing delivery-related information
+          example: 0328QMGFNP6400002503281343FT0120232023          
         fee:
           type: array
           items:
