@@ -205,9 +205,17 @@ components:
             maxLength: 35            
           senderEmail:
             type: string
-            description: Sender's Email
+            description: Sender Email
             format: email
             maxLength : 50
+          senderBankIdType:
+            type: string
+            description: Sender Bank Id Type
+            maxLength : 35
+          senderBankId:
+            type: string
+            description: Sender Bank Id Value
+            maxLength : 35            
           senderBankName:
             type: string
             description: Sender Bank name
@@ -388,6 +396,14 @@ components:
           receiverIdType:
             type: string
             description: Receiver Identifier Type  (1)
+            maxLength : 35
+          receiverBankIdType:
+            type: string
+            description: Receiver Bank Id Type
+            maxLength : 35
+          receiverBankId:
+            type: string
+            description: Receiver Bank Id Value
             maxLength : 35
           receiverBankName:
             type: string
