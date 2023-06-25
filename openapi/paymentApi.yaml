@@ -3483,8 +3483,8 @@ components:
         forexContract:
           type: string
           example: '1325'
-          description: Receiver Bank Address 1
-          maxLength: 255
+          description: FX Contract Number
+          maxLength: 35
         imad: 
           type: string
           description: It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers
