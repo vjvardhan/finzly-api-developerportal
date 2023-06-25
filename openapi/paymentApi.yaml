@@ -3404,6 +3404,14 @@ components:
           type: string
           description: Receiver Bank Country Name
           maxLength: 35
+        intermediaryReceiverIdType:
+          type: string            
+          description: Intermediary Receiver Bank ID Type
+          maxLength: 35
+        intermediaryReceiverId:
+          type: string
+          description: Intermediary Receiver Bank ID value
+          maxLength: 35          
         intermediaryReceiverName:
           type: string
           description: Intermediary Receiver Bank Name
@@ -3431,14 +3439,6 @@ components:
         intermediaryReceiverCountry:
           type: string
           description: Intermediary Receiver Bank Country Name
-          maxLength: 35
-        intermediaryReceiverIdType:
-          type: string            
-          description: Intermediary Receiver Bank ID Type
-          maxLength: 35
-        intermediaryReceiverId:
-          type: string
-          description: Intermediary Receiver Bank ID value
           maxLength: 35
         ultimateReceiverName:
           type: string
