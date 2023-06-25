@@ -2260,10 +2260,15 @@ components:
           description: Speed associated with the payment based on the delivery time and fee. The Speed names and associated payment rail can be configured or defined by the bank/financial institutions. The supported payment rails in FinzlyOS are ACH, Fedwire, SWIFT, RTP or FedNow. The following are the standard speed names and payment rails configured by default Economy - [ACH-REGULAR], Economy Plus [ACH-SAMEDAY], Express [FEDWIRE], Instant [FEDNOW or RTP], ON [SWIFT], TN [SWIFT], SPOT [SWIFT].
         paymentNotes:
           type: string
-          default: 'Payment Notes'
+          example: 'Payment Notes'
           minLength: 1
           maxLength: 200
           description: Payment notes provided by the payment originator. These notes are passed to the payment network as per the specification such as for ACH upto 10 chars, Fedwire upto 35 chars [Tag 6400 - Beneficiary information], SWIFT upto 140 chars [Tag 70], RTP/FedNow upto 140 chars [ISO 20022 - RmtInf Tag]. The value will be truncated if it exceeds the data length limit.
+        correspondentBankId:
+          type: string
+          example: '026009593 etc.'
+          maxLength: 10
+          description: This is an optional field. This is used to provide the "routing number" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the "correspondentBankId" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup. 
         sender:
           $ref: '#/components/schemas/PaymentSender'
         receiver:
