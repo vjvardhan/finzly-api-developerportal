@@ -6,6 +6,16 @@ title: Finzly Connect API Changelog
 
 ## **Changelog** 
 
+
+### **July 7th,2023**
+
+|**Change**|**Category**|**Description**|
+| :- | :- | :- | 
+| Payment Credit API | Enhancement | Following updates happened to the existing payment API [/v3/payments/creditrequest] <br><br> <ul><li>Added "correspondentBankId" in the payment request to allow user to provide correspondent bank routing number for international Fedwire payment request [Where, The receiver bank country is outside of the USA ].</li></ul><ul><li>Added "costCenter" to the additionalInfo to assign valid cost center by the user</li></ul> |
+| Webhook API | Enhancement | Added following payment attributes to the existing webhook payload <br><br> <ul><li>networkRefId, otherBankRefId</li></ul><ul><li> senderIdType2, senderId2</li></ul><ul><li>	senderBankIdType, senderBankId, senderAddress2, senderCity, senderCountry, senderBankAddress1, senderBankAddress2, senderBankCity, senderBankZip</li></ul><ul><li>receiverAddress2, receiverCity, receiverCountry, receiverBankIdType, receiverBankId, receiverBankAddress1, receiverBankAddress2, receiverBankCity, receiverBankZip, receiverBankCountry</li></ul><ul><li>intermediarySenderBankIdType, intermediarySenderBankId, intermediarySenderBankName, intermediarySenderBankAddress1, intermediarySenderBankAddress2, intermediarySenderBankCity, intermediarySenderBankState,intermediarySenderBankZip,intermediarySenderBankCountry</li></ul><ul><li>intermediaryReceiverBankIdType, intermediaryReceiverBankId, intermediaryReceiverBankName, intermediaryReceiverBankAddress1, intermediaryReceiverBankAddress2, intermediaryReceiverBankCity, intermediaryReceiverBankState, intermediaryReceiverBankZip, intermediaryReceiverBankCountry</li></ul><ul><li>originatorToBeneficiaryInformation, FiToFiInformation, senderToRecieverInfo, referenceForBeneficiary, beneficiaryFIAdviceCode, beneficiaryFIAdviceInformation, beneficiaryAdviceCode, beneficiaryAdviceInformation, beneficiaryFIInformation, requestMethod</li></ul><ul><li>achSecCode, achTransactionCode, achTraceId, achBatchId</li></ul><ul><li>fedwireBusinessFunctionCode, fedwireDetailsOfCharge, fedwireComments	</li></ul>|
+| Payment Documentation | Enhancement | Enhanced Payment APIs documentation with an addtional details on the payment attributes definition and limits |
+
+
 ### **April 14th,2023**
 
 |**Change**|**Category**|**Description**|
