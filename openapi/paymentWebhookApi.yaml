@@ -7,7 +7,7 @@ paths:
     post:
       tags:
         - Payment Webhook Notifications
-      description: Notify payment's data to an external system via webhook API 
+      description: Webhook API allows Finzly customers to get real-time notifications on the payment data that belongs to them based on the configured payment events such as payment is Processed, Cancelled, HOLD, etc.
       summary: Payment details
       operationId: notifyPaymentStatus
       requestBody:
@@ -45,56 +45,68 @@ components:
     schemas:
       payment:
         type: object
+        description: Payment information
         properties:
           paymentId:
              type: integer
              description: Unique Payment Identifier
              maxLength: 11
+             example: 8982 etc.
           externalReferenceId:
              type: string
              description: External reference id set by the originator system
              maxLength : 255
+             example: 197297287383, payref1189 etc.
           sourceReferenceId:
              type: string
              description: The bulk file id set by the system when the payment is originated via bulk file upload
              maxLength : 35
+             example: 123 etc.
           networkRefId:
              type: string
              description: The reference ID recieved from the payment network.
              maxLength : 35          
+             example: 134222 etc.
           otherBankRefId:
              type: string
              description: The is applicable for the mainly SWIFT payment where addtional reference ID is used.
              maxLength : 35 
+             example: 098989 etc.
           counterParty:
              type: string
              description: Legal entity (Counterparty) shortname associated with the payment
              maxLength: 255
+             example: LESHORTNAME etc.
           paymentStatus:
              type: string
-             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc.
+             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED,PROCESSED, CANCELLED etc.
              maxLength : 35
+             example: VALIDATION_FAILURE, PROCESSED, CANCELLED etc.
           deliveryMethod:  
              type: string
              description: Delivery method associated with the payment such as ACH, FEDWIRE, RTP, FEDNOW, SWIFT
              maxLength : 20
+             example: ACH, FEDWIRE, RTP, FEDNOW, SWIFT
           paymentDate:
             type: string
             format: date
-            description: Payment date
+            description: Payment date in yyyy-mm-dd format
+            example: 2023-03-10
           deliveryDate:
              type: string
              format: date
-             description: Payment delivery or effective entry date
+             description: Payment delivery or effective entry date in yyyy-mm-dd format
+             example: 2023-03-11
           channel:
              type: string
              format: date
              description: Payment origination channel such as API, FTP, ONLINE etc.
+             example: API etc.
           paymentIOType:
             type: string
             description: Inbound or Outbound Payment Indicator.
             example: IN or OUT
-            maxLength : 3             
+            maxLength : 3           
           paymentType: 
             type: string
             description: Type of Payment - Same Day or Regular ACH. Possible values are REGULAR_ACH, SAME_DAY_ACH, WIRE, BOOK_TRANSFER, REALTIME_RTP, REALTIME_FEDNOW, SPOT_SWIFT, SAME_DAY_SWIFT, NEXT_DAY_SWIFT etc.
@@ -106,26 +118,32 @@ components:
             description: Fee amount in USD
             minimum: 0.00
             maximum: 9999999999999999.99
+            example: 2.00 etc.
           paymentNote1:
             type: string
             description: Payment Notes
             maxLength : 35
+            example: "payment notes etc."
           paymentNote2:
             type: string
             description: Additional Payment Notes
             maxLength : 35
+            example: "payment notes2 etc."
           paymentRemittanceInfo:
             type: string
             description: Payment Remittance Information from NACHA addenda record
             maxLength : 35
+            example: "invoice #1233 etc."
           bulkFileNumber:
             type: integer
             maxLength: 12
             description: Bulk File Unique Identifier if the payment is originated from the FTP channel
+            example: "1231 etc."
           bulkFileName:
               type: string
               description: Bulk file name if the payment is originated from the FTP channel
               maxLength: 100
+              example: "achfile198191.ach etc."
           forexContract: 
             type: string
             description: FX contract number associated with the SWIFT/International payment
@@ -140,6 +158,7 @@ components:
             type: string
             description: Sender Name
             maxLength: 255
+            example: "XYZ Name etc."
           senderAmount:
             type: number
             format: decimal
@@ -151,30 +170,37 @@ components:
             type: string
             description: Sender Bank Account Number
             maxLength: 20
+            example: "90819918 etc."
           senderRoutingNumber:
             type: string
             description: Sender's Routing Number
-            maxLength: 35          
+            maxLength: 35  
+            example: "072000326 etc."
           senderAccountType:
             type: string
             description: Sender Account Type such as Deposit or GL
             maxLength : 35
+            example: "Deposit or GL"
           senderType:
             type: string
-            description: Sender Type - CORPORATE or CONSUMER
-            maxLength: 35            
+            description: Sender Type - Corporate, Consumer, Downstream Partner
+            maxLength: 35  
+            example: "Corporate, Consumer etc."
           senderAddress1:
             type: string
             description: Sender Address1
             maxLength : 35
+            example: "1123 ABC St. etc."
           senderAddress2:
             type: string
             description: Sender Address2
             maxLength : 35
+            example: "Unit 200 etc."
           senderCity:
             type: string
             description: Sender City
-            maxLength: 35               
+            maxLength: 35
+            example: "Charlotte etc."
           senderState:
             type: string
             description: Sender State
@@ -183,63 +209,78 @@ components:
             type: string
             description: Sender zipcode
             maxLength: 10
+            example: "28267 etc."
           senderCountry:
             type: string
             description: Sender country
             maxLength: 35
+            example: "United States Of America etc."
           senderIdType:
             type: string
             description: Sender Identifier type the possible values are Driving License,Passport, Tax ID
-            maxLength: 35            
+            maxLength: 35
+            example: "Driving License, Passport, Tax ID"
           senderId:
             type: string
             description: Sender Identifier Value
             maxLength: 35
+            example: "C8798779 etc."
           senderIdType2:
             type: string
             description: Sender Identifier type (2) the possible values are Driving License, Passport, Tax ID
-            maxLength: 35            
+            maxLength: 35
+            example: "Driving License, Passport, Tax ID"
           senderId2:
             type: string
             description: Sender Identifier Value (2)
-            maxLength: 35            
+            maxLength: 35
+            example: "5678943 etc."
           senderEmail:
             type: string
             description: Sender Email
             format: email
             maxLength : 50
+            example: "xyz@gmail.com etc."
           senderBankIdType:
             type: string
             description: Sender Bank Id Type
             maxLength : 35
+            example: "NID or SWIFT etc."
           senderBankId:
             type: string
             description: Sender Bank Id Value
+            example: "103000648 etc."
             maxLength : 35            
           senderBankName:
             type: string
             description: Sender Bank name
             maxLength : 255
+            example: "ABC Bank etc."
           senderBankAddress1:
             type: string
             description: Sender Bank Address 1
             maxLength : 35
+            example: "89798 street etc."
           senderBankAddress2:
             type: string
             description: Sender Bank Address 2
             maxLength : 35
+            example: "Lane 200  etc."
           senderBankCity:
             type: string
             description: Sender Bank City
             maxLength : 35
+            example: "BankCity etc."
           senderBankState:
             type: string
             description: Sender Bank State
             maxLength : 35
+            example: "BankState etc."
           senderBankZip:
             type: string
             description: Sender Bank Zip or Postal code 
             maxLength : 35
+            example: "28289 etc."
           senderDiscretionaryData:
             type: string
             description: Sender's Discretionary Data
@@ -248,87 +289,107 @@ components:
             type: string            
             description: Intermediary Sender Bank ID Type
             maxLength: 35
+            example: "NID or SWIFT etc."
           intermediarySenderBankId:
             type: string
             description: Intermediary Sender Bank ID value
-            maxLength: 35          
+            maxLength: 35    
+            example: "044000037 etc."
           intermediarySenderBankName:
             type: string
             description: Intermediary Sender Bank Name
             maxLength: 255
+            example: "IntermediaryBankName etc."
           intermediarySenderBankAddress1:
             type: string
             description: Intermediary Sender Bank Address 1
             maxLength: 35
+            example: "9090 Adam street etc."
           intermediarySenderBankAddress2:
             type: string
             description: Intermediary Sender Bank Address 2 
             maxLength: 35
+            example: "Collelium drive etc."
           intermediarySenderBankCity:
             type: string
             description: Intermediary Sender Bank City
             maxLength: 35
+            example: "Charlotte etc."
           intermediarySenderBankState:
             type: string
             description: Intermediary Sender Bank State
             maxLength: 35
+            example: "North Carolina  etc."
           intermediarySenderBankZip:
             type: string
             description: Intermediary Sender Bank Zip/Postal Code
             maxLength: 35
+            example: "28269  etc."
           intermediarySenderBankCountry:
             type: string
             description: Intermediary Sender Bank Country Name
             maxLength: 35
+            example: "United States of America  etc."
           ultimateSenderName:
             type: string
             description: Ultimate sender name. This will be used for the fintech scenario when the virtual account range is used to process a payment.
             maxLength : 255
+            example: "Name etc."
           ultimateSenderAccountNumber:
             type: string
             maxLength : 35
             description: Ultimate sender account number. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            example: "987656789 etc."
           ultimateSenderAddress1:
             type: string
             maxLength : 35
-            description: Ultimate sender address 1. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            description: Ultimate sender address 1. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            example: "Address1 etc."
           ultimateSenderAddress2:
             type: string
             maxLength : 35
-            description: Ultimate sender address 2. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            description: Ultimate sender address 2. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            example: "Address2 etc."
           ultimateSenderTaxId:
             type: string
             maxLength : 35
             description: Ultimate sender company id. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            example: "7876789287 etc."
           ultimateSenderCity:
             type: string
             maxLength : 35
-            description: Ultimate sender city. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            description: Ultimate sender city. This will be used for the fintech scenario when the virtual account range is used to process a payment. 
+            example: "Charlotte etc."
           ultimateSenderState:
             type: string
             maxLength : 35
             description: Ultimate sender state. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            example: "NC etc."
           ultimateSenderZip:
             type: string
             maxLength : 35
             description: Ultimate sender zip or postal code. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            example: "23434 etc."
           ultimateSenderCountry:
             type: string            
             maxLength : 35
             description: Ultimate sender country. This will be used for the fintech scenario when the virtual account range is used to process a payment.      
-            
+            example: "USA etc."
           receiverTemplateName:
             type: string
             description: Receiver Template Name
             maxLength : 35
+            example: ABCTemplate
           receiverName:
             type: string
             description: Receiver name associated with the payment. 
             maxLength : 255
+            example: XYZ Name
           originalReceiverName:
             type: string
             description: The original receiver name recieved from the payment network for the inbound payment request. 
-            maxLength : 255            
+            maxLength : 255
+            example: XYZ Name
           receiverAmount:
             type: number
             format: decimal
@@ -340,42 +401,52 @@ components:
             type: string
             description: Account number of the receiver
             maxLength : 35
+            example: "27898978798 etc."
           receiverRoutingNumber:
             type: string
             description: Receiver Routing Number
             maxLength : 35
+            example: "044000037 etc."
           receiverAccountType:
             type: string
             description: Receiver Account Type
             maxLength : 35
+            example: "Deposit or GL etc."
           receiverType:
             type: string
             description: Receiver Type
             maxLength : 35
+            example: "Consumer etc."
           receiverAddress1:
             type: string
             description: Receiver Address 1
             maxLength : 35
+            example: "9090 Adam street etc."
           receiverAddress2:
             type: string
             description: Receiver Address 2
             maxLength : 35
+            example: "Collelium drive etc."
           receiverCity:
             type: string
             description: Receiver City
-            maxLength : 35            
+            maxLength : 35  
+            example: "Charlotte etc."
           receiverState:
             type: string
             description: Receiver State
             maxLength : 35
+            example: "North Carolina  etc."
           receiverZip:
             type: string
             description: Receiver zipcode
             maxLength : 10 
+            example: "28269  etc."
           receiverCountry:
             type: string
             description: Receiver country
             maxLength : 35
+            example: "United States of America  etc."
           receiverDiscretionaryData:
             type: string
             description: Receiver discretionary data
@@ -385,10 +456,12 @@ components:
             description: Receiver Email
             format: email
             maxLength : 50
+            example: "abc@gmail.com etc."
           receiverPhoneNumber:
             type: string
             description: Receiver Phone Number
-            maxLength : 35            
+            maxLength : 35 
+            example: "12897789128 etc."
           receiverId:
             type: string
             description: Receiver Identifier (1)
@@ -401,110 +474,137 @@ components:
             type: string
             description: Receiver Bank Id Type
             maxLength : 35
+            example: "NID or SWIFT etc."
           receiverBankId:
             type: string
             description: Receiver Bank Id Value
             maxLength : 35
+            example: "103000648 etc."
           receiverBankName:
             type: string
             description: Receiver Bank Name
             maxLength : 255
+            example: "XXY Bank etc."
           receiverBankAddress1:
             type: string
             description: Receiver Bank Address 1
             maxLength : 35
+            example: "1211 Adam street etc."
           receiverBankAddress2:
             type: string
             description: Receiver Bank Address 2
             maxLength : 35
+            example: "Adam street etc."
           receiverBankCity:
             type: string
             description: Receiver Bank City
-            maxLength : 35            
+            maxLength : 35
+            example: "Charlotte etc."
           receiverBankState:
             type: string
             description: Receiver Bank State
             maxLength : 35
+            example: "NC etc."
           receiverBankZip:
             type: string
             description: Receiver Bank Zip
             maxLength : 35
+            example: "28269  etc."
           receiverBankCountry:
             type: string
             description: Receiver Bank Country
-            maxLength : 35     
+            maxLength : 35
+            example: "United States of America  etc."
           intermediaryReceiverBankIdType:
             type: string            
             description: Intermediary Receiver Bank ID Type
             maxLength: 35
+            example: "NID or SWIFT etc."
           intermediaryReceiverBankId:
             type: string
             description: Intermediary Receiver Bank ID value
-            maxLength: 35          
+            maxLength: 35     
+            example: "044000037 etc."
           intermediaryReceiverBankName:
             type: string
             description: Intermediary Receiver Bank Name
             maxLength: 255
+            example: "ABC Bank etc."
           intermediaryReceiverBankAddress1:
             type: string
             description: Intermediary Receiver Bank Address 1
             maxLength: 35
+            example: "9090 Adam street etc."
           intermediaryReceiverBankAddress2:
             type: string
             description: Intermediary Receiver Bank Address 2 
             maxLength: 35
+            example: "Adam lane 1200 etc."
           intermediaryReceiverBankCity:
             type: string
             description: Intermediary Receiver Bank City
             maxLength: 35
+            example: "Charlotte etc."
           intermediaryReceiverBankState:
             type: string
             description: Intermediary Receiver Bank State
             maxLength: 35
+            example: "North Carolina  etc."
           intermediaryReceiverBankZip:
             type: string
             description: Intermediary Receiver Bank Zip/Postal Code
             maxLength: 35
+            example: "28269  etc."
           intermediaryReceiverBankCountry:
             type: string
             description: Intermediary Receiver Bank Country Name
-            maxLength: 35            
+            maxLength: 35  
+            example: "United States of America  etc."
           ultimateReceiverName:
             type: string
             description: Ultimate receiver name. This will be used for the fintech scenario when the virtual account range is used to process a payment.
             maxLength : 255
+            example: "Rec Name etc."
           ultimateReceiverAccountNumber:
             type: string
             maxLength : 35
-            description: Ultimate receiver account number. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
-          ultimateReceiverAddress1:
-           type: string
-           maxLength : 35
-           description: Ultimate receiver address 1. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
-          ultimateReceiverAddress2:
-            type: string
-            maxLength : 35
-            description: Ultimate receiver address 2. This will be used for the fintech scenario when the virtual account range is used to process a payment.               
+            description: Ultimate receiver account number. This will be used for the fintech scenario when the virtual account range is used to process a payment. 
+            example: "679567838 etc."
           ultimateReceiverTaxId:
             type: string
             maxLength : 35
-            description: Ultimate receiver company id. This will be used for the fintech scenario when the virtual account range is used to process a payment.              
+            description: Ultimate receiver company id. This will be used for the fintech scenario when the virtual account range is used to process a payment. 
+            example: "4987289187 etc."      
+          ultimateReceiverAddress1:
+           type: string
+           maxLength : 35
+           description: Ultimate receiver address 1. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+           example: "1211 Adam street etc."
+          ultimateReceiverAddress2:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver address 2. This will be used for the fintech scenario when the virtual account range is used to process a payment.  
+            example: "Collelium drive etc."
           ultimateReceiverCity:
             type: string
             maxLength : 35
-            description: Ultimate receiver city. This will be used for the fintech scenario when the virtual account range is used to process a payment.               
+            description: Ultimate receiver city. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            example: "Charlotte etc."
           ultimateReceiverState:
             type: string
             maxLength : 35
-            description: Ultimate receiver state. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            description: Ultimate receiver state. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            example: "North Carolina etc."
           ultimateReceiverZip:
             type: string
             maxLength : 35
-            description: Ultimate receiver zip or postal code. This will be used for the fintech scenario when the virtual account range is used to process a payment.               
+            description: Ultimate receiver zip or postal code. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+            example: "28269  etc."
           ultimateReceiverCountry:
             type: string
             maxLength : 35
-            description: Ultimate receiver country. This will be used for the fintech scenario when the virtual account range is used to process a payment.                  
+            description: Ultimate receiver country. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            example: "United States of America  etc."
           paymentNocDetails:
             type: object
             example: "{\"nocCode \": \"CO2\",\"originalAccountNumber\": 112233,\"correctedAccountNumber\": 223344,\"originalRoutingNumber\": 1111222,\"correctedRoutingNumber\": 332222,  \"originalTranCode\": \"27\",\"correctedTranCode \": \"26 \",\"receivedDateTime \": \"2022 - 06 - 30 T01: 30: 48.342 Z\"}"
@@ -617,7 +717,7 @@ components:
             maxLength: 3
           beneficiaryFIAdviceInformation: 
             type: object
-            example: "{\"adviceCode \": \"LTR\",\"lines\": \"advice informaiton\"}"
+            example: "{\"adviceCode \": \"LTR\",\"lines\": \"advice information\"}"
             description: Beneficiary FI Advice Information
             properties:
               adviceCode:
@@ -634,7 +734,7 @@ components:
             maxLength: 3
           beneficiaryAdviceInformation: 
             type: object
-            example: "{\"adviceCode \": \"LTR\",\"lines\": \"advice informaiton\"}"
+            example: "{\"adviceCode \": \"LTR\",\"lines\": \"advice information\"}"
             description: Beneficiary Advice Information
             properties:
               adviceCode:
