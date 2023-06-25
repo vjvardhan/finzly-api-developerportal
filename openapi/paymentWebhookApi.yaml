@@ -48,52 +48,64 @@ components:
         properties:
           paymentId:
              type: integer
-             description: Payment Identifier
-             nullable: false
+             description: Unique Payment Identifier
+             maxLength: 11
           externalReferenceId:
              type: string
              description: External reference id set by the originator system
-             maxLength : 50
-          paymentStatus:
+             maxLength : 255
+          sourceReferenceId:
              type: string
-             nullable: false
-             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc.
+             description: The bulk file id set by the system when the payment is originated via bulk file upload
              maxLength : 35
+          networkRefId:
+             type: string
+             description: The reference ID recieved from the payment network.
+             maxLength : 35          
+          otherBankRefId:
+             type: string
+             description: The is applicable for the mainly SWIFT payment where addtional reference ID is used.
+             maxLength : 35 
           counterParty:
              type: string
              description: Legal entity (Counterparty) shortname associated with the payment
-             maxLength: 50
+             maxLength: 255
+          paymentStatus:
+             type: string
+             description: Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED etc.
+             maxLength : 35
+          deliveryMethod:  
+             type: string
+             description: Delivery method associated with the payment such as ACH, FEDWIRE, RTP, FEDNOW, SWIFT
+             maxLength : 20
           paymentDate:
             type: string
             format: date
             description: Payment date
-          deliveryMethod:  
-             type: string
-             description: Delivery method - ACH for Fed transmission OR BOOK_TRANSFER if sender & receiver routing numbers are same 
-             maxLength : 20
           deliveryDate:
              type: string
              format: date
-             description: Effective Entry Date
-          bulkFileName:
-              type: string
-              description: Bulk File Name
-              maxLength: 100
-          sourceReferenceId:
+             description: Payment delivery or effective entry date
+          channel:
              type: string
-             description: Unique bulk file id set by the sytem when the payment is originated via bulk file upload
-             maxLength : 50
+             format: date
+             description: Payment origination channel such as API, FTP, ONLINE etc.
+          paymentIOType:
+            type: string
+            description: Inbound or Outbound Payment Indicator.
+            example: IN or OUT
+            maxLength : 3             
+          paymentType: 
+            type: string
+            description: Type of Payment - Same Day or Regular ACH. Possible values are REGULAR_ACH, SAME_DAY_ACH, WIRE, BOOK_TRANSFER, REALTIME_RTP, REALTIME_FEDNOW, SPOT_SWIFT, SAME_DAY_SWIFT, NEXT_DAY_SWIFT etc.
+            example: SAME_DAY_ACH, WIRE etc.
+            maxLength : 35          
           feeAmount:
             type: number
             format: decimal
             description: Fee amount in USD
             minimum: 0.00
             maximum: 9999999999999999.99
-          paymentIOType:
-            type: string
-            description: Inbound or Outbound Payment Indicator.
-            example: IN or OUT
-            maxLength : 3
           paymentNote1:
             type: string
             description: Payment Notes
@@ -106,18 +118,378 @@ components:
             type: string
             description: Payment Remittance Information from NACHA addenda record
             maxLength : 35
-          paymentType: 
-            type: string
-            description: Type of Payment - Same Day or Regular ACH. Possible values - REGULAR_ACH, SAME_DAY_ACH, WIRE etc.
-            example: SAME_DAY_ACH, WIRE etc.
-            maxLength : 35
+          bulkFileNumber:
+            type: integer
+            maxLength: 12
+            description: Bulk File Unique Identifier if the payment is originated from the FTP channel
+          bulkFileName:
+              type: string
+              description: Bulk file name if the payment is originated from the FTP channel
+              maxLength: 100
           forexContract: 
             type: string
             description: FX contract number associated with the SWIFT/International payment
             example: 12398
+          entryType:
+            type: string
+            description: Payment entry type such as CREDIT or DEBIT
+            example: CREDIT or DEBIT
+            maxLength: 10            
+          senderName:
+            type: string
+            description: Sender Name
+            maxLength: 255
+          senderAmount:
+            type: number
+            format: decimal
+            description: Sender Amount
+            minimum: 0.00
+            maximum: 9999999999999999.99            
+          senderAccountNumber:
+            type: string
+            description: Sender Bank Account Number
+            maxLength: 20
+          senderRoutingNumber:
+            type: string
+            description: Sender's Routing Number
+            maxLength: 35          
+          senderAccountType:
+            type: string
+            description: Sender Account Type such as Deposit or GL
+            maxLength : 35
+          senderType:
+            type: string
+            description: Sender Type - CORPORATE or CONSUMER
+            maxLength: 35            
+          senderAddress1:
+            type: string
+            description: Sender Address1
+            maxLength : 35
+          senderAddress2:
+            type: string
+            description: Sender Address2
+            maxLength : 35
+          senderCity:
+            type: string
+            description: Sender City
+            maxLength: 35               
+          senderState:
+            type: string
+            description: Sender State
+            maxLength: 35            
+          senderZip:
+            type: string
+            description: Sender zipcode
+            maxLength: 10
+          senderCountry:
+            type: string
+            description: Sender country
+            maxLength: 35
+          senderIdType:
+            type: string
+            description: Sender Identifier type the possible values are Driving License,Passport, Tax ID
+            maxLength: 35            
+          senderId:
+            type: string
+            description: Sender Identifier Value
+            maxLength: 35
+          senderIdType2:
+            type: string
+            description: Sender Identifier type (2) the possible values are Driving License, Passport, Tax ID
+            maxLength: 35            
+          senderId2:
+            type: string
+            description: Sender Identifier Value (2)
+            maxLength: 35            
+          senderEmail:
+            type: string
+            description: Sender's Email
+            format: email
+            maxLength : 50
+          senderBankName:
+            type: string
+            description: Sender Bank name
+            maxLength : 255
+          senderBankAddress1:
+            type: string
+            description: Sender Bank Address 1
+            maxLength : 35
+          senderBankAddress2:
+            type: string
+            description: Sender Bank Address 2
+            maxLength : 35
+          senderBankCity:
+            type: string
+            description: Sender Bank City
+            maxLength : 35
+          senderBankState:
+            type: string
+            description: Sender Bank State
+            maxLength : 35
+          senderBankZip:
+            type: string
+            description: Sender Bank Zip or Postal code 
+            maxLength : 35
+          senderDiscretionaryData:
+            type: string
+            description: Sender's Discretionary Data
+            maxLength : 35
+          intermediarySenderBankIdType:
+            type: string            
+            description: Intermediary Sender Bank ID Type
+            maxLength: 35
+          intermediarySenderBankId:
+            type: string
+            description: Intermediary Sender Bank ID value
+            maxLength: 35          
+          intermediarySenderBankName:
+            type: string
+            description: Intermediary Sender Bank Name
+            maxLength: 255
+          intermediarySenderBankAddress1:
+            type: string
+            description: Intermediary Sender Bank Address 1
+            maxLength: 35
+          intermediarySenderBankAddress2:
+            type: string
+            description: Intermediary Sender Bank Address 2 
+            maxLength: 35
+          intermediarySenderBankCity:
+            type: string
+            description: Intermediary Sender Bank City
+            maxLength: 35
+          intermediarySenderBankState:
+            type: string
+            description: Intermediary Sender Bank State
+            maxLength: 35
+          intermediarySenderBankZip:
+            type: string
+            description: Intermediary Sender Bank Zip/Postal Code
+            maxLength: 35
+          intermediarySenderBankCountry:
+            type: string
+            description: Intermediary Sender Bank Country Name
+            maxLength: 35
+          ultimateSenderName:
+            type: string
+            description: Ultimate sender name. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            maxLength : 255
+          ultimateSenderAccountNumber:
+            type: string
+            maxLength : 35
+            description: Ultimate sender account number. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+          ultimateSenderAddress1:
+            type: string
+            maxLength : 35
+            description: Ultimate sender address 1. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateSenderAddress2:
+            type: string
+            maxLength : 35
+            description: Ultimate sender address 2. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateSenderTaxId:
+            type: string
+            maxLength : 35
+            description: Ultimate sender company id. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateSenderCity:
+            type: string
+            maxLength : 35
+            description: Ultimate sender city. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateSenderState:
+            type: string
+            maxLength : 35
+            description: Ultimate sender state. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateSenderZip:
+            type: string
+            maxLength : 35
+            description: Ultimate sender zip or postal code. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateSenderCountry:
+            type: string            
+            maxLength : 35
+            description: Ultimate sender country. This will be used for the fintech scenario when the virtual account range is used to process a payment.      
+            
+          receiverTemplateName:
+            type: string
+            description: Receiver Template Name
+            maxLength : 35
+          receiverName:
+            type: string
+            description: Receiver name associated with the payment. 
+            maxLength : 255
+          originalReceiverName:
+            type: string
+            description: The original receiver name recieved from the payment network for the inbound payment request. 
+            maxLength : 255            
+          receiverAmount:
+            type: number
+            format: decimal
+            description: Amount received by recipient
+            minimum: 0.00
+            maximum: 9999999999999999.00
+          receiverAccountNumber:
+            type: string
+            description: Account number of the receiver
+            maxLength : 35
+          receiverRoutingNumber:
+            type: string
+            description: Receiver Routing Number
+            maxLength : 35
+          receiverAccountType:
+            type: string
+            description: Receiver Account Type
+            maxLength : 35
+          receiverType:
+            type: string
+            description: Receiver Type
+            maxLength : 35
+          receiverAddress1:
+            type: string
+            description: Receiver Address 1
+            maxLength : 35
+          receiverAddress2:
+            type: string
+            description: Receiver Address 2
+            maxLength : 35
+          receiverCity:
+            type: string
+            description: Receiver City
+            maxLength : 35            
+          receiverState:
+            type: string
+            description: Receiver State
+            maxLength : 35
+          receiverZip:
+            type: string
+            description: Receiver zipcode
+            maxLength : 10 
+          receiverCountry:
+            type: string
+            description: Receiver country
+            maxLength : 35
+          receiverDiscretionaryData:
+            type: string
+            description: Receiver discretionary data
+            maxLength : 35
+          receiverEmail:
+            type: string
+            description: Receiver Email
+            format: email
+            maxLength : 50
+          receiverPhoneNumber:
+            type: string
+            description: Receiver Phone Number
+            maxLength : 35            
+          receiverId:
+            type: string
+            description: Receiver Identifier (1)
+            maxLength : 35
+          receiverIdType:
+            type: string
+            description: Receiver Identifier Type  (1)
+            maxLength : 35
+          receiverBankName:
+            type: string
+            description: Receiver Bank Name
+            maxLength : 255
+          receiverBankAddress1:
+            type: string
+            description: Receiver Bank Address 1
+            maxLength : 35
+          receiverBankAddress2:
+            type: string
+            description: Receiver Bank Address 2
+            maxLength : 35
+          receiverBankCity:
+            type: string
+            description: Receiver Bank City
+            maxLength : 35            
+          receiverBankState:
+            type: string
+            description: Receiver Bank State
+            maxLength : 35
+          receiverBankZip:
+            type: string
+            description: Receiver Bank Zip
+            maxLength : 35
+          receiverBankCountry:
+            type: string
+            description: Receiver Bank Country
+            maxLength : 35     
+          intermediaryReceiverBankIdType:
+            type: string            
+            description: Intermediary Receiver Bank ID Type
+            maxLength: 35
+          intermediaryReceiverBankId:
+            type: string
+            description: Intermediary Receiver Bank ID value
+            maxLength: 35          
+          intermediaryReceiverBankName:
+            type: string
+            description: Intermediary Receiver Bank Name
+            maxLength: 255
+          intermediaryReceiverBankAddress1:
+            type: string
+            description: Intermediary Receiver Bank Address 1
+            maxLength: 35
+          intermediaryReceiverBankAddress2:
+            type: string
+            description: Intermediary Receiver Bank Address 2 
+            maxLength: 35
+          intermediaryReceiverBankCity:
+            type: string
+            description: Intermediary Receiver Bank City
+            maxLength: 35
+          intermediaryReceiverBankState:
+            type: string
+            description: Intermediary Receiver Bank State
+            maxLength: 35
+          intermediaryReceiverBankZip:
+            type: string
+            description: Intermediary Receiver Bank Zip/Postal Code
+            maxLength: 35
+          intermediaryReceiverBankCountry:
+            type: string
+            description: Intermediary Receiver Bank Country Name
+            maxLength: 35            
+          ultimateReceiverName:
+            type: string
+            description: Ultimate receiver name. This will be used for the fintech scenario when the virtual account range is used to process a payment.
+            maxLength : 255
+          ultimateReceiverAccountNumber:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver account number. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateReceiverAddress1:
+           type: string
+           maxLength : 35
+           description: Ultimate receiver address 1. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateReceiverAddress2:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver address 2. This will be used for the fintech scenario when the virtual account range is used to process a payment.               
+          ultimateReceiverTaxId:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver company id. This will be used for the fintech scenario when the virtual account range is used to process a payment.              
+          ultimateReceiverCity:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver city. This will be used for the fintech scenario when the virtual account range is used to process a payment.               
+          ultimateReceiverState:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver state. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
+          ultimateReceiverZip:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver zip or postal code. This will be used for the fintech scenario when the virtual account range is used to process a payment.               
+          ultimateReceiverCountry:
+            type: string
+            maxLength : 35
+            description: Ultimate receiver country. This will be used for the fintech scenario when the virtual account range is used to process a payment.                  
           paymentNocDetails:
             type: object
             example: "{\"nocCode \": \"CO2\",\"originalAccountNumber\": 112233,\"correctedAccountNumber\": 223344,\"originalRoutingNumber\": 1111222,\"correctedRoutingNumber\": 332222,  \"originalTranCode\": \"27\",\"correctedTranCode \": \"26 \",\"receivedDateTime \": \"2022 - 06 - 30 T01: 30: 48.342 Z\"}"
+            description: Applicable for the ACH payment when NOC is orginated or received.
             properties:
               nocCode:
                 type: string
@@ -159,188 +531,117 @@ components:
             type: string
             description: The OMAD indicates a unique number assigned to each transfer providing delivery-related information
             example: 0328QMGFNP6400002503281343FT0120232023
-          receiverAccountNumber:
+          originatorToBeneficiaryInformation: 
             type: string
-            description: Account number of the receiver
-            maxLength : 20
-          receiverAccountType:
+            description: The OBI details
+            example: OBI Notes
+            maxLength: 140
+          senderToRecieverInfo: 
             type: string
-            description: Receiver Account Type
-            maxLength : 35
-          receiverAddress1:
+            description: Sender to Reciever details
+            example: Notes
+            maxLength: 210
+          referenceForBeneficiary: 
             type: string
-            description: Receiver Address
-            maxLength : 35
-          receiverAmount:
-            type: number
-            format: decimal
-            description: Amount received by recipient
-            minimum: 0.00
-            maximum: 9999999999999999.00
-          receiverBankName:
+            description: This is applicable for the fedwire payment where the local instrument set to COVS. This specifies the reference details for the beneficiary. 
+            example: RefForBeneficiary Details
+            maxLength: 16
+          requestMethod: 
             type: string
-            description: Recipient's Bank Name
-            maxLength : 255
-          receiverBankState:
+            description: Request Method associated with the payment origination
+            example: WALK-IN, PHONE-IN etc.
+            maxLength: 140
+          achSecCode: 
             type: string
-            description: Recipient's Bank State
-            maxLength : 35
-          receiverDiscretionaryData:
+            description: ACH SEC Code. Applicable for the ACH payment rail.
+            example: PPD, CCD etc.  
+            maxLength: 3   
+          achTransactionCode: 
             type: string
-            description: Receiver's discretionary data
-            maxLength : 35
-          receiverEmail:
+            description: ACH transaction code.
+            example: 21, 22, 23 etc.  
+            maxLength: 10           
+          achTraceId: 
             type: string
-            description: Receiver's Email
-            format: email
-            maxLength : 50
-          receiverId:
+            description: ACH Trace Id associated with the payment record
+            example: 202110182222664 etc.  
+            maxLength: 25           
+          achBatchId: 
             type: string
-            description: Receiver Identifier
-            maxLength : 35
-          receiverIdType:
+            description: ACH Batch Id associated with the payment record
+            example: 12341 etc.  
+            maxLength: 11           
+          fedwireBusinessFunctionCode: 
             type: string
-            description: Receiver Identifier Type
-            maxLength : 35
-          receiverName:
+            description: Fedwire busines function code
+            example: CTR, CTP
+            maxLength: 3       
+          fedwireDetailsOfCharge: 
             type: string
-            description: Receiver name associated with the payment. 
-            maxLength : 35
-          originalReceiverName:
+            description: Fedwire details of charge
+            example: SHA, BEN  
+            maxLength: 3
+          fedwireComments: 
             type: string
-            description: The original receiver name recieved from the payment network for the inbound payment request. 
-            maxLength : 35
-          receiverPhoneNumber:
+            description: Fedwire comments
+            example: "comments notes"  
+            maxLength: 255 
+          FiToFiInformation: 
             type: string
-            description: Receiver Phone Number
-            maxLength : 35
-          receiverRoutingNumber:
+            description: FI to FI Details
+            example: "notes etc."  
+            maxLength: 255
+          beneficiaryFIAdviceCode: 
             type: string
-            description: Receiver Routing Number
-            maxLength : 9
-          receiverState:
+            description: Beneficiary FI Advice Code
+            example: "LTR etc."  
+            maxLength: 3
+          beneficiaryFIAdviceInformation: 
+            type: object
+            example: "{\"adviceCode \": \"LTR\",\"lines\": \"advice informaiton\"}"
+            description: Beneficiary FI Advice Information
+            properties:
+              adviceCode:
+                type: string
+                description: Advice FI Code
+                example: LTR etc.
+              lines:
+                type: string
+                description: Advice FI Information
+          beneficiaryAdviceCode: 
             type: string
-            description: Receiver State
-            maxLength : 35
-          receiverTemplateName:
+            description: Beneficiary Advice Code
+            example: "LTR etc."  
+            maxLength: 3
+          beneficiaryAdviceInformation: 
+            type: object
+            example: "{\"adviceCode \": \"LTR\",\"lines\": \"advice informaiton\"}"
+            description: Beneficiary Advice Information
+            properties:
+              adviceCode:
+                type: string
+                description: Advice  Code
+                example: LTR etc.
+              lines:
+                type: string
+                description: Advice Information
+          beneficiaryFIInformation: 
             type: string
-            description: Receiver Template Name
-            maxLength : 35
-          receiverType:
-            type: string
-            description: Receiver Type
-            maxLength : 35
-          receiverZip:
-            type: string
-            description: Receiver zipcode
-            maxLength : 10
-          ultimateReceiverName:
-            type: string
-            description: Ultimate receiver name. This will be used for the fintech scenario when the virtual account range is used to process a payment.            
-          ultimateReceiverAccountNumber:
-            type: string
-          ultimateReceiverAddress1:
-            type: string
-          ultimateReceiverAddress2:
-            type: string
-          ultimateReceiverTaxId:
-            type: string
-          ultimateReceiverCity:
-            type: string
-          ultimateReceiverState:
-            type: string
-          ultimateReceiverZip:
-            type: string
-          ultimateReceiverCountry:
-            type: string
-          senderAccountNumber:
-            type: string
-            description: Sender's Account Number
-            maxLength: 20
-          senderAccountType:
-            type: string
-            description: Sender's Account Type
-            maxLength : 35
-          senderAddress1:
-            type: string
-            description: Sender's Address
-            maxLength : 35
-          senderAmount:
-            type: number
-            format: decimal
-            description: Sender's Amount
-            minimum: 0.00
-            maximum: 9999999999999999.99
-          senderBankName:
-            type: string
-            description: Sender's Bank name
-            maxLength : 255
-          senderBankState:
-            type: string
-            description: Sender's Bank State
-            maxLength : 35
-          senderDiscretionaryData:
-            type: string
-            description: Sender's Discretionary Data
-            maxLength : 35
-          senderEmail:
-            type: string
-            description: Sender's Email
-            format: email
-            maxLength : 50
-          senderId:
-            type: string
-            description: Sender's Identifier
-            maxLength: 35
-          senderIdType:
-            type: string
-            description: Sender's Identifier type
-            maxLength: 35
-          senderName:
-            type: string
-            description: Sender Name
-          senderRoutingNumber:
-            type: string
-            description: Sender's Routing Number
-            maxLength: 9
-          senderState:
-            type: string
-            description: Sender's State
-            maxLength: 35
-          senderType:
-            type: string
-            description: Sender Type - CORPORATE or CONSUMER
-            maxLength: 35
-          senderZip:
-            type: string
-            description: Sender's zipcode
-            maxLength: 10
-          ultimateSenderName:
-            type: string
-            description: Ultimate sender name. This will be used for the fintech scenario when the virtual account range is used to process a payment.
-          ultimateSenderAccountNumber:
-            type: string
-          ultimateSenderAddress1:
-            type: string
-          ultimateSenderAddress2:
-            type: string
-          ultimateSenderTaxId:
-            type: string
-          ultimateSenderCity:
-            type: string
-          ultimateSenderState:
-            type: string
-          ultimateSenderZip:
-            type: string
-          ultimateSenderCountry:
-            type: string
-          bulkFileNumber:
-            type: integer
-            description: Bulk File Identifier
-          entryType:
-            type: string
-            description: Payment type
-            example: CREDIT or DEBIT
+            description: Beneficiary FI Information
+            example: "notes etc."  
+            maxLength: 255
+          rtpDetails:
+            type: object
+            properties:
+              instructionId:
+                type: string
+                description: Instruction Id
+              endToEndId:
+                type: string
+                description: EndToEnd Id
+              transactionId:
+                type: string
+                description: Transaction Id
           paymentReturnDetails:
             type: array
             items:
@@ -357,8 +658,10 @@ components:
           creationDateTime:
             type: string
             format: date-time
+            example: 2022-06-30T01:30:48.342Z
             description: Date and Time payment is created
           lastUpdatedTime:
             type: string
-            format: date-time  
+            format: date-time 
+            example: 2022-06-30T01:30:48.342Z
             description: Date and Time payment got updated last
