@@ -130,6 +130,7 @@ components:
             type: string
             description: FX contract number associated with the SWIFT/International payment
             example: 12398
+            maxLength: 35
           entryType:
             type: string
             description: Payment entry type such as CREDIT or DEBIT
@@ -585,7 +586,7 @@ components:
             type: string
             description: Fedwire comments
             example: "comments notes"  
-            maxLength: 255 
+            maxLength: 255
           FiToFiInformation: 
             type: string
             description: FI to FI Details
