@@ -705,7 +705,7 @@ components:
             description: Fedwire comments
             example: "comments notes"  
             maxLength: 255
-          FiToFiInformation: 
+          fiToFiInformation: 
             type: string
             description: FI to FI Details
             example: "notes etc."  
