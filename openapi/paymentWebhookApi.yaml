@@ -374,7 +374,7 @@ components:
             type: string            
             maxLength : 35
             description: Ultimate sender country. This will be used for the fintech scenario when the virtual account range is used to process a payment.      
-            example: "USA etc."
+            example: "United States of America etc."
           receiverTemplateName:
             type: string
             description: Receiver Template Name
