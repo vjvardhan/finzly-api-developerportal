@@ -555,7 +555,7 @@ paths:
          - Payments
       summary: Search payments
       operationId: searchPayments
-      description: Search payments
+      description: Search payments based on various parameters. This operation retrieve limited payment data from the system
       requestBody:
         content:
           application/json:
@@ -607,7 +607,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreditPaymentRequest'
-        description: Payment fields
+        description: Credit Payment Request fields
         required: true
       responses:
         default:
@@ -656,7 +656,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DebitPaymentRequest'
-        description: Payment fields
+        description: Debit Payment Request fields
         required: true
       responses:
         default:
@@ -705,7 +705,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BookTransferRequest'
-        description: Payment fields
+        description: Book Transfer [Transfer] Request Fields
         required: true
       responses:
         default:
@@ -747,7 +747,7 @@ paths:
          - Payments
       summary: Get Payment
       operationId: getPaymentByUID
-      description: Retrieve a payment using a payment unique identifier.
+      description: Retrieve a payment data using a payment unique identifier. This operation retrieve detailed payment data from the system
       parameters:
       - name: paymentUID
         in: path
@@ -950,7 +950,7 @@ components:
   securitySchemes:
     oAuth2:
       type: oauth2
-      description: BankOS OpenBanking API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow. 
+      description: Finzly Connect API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow. 
       flows:
         authorizationCode:
           authorizationUrl: https://sandbox-security-uat.finzly.io/auth
@@ -969,46 +969,81 @@ components:
           example: Invalid HTTP method used
           description: Error description to provide addtional details about the error code
 
- 
-    Address:
+    SenderReceiverCreditorDebtorAddress:
+      description: "The address related to either sender,receiver,creditor, or debtor. This is an optional field and needed only when the account does not exist in the Finzly-CRM system."    
       required:
         - addressLine1
-        - city
-        - state
-        - postalCode
         - countryCode
-        
       properties:
         addressLine1:
           type: string
-          maxLength: 50
+          maxLength: 35
           description: Bank address line 1
           example: '111 My Street'
         addressLine2:
           type: string
-          maxLength: 50
-          description: Bank address line 2
+          maxLength: 35
+          description: Bank address line 2. This is an optional field.
           example: 'Suite 210'
         city:
           type: string
-          description: City
-          maxLength: 100
+          description: City Name. This is an optional field needed for the domestic payment
+          maxLength: 35
           example: 'Charlotte'
         state:
           type: string
-          description: State
-          maxLength: 100
+          description: State Name. This is an optional field needed for the domestic payment
+          maxLength: 35
           example: 'North Carolina'
         postalCode:
           type: string
-          description: Country specific postal/zip code
-          maxLength: 50
+          description: Country specific postal/zip code. This is an optional field needed for the domestic payment.
+          maxLength: 35
           example: '28269 etc.'
         countryCode:
           type: string
           minLength: 2
           maxLength: 2
-          description: ISO 3166 country codes
+          description: Country codes per ISO 3166 
+          example: 'US, CN, AR etc.'
+
+ 
+    BankAddress:
+      description: "The bank address details and it is required for the bank not in US country code."
+      required:
+        - addressLine1
+        - countryCode
+      properties:
+        addressLine1:
+          type: string
+          maxLength: 35
+          description: Bank address line 1
+          example: '111 My Street'
+        addressLine2:
+          type: string
+          maxLength: 35
+          description: Bank address line 2. This is an optional field.
+          example: 'Suite 210'
+        city:
+          type: string
+          description: Bank City. This is an optional field.
+          maxLength: 35
+          example: 'Charlotte'
+        state:
+          type: string
+          description: Bank State. This is an optional field.
+          maxLength: 35
+          example: 'North Carolina'
+        postalCode:
+          type: string
+          description: Country specific postal/zip code. This is an optional field.
+          maxLength: 35
+          example: '28269 etc.'
+        countryCode:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: Country codes per ISO 3166.
           example: 'US, CN, AR etc.'
 
     Approver:
@@ -1038,34 +1073,36 @@ components:
           items: 
             $ref: '#/components/schemas/Approver'
     Bank:
-      description: "The bank details is used to process the payment and it is required when the sender or receiver is not configured in the Finzly CRM system. Based on the bankIDType either bankId or swiftCode or address is needed."
+      description: "The bank or intermediary bank details is needed to process the payment and it is required when the sender/receiver/debtor/creditor are not configured in the Finzly-CRM system. Based on the bankIDType either bankId or swiftCode is required. For the speed associated with the fedwire payment rail, this will be mapped to {4100} for the receiver bank and to {4000} for the receiver intermediary bank."
       properties:
-        name:
-          type: string
-          description: Name of the bank. This is an optional field
-          example: 'XYZ Bank'
         bankIdType:
           type: string
-          description: The bank unique identifier type. Use BY SWIFT for  international money transfer. Use NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.
-          enum:
-            - NID
-            - ADDRESS
-            - SWIFT
-          example: 'NID, ADDRESS, SWIFT'
+          maxLength: 35
+          description: The bank unique identifier type. Use SWIFT for the international money transfer. Use NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.
+          example: 'NID, SWIFT'
         bankId: 
           type: string
-          description: Bank routing number or routing code. This is needed when the bankIdType is set to 'NID'
-          example: '072000326'
+          maxLength: 35
+          description: This is needed when the bankIdType is set to 'NID'
+          example: '072000326 [ABA], 002665000000000001 [CLABE] etc.'
         swiftCode:
           type: string
+          maxLength: 35
           description: SWIFT Code. This is needed when the bankIdType is set to 'SWIFT'
           example: 'CHASUS33XXX'
+        name:
+          type: string
+          maxLength: 255
+          description: Name of the bank. This is an optional for domestic [NID] and international [SWIFT] code. if not provided Finzly system will assign the name as per the directory lookup. 
+          example: 'XYZ Bank'
         countryCode: 
           type: string
-          description: Country Code in ISO format
-          example: 'US'
+          minLength: 2
+          maxLength: 2
+          description: Country codes per ISO 3166. This is an optional field
+          example: 'US, CN, AR etc.'
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/BankAddress'
 
     Fee:
       properties:
@@ -1076,44 +1113,25 @@ components:
           maxLength: 20
         currency:
           type: string
-          description: Fee Currency defaulted to USD if not provided, currenlty only USD is the supported currency for the fee amount.
+          description: Fee Currency defaulted to USD if not provided.
           example: USD
         amount:
           type: number
           example: 10.00 etc.
           maxLength: 9
-          description: Fee amount
-          
-    Notification:
-      properties:
-        emailAddress: 
-          type: string
-          example: 'me@gmail.com'
-        phoneNumber:
-          type: string
-          example: '111223333 or 111-22-3333'
-        message:
-          type: string
-          example: 'Payment to XXX'
+          description: Fee to be charged for the payment transaction.
 
-    PaymentOccurrence:
+    PaymentRecurrence:
+      description: Set the payment recurrence based on the available options.
       required:
         - frequency
         - payUntil
       properties:
         frequency:
           type: string
-          maxLength: 25
-          enum:
-           - Daily
-           - Weekly
-           - BiWeekly
-           - Monthly
-           - Quarterly
-           - SemiAnnually
-           - Yearly
+          maxLength: 35
           example: Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly
-          description: 'Payment occurrence frequency. The valid values are Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly.'
+          description: 'Frequency associated with the payment recurrence. The valid values are Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly.'
         payUntil:
           type: string
           maxLength: 25
@@ -1122,7 +1140,7 @@ components:
            - EndDate
            - NumberOfPayments
           example: Cancelled, EndDate, NumberOfPayments
-          description: 'Pay until type. If it is set to Cancelled that means payment will be processing as per the frequency until it cancelled. If it is set to EndDate that means payment will be processing per the frequency until the defined EndDate. If it is set to NumberOfPayments that means payment will be processing per the frequency until the defined number of payments. '
+          description: 'The end of payment recurrence. If it is set to Cancelled that means payment will be processing as per the frequency until it cancelled. If it is set to EndDate that means payment will be processing per the frequency until the defined EndDate. If it is set to NumberOfPayments that means payment will be processing per the frequency until the defined number of payments. '
         endDate:
           type: string
           format: date
@@ -1135,6 +1153,7 @@ components:
           description: 'This is needed when the payUntil is set to NumberOfPayments'
 
     PaymentSearch:
+      description: "Payment search parameters"
       properties:
         fromDate:
           type: string
@@ -1149,10 +1168,10 @@ components:
           description: "Payment currency"
         minPaymentAmount:
           type: number
-          description: "Payment amount"
+          description: "Minimum payment amount"
         maxPaymentAmount:
           type: number    
-          description: "Payment amount"
+          description: "Maximum payment amount"
         forexContractNo:
           type: string 
           description: "FX contract number"
@@ -1170,7 +1189,7 @@ components:
           description: "Sender account number"
         sourceRefNo:
           type: string 
-          description: "Payment external reference number"
+          description: "Payment source reference number"
         status:
           type: string
           description: "Payment status"
@@ -1239,22 +1258,28 @@ components:
         channel:
           type: string
           maxLength: 25
-          description: The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the BankOS system before it can be used in the API.
+          description: The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.
           example: API, TELLER etc.
-        requestMethod:
+        costCenter:
           type: string
           maxLength: 25
+          description: This is an optional field. A cost center is a function within an organization that does not directly add to profit but still costs money to operate, such as the accounting, HR, or IT departments
+          example: 12897 etc.          
+        requestMethod:
+          type: string
+          maxLength: 45
           example: WALK-IN, PHONE-IN etc.
           description: This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
         detailsOfCharges:
           type: string
           minLength: 3
           maxLength: 3
-          description: who pays the payment charges
+          description: who pays the payment charges. This is an optional field. For the speed associated with the FEDWIRE only BEN and SHA are applicable values. For the speed associated with the SWIFT OUR, BEN and SHA are applicable values. 
           example: OUR, BEN, or SHA
         secCode:
           type: string
           example: CCD, PPD etc.
+          maxLength: 3
           description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. This is an optional field needed only for the speed associated with the ACH payment rail.
         transactionTypeCode:
           type: string
@@ -1282,18 +1307,22 @@ components:
           description: Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.
         fxContractNumber:
           type: string
+          maxLength: 35
           example: "111234 etc."
           description: Unique identifier associated with the FX trade applicable for the international payment
         originatortoBeneficiary:
           type: string
-          description: Any additional information to be provided to the wire recipient. This is an optional field
-          example: Notes        
+          maxLength: 140
+          description: Any additional information to be provided to the wire recipient. This is an optional field. For the speed associated with the FEDWIRE this is mapped to {6000} tag in four lines and each line will have 35 characters. 
+          example: OBI Notes        
         senderToReceiverNotes:
           type: string
-          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field
-          example: Notes
+          maxLength: 210
+          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field. For the speed associated with the FEDWIRE this is mapped to {6500} tag. 
+          example: Sender To Reciever Notes
         remittanceMethod:
           type: string
+          maxLength: 10
           enum:
             - EMAIL
             - URID
@@ -1324,8 +1353,9 @@ components:
            - FOREIGN_AFFILIATE          
         referenceForBeneficiary:
           type: string
-          description: This is applicable for the fedwire payment where the local instrument set to COVS. This specifies the reference details for the beneficiary.
-          example: Notes
+          maxLength: 16
+          description: This is applicable for the fedwire payment where the local instrument set to COVS. This specifies the reference details for the beneficiary. This is mapped to fedwire {4320} tag. 
+          example: RefForBeneficiary Details
         unstructuredAddendaInfo:
           type: object
           description: This is applicable for the fedwire payment where the local instrument can be S820, GXML, ANSI, IXML, NARR, SWIF, UEDI
@@ -1342,28 +1372,41 @@ components:
       properties:
         channel:
           type: string
-          description: The payment origination system such as API, TELLER etc.
+          maxLength: 25
+          description: The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.
           example: API, TELLER etc.
+        costCenter:
+          type: string
+          maxLength: 25
+          description: This is an optional field. A cost center is a function within an organization that does not directly add to profit but still costs money to operate, such as the accounting, HR, or IT departments
+          example: 12897 etc.            
         requestMethod:
           type: string
+          maxLength: 45
           example: WALK-IN, PHONE-IN etc.
-          description: Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
+          description: This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.
         detailsOfCharges:
           type: string
-          description: who pays the payment charges
+          minLength: 3
+          maxLength: 3
+          description: who pays the payment charges. This is an optional field. For the speed associated with the FEDWIRE only BEN and SHA are applicable values. For the speed associated with the SWIFT OUR, BEN and SHA are applicable values. 
           example: OUR, BEN, or SHA
         secCode:
           type: string
           example: CCD, PPD etc.
-          description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction
+          maxLength: 3
+          description: An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. This is an optional field needed only for the speed associated with the ACH payment rail.
         transactionTypeCode:
           type: string
           example: ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc.
-          description: This is an optional field. This is a secondary SEC code can be set when the sec code is set to IAT.
+          minLength: 3
+          maxLength: 3          
+          description: This is an optional field. This is a secondary secCode can be set when the sec code is set to IAT.
         receiverIdentificationNumber:
           type: string
           example: 12334356 etc.
-          description: This is an optional field. This is Receiver’s DFI Identification Number can be set when the sec code is set to IAT
+          maxLength: 50
+          description: This is an optional field. This is Receiver’s DFI Identification Number can be set when the secCode is set to IAT.
         fullAmount:
           type: number
           example: 100.00
@@ -1379,72 +1422,92 @@ components:
           description: Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.
         fxContractNumber:
           type: string
+          maxLength: 35
           example: "111234 etc."
           description: Unique identifier associated with the FX trade applicable for the international payment
         originatortoBeneficiary:
           type: string
-          description: Any additional information to be provided to the wire recipient. This is an optional field
-          example: Notes        
+          maxLength: 140
+          description: Any additional information to be provided to the wire recipient. This is an optional field. For the speed associated with the FEDWIRE this is mapped to {6000} tag in four lines and each line will have 35 characters. 
+          example: OBI Notes       
         senderToReceiverNotes:
           type: string
-          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field
-          example: Notes
+          maxLength: 210
+          description: This is applicable for the fedwire payment specifies additional information for the Receiver. This is an optional field. For the speed associated with the FEDWIRE this is mapped to {6500} tag. 
+          example: Sender To Reciever Notes
         paymentRemittanceNotes:
           type: string
           description: This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field
-          example: Remittance Notes          
+          example: Remittance Notes         
 
     BookTransferSender:
       properties:
         accountUID:
           type: string
           example: '123452334'
-          description: Sender account unique identifier
+          maxLength: 11
+          description: Transfer payment sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.
         accountNumber:
           type: string
           example: '123452334 etc.'
-          description: Sender account number
+          maxLength: 35
+          description: Bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.
         accountType:
           type: string
           example: 'DDA or GL'
-          description: Account type
+          description: Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are DDA or GL.
           enum:
            - DDA
            - GL
         currency:
           type: string
-          description: Sender Currency
+          description: This is an optional field it will be defaulted to USD.
+          maxLength: 3
           example: 'USD'
+        routingNumber:
+          type: string
+          maxLength: 11
+          description: Optional field, only required when accountUID is not provided and accountType is DDA
+          example: '022300173 etc.'
 
     BookTransferReceiver:
       properties:
         accountUID:
           type: string
-          example: '123452334'
-          description: Sender account unique identifier
+          example: '022300173 etc.'
+          maxLength: 11
+          description: Transfer payment sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.        
         accountNumber:
           type: string
           example: '123452334 etc.'
-          description: Sender account number
+          maxLength: 35
+          description: Bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.
         accountType:
           type: string
           example: 'DDA or GL'
-          description: Account type
+          description: Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are DDA or GL.
           enum:
            - DDA
            - GL
         currency:
           type: string
-          description: Sender Currency
+          maxLength: 3
+          description: This is an optional field it will be defaulted to USD.
           example: 'USD'
+        routingNumber:
+          type: string
+          maxLength: 11
+          description: Optional field, only required when accountUID is not provided and accountType is DDA
+          example: '022300173 etc.'
           
     PaymentSender:
+      description: "Payment sender and account details from which the money will be deducted."
       properties:
         accountUID:
           type: string
           example: '1021 etc.'
           maxLength: 11
-          description: Sender bank account unique identifier exist in the BankOS-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.
+          description: Sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.
         achCompanyID:
           type: string
           example: '122334789'
@@ -1453,38 +1516,33 @@ components:
         accountNumber:
           type: string
           example: '123452334 etc.'
-          maxLength: 50
+          maxLength: 35
           description: Sender bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.
         accountType:
           type: string
-          example: 'Deposit'
-          maxLength: 10
-          enum:
-           - Deposit
-          description: Type of the account. This is an optional field, it is required when the accountUID is not provided.
+          example: 'Deposit or GL'
+          maxLength: 35
+          description: Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL.
         subAccountType:
           type: string
-          example: 'Checking or Savings'
-          maxLength: 10
-          enum:
-           - Checking
-           - Savings
-          description: Whether the sender account is a Checking or Savings. This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code).
+          example: 'Checking, Savings or GL'
+          maxLength: 20
+          description: This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings or GL.
         name:
           type: string
-          example: 'DDA Account'
+          example: 'Sender Name'
           maxLength: 50
-          description: Name associated with the bank account. This is an optional field, it is required when the accountUID is not provided.
+          description: Sender name associated with the payment. This is an optional field, it is required when the accountUID is not provided. For the speed associated with the fedwire payment rail, this will be mapped to {5000} tag.
         entityType:
           type: string
           enum:
            - Consumer
            - Corporate
           example: 'Consumer or Corporate' 
-          maxLength: 20
-          description: Type of the entity. It is required when the accountUID is not provided. The valid values are Consumer or Corporate.
+          maxLength: 45
+          description: Type of the entity. It is required when the accountUID is empty and accountType is Deposit. The valid values are Consumer or Corporate.
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/SenderReceiverCreditorDebtorAddress'
         bankIdType:
           type: string
           maxLength: 10
@@ -1495,13 +1553,13 @@ components:
           example: 'NID or SWIFT'
         bankId: 
           type: string
-          maxLength: 50
-          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.
+          maxLength: 35
+          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType. For the speed associated with the fedwire payment rail, this will be mapped to {3100} tag.
           example: '101206101 or FBOLUS6LXXX'
         phone:
           type: string
           example: '18001236754'
-          maxLength: 15
+          maxLength: 35
           description: Phone number associated with the sender. This is an optional field.
         email:
           type: string
@@ -1516,25 +1574,29 @@ components:
           description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
           
     PaymentReceiver:
+      description: "Payment receiver and account details to which the money will be deposited."
       properties:
         accountUID:
           type: string
-          example: 12334989
-          description: Receiver bank account unique identifier exist in the BankOS-CRM system. This is an optional field, if this is provided then rest of the receiver information are not needed.
+          example: '209219 etc.'
+          maxLength: 11
+          description: Receiver bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the receiver information are not needed.
         accountNumber:
           type: string
           example: '123422434'
+          maxLength: 35
           description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as ABA for USA, CLABE for Mexico,IBAN mainly for european countries  etc. This is required if accountUID is not provided.
         accountType:
           type: string
           example: 'Deposit'
-          maxLength: 10
+          maxLength: 35
           enum:
            - Deposit
           description: Type of the account. This is an optional field, it is required when the accountUID is not provided.
         subAccountType:
           type: string
           example: 'Checking, Savings'
+          maxLength: 20
           description: Whether the receiver account is a Checking or Savings. This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code).        
         accountCurrency:
           type: string
@@ -1544,14 +1606,15 @@ components:
           description: Receiver currency. The valid currency code should be per ISO 4217 standard.
         name:
           type: string
-          example: 'XYZ Name'
-          description: Name associated with the account
+          example: 'Receiver name'
+          maxLength: 35
+          description: Receiver name associated with the payment. This is an optional field, it is required when the accountUID is not provided. For the speed associated with the fedwire payment rail, this will be mapped to {4200} tag.
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/SenderReceiverCreditorDebtorAddress'
         phone:
           type: string
           example: '18001236754'
-          maxLength: 15
+          maxLength: 35
           description: Phone number associated with the receiver. This is an optional field.
         email:
           type: string
@@ -1570,121 +1633,120 @@ components:
           description: Beneficiary customer swift note.This is applicable for the CTP fedwire payment where the local instrument set to COVS   
 
     PaymentCreditor:
+      description: "Payment creditor and account details to which the money will be deposited."
       properties:
         accountUID:
           type: string
-          example: '123452334'
-          description: Sender account unique identifier
+          example: '1021 etc.'
+          maxLength: 11
+          description: Creditor bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.
         achCompanyID:
           type: string
           example: '122334789'
+          maxLength: 10
           description: ACH company/origination id is a 10-digit identifier used by bank and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
         accountNumber:
           type: string
           example: '123452334 etc.'
-          description: Sender bank account number from where the money will be withdrawn
+          maxLength: 35
+          description: Bank account number to which the money will be deposited
         accountType:
           type: string
-          example: 'Deposit, GL or MCA'
-          enum:
-           - Deposit
-           - GL
-           - MCA
-          description: Account type
+          example: 'Deposit or GL'
+          maxLength: 35
+          description: Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL.
         subAccountType:
           type: string
-          example: 'Checking or Savings'
-          enum:
-           - Checking
-           - Savings
-          description: Sub type of the account whether Checking or Savings
+          example: 'Checking, Savings or GL'
+          maxLength: 20
+          description: This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings or GL.
         name:
           type: string
-          example: 'Customer account'
-          description: Name associated with the account
+          example: 'Creditor/Sender Name'
+          maxLength: 50
+          description: Creditor name associated with the payment. This is an optional field, it is required when the accountUID is not provided. For the speed associated with the fedwire payment rail, this will be mapped to {5000} tag.
         entityType:
           type: string
           enum:
            - Consumer
            - Corporate
           example: 'Consumer or Corporate' 
-          description: Type of the entity
+          maxLength: 45
+          description: Type of the entity. It is required when the accountUID is empty and accountType is Deposit. The valid values are Consumer or Corporate.
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/SenderReceiverCreditorDebtorAddress'
         bankIdType:
           type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. The unique identifier type to identifiy the bank details.You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC).  It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
-          enum:
-            - NID
-            - SWIFT
+          maxLength: 10
+          description: This is an optional field, it is required when the accountUID is not provided. The unique identifier type to identifiy the bank details. You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.
           example: 'NID or SWIFT'
         bankId: 
           type: string
-          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType.
+          maxLength: 35
+          description: This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType. For the speed associated with the fedwire payment rail, this will be mapped to {3100} tag.
           example: '101206101 or FBOLUS6LXXX'
         phone:
           type: string
           example: '18001236754'
-          description: Phone number associated with the sender
+          maxLength: 35
+          description: Phone number associated with the creditor
         email:
           type: string
           example: 'email@domain.com'
-          description: Email associated with the sender
-        swiftTag:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
-        swiftNote:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS
-          
+          maxLength: 100
+          description: Email associated with the creditor
+
     PaymentDebtor:
+      description: "Payment debtor and account details from which the money will be deducted."
       properties:
         accountUID:
           type: string
-          example: 12334989
-          description: Receiver account unique indentifier exist in the FinzlyOS system
+          example: '1021 etc.'
+          maxLength: 11
+          description: Debtor bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the debtor information are not needed.
         accountNumber:
           type: string
           example: '123422434'
+          maxLength: 35
           description: Receiver bank account number to which money will be deposited. This is the country specific bank account number such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA etc. 
         accountType:
           type: string
           example: 'Deposit'
-          enum:
-           - Deposit
-          description: Account type
+          maxLength: 35
+          description: Type of the account. This is an optional field, it is required when the accountUID is not provided.
         subAccountType:
           type: string
           example: 'Checking, Savings'
-          description: Sub type of the account whether Checking or Savings
+          maxLength: 20
+          description: Sub acount type associated with the account possible values are Checking or Savings
         accountCurrency:
           type: string
           example: 'USD, EUR etc.'
-          description: Debtor currency
+          minLength: 3
+          maxLength: 3          
+          description: Debtor currency. The valid currency code should be per ISO 4217 standard.
         name:
           type: string
           example: 'XYZ Name'
-          description: Name associated with the account
+          maxLength: 35          
+          description: Debtor name for the account. This is an optional field, it is required when the accountUID is not provided. For the speed associated with the fedwire payment rail, this will be mapped to {4200} tag.
         address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/SenderReceiverCreditorDebtorAddress'
         phone:
           type: string
           example: '18001236754'
-          description: Phone number associated with the receiver
+          maxLength: 35
+          description: Phone number associated with the debtor. This is an optional field. 
         email:
           type: string
           example: 'email@domain.com'
-          description: Email associated with the receiver
+          maxLength: 100
+          description: Email associated with the debtor. This is an optional field.
         bank:
           $ref: '#/components/schemas/Bank'
         intermediaryBank:
           $ref: '#/components/schemas/Bank'
-        swiftTag:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS 
-        swiftNote:
-          type: string
-          description: This is applicable for the CTP fedwire payment where the local instrument set to COVS   
+ 
           
     SearchPositivePayDecisionRequest:
       properties:
@@ -1899,7 +1961,7 @@ components:
           example: "PP001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to get positive rules: <Reason>"      
         data: 
           type: array
@@ -1922,7 +1984,7 @@ components:
           example: "PP001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to get positive rule: <Reason>"
         data: 
           $ref: '#/components/schemas/PositivePayRule'
@@ -2173,36 +2235,40 @@ components:
       properties:
         externalReferenceId:
           type: string
-          description: 'Unique reference id set by the originator system.'
+          description: 'Unique reference id set by the originator system. For the Speed associated with the Fedwire payment this will be mapped to {3320} Tag. The {3320} tag limit is 16 characters'
           example: 'pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc.'
-        paymentDate:
-          type: string
-          format: date 
-          example: 07-21-2022
-          description: The date on which the system will pick up and process the payment. This is an optional field and It will be defaulted to the current date if it is not provided. The valid date should be in [MM-dd-yyyy] format.
+        paymentAmount:
+          type: number
+          format: double
+          example: 175.00 etc.
+          description: Payment amount. The payment amount are validated as per the limit set by the payment rails or by the bank for the customer. For the Fedwire payment this will be mapped to {2000} tag.The payment rail limit per transaction are RTP upto 1M$, FedNow upto $500K, Fedwire upto $9,999,999,999.99, Same Day ACH upto 1M$.          
         paymentCurrency:
           type: string
           example: 'USD or EUR etc.'
           minLength: 3
           maxLength: 3
           description: Sender payment currency code. The valid country currency code should be per ISO 4217 standard.
-        paymentAmount:
-          type: number
-          format: double
-          example: 175.00 etc.
-          maxLength: 9999999999
-          description: Payment amount. The payment amount are validated as per the limit set by the payment rails or by the bank for the customer. The payment rail limit per transaction are RTP upto 1M$, FedNow upto $500K, Fedwire upto $9,999,999,999.99, Same Day ACH upto 1M$.
+        paymentDate:
+          type: string
+          format: date 
+          example: 07-21-2022
+          description: This is an optional field. It signifies the payment date on which the Finzly system will pick up the payment to process. The payment date will be default to the current date if it is empty. The valid date format is in [MM-dd-yyyy]. User can set the payment date as current date or future date however, for the payment sets to the current date, the Finzly system may change the date based upon the bank/FI configuration for-instance, If the payment SPEED associated with the ACH [SAMEDAY/REGULAR], FEDWIRE and the last submission cutoff time is passed then the payment date will be set to the next business date, or the payment request will be rejected [as per the bank chosen behavior]. 
         speed:
           type: string
-          example: 'Economy, Economy Plus, Express, Instant etc.'
+          example: 'Economy, Economy Plus, Express, Instant, ON, TN, SPOT etc.'
           maxLength: 20
-          description: Speed associated with the payment based on the delivery time and fee. The Speed types are defined by the bank/financial institutions and they are asscoaited with the payment rails such as ACH, Fedwire, SWIFT, RTP/FedNow.     
+          description: Speed associated with the payment based on the delivery time and fee. The Speed names and associated payment rail can be configured or defined by the bank/financial institutions. The supported payment rails in FinzlyOS are ACH, Fedwire, SWIFT, RTP or FedNow. The following are the standard speed names and payment rails configured by default Economy - [ACH-REGULAR], Economy Plus [ACH-SAMEDAY], Express [FEDWIRE], Instant [FEDNOW or RTP], ON [SWIFT], TN [SWIFT], SPOT [SWIFT].
         paymentNotes:
           type: string
-          default: 'Payment Notes'
+          example: 'Payment Notes'
           minLength: 1
           maxLength: 200
           description: Payment notes provided by the payment originator. These notes are passed to the payment network as per the specification such as for ACH upto 10 chars, Fedwire upto 35 chars [Tag 6400 - Beneficiary information], SWIFT upto 140 chars [Tag 70], RTP/FedNow upto 140 chars [ISO 20022 - RmtInf Tag]. The value will be truncated if it exceeds the data length limit.
+        correspondentBankId:
+          type: string
+          example: '026009593 etc.'
+          maxLength: 10
+          description: This is an optional field. This is used to provide the "routing number" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the "correspondentBankId" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup. 
         sender:
           $ref: '#/components/schemas/PaymentSender'
         receiver:
@@ -2210,15 +2276,15 @@ components:
         fee:
           $ref: '#/components/schemas/Fee'
         recurrence:
-          $ref: '#/components/schemas/PaymentOccurrence'
+          $ref: '#/components/schemas/PaymentRecurrence'
         additionalInfo:
           $ref: '#/components/schemas/AdditionalInfoCreditPayment'
 
     BookTransferRequest:
       required:
         - externalReferenceId
-        - sender
-        - receiver
+        - senderAccount
+        - receiverAccount
         - paymentAmount
         - paymentDate
       properties:
@@ -2226,7 +2292,6 @@ components:
           type: string
           description: "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed)."
           example: 'Payment101'
-          
         senderAccount:
           $ref: '#/components/schemas/BookTransferSender'
         receiverAccount:
@@ -2234,6 +2299,7 @@ components:
         paymentAmount:
           type: number
           example: 100.00
+          description: Payment amount in USD you want to transfer.
         paymentDate:
           type: string
           format: date 
@@ -2260,7 +2326,7 @@ components:
           example: "BOOKTRF001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to create a book transfer payment: <Reason>"
         data:
           type: object
@@ -2279,6 +2345,7 @@ components:
           type: string
           description: "Status of the API request either it will be a success or a failure"
           example: "Success or Failure"
+          maxLength: 20
           enum:
             - Success
             - Failure
@@ -2286,9 +2353,11 @@ components:
           type: string
           description: "Code associated with the error."
           example: "PAYMENT001 etc."
+          maxLength: 20
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          maxLength: 250
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to create a payment: <Reason>"
         data:
           type: object
@@ -2296,7 +2365,7 @@ components:
             paymentUID:
               type: string
               example: 12930 etc.
-              description: The unique payment reference id assigned by the BankOS-Payment system.
+              description: The unique payment reference id assigned by the Finzly-Payment system.
             paymentStatus:
               type: string
               description: The payment status assigned by the system upon creation.
@@ -2307,38 +2376,54 @@ components:
               example: 'pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc.'
 
     DebitPaymentRequest:
+      required:
+        - externalReferenceId
+        - paymentAmount
+        - paymentCurrency
+        - sender
+        - receiver
+        - speed
+        - paymentNotes    
       properties:
         externalReferenceId:
           type: string
-          description: 'Unique reference id set by the originator system.'
-          example: 'PaymentRef100'
+          description: 'Unique reference id set by the originator system. For the speed assocated with the Fedwire payment this will be mapped to {3320} Tag. The {3320} tag limit is 16 characters'
+          example: 'pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc.'
         paymentAmount:
           type: number
-          example: 100.00
+          format: double
+          example: 123.00 etc.
+          description: Payment amount. The payment amount are validated as per the limit set by the payment rails or by the bank for the customer. For the Fedwire payment this will be mapped to {2000} tag.The payment rail limit per transaction are RTP upto 1M$, FedNow upto $500K, Fedwire upto $9,999,999,999.99, Same Day ACH upto 1M$.
+        paymentCurrency:
+          type: string
+          example: 'USD or EUR etc.'
+          minLength: 3
+          maxLength: 3
+          description: Sender payment currency code. The valid country currency code should be per ISO 4217 standard.
         paymentDate:
           type: string
           format: date 
           example: 07-21-2022
-          description: Payment date in mm-dd-yyyy format.
-        paymentCurrency:
-          type: string
-          description: Payment Currency
-          example: 'USD'
-        paymentNotes:
-          type: string
-          default: 'Notes'
-          description: Payment notes provided by the originator
+          description: This is an optional field. It signifies the payment date on which the Finzly system will pick up the payment to process. The payment date will be default to the current date if it is empty. The valid date format is in [MM-dd-yyyy]. User can set the payment date as current date or future date however, for the payment sets to the current date, the Finzly system may change the date based upon the bank/FI configuration for-instance, If the payment SPEED associated with the ACH [SAMEDAY/REGULAR], FEDWIRE and the last submission cutoff time is passed then the payment date will be set to the next business date, or the payment request will be rejected [as per the bank chosen behavior].
         speed:
           type: string
-          example: 'Standard, Economy, Express'
-        debtor:
-          $ref: '#/components/schemas/PaymentDebtor'
+          example: 'Economy, Economy Plus, Express, Instant'
+          maxLength: 20
+          description: Speed associated with the payment based on the delivery time and fee. The Speed names and associated payment rail can be configured or defined by the bank/financial institutions. The supported payment rails in FinzlyOS are ACH, Fedwire, RTP or FedNow. The following are the standard speed names and payment rails configured by default Economy - [ACH-REGULAR], Economy Plus [ACH-SAMEDAY], Express [FEDWIRE], Instant [FEDNOW or RTP].
+        paymentNotes:
+          type: string
+          default: 'Payment Notes'
+          minLength: 1
+          maxLength: 200
+          description: Payment notes provided by the payment originator. These notes are passed to the payment network as per the specification such as for ACH upto 10 chars, Fedwire upto 35 chars [Tag 6400 - Beneficiary information], SWIFT upto 140 chars [Tag 70], RTP/FedNow upto 140 chars [ISO 20022 - RmtInf Tag]. The value will be truncated if it exceeds the data length limit.
         creditor:
           $ref: '#/components/schemas/PaymentCreditor'
+        debtor:
+          $ref: '#/components/schemas/PaymentDebtor'
         fee:
           $ref: '#/components/schemas/Fee'
         recurrence:
-          $ref: '#/components/schemas/PaymentOccurrence'
+          $ref: '#/components/schemas/PaymentRecurrence'
         additionalInfo:
           $ref: '#/components/schemas/AdditionalInfoDebitPayment'
 
@@ -2354,11 +2439,11 @@ components:
             - Failure
         code:
           type: string
-          description: "Code associated with the error."
+          description: "Failure code associated with the error."
           example: "PAYMENT001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to cancel a payment: <Reason>"
         data:
           type: object
@@ -2392,7 +2477,7 @@ components:
           example: "PAYMENT003 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to return a payment: <Reason>"
         data:
           type: object
@@ -2425,7 +2510,7 @@ components:
           example: "PAYMENT004 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to reverse a payment: <Reason>"
         data:
           type: object
@@ -2449,267 +2534,11 @@ components:
           example: "PAYMENT001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to retrieve a payment: <Reason>"
         data:
-          $ref: '#/components/schemas/Payment'
+          $ref: '#/components/schemas/GetPaymentData'
             
-    Payment:
-      properties:
-        paymentUID:
-          type: integer
-          description: "Payment unique identifier assigned by the system."
-          example: "12341"
-        counterPartyId:
-          type: string
-          description: "Customer UID associated with the payment."
-        senderUID:
-          type: string
-        senderAccountNumber:
-          type: string
-        senderAccountName:
-          type: string
-        senderName:
-          type: string
-        senderCity:
-          type: string
-        senderState:
-          type: string
-        senderZip:
-          type: string
-        senderCountry:
-          type: string
-        senderAddress1:
-          type: string
-        senderAddress2:
-          type: string
-        senderIdType:
-          type: string
-        senderIdType2:
-          type: string
-        senderId2:
-          type: string
-        senderCountryCode:
-          type: string
-        senderBankId:
-          type: string
-        senderBankName:
-          type: string
-        senderBankIdType:
-          type: string
-        senderBankAddress1:
-          type: string
-        senderBankAddress2:
-          type: string
-        senderBankCity:
-          type: string
-        senderBankState:
-          type: string
-        senderBankZip:
-          type: string
-        senderBankCountry:
-          type: string           
-        senderAccountType:
-          type: string
-        isIntermediarySender:
-          type: boolean
-        intermediarySenderName:
-          type: string
-        intermediarySenderAddress1:
-          type: string
-        intermediarySenderAddress2:
-          type: string
-        intermediarySenderCity:
-          type: string
-        intermediarySenderState:
-          type: string  
-        intermediarySenderZip:
-          type: string
-        intermediarySenderCountry:
-          type: string
-        intermediarySenderId:
-          type: string
-        intermediarySenderIdType:
-          type: string          
-        ultimateSenderName:
-          type: string
-        ultimateSenderAccountNumber:
-          type: string
-        ultimateSenderAddress1:
-          type: string
-        ultimateSenderAddress2:
-          type: string
-        ultimateSenderTaxId:
-          type: string
-        ultimateSenderCity:
-          type: string
-        ultimateSenderState:
-          type: string
-        ultimateSenderZip:
-          type: string
-        ultimateSenderCountry:
-          type: string
-        beneficiaryUID:
-          type: string
-        beneficiaryName:
-          type: string
-        senderAmount:
-          type: string
-        paymentDate:
-          type: string
-        receiverCurrency:
-          type: string
-          description: ISO Currency Code
-        senderCurrency:
-          type: string
-          description: ISO Currency Code
-        receiverAmount:
-          type: number
-        deliveryMethod:
-          type: string
-          description: One of the payment network delivery methods that includes Same Day ACH, Regular ACH, RTP, Fedwire
-          example: 'ACH'
-        receiverAccountNumber:
-          type: string
-        receiverName:
-          type: string
-        receiverAccountType:
-          type: string
-        receiverType:
-          type: string  
-        receiverAddress1:
-          type: string
-        receiverAddress2:
-          type: string
-        receiverCity:
-          type: string
-        receiverState:
-          type: string  
-        receiverZip:
-          type: string
-        receiverPhoneNumber:
-          type: string  
-        receiverEmail:
-          type: string
-        receiverCountry:
-          type: string  
-        receiverIdType:
-          type: string
-        receiverIdType2:
-          type: string  
-        receiverId2:
-          type: string
-        receiverBankId:
-          type: string
-        receiverBankName:
-          type: string
-        receiverBankIdType:
-          type: string  
-        receiverBankAddress1:
-          type: string
-        receiverBankAddress2:
-          type: string  
-        receiverBankCity:
-          type: string
-        receiverBankState:
-          type: string  
-        receiverBankZip:
-          type: string
-        receiverBankCountry:
-          type: string
-        isIntermediaryReceiver:
-          type: boolean
-        intermediaryReceiverName:
-          type: string
-        intermediaryReceiverAddress1:
-          type: string
-        intermediaryReceiverAddress2:
-          type: string
-        intermediaryReceiverCity:
-          type: string
-        intermediaryReceiverState:
-          type: string
-        intermediaryReceiverZip:
-          type: string
-        intermediaryReceiverCountry:
-          type: string
-        intermediaryReceiverId:
-          type: string
-        intermediaryReceiverIdType:
-          type: string            
-        ultimateReceiverName:
-          type: string
-        ultimateReceiverAccountNumber:
-          type: string
-        ultimateReceiverAddress1:
-          type: string
-        ultimateReceiverAddress2:
-          type: string
-        ultimateReceiverTaxId:
-          type: string
-        ultimateReceiverCity:
-          type: string
-        ultimateReceiverState:
-          type: string
-        ultimateReceiverZip:
-          type: string
-        ultimateReceiverCountry:
-          type: string
-        createdBy:
-          type: string
-        bankFeePayer:
-          type: string
-          enum:
-           - remitter
-           - beneficiary
-        paymentNotes:
-          type: string
-          description: "Notes associated with the payment."
-          example: 'payment for invoice ABC123'
-        forexContract:
-          type: string
-          example: '1325'
-        occurrences:
-          $ref: '#/components/schemas/PaymentOccurrence'
-        status:
-          type: string
-          example: FUTURE_DATED
-        displayStatus:
-          type: string
-          example: Scheduled
-        notification:
-          $ref: '#/components/schemas/Notification'
-        audit:
-          $ref: '#/components/schemas/Audit'
-        creationDateTime:
-          type: string
-        customerType:
-          type: string
-          description: "Customer type associated with the payment."
-          example: "Corporate or Consumer"
-        deliveryAgentType:
-          type: string
-        quoteId:
-          type: string
-        wireType:
-          type: string
-        counterParty:
-          type: string
-        businessUnit:
-          type: string
-          description: "Processing org name assigned to the payment."
-        channel:
-          type: string
-        costCenter:
-          type: string
-        book:
-          type: string
-        businessUnitId:
-         type: string
-         description: "Processing org id assigned to the payment."
-        externalReferenceId:
-          type: string
-  
     PaymentSearchResponse:
       properties:
         status: 
@@ -2725,9 +2554,966 @@ components:
           example: "PAYMENT001 etc."
         message:
           type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
+          description: "Error message corresponding to the error code indicating the issue in API call along with the reason."
           example: "Failed to search a payment: <Reason>"
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Payment'
+            $ref: '#/components/schemas/SearchPaymentData'
+
+    PaymentRecurrenceSearch:
+      description: Set the payment recurrence based on the available options.
+      required:
+        - frequency
+        - payUntil
+      properties:
+        paymentOccurrenceId:
+          type: string
+          maxLength: 35
+          example: 12898 etc.
+          description: 'Frequency unique identifier'  
+        amount:
+          type: string
+          maxLength: 35
+          example: 10.12 etc.
+          description: 'Frequency payment amount'  
+        frequency:
+          type: string
+          maxLength: 35
+          example: Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly
+          description: 'Frequency associated with the payment recurrence. The valid values are Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly.'
+        payUntil:
+          type: string
+          maxLength: 25
+          enum: 
+           - Cancelled
+           - EndDate
+           - NumberOfPayments
+          example: Cancelled, EndDate, NumberOfPayments
+          description: 'The end of payment recurrence. If it is set to Cancelled that means payment will be processing as per the frequency until it cancelled. If it is set to EndDate that means payment will be processing per the frequency until the defined EndDate. If it is set to NumberOfPayments that means payment will be processing per the frequency until the defined number of payments. '
+        startDate:
+          type: string
+          format: date
+          example: '2023-06-23'
+          description: 'Start Date for the recurrence.'
+        endDate:
+          type: string
+          format: date
+          example: '2023-07-23'
+          description: 'End Date for the recurrence.'
+        endNumberPayments: 
+          type: integer
+          maxLength: 11
+          example: 10
+          description: 'Recurrence NumberOfPayments'
+        status: 
+          type: string
+          maxLength: 50
+          example: Active etc.
+          description: 'Recurrence status' 
+          
+    SearchPaymentData:
+      description: Search payments based on various parameters. This provides limited payment data in comparison with GetPayment response.
+      properties:
+        paymentUID:
+          type: integer
+          description: The unique payment reference id assigned by the Finzly-Payment system.
+          example: "110289 etc."
+        externalReferenceId:
+          type: string
+          maxLength: 255
+          description: 'Unique reference id set by the originator system.'
+          example: 'pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc.'
+        sourceReferenceId:
+          type: string
+          maxLength: 255
+          description: 'Source reference id signifies the bulk file id for the payment originated via FTP.'
+          example: '10011 etc.'
+        counterParty:
+          type: string
+          description: "Legal entity name exist in the Finzly-CRM system and associated with the payment."
+          example: "ABC Shipping etc."
+          maxLength: 255
+        counterPartyId:
+          type: string
+          description: "Legal entity [CustomerUID] exist in the Finzly-CRM system and associated with the payment."
+          example: "10920 etc."
+          maxLength: 11
+        customerType:
+          type: string
+          description: "Customer type associated with the payment."
+          example: "Corporate or Consumer"
+          maxLength: 45
+        businessUnit:
+          type: string
+          description: "Processing org name assigned to the payment."
+          maxLength: 255
+          example: "Bank Name etc."
+        businessUnitId:
+         type: string
+         description: "Processing org id assigned to the payment."
+         maxLength: 11
+         example: "189 etc."
+        channel:
+          type: string
+          description: The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.
+          example: API, TELLER etc.
+          maxLength: 50
+        costCenter:
+          type: string
+          description: The cost center associated with the payment. A cost center is also known as a cost pool or expense center
+          example: "562687, Global etc."
+          maxLength: 50
+        book:
+          type: string
+          description: The book associated with the payment. The book is needed to assign proper GL accounts.
+          example: "ACH, Wire etc."
+          maxLength: 50
+        paymentDate:
+          type: string
+          description: The payment date when the payment is processed
+        senderUID:
+          type: string
+          description: "Sender unique identifier [customerUID] defined in the Finzly-CRM system and associated with the payment."
+          example: '3248 etc.'
+          maxLength: 11
+        senderAmount:
+          type: string
+          description: The sender payment amount.
+        senderCurrency:
+          type: string
+          description: Sender currency in ISO Currency Code format
+          maxLength: 3
+        receiverAmount:
+          type: number
+          description: Thereceiver payment amount.
+        receiverCurrency:
+          type: string
+          description: Receiver currency in ISO Currency Code format
+          maxLength: 3
+        deliveryMethod:
+          type: string
+          description: One of the payment network delivery methods that includes ACH, FEDWIRE, RTP, FEDNOW, SWIFT
+          example: 'ACH, FEDWIRE, RTP, FEDNOW, SWIFT'
+          maxLength: 20
+        paymentNotes:
+          type: string
+          description: "Notes associated with the payment."
+          example: 'Payment for the invoice ABC123'
+          maxLength: 140
+        deliveryAgentType:
+          type: string
+          description: "Debit account type. The possible values are Deposit, GL, MCA."
+          example: "Deposit, GL, MCA"
+        wireType:
+          type: string
+          description: "Wire type associated with the payment request."
+          example: 'Type of Payment - Same Day or Regular ACH. Possible values are REGULAR_ACH, SAME_DAY_ACH, WIRE, BOOK_TRANSFER, REALTIME_RTP, REALTIME_FEDNOW, SPOT_SWIFT, SAME_DAY_SWIFT, NEXT_DAY_SWIFT etc.'
+          maxLength: 35
+        senderName:
+          type: string
+          example: 'Sender Name'
+          description: Sender name associated with the payment.
+          maxLength: 255
+        senderAccountNumber:
+          type: string
+          description: "Sender bank account number associated with the payment."
+          example: '8982618 etc.'
+          maxLength: 35
+        senderAccountName:
+          type: string
+          maxLength: 255
+          description: Sender bank account name
+          example: 'DDA Account'
+        senderAddress1:
+          type: string
+          description: Sender address 1
+          maxLength: 35
+        senderAddress2:
+          type: string
+          description: Sender address 2
+          maxLength: 35
+        senderCity:
+          type: string
+          description: Sender city
+          maxLength: 35
+        senderState:
+          type: string
+          description: Sender State
+          maxLength: 35
+        senderZip:
+          type: string
+          description: Sender Zip Code
+          maxLength: 35
+        senderCountryCode:
+          type: string
+          description: Sender Country Code
+          maxLength: 35
+        senderCountry:
+          type: string
+          description: Sender Country Name  
+          maxLength: 35        
+        senderAccountType:
+          type: string
+          description: Sender Account Type  
+          maxLength: 35        
+        senderBankIdType:
+          type: string
+          description: Sender Bank ID type such as NID, SWIFT.
+          maxLength: 35 
+        senderBankId:
+          type: string
+          description: Sender Bank ID value per the senderBankIdType 
+          maxLength: 35
+        senderBankName:
+          type: string
+          description: Sender Bank Name 
+          maxLength: 255
+        senderBankAddress1:
+          type: string
+          description: Sender Bank Address 1 
+          maxLength: 35
+        senderBankAddress2:
+          type: string
+          description: Sender Bank Address 2 
+          maxLength: 35
+        senderBankCity:
+          type: string
+          description: Sender Bank City 
+          maxLength: 35
+        senderBankState:
+          type: string
+          description: Sender Bank State 
+          maxLength: 35
+        senderBankZip:
+          type: string
+          description: Sender Bank Zip/Postal code 
+          maxLength: 35
+        senderBankCountry:
+          type: string    
+          description: Sender Bank Country Name
+          maxLength: 35
+        intermediarySenderName:
+          type: string
+          description: Sender Intermediary Bank Name
+          maxLength: 25
+        intermediarySenderAddress1:
+          type: string
+          description: Sender Intermediary Bank Address 1
+          maxLength: 35
+        intermediarySenderAddress2:
+          type: string
+          description: Sender Intermediary Bank Address 2
+          maxLength: 35
+        intermediarySenderCity:
+          type: string
+          description: Sender Intermediary Bank City
+          maxLength: 35
+        intermediarySenderState:
+          type: string  
+          description: Sender Intermediary Bank State
+          maxLength: 35
+        intermediarySenderZip:
+          type: string
+          description: Sender Intermediary Bank Zip/Postal code
+          maxLength: 35
+        intermediarySenderCountry:
+          type: string
+          description: Sender Intermediary Bank Country Name
+          maxLength: 35
+        intermediarySenderId:
+          type: string
+          description: Sender Intermediary Bank ID
+          maxLength: 35
+        intermediarySenderIdType:
+          type: string          
+          description: Sender Intermediary Bank ID Type
+          maxLength: 35
+        ultimateSenderName:
+          type: string
+          description: Ultimate Sender Name
+          maxLength: 255
+        ultimateSenderAccountNumber:
+          type: string
+          description: Ultimate Sender Account Number
+          maxLength: 35
+        ultimateSenderAddress1:
+          type: string
+          description: Ultimate Sender Address 1
+          maxLength: 35
+        ultimateSenderAddress2:
+          type: string
+          description: Ultimate Sender Address 2
+          maxLength: 35
+        ultimateSenderTaxId:
+          type: string
+          description: Ultimate Sender ACH Company ID
+          maxLength: 35
+        ultimateSenderCity:
+          type: string
+          description: Ultimate Sender City
+          maxLength: 35
+        ultimateSenderState:
+          type: string
+          description: Ultimate Sender State
+          maxLength: 35
+        ultimateSenderZip:
+          type: string
+          description: Ultimate Sender Zip/Postal code
+          maxLength: 35
+        ultimateSenderCountry:
+          type: string
+          description: Ultimate Sender Country Name
+          maxLength: 35
+        fboAccountName:
+          type: string
+          description: FBO account name
+          maxLength: 255
+        fboAccountNumber:
+          type: string
+          description: FBO account number
+          maxLength: 100
+        fboAccountType:
+          type: string
+          description: FBO account type
+          maxLength: 30
+
+        receiverName:
+          type: string
+          description: Receiver name
+          maxLength: 255          
+        receiverAccountNumber:
+          type: string
+          description: Receiver account number
+          maxLength: 35
+        receiverAccountType:
+          type: string
+          description: Receiver account type
+          maxLength: 35
+        receiverType:
+          type: string  
+          description: Receiver Type
+          maxLength: 35
+        receiverAddress1:
+          type: string
+          description: Receiver Address 1
+          maxLength: 35
+        receiverAddress2:
+          type: string
+          description: Receiver Address 2
+          maxLength: 35
+        receiverCity:
+          type: string
+          description: Receiver City
+          maxLength: 35
+        receiverState:
+          type: string  
+          description: Receiver State
+          maxLength: 35
+        receiverZip:
+          type: string
+          description: Receiver Zip/Postal Code
+          maxLength: 35
+        receiverCountry:
+          type: string  
+          description: Receiver Country
+          maxLength: 35
+        receiverPhoneNumber:
+          type: string  
+          description: Receiver Phone number
+          maxLength: 35
+        receiverEmail:
+          type: string
+          description: Receiver Email
+          maxLength: 35
+        receiverBankIdType:
+          type: string  
+          description: Receiver Bank ID Type such as NID, SWIFT
+          maxLength: 35
+        receiverBankId:
+          type: string
+          description: Receiver Bank ID value
+          maxLength: 35
+        receiverBankName:
+          type: string
+          description: Receiver Bank Name
+          maxLength: 255
+        receiverBankAddress1:
+          type: string
+          description: Receiver Bank Address 1
+          maxLength: 35
+        receiverBankAddress2:
+          type: string  
+          description: Receiver Bank Address 2
+          maxLength: 35
+        receiverBankCity:
+          type: string
+          description: Receiver Bank City
+          maxLength: 35
+        receiverBankState:
+          type: string  
+          description: Receiver Bank State
+          maxLength: 35
+        receiverBankZip:
+          type: string
+          description: Receiver Bank Zip/Postal Code
+          maxLength: 35
+        receiverBankCountry:
+          type: string
+          description: Receiver Bank Country Name
+          maxLength: 35
+        intermediaryReceiverName:
+          type: string
+          description: Intermediary Receiver Bank Name
+          maxLength: 255
+        intermediaryReceiverAddress1:
+          type: string
+          description: Intermediary Receiver Bank Address 1
+          maxLength: 35
+        intermediaryReceiverAddress2:
+          type: string
+          description: Intermediary Receiver Bank Address 2 
+          maxLength: 35
+        intermediaryReceiverCity:
+          type: string
+          description: Intermediary Receiver Bank City
+          maxLength: 35
+        intermediaryReceiverState:
+          type: string
+          description: Intermediary Receiver Bank State
+          maxLength: 35
+        intermediaryReceiverZip:
+          type: string
+          description: Intermediary Receiver Bank Zip/Postal Code
+          maxLength: 35
+        intermediaryReceiverCountry:
+          type: string
+          description: Intermediary Receiver Bank Country Name
+          maxLength: 35
+        intermediaryReceiverIdType:
+          type: string            
+          description: Intermediary Receiver Bank ID Type
+          maxLength: 35
+        intermediaryReceiverId:
+          type: string
+          description: Intermediary Receiver Bank ID value
+          maxLength: 35
+        ultimateReceiverName:
+          type: string
+          description: Ultimate Receiver Name
+          maxLength: 255
+        ultimateReceiverAccountNumber:
+          type: string
+          description: Ultimate Receiver Account Number
+          maxLength: 35
+        ultimateReceiverAddress1:
+          type: string
+          description: Ultimate Receiver Address 1
+          maxLength: 35
+        ultimateReceiverAddress2:
+          type: string
+          description: Ultimate Receiver Address 2
+          maxLength: 35
+        ultimateReceiverTaxId:
+          type: string
+          description: Ultimate Receiver ACH Company ID
+          maxLength: 35
+        ultimateReceiverCity:
+          type: string
+          description: Receiver Ultimate City
+          maxLength: 35
+        ultimateReceiverState:
+          type: string
+          description: Ultimate Receiver State
+          maxLength: 35
+        ultimateReceiverZip:
+          type: string
+          description: Ultimate Receiver Zip/Postal Code
+          maxLength: 35
+        ultimateReceiverCountry:
+          type: string
+          description: Ultimate Receiver Country Name
+          maxLength: 35
+        quoteId:
+          type: string
+          description: "FX quote associated with the SWIFT payment."
+          example: 'Payment for the invoice ABC123'
+          maxLength: 200
+        forexContract:
+          type: string
+          example: '1325'
+          description: Receiver Bank Address 1
+          maxLength: 255
+        recurrence:
+          $ref: '#/components/schemas/PaymentRecurrenceSearch'
+        status:
+          type: string
+          example: FUTURE_DATED
+        audit:
+          $ref: '#/components/schemas/Audit'
+        createdBy:
+          type: string
+          description: Payment Created By
+          example: System etc.
+        creationDateTime:
+          type: string
+          description: Payment Creation Date Time
+          example: 2023-06-23T14:56:59 etc.
+
+    GetPaymentData:
+      properties:
+        paymentUID:
+          type: integer
+          description: The unique payment reference id assigned by the Finzly-Payment system.
+          example: "110289 etc."
+        externalReferenceId:
+          type: string
+          maxLength: 255
+          description: 'Unique reference id set by the originator system.'
+          example: 'pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc.'
+        sourceReferenceId:
+          type: string
+          maxLength: 255
+          description: 'Source reference id signifies the bulk file id for the payment originated via FTP.'
+          example: '10011 etc.'
+        counterParty:
+          type: string
+          description: "Legal entity name exist in the Finzly-CRM system and associated with the payment."
+          example: "ABC Shipping etc."
+          maxLength: 255
+        counterPartyId:
+          type: string
+          description: "Legal entity [CustomerUID] exist in the Finzly-CRM system and associated with the payment."
+          example: "10920 etc."
+          maxLength: 11
+        customerType:
+          type: string
+          description: "Customer type associated with the payment."
+          example: "Corporate or Consumer"
+          maxLength: 45
+        businessUnit:
+          type: string
+          description: "Processing org name assigned to the payment."
+          maxLength: 255
+          example: "Bank Name etc."
+        businessUnitId:
+         type: string
+         description: "Processing org id assigned to the payment."
+         maxLength: 11
+         example: "189 etc."
+        channel:
+          type: string
+          description: The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.
+          example: API, TELLER etc.
+          maxLength: 50
+        costCenter:
+          type: string
+          description: The cost center associated with the payment. A cost center is also known as a cost pool or expense center
+          example: "562687, Global etc."
+          maxLength: 50
+        book:
+          type: string
+          description: The book associated with the payment. The book is needed to assign proper GL accounts.
+          example: "ACH, Wire etc."
+          maxLength: 50
+        paymentDate:
+          type: string
+          description: The payment date when the payment is processed
+        senderUID:
+          type: string
+          description: "Sender unique identifier [customerUID] defined in the Finzly-CRM system and associated with the payment."
+          example: '3248 etc.'
+          maxLength: 11
+        senderAmount:
+          type: string
+          description: The sender payment amount.
+        senderCurrency:
+          type: string
+          description: Sender currency in ISO Currency Code format
+          maxLength: 3
+        receiverAmount:
+          type: number
+          description: Thereceiver payment amount.
+        receiverCurrency:
+          type: string
+          description: Receiver currency in ISO Currency Code format
+          maxLength: 3
+        deliveryMethod:
+          type: string
+          description: One of the payment network delivery methods that includes ACH, FEDWIRE, RTP, FEDNOW, SWIFT
+          example: 'ACH, FEDWIRE, RTP, FEDNOW, SWIFT'
+          maxLength: 20
+        paymentNotes:
+          type: string
+          description: "Notes associated with the payment."
+          example: 'Payment for the invoice ABC123'
+          maxLength: 140
+        deliveryAgentType:
+          type: string
+          description: "Debit account type. The possible values are Deposit, GL, MCA."
+          example: "Deposit, GL, MCA"
+        wireType:
+          type: string
+          description: "Wire type associated with the payment request."
+          example: 'Type of Payment - Same Day or Regular ACH. Possible values are REGULAR_ACH, SAME_DAY_ACH, WIRE, BOOK_TRANSFER, REALTIME_RTP, REALTIME_FEDNOW, SPOT_SWIFT, SAME_DAY_SWIFT, NEXT_DAY_SWIFT etc.'
+          maxLength: 35
+        senderName:
+          type: string
+          example: 'Sender Name'
+          description: Sender name associated with the payment.
+          maxLength: 255
+        senderAccountNumber:
+          type: string
+          description: "Sender bank account number associated with the payment."
+          example: '8982618 etc.'
+          maxLength: 35
+        senderAccountName:
+          type: string
+          maxLength: 255
+          description: Sender bank account name
+          example: 'DDA Account'
+        senderAddress1:
+          type: string
+          description: Sender address 1
+          maxLength: 35
+        senderAddress2:
+          type: string
+          description: Sender address 2
+          maxLength: 35
+        senderCity:
+          type: string
+          description: Sender city
+          maxLength: 35
+        senderState:
+          type: string
+          description: Sender State
+          maxLength: 35
+        senderZip:
+          type: string
+          description: Sender Zip Code
+          maxLength: 35
+        senderCountryCode:
+          type: string
+          description: Sender Country Code
+          maxLength: 35
+        senderCountry:
+          type: string
+          description: Sender Country Name  
+          maxLength: 35        
+        senderAccountType:
+          type: string
+          description: Sender Account Type  
+          maxLength: 35        
+        senderBankIdType:
+          type: string
+          description: Sender Bank ID type such as NID, SWIFT.
+          maxLength: 35 
+        senderBankId:
+          type: string
+          description: Sender Bank ID value per the senderBankIdType 
+          maxLength: 35
+        senderBankName:
+          type: string
+          description: Sender Bank Name 
+          maxLength: 255
+        senderBankAddress1:
+          type: string
+          description: Sender Bank Address 1 
+          maxLength: 35
+        senderBankAddress2:
+          type: string
+          description: Sender Bank Address 2 
+          maxLength: 35
+        senderBankCity:
+          type: string
+          description: Sender Bank City 
+          maxLength: 35
+        senderBankState:
+          type: string
+          description: Sender Bank State 
+          maxLength: 35
+        senderBankZip:
+          type: string
+          description: Sender Bank Zip/Postal code 
+          maxLength: 35
+        senderBankCountry:
+          type: string    
+          description: Sender Bank Country Name
+          maxLength: 35
+        intermediarySenderName:
+          type: string
+          description: Sender Intermediary Bank Name
+          maxLength: 25
+        intermediarySenderAddress1:
+          type: string
+          description: Sender Intermediary Bank Address 1
+          maxLength: 35
+        intermediarySenderAddress2:
+          type: string
+          description: Sender Intermediary Bank Address 2
+          maxLength: 35
+        intermediarySenderCity:
+          type: string
+          description: Sender Intermediary Bank City
+          maxLength: 35
+        intermediarySenderState:
+          type: string  
+          description: Sender Intermediary Bank State
+          maxLength: 35
+        intermediarySenderZip:
+          type: string
+          description: Sender Intermediary Bank Zip/Postal code
+          maxLength: 35
+        intermediarySenderCountry:
+          type: string
+          description: Sender Intermediary Bank Country Name
+          maxLength: 35
+        intermediarySenderId:
+          type: string
+          description: Sender Intermediary Bank ID
+          maxLength: 35
+        intermediarySenderIdType:
+          type: string          
+          description: Sender Intermediary Bank ID Type
+          maxLength: 35
+        ultimateSenderName:
+          type: string
+          description: Ultimate Sender Name
+          maxLength: 255
+        ultimateSenderAccountNumber:
+          type: string
+          description: Ultimate Sender Account Number
+          maxLength: 35
+        ultimateSenderAddress1:
+          type: string
+          description: Ultimate Sender Address 1
+          maxLength: 35
+        ultimateSenderAddress2:
+          type: string
+          description: Ultimate Sender Address 2
+          maxLength: 35
+        ultimateSenderTaxId:
+          type: string
+          description: Ultimate Sender ACH Company ID
+          maxLength: 35
+        ultimateSenderCity:
+          type: string
+          description: Ultimate Sender City
+          maxLength: 35
+        ultimateSenderState:
+          type: string
+          description: Ultimate Sender State
+          maxLength: 35
+        ultimateSenderZip:
+          type: string
+          description: Ultimate Sender Zip/Postal code
+          maxLength: 35
+        ultimateSenderCountry:
+          type: string
+          description: Ultimate Sender Country Name
+          maxLength: 35
+        fboAccountName:
+          type: string
+          description: FBO account name
+          maxLength: 255
+        fboAccountNumber:
+          type: string
+          description: FBO account number
+          maxLength: 100
+        fboAccountType:
+          type: string
+          description: FBO account type
+          maxLength: 30
+        receiverName:
+          type: string
+          description: Receiver name
+          maxLength: 255          
+        receiverAccountNumber:
+          type: string
+          description: Receiver account number
+          maxLength: 35
+        receiverAccountType:
+          type: string
+          description: Receiver account type
+          maxLength: 35
+        receiverType:
+          type: string  
+          description: Receiver Type
+          maxLength: 35
+        receiverAddress1:
+          type: string
+          description: Receiver Address 1
+          maxLength: 35
+        receiverAddress2:
+          type: string
+          description: Receiver Address 2
+          maxLength: 35
+        receiverCity:
+          type: string
+          description: Receiver City
+          maxLength: 35
+        receiverState:
+          type: string  
+          description: Receiver State
+          maxLength: 35
+        receiverZip:
+          type: string
+          description: Receiver Zip/Postal Code
+          maxLength: 35
+        receiverCountry:
+          type: string  
+          description: Receiver Country
+          maxLength: 35
+        receiverPhoneNumber:
+          type: string  
+          description: Receiver Phone number
+          maxLength: 35
+        receiverEmail:
+          type: string
+          description: Receiver Email
+          maxLength: 35
+        receiverBankIdType:
+          type: string  
+          description: Receiver Bank ID Type such as NID, SWIFT
+          maxLength: 35
+        receiverBankId:
+          type: string
+          description: Receiver Bank ID value
+          maxLength: 35
+        receiverBankName:
+          type: string
+          description: Receiver Bank Name
+          maxLength: 255
+        receiverBankAddress1:
+          type: string
+          description: Receiver Bank Address 1
+          maxLength: 35
+        receiverBankAddress2:
+          type: string  
+          description: Receiver Bank Address 2
+          maxLength: 35
+        receiverBankCity:
+          type: string
+          description: Receiver Bank City
+          maxLength: 35
+        receiverBankState:
+          type: string  
+          description: Receiver Bank State
+          maxLength: 35
+        receiverBankZip:
+          type: string
+          description: Receiver Bank Zip/Postal Code
+          maxLength: 35
+        receiverBankCountry:
+          type: string
+          description: Receiver Bank Country Name
+          maxLength: 35
+        intermediaryReceiverIdType:
+          type: string            
+          description: Intermediary Receiver Bank ID Type
+          maxLength: 35
+        intermediaryReceiverId:
+          type: string
+          description: Intermediary Receiver Bank ID value
+          maxLength: 35          
+        intermediaryReceiverName:
+          type: string
+          description: Intermediary Receiver Bank Name
+          maxLength: 255
+        intermediaryReceiverAddress1:
+          type: string
+          description: Intermediary Receiver Bank Address 1
+          maxLength: 35
+        intermediaryReceiverAddress2:
+          type: string
+          description: Intermediary Receiver Bank Address 2 
+          maxLength: 35
+        intermediaryReceiverCity:
+          type: string
+          description: Intermediary Receiver Bank City
+          maxLength: 35
+        intermediaryReceiverState:
+          type: string
+          description: Intermediary Receiver Bank State
+          maxLength: 35
+        intermediaryReceiverZip:
+          type: string
+          description: Intermediary Receiver Bank Zip/Postal Code
+          maxLength: 35
+        intermediaryReceiverCountry:
+          type: string
+          description: Intermediary Receiver Bank Country Name
+          maxLength: 35
+        ultimateReceiverName:
+          type: string
+          description: Ultimate Receiver Name
+          maxLength: 255
+        ultimateReceiverAccountNumber:
+          type: string
+          description: Ultimate Receiver Account Number
+          maxLength: 35
+        ultimateReceiverAddress1:
+          type: string
+          description: Ultimate Receiver Address 1
+          maxLength: 35
+        ultimateReceiverAddress2:
+          type: string
+          description: Ultimate Receiver Address 2
+          maxLength: 35
+        ultimateReceiverTaxId:
+          type: string
+          description: Ultimate Receiver ACH Company ID
+          maxLength: 35
+        ultimateReceiverCity:
+          type: string
+          description: Receiver Ultimate City
+          maxLength: 35
+        ultimateReceiverState:
+          type: string
+          description: Ultimate Receiver State
+          maxLength: 35
+        ultimateReceiverZip:
+          type: string
+          description: Ultimate Receiver Zip/Postal Code
+          maxLength: 35
+        ultimateReceiverCountry:
+          type: string
+          description: Ultimate Receiver Country Name
+          maxLength: 35
+        quoteId:
+          type: string
+          description: "FX quote associated with the SWIFT payment."
+          example: 'Payment for the invoice ABC123'
+          maxLength: 200
+        forexContract:
+          type: string
+          example: '1325'
+          description: FX Contract Number
+          maxLength: 35
+        imad: 
+          type: string
+          description: It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers
+          example: 20220627MMQCTR7B000012
+        omad: 
+          type: string
+          description: The OMAD indicates a unique number assigned to each transfer providing delivery-related information
+          example: 0328QMGFNP6400002503281343FT0120232023          
+        fee:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'
+        recurrence:
+          $ref: '#/components/schemas/PaymentRecurrenceSearch'
+        status:
+          type: string
+          example: FUTURE_DATED
+        audit:
+          $ref: '#/components/schemas/Audit'
+        createdBy:
+          type: string
+          description: Payment Created By
+          example: System etc.
+        creationDateTime:
+          type: string
+          description: Payment Creation Date Time
+          example: 2023-06-23T14:56:59 etc.
