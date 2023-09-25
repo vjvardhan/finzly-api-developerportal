@@ -15,7 +15,7 @@ export const theme = {
   colors: {
     // tonalOffset: 0.2,
     primary: {
-      main: '#227a88',
+      main: '#002E88',
       // light: ({ colors }) => lighten(colors.tonalOffset, colors.primary.main),
       // dark: ({ colors }) => darken(colors.tonalOffset, colors.primary.main),
       // contrastText: ({ colors }) => readableColor(colors.primary.main),
@@ -159,7 +159,7 @@ export const theme = {
     },
   },
   rightPanel: {
-    backgroundColor: '#263238',
+    backgroundColor: '#002E88',
     width: '40%',
     // textColor: '#ffffff',
   },
