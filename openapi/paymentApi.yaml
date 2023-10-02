@@ -1732,7 +1732,7 @@
           },
           "senderName" : {
             "type" : "string",
-            "description" : "Sender Name"
+            "description" : "Sender name associated with the payment."
           },
           "senderAccountNo" : {
             "type" : "string",
