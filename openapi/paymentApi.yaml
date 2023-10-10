@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment API",
-    "version" : "2.2.2"
+    "version" : "2.2.3"
   },
   "servers" : [ {
     "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
@@ -1729,6 +1729,10 @@
           "receiverName" : {
             "type" : "string",
             "description" : "Receiver name"
+          },
+          "senderName" : {
+            "type" : "string",
+            "description" : "Sender name associated with the payment."
           },
           "senderAccountNo" : {
             "type" : "string",
