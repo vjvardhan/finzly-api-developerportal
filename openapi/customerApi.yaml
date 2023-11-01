@@ -1,2025 +1,2704 @@
-openapi: 3.0.0
-servers:
-  - description: FinzlyConnect Customer APIs
-    url: https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token
-    variables:
-      tenant:
-        default: sandbox
-        description: BankOS tenant code
-info:
-  version: 2.2.0
-  title: Customer and Account API
-tags:
-  - name: Customer
-    description: |
-      Customer APIs entitles the downstream partners, Banks and their associates to formally onboard clients with all the necessary information required to perform financial operations. 
-      
-      These API's will further help to search & maintain these onboarded clients, update any changes in client information.
-
-      Following use cases helps you to understand the current customer capabilities exposed via APIs
-      
-      1. Create Customer
-      2. Update Customer
-      3. Search Customers
-      4. Get Customer Details
-
-  - name: Customer Account
-    description: |
-      Customer Accounts APIs helps you to manage the accounts associated with the customer.
-      
-      Following use cases helps you to understand the current customer accounts capabilities exposed via APIs
-      
-      1. Create Customer Account
-      2. Update Customer Account
-      3. Search Customer Accounts
-      4. Get Customer Account Details
-
-  - name: Customer Contact
-    description: |
-      Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. 
-      
-      Once the contacts are defined the contact UID can be used in the payment API as a receiver [accountUID] to initiate a payment request. 
-    
-      Following use cases helps you to understand the current customer contacts capabilities exposed via APIs
-      
-      1. Create Customer Contact
-      2. Update Customer Contact
-      3. Search Customer Contacts
-      4. Get Customer Contact Details
-      
-paths: 
-  /v2/customers:  
-    post:
-      tags:
-        - Customer
-      summary: Add customer
-      operationId: createCustomer
-      description: Create a customer in the BankOS CRM system
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateCustomerRequest'
-        description: Customer details
-        required: true
-      responses:
-        default:
-          description: Customer details with newly created ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '402':
-          description: The parameters were valid but the request failed.
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '409':
-          description: The request conflicts with another request (perhaps due to using the same idempotent key).
-        '429':
-          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
-        '500':
-          description: Something went wrong on back end.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable      
-    get:
-      tags:
-         - Customer
-      summary: Search customers
-      operationId: searchCustomers
-      description: Search customers
-      parameters:
-      - name: legalName
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Full text search of full legal name
-      - name: customerType
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Search by type of customer such as Corporate, Consumer, Financial Institution, Downstream Partner and Processing Org
-      - name: shortName
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Search by Customer short name
-      - name: customerId
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Search by customerId      
-      - name: status
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Search by status
-      - name: taxId
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Search by taxId
-      - name: achCompanyID
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Search by ach company Id
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: string
-          description: Which number of page of results to be returned
-          example: 1
-      - name: limit
-        in: query
-        required: true
-        schema:
-          type: string
-          description: Total number of records to be returned for a given page
-          example: 100
-          maximum: 1000
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCustomersResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCustomersResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '402':
-          description: The parameters were valid but the request failed.
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '409':
-          description: The request conflicts with another request (perhaps due to using the same idempotent key).
-        '429':
-          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
-        '500':
-          description: Something went wrong on back end.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable 
-          
-  /v2/customers/{customerUID}:
-    get:
-      tags: 
-         - Customer
-      summary: Get customer
-      operationId: getCustomerByCustomerUID
-      description: Retrieve the customer information from the system
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique identifier associated with the customer in the Finzly's CRM system
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCustomersResponse'
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/GetCustomersResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '402':
-          description: The parameters were valid but the request failed.
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '409':
-          description: The request conflicts with another request (perhaps due to using the same idempotent key).
-        '429':
-          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
-        '500':
-          description: Something went wrong on back end.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable   
-    put:
-      tags:
-        - Customer
-      summary: Update customer
-      operationId: updateCustomerByCustomerUID
-      description: Update an existing customer information
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique identifier associated with the customer in the Finzly's CRM system   
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateCustomerRequest'
-        description: Customer details
-        required: true
-      responses:
-        default:
-          description: Customer details with newly created ID
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
-        '200':
-          description: Successfully processed request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateUpdateCustomerResponse'
-        '400':
-          description: bad input parameter environment
-        '401':
-          description: You are not authorized to access the resource
-        '402':
-          description: The parameters were valid but the request failed.
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '405':
-          description: bad input parameter environment
-        '409':
-          description: The request conflicts with another request (perhaps due to using the same idempotent key).
-        '429':
-          description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
-        '500':
-          description: Something went wrong on back end.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-
-  /v2/customers/{customerUID}/accounts:
-    post:
-      tags: 
-         - Customer Account
-      summary: Create customer account
-      operationId: createCustomerAccount
-      description: Create a customer account
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Unique Customer Id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAccountRequest'
-        description: Account Info
-        required: true
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateAccountResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/CreateAccountResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable  
-    get:
-      tags: 
-         - Customer Account
-      summary: Search Customer Accounts
-      operationId: searchCustomerAccounts
-      description: Search the customer accounts for a given customer
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique identifier assigned by the system
-      - name: accountType
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Type of account
-          example: "Saving or Checking"
-      - name: status
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Status if the account
-          example: "Active or Inactive"
-      - name: currency
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Currency of the account
-          example: "USD"
-      - name: wireEnabled
-        in: query
-        required: false
-        example: true or false
-        schema:
-          type: string
-      - name: accountNumber
-        in: query
-        required: false
-        example: 11223345
-        schema:
-          type: string          
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/SearchAccountResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/SearchAccountResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-
-
-          
-  /v2/customers/{customerUID}/accounts/{accountUID}:
-    get:
-      tags: 
-         - Customer Account
-      summary: Get customer account
-      operationId: getCustomerAccountByAccountUID
-      description: Retrieve an account details
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer Id
-      - name: accountUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Account Id
-          example: "Account UID"
-      - name: includeAccountBalance
-        in: query
-        required: false
-        schema:
-          type: boolean
-          description: "Pass this as true if to pull in account balance as well, false otherwise"
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: string
-          description: Which page of results are to be returned
-      - name: limit
-        in: query
-        required: true
-        schema:
-          type: string
-          description: How many records are returned in the result set
-          maximum: 1000
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetAccountResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/GetAccountResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-          
-    put:
-      tags: 
-         - Customer Account
-      summary: Update customer account
-      operationId: updateCustomerAccountByAccountUID
-      description: Update Customer Account
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer Id
-      - name: accountUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Account Id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateAccountRequest'
-        description: Account Info
-        required: true
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateAccountResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/UpdateAccountResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-    delete:
-      tags: 
-         - Customer Account
-      summary: Delete customer account
-      operationId: deleteCustomerAccountByAccountUID
-      description: Delete Customer Account
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer Id
-      - name: accountUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Account Id
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateAccountResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/UpdateAccountResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable          
-
-  /v2/customers/{customerUID}/contacts:
-    post:
-      tags: 
-         - Customer Contact
-      summary: Create customer contact
-      operationId: createCustomerContact
-      description: Create a new customer contact (Beneficiary)
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Unique Customer Id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerContact'
-        description: Account Info
-        required: true
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-    get:
-      tags: 
-         - Customer Contact
-      summary: Search customer contacts
-      operationId: searchCustomerContacts
-      description: Search customer contacts for a given customer
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Unique Customer Id
-      - name: contactName
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Contact name
-      - name: accountNumber
-        in: query
-        required: false
-        schema:
-          type: string
-          description: Contact Account Number
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: string
-          description: Which page of results are to be returned
-      - name: limit
-        in: query
-        required: true
-        schema:
-          type: string
-          description: How many records are returned in the result set
-          maximum: 1000
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/SearchCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/SearchCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-          
-  /v2/customers/{customerUID}/contacts/{contactUID}:
-    get:
-      tags: 
-         - Customer Contact
-      summary: Get customer contact
-      operationId: getCustomerContactByUID
-      description: Retrieve customer contact details
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique id in finzly system
-      - name: contactUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Contact unique id in finzly system
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/GetCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable
-      
-    put:
-      tags: 
-         - Customer Contact
-      summary: Update customer contact
-      operationId: updateCustomerContactByUID
-      description: Update customer contact details
-      parameters:
-      - name: customerUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Customer unique id in finzly system
-      - name: contactUID
-        in: path
-        required: true
-        schema:
-          type: string
-          description: Contact unique id in finzly system
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerContact'
-        description: Account Info
-        required: true
-      responses:
-        default:
-          description: Successful
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                  $ref: '#/components/schemas/CreateCustomerContactResponse'
-        '400':
-          description: Bad request
-        '401':
-          description: You are not authorized to access the resource
-        '403':
-          description: Accessing the resource you were trying to reach is forbidden
-        '404':
-          description: The resource you were trying to reach is not found
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Error'
-        '503':
-          description: Service unavailable    
-
-security: 
-  - oAuth2:
-    - roles
-components:
-  securitySchemes:
-    oAuth2:
-      type: oauth2
-      description: BankOS OpenBanking API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow. 
-      flows:
-        authorizationCode:
-          authorizationUrl: https://sandbox-security-uat.finzly.io/auth
-          tokenUrl: https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token
-          scopes:
-            roles: manage
-  schemas:
-    Error:
-      properties:
-        code:
-          type: string
-          example: invalidMethod
-          description: Error code assigned by the system
-        description:
-          type: string
-          example: Invalid HTTP method used
-          description: Error description to provide addtional details about the error code
-
-    Pagination:
-      properties:
-        totalRecords:
-          type: number
-          format: integer
-          example: 100
-          description: Total number of records exist in the system for a given filter
-        returnedRecords:
-          type: number
-          format: integer
-          example: 10
-          description: Total number of records returned
-        pageReturned:
-          type: number
-          format: integer
-          example: 2
-          description: Current number of page returned
-        pageSize:
-          type: number
-          format: integer
-          example: 10
-          description: Total number of records in a given pages
-          
-    AccountExternal:
-      properties:
-        externalProvider:
-          type: string
-          description: Identifier of the system of record
-          example: 'Plaid'
-        externalId:
-          type: string
-          description: External account id
-          example: '1234567'
-        externalAuthToken:
-          type: string
-          description: External account auth token
-          example: '1234567'
-
-    Groups:
-      type: object
-      properties:
-        condition: 
-          type: string
-          example: OR
-        type: 
-          type: string
-        groups: 
-          type: array
-          items: 
-            $ref: '#/components/schemas/Groups'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fields'
-            
-    Fields:
-      type: object
-      properties:
-        id: 
-          type: string
-          example: beneficiaryBankSWIFT
-        displayName: 
-          type: string
-          example: Beneficiary Bank SWIFT
-        swiftCode: 
-          type: string
-        swiftTag: 
-          type: string
-        fieldLength: 
-          type: integer
-  
-    PaymentNoteOptionValueChildren:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            displayName:
-              type: string
-              example: Drivers Licence
-            swiftCode:
-              type: string
-              example: DVB001
-            group:
-              type: boolean
-              example: false
-            children:
-              $ref: '#/components/schemas/PaymentNoteOptionValueChildren'
- 
-    CustomerAddress:
-      required:
-        - addressLine1
-        - city
-        - postalCode
-        - countryCode
-      properties:
-        addressLine1:
-          type: string
-          description: Address line 1
-          example: '111 My Street'
-        addressLine2:
-          type: string
-          description: Address Line 2
-          example: 'Suite 210'
-        city:
-          type: string
-          description: City
-          example: 'Charlotte'
-        state:
-          type: string
-          description: State
-          example: 'North Carolina'
-        postalCode:
-          type: string
-          description: Postal code
-          example: '28269'
-        countryCode:
-          type: string
-          description: ISO country code
-          example: 'USA'          
-        country:
-          type: string
-          description: Country name
-          example: 'UNITED STATES OF AMERICA'
-
-    CustomerAdditonalProfileDetails:
-      properties:
-        creditclient: 
-          type: boolean
-        accountanalysis: 
-          type: boolean
-        sso: 
-          type: boolean
-        billingcustomer: 
-          type: boolean
-        restrictedaccess: 
-          type: boolean
-        achPositivePay: 
-          type: boolean
-        achWhitelist: 
-          type: boolean
-        achNonPrefund: 
-          type: boolean
-        achNonPrefundLimit: 
-          type: string
-        paymentFileAuthentication: 
-          type: boolean
-        detailsofCharge: 
-          type: string
-          enum:
-            - OUR
-            - BEN
-            - SHA
-        fxPricingTier: 
-          type: string
-        crediValueAdjustment: 
-          type: string
-
-    LegalEntityAccessSettings:
-      properties:
-        allowOnlineAccess: 
-          type: boolean
-        userPinForNewEntry: 
-          type: boolean
-        userDualApproval: 
-          type: boolean
-        userPinForApproval: 
-          type: boolean
-        notificationsDualApproval: 
-          type: boolean
-        customerPinForNewEntry: 
-          type: boolean
-        customerDualApproval:    
-          type: boolean
-        customerPinForApproval: 
-          type: boolean
-        benePinForNewEntry: 
-          type: boolean
-        beneDualApproval: 
-          type: boolean
-        benePinForApproval: 
-          type: boolean
-        paymentPinForNewEntry: 
-          type: boolean
-        paymentLimitforFirstApprover: 
-          type: number
-        paymentDualApproval: 
-          type: boolean
-        paymentLimitforSecondApprover: 
-          type: number
-        paymentNumberOfApprovers: 
-          type: number
-          enum:
-           - 0
-           - 1
-           - 2              
-        paymentPinForApproval: 
-          type: boolean
-        feeTierForApproval: 
-          type: boolean       
-          
-    CreateUpdateCustomerResponse:
-      properties:
-        status:
-          type: string
-          description: "This will return Success/Failed"
-          example: "Success or Failure"
-        code:
-          type: string
-          description: "This will indicate the error code in case of API error"
-          example: "CUST001 etc."
-        message:
-          type: string
-          description: "This will be the detailed error message indicating what failed and how to fix the issue"
-          example: "Failed to create a customer due to the mandatory attribute <attribute-name> is not provide."
-        data:
-          type: object
-          properties:
-            customerUID:
-              type: string
-              example: "123"
-              description: "Customer id within Finzly's CRM system"
-            externalReferenceId:
-              type: string
-            shortName:
-              type: string
-            customerEntityStatus:
-              type: string
-              description: "Status of the customer"
-              example: "New"
-
-    CreateCustomerRequest:
-      required:
-        - externalReferenceId
-        - legalName
-        - shortName
-        - customerType
-        - taxId
-        - addressLine1
-        - city
-        - state
-        - countryCode
-        - mailAddressSameAsLegal
-      properties:
-        externalReferenceId:
-          type: string
-          description: "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed)."
-          example: "REQ123"
-        legalName:
-          type: string
-          description: Customer's legal name
-          example: "ABC Bank"
-        shortName:
-          type: string
-          description: Customer's short name
-          example: "BOFA"
-        customerId:
-          type: string
-          description: Customer ID
-          example: "CUST123"
-        customerType: 
-          type: string
-          description: Type of customer
-          enum:
-            - Corporate
-            - Consumer
-            - Financial Institution
-            - Downstream Partner
-            - Processing Org
-          example: "Corporate,Consumer,Downstream Partner,Financial Institution,Processing Org"
-        taxId: 
-          type: string
-          description: Tax ID 
-          example: "123456789"
-        achCompanyID: 
-          type: string
-          example: 1234567899
-          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
-        lei:
-          type: string
-          description: Legal Entity ID for accounting/tax purpose
-          example: "ABC1234"
-        swiftcode: 
-          type: string
-          description: SWIFT code
-          example: "BOFAUS3N"
-        language:
-          type: string
-          description: "Suported language"
-          example: "English"
-        emailAddress: 
-          type: string
-          description: Customer Email Address
-          example: "abc@abc.com"
-        phoneNumber:
-          type: string
-          description: Customer's Phone number        
-          example: "123-124-9877"
-        faxNumber:
-          type: string
-          description: Customer's phone number        
-          example: "123-124-9877"
-        website:
-          type: string
-          description: Customer's website
-          example: "http://www.finzly.com"
-        logoUrl:
-          type: string
-          description: Customer's logo url
-          example: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
-        linkedinUrl:
-          type: string
-          description: Customer's LinkedIn profile URL     
-          example: "https://www.linkedin.com/company/finzly"
-        twitterUrl:
-          type: string
-          description: Customer's twitter url        
-          example: "https://twitter.com/finzly"
-        legalAddress:
-          $ref: '#/components/schemas/CustomerAddress'
-        mailAddressSameAsLegal: 
-          type: boolean
-        mailingAddress:
-          $ref: '#/components/schemas/CustomerAddress'
-        relationshipType:
-          type: string
-          description: Relationship Type
-          enum:
-            - customer
-            - bank
-            - thirdparty
-            - self
-          example: "Customer or Bank or ThirdParty or Self"
-        partnerOrgShortName: 
-          type: string
-          description: This is shortname of the partner org. This is required if the relationshipType is Third Party optional otherwise.
-          example: "ABC"
-        costCenter: 
-          type: string
-          description: Cost Center code
-          example: "123123121"
-        relationshipManager: 
-          type: string
-          description: Relationship manager name. It needs to be a valid user login id in the system
-          example: "testuser"
-        originatingOfficer: 
-          type: string
-          description: Originating Officer name. Its needs to be a valid user login id in the system
-          example: "testuser"
-        parentEntityShortName: 
-          type: string
-          description: This is shortname of the parent org
-          example: "ParentEntity"
-        addtionalProfileDetails:
-          type: array
-          items: 
-            $ref: '#/components/schemas/CustomerAdditonalProfileDetails'
-        secCodes:
-          type: array
-          description: "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity" 
-          items:
-            type: string
-            example: "WEB,CCD,PPD,TEL,IAT"
-        note: 
-          type: string
-        legalEntityAccessSettings:
-          $ref: '#/components/schemas/LegalEntityAccessSettings'
-
-    UpdateCustomerRequest:
-      properties:
-        externalReferenceId:
-          type: string
-          description: "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed)."
-          example: "REQ123"
-        legalName:
-          type: string
-          description: Customer's legal name
-          example: "ABC Bank"
-        customerId:
-          type: string
-          description: Customer Id assigned by the user.
-          example: "CUST123"
-        customerType: 
-          type: string
-          description: Type of customer
-          enum:
-            - Corporate
-            - Consumer
-            - Financial Institution
-            - Downstream Partner
-            - Processing Org
-          example: "Corporate"
-        taxId: 
-          type: string
-          description: Tax ID / TIN/SSN
-          example: "123456789"
-        achCompanyID: 
-          type: string
-          example: 1234567899
-          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
-        lei:
-          type: string
-          description: Legal Entity ID for accounting/tax purpose
-          example: "ABC1234"
-        swiftcode: 
-          type: string
-          description: SWIFT code
-          example: "BOFAUS3N"
-        language:
-          type: string
-          description: "Suported language"
-          example: "English"
-        emailAddress: 
-          type: string
-          description: Customer Email Address
-          example: "abc@abc.com"
-        phoneNumber:
-          type: string
-          description: Customer's Phone number        
-          example: "123-124-9877"
-        faxNumber:
-          type: string
-          description: Customer's phone number        
-          example: "123-124-9877"
-        website:
-          type: string
-          description: Customer's website
-          example: "http://www.finzly.com"
-        logoUrl:
-          type: string
-          description: Customer's logo url
-          example: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
-        linkedinUrl:
-          type: string
-          description: Customer's LinkedIn profile URL     
-          example: "https://www.linkedin.com/company/finzly"
-        twitterUrl:
-          type: string
-          description: Customer's twitter url        
-          example: "https://twitter.com/finzly"
-        legalAddress:
-          $ref: '#/components/schemas/CustomerAddress'
-        mailAddressSameAsLegal: 
-          type: boolean
-        mailingAddress:
-          $ref: '#/components/schemas/CustomerAddress'
-        relationshipType:
-          type: string
-          description: Relationship Type
-          enum:
-            - customer
-            - bank
-            - thirdparty
-            - self
-          example: "Customer or Bank or ThirdParty or Self"
-        partnerOrgShortName: 
-          type: string
-          description: This is shortname of the partner org. This is required if the relationshipType is Third Party optional otherwise
-          example: "ABC"
-        costCenter: 
-          type: string
-          description: Cost Center code
-          example: "123123121"
-        relationshipManager: 
-          type: string
-          description: Relationship manager name. It needs to be a valid user login id in the system
-          example: "testuser"
-        originatingOfficer: 
-          type: string
-          description: Originating Officer name. Its needs to be a valid user login id in the system
-          example: "testuser"
-        parentEntityShortName: 
-          type: string
-          description: This is shortname of the parent org
-          example: "ParentEntity"
-        addtionalProfileDetails:
-          type: array
-          items: 
-            $ref: '#/components/schemas/CustomerAdditonalProfileDetails'
-        secCodes:
-          type: array
-          description: "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity" 
-          items:
-            type: string
-            example: "WEB"
-        note: 
-          type: string
-        legalEntityAccessSettings:
-          $ref: '#/components/schemas/LegalEntityAccessSettings'
-          
-    GetCustomersResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "CUST001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to get the customer: <Reason>"
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetCustomerDetailResponse'
-
-    GetCustomerDetailResponse:
-       properties:
-        externalReferenceId:
-          type: string
-          description: "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing purpose (if needed)."
-          example: "tran12780"
-        legalName:
-          type: string
-          description: Customer's legal name
-          example: "DEMO Bank"
-        shortName:
-          type: string
-          description: Customer's short name
-          example: "DMOB"
-        customerUID:
-          type: number
-          description: The unique identifier associated with the customer record assigned by the Finzly system.
-          example: "111222"
-        customerType: 
-          type: string
-          description: Type of the customers in the Finzly CRM system
-          enum:
-            - Consumer
-            - Corporate
-            - Financial Institution
-            - Downstream Partner
-            - Processing Org
-          example: "Consumer or Corporate or Downstream Partner or Processing Org or Financial Institution"
-        taxId: 
-          type: string
-          description: A tax id that the US government uses to identify business entities located in the US number.
-          example: "123456789"
-        achCompanyID: 
-          type: string
-          example: 1234567899
-          description: ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)
-        customerId:
-          type: string
-          description: Customer id assigned by the user.
-          example: "12347890"
-        status:
-          type: string
-          description: Current status of the customer.
-          example: "Active, Suspended,New,Pending"
-        lei:
-          type: string
-          description: Legal Entity Identifier (LEI) associated with the customer
-          example: "ABC1234"
-        swiftcode: 
-          type: string
-          description: SWIFT code that identifies your bank, country, location, and branch
-          example: "BOFAUS3N"
-        language:
-          type: string
-          description: language
-          example: "English"
-        emailAddress: 
-          type: string
-          description: Customer email address
-          example: "abc@bank.com"
-        phoneNumber:
-          type: string
-          description: Customer phone number
-          example: "1112223333"
-        faxNumber:
-          type: string
-          description: Customer fax number
-          example: "1231249877"
-        website:
-          type: string
-          description: Customer website url address
-          example: "http://www.bank.com"
-        logoUrl:
-          type: string
-          description: Customer logo url
-          example: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
-        linkedinUrl:
-          type: string
-          description: Company linkedin URL     
-          example: "https://www.linkedin.com/company/finzly"
-        twitterUrl:
-          type: string
-          description: Customer twitter url    
-          example: "https://twitter.com/bank"
-        legalAddress:
-          $ref: '#/components/schemas/CustomerAddress'
-        mailAddressSameAsLegal: 
-          type: boolean
-        mailingAddress:
-          $ref: '#/components/schemas/CustomerAddress'
-        relationshipType:
-          type: string
-          description: Relationship Type
-          enum:
-            - customer
-            - bank
-            - thirdparty
-            - self
-          example: "Customer or Bank or ThirdParty or Self"
-        partnerOrgShortName: 
-          type: string
-          description: This is the shortname associated with the customer defined in the CRM system as 'Downstream Partner'. This is required only if the customer relationshipType is Third party
-          example: "TESTBANK"
-        processingOrgShortName:
-          type: string
-          description: This is the shortname associated with the processing org the customer is associated with.
-          example: "POBANK"
-        costCenter: 
-          type: string
-          description: Cost Center associated with the customer entity
-          example: "123123121"
-        relationshipManager: 
-          type: string
-          description: Relationship manager name. It needs to be a valid user login id in the finzly system.
-          example: "testuser"
-        originatingOfficer: 
-          type: string
-          description: Originating Officer name. Its needs to be a valid user login id in the finzly system.
-          example: "testuser"
-        parentEntityShortName: 
-          type: string
-          description: This is the shortname associated with the existing customer legal entity act as a parent entity
-          example: "TESTBANK"
-        addtionalProfileDetails:
-          type: array
-          items: 
-            $ref: '#/components/schemas/CustomerAdditonalProfileDetails'
-        secCodes:
-          type: array
-          description: "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity" 
-          items:
-            type: string
-            example: "WEB"
-        note: 
-          type: string
-          example: "Notes for the customer"
-          description: Free form text to leave any notes for the csutomer entity.
-        legalEntityAccessSettings:
-          $ref: '#/components/schemas/LegalEntityAccessSettings'
-
-    UpdateAccountRequest:
-      properties:
-        externalReferenceId:
-          type: number
-        accountId:
-          type: string
-        accountType:
-          type: string
-          enum:
-            - Deposit
-            - Loan
-        accountSubType:
-          type: string
-          enum:
-          - Checking
-          - Saving
-          - CD
-          - Money Market
-          - Pseudo
-          - HSA (Health Saving Account)
-        systemOfRecords:
-          type: string
-          enum:
-            - Other Core
-            - External
-        accountNumber:
-          type: string
-        currency:
-          type: string
-        accountName:
-          type: string
-        masterGl:
-          type: string
-        enableOffset: 
-          type: string
-          enum:
-           - Yes
-           - No 
-          example: Yes or No
-          description: "Enable offset account"
-        enableWire:
-          type: string
-          enum:
-           - Yes
-           - No 
-          example: Yes or No
-          description: Enable or Disable for the wire transaction
-        defaultOffset:
-          type: string
-          enum:
-           - Yes
-           - No 
-          example: Yes or No
-          description: Default offset account 
-        feeAccount:
-          type: string
-          enum:
-           - Yes
-           - No
-          description: Whether the accountNumber is a Fee account
-          example: 'Yes or No' 
-        returnAccount:
-          type: string
-          enum:
-           - Yes
-           - No
-          description: Whether the accountNumber is a Return account
-          example: 'Yes or No'           
-        fboAccountNumber:
-          type: string
-          example: 'for e.g. 1122344'
-        country:
-          type: string
-        countryCode:
-          type: string
-        routingNumber:
-          type: string
-
-    UpdateAccountResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "ACC001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to update an account: <Reason>"
-        data:
-          type: object
-          properties:
-            accountUID:
-              type: string
-              description: Account unique identifier assigned by the system
-            externalReferenceId:
-              type: string
-          
-    CreateAccountRequest:
-      properties:
-        externalReferenceId:
-          type: string
-        accountName:
-          type: string   
-        accountNumber:
-          type: string   
-        accountType: 
-          type: string
-          enum:
-            - Deposit
-            - Loan
-        accountSubType:
-          type: string   
-          enum:
-            - Checking
-            - Saving
-            - CD
-            - Money Market
-            - Pseudo
-            - HSA (Health Saving Account)
-        currency:
-          type: string   
-        countryCode:
-          type: string  
-        enableOffset: 
-          type: string
-          enum:
-           - Yes
-           - No 
-          example: Yes or No
-          description: "Enable offset account"
-        enableWire:
-          type: string
-          enum:
-           - Yes
-           - No 
-          example: Yes or No
-          description: Enable or Disable for the wire transaction
-        defaultOffset:
-          type: string
-          enum:
-           - Yes
-           - No 
-          example: Yes or No
-          description: Default offset account 
-        feeAccount:
-          type: string
-          enum:
-           - Yes
-           - No
-          description: Whether the accountNumber is a Fee account
-          example: 'Yes or No' 
-        returnAccount:
-          type: string
-          enum:
-           - Yes
-           - No
-          description: Whether the accountNumber is a Return account
-          example: 'Yes or No'           
-        fboAccountNumber: 
-          type: string   
-        systemOfRecords:
-          type: string   
-          enum:
-           - Other Core
-           - External  
-        routingNumber: 
-          type: string
-        masterGl:
-          type: string  
-  
-    CreateAccountResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "ACC001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to create an account: <Reason>"
-        data:
-          type: object
-          properties:
-            accountUID:
-              type: string
-            externalReferenceId:
-              type: string
-    
-    SearchAccountResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "ACC001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to get an account: <Reason>"
-        data: 
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerBankAccount'
-            
-    GetAccountResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "ACC001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to get an account: <Reason>"
-        data: 
-          $ref: '#/components/schemas/CustomerBankAccount' 
-          
-    CustomerBankAccount:
-      properties:
-        accountUID:
-          type: string
-          description: Account unique identifier assigned by the system
-          example: '100100'
-        name:
-          type: string
-          description: Account Name
-          example: 'Checking'
-        accountNumber:
-          type: string
-          description: Account Number
-          example: '1122345'
-        fboAccountNumber:
-          type: string
-          description: FBO Account Number 
-          example: '2233445'
-        type:
-          type: string
-          description: Account Type
-          example: 'DEPOSIT or LOAN'
-        subType:
-          type: string
-          description: Account Type
-          example: 'Checking, Saving, Psuedo'
-        systemOfRecord:
-          type: string
-          description: Identifier of the system of record
-          example: 'Other Core or External'
-        balanceType:
-          type: string
-          description: Account balance type in the bank core system
-          example: 'DDA etc.'   
-        ledgerBalance:
-          type: string
-          description: Account ledger balance amount in the bank core system
-          example: '24000.00'   
-        availableBalance:
-          type: string
-          description: Account balance amount in the bank core system
-          example: '25000.00'   
-        availableBalanceStatus:
-          type: string
-          description: Account balance status in the bank core system
-          example: 'NSF'   
-        amountPrecision:
-          type: string
-          description: Amount amountPrecision
-        currency:
-          type: string
-          description: Currency Code is ISO format
-          example: 'USD'
-        country:
-          type: string
-          description: Country Name
-          example: 'UNITED STATE OF AMERICA etc.'
-        bankId:
-          type: string
-          description: "Bank routing number"
-          example: '11223498'
-        bankName:
-          type: string
-          description: Name of the bank associated with the bankId
-          example: 'Chase etc.'
-        bankIdType:
-          type: string
-          description: "Bank identifier type"
-          example: 'By ABA or By Address'
-        enableWires:
-          type: boolean
-          description: Wire status
-          example: 'true or false'    
-        enableOffset:
-          type: boolean
-          description: Whether the accountNumber is a Offset account
-          example: 'true or false'  
-        defaultOffset:
-          type: boolean
-          description: Default offset account
-          example: 'true or false' 
-        feeAccount:
-          type: boolean
-          description: Whether the accountNumber is a Fee account
-          example: 'true or false' 
-        returnAccount:
-          type: boolean
-          description: Whether the accountNumber is a Return account
-          example: 'true or false' 
-        status:
-          type: string
-          description: Account status
-          example: 'Active etc.'
-        externalAccount:
-          $ref: '#/components/schemas/AccountExternal'
-          
-    CustomerContact:
-      properties:
-        externalReferenceId: 
-          type: string
-          description: "Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed)."
-        templateName: 
-          type: string
-        name: 
-          type: string
-        address: 
-          $ref: '#/components/schemas/CustomerAddress'
-        emailAddress: 
-          type: string
-          description: Customer Email Address
-          example: "abc@abc.com"
-        phoneNumber:
-          type: string
-          description: Customer's Phone number        
-          example: "123-124-9877"
-        contactBank:
-          type: object
-          properties:
-            country: 
-              type: string
-            accountNo: 
-              type: string
-            accountCcy: 
-              type: string
-            name: 
-              type: string
-            address: 
-              $ref: '#/components/schemas/CustomerAddress'
-            nationalCode:
-              type: string
-              example: 0125487
-            swiftCode: 
-              type: string
-              example: USBNX000
-        intermediaryBank: 
-          type: object
-          properties:
-            country: 
-              type: string
-            name: 
-              type: string
-            nationalCode: 
-              type: string
-            swiftCode: 
-              type: string
-            coverMessageRequired: 
-              type: string
-            address: 
-              $ref: '#/components/schemas/CustomerAddress'
-        otherInfo:
-          type: object
-          properties:
-            beneficiaryNotes: 
-              type: string
-            otherBeneBankInfo: 
-              type: string  
-        regulartoryReporting:
-          type: array
-          items:
-            type: object
-            properties:
-              key: 
-                type: string
-              value: 
-                type: string
-                
-    CreateCustomerContactResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "CUST001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to create a customer contact: <Reason>"
-        data:
-          type: object
-          properties:
-            customerContactUID:
-              type: string
-              description: "Customer contact unique identifier created by the system."
-            externalReferenceId:
-              type: string
-              description: "External reference id received in the request."
-              
-    SearchCustomerContactResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "CUST001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to search the customer contact: <Reason>"
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerContact'   
-          
-    GetCustomerContactResponse:
-      properties:
-        status: 
-          type: string
-          description: "Status of the API request either it will be a success or a failure"
-          example: "Success or Failure"
-          enum:
-            - Success
-            - Failure
-        code:
-          type: string
-          description: "Code associated with the error."
-          example: "CUST001 etc."
-        message:
-          type: string
-          description: "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it."
-          example: "Failed to get a customer contact: <Reason>"
-        data:
-          $ref: '#/components/schemas/CustomerContact'
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Customer and Account API",
+    "version" : "2.2.0"
+  },
+  "servers" : [ {
+    "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
+    "description" : "FinzlyConnect Customer APIs",
+    "variables" : {
+      "tenant" : {
+        "description" : "BankOS tenant code",
+        "default" : "sandbox"
+      }
+    }
+  } ],
+  "security" : [ {
+    "oAuth2" : [ "roles" ]
+  } ],
+  "tags" : [ {
+    "name" : "Customer",
+    "description" : "Customer APIs entitles the downstream partners, Banks and their associates to formally onboard clients with all the necessary information required to perform financial operations. \n\nThese API's will further help to search & maintain these onboarded clients, update any changes in client information.\n\nFollowing use cases helps you to understand the current customer capabilities exposed via APIs\n\n1. Create Customer\n2. Update Customer\n3. Search Customers\n4. Get Customer Details\n"
+  }, {
+    "name" : "Customer Account",
+    "description" : "Customer Accounts APIs helps you to manage the accounts associated with the customer.\n\nFollowing use cases helps you to understand the current customer accounts capabilities exposed via APIs\n\n1. Create Customer Account\n2. Update Customer Account\n3. Search Customer Accounts\n4. Get Customer Account Details\n"
+  }, {
+    "name" : "Customer Contact",
+    "description" : "Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. \n\nOnce the contacts are defined the contact UID can be used in the payment API as a receiver [accountUID] to initiate a payment request. \n\nFollowing use cases helps you to understand the current customer contacts capabilities exposed via APIs\n\n1. Create Customer Contact\n2. Update Customer Contact\n3. Search Customer Contacts\n4. Get Customer Contact Details\n"
+  } ],
+  "paths" : {
+    "/v2/customers" : {
+      "get" : {
+        "tags" : [ "Customer" ],
+        "summary" : "Search customers",
+        "description" : "Search customers",
+        "operationId" : "searchCustomers",
+        "parameters" : [ {
+          "name" : "legalName",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Full text search of full legal name"
+          }
+        }, {
+          "name" : "customerType",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Search by type of customer such as Corporate, Consumer, Financial Institution, Downstream Partner and Processing Org"
+          }
+        }, {
+          "name" : "shortName",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Search by Customer short name"
+          }
+        }, {
+          "name" : "customerId",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Search by customerId"
+          }
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Search by status"
+          }
+        }, {
+          "name" : "taxId",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Search by taxId"
+          }
+        }, {
+          "name" : "achCompanyID",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Search by ach company Id"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Which number of page of results to be returned",
+            "example" : "1"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "maximum" : 1000,
+            "type" : "string",
+            "description" : "Total number of records to be returned for a given page",
+            "example" : "100"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetCustomersResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetCustomersResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "402" : {
+            "description" : "The parameters were valid but the request failed."
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "409" : {
+            "description" : "The request conflicts with another request (perhaps due to using the same idempotent key)."
+          },
+          "429" : {
+            "description" : "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
+          },
+          "500" : {
+            "description" : "Something went wrong on back end.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customer" ],
+        "summary" : "Add customer",
+        "description" : "Create a customer in the BankOS CRM system",
+        "operationId" : "createCustomer",
+        "requestBody" : {
+          "description" : "Customer details",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCustomerRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Customer details with newly created ID",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateUpdateCustomerResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateUpdateCustomerResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "402" : {
+            "description" : "The parameters were valid but the request failed."
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "409" : {
+            "description" : "The request conflicts with another request (perhaps due to using the same idempotent key)."
+          },
+          "429" : {
+            "description" : "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
+          },
+          "500" : {
+            "description" : "Something went wrong on back end.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/customers/{customerUID}" : {
+      "get" : {
+        "tags" : [ "Customer" ],
+        "summary" : "Get customer",
+        "description" : "Retrieve the customer information from the system",
+        "operationId" : "getCustomerByCustomerUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer unique identifier associated with the customer in the Finzly's CRM system"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetCustomersResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/GetCustomersResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "402" : {
+            "description" : "The parameters were valid but the request failed."
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "409" : {
+            "description" : "The request conflicts with another request (perhaps due to using the same idempotent key)."
+          },
+          "429" : {
+            "description" : "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
+          },
+          "500" : {
+            "description" : "Something went wrong on back end.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Customer" ],
+        "summary" : "Update customer",
+        "description" : "Update an existing customer information",
+        "operationId" : "updateCustomerByCustomerUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer unique identifier associated with the customer in the Finzly's CRM system"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Customer details",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateCustomerRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Customer details with newly created ID",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateUpdateCustomerResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateUpdateCustomerResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "402" : {
+            "description" : "The parameters were valid but the request failed."
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "409" : {
+            "description" : "The request conflicts with another request (perhaps due to using the same idempotent key)."
+          },
+          "429" : {
+            "description" : "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
+          },
+          "500" : {
+            "description" : "Something went wrong on back end.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/customers/{customerUID}/accounts" : {
+      "get" : {
+        "tags" : [ "Customer Account" ],
+        "summary" : "Search Customer Accounts",
+        "description" : "Search the customer accounts for a given customer",
+        "operationId" : "searchCustomerAccounts",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer unique identifier assigned by the system"
+          }
+        }, {
+          "name" : "accountType",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Type of account",
+            "example" : "Saving or Checking"
+          }
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Status if the account",
+            "example" : "Active or Inactive"
+          }
+        }, {
+          "name" : "currency",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Currency of the account",
+            "example" : "USD"
+          }
+        }, {
+          "name" : "wireEnabled",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "true or false"
+        }, {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 11223345
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customer Account" ],
+        "summary" : "Create customer account",
+        "description" : "Create a customer account",
+        "operationId" : "createCustomerAccount",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "description" : "Unique Customer Id"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateAccountRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/customers/{customerUID}/accounts/{accountUID}" : {
+      "get" : {
+        "tags" : [ "Customer Account" ],
+        "summary" : "Get customer account",
+        "description" : "Retrieve an account details",
+        "operationId" : "getCustomerAccountByAccountUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer Id"
+          }
+        }, {
+          "name" : "accountUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Account Id",
+            "example" : "Account UID"
+          }
+        }, {
+          "name" : "includeAccountBalance",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "boolean",
+            "description" : "Pass this as true if to pull in account balance as well, false otherwise"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Which page of results are to be returned"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "maximum" : 1000,
+            "type" : "string",
+            "description" : "How many records are returned in the result set"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Customer Account" ],
+        "summary" : "Update customer account",
+        "description" : "Update Customer Account",
+        "operationId" : "updateCustomerAccountByAccountUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer Id"
+          }
+        }, {
+          "name" : "accountUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Account Id"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateAccountRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UpdateAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UpdateAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Customer Account" ],
+        "summary" : "Delete customer account",
+        "description" : "Delete Customer Account",
+        "operationId" : "deleteCustomerAccountByAccountUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer Id"
+          }
+        }, {
+          "name" : "accountUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Account Id"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UpdateAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UpdateAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/customers/{customerUID}/contacts" : {
+      "get" : {
+        "tags" : [ "Customer Contact" ],
+        "summary" : "Search customer contacts",
+        "description" : "Search customer contacts for a given customer",
+        "operationId" : "searchCustomerContacts",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "description" : "Unique Customer Id"
+          }
+        }, {
+          "name" : "contactName",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Contact name"
+          }
+        }, {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Contact Account Number"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Which page of results are to be returned"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "maximum" : 1000,
+            "type" : "string",
+            "description" : "How many records are returned in the result set"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Customer Contact" ],
+        "summary" : "Create customer contact",
+        "description" : "Create a new customer contact (Beneficiary)",
+        "operationId" : "createCustomerContact",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "description" : "Unique Customer Id"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomerContact"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v2/customers/{customerUID}/contacts/{contactUID}" : {
+      "get" : {
+        "tags" : [ "Customer Contact" ],
+        "summary" : "Get customer contact",
+        "description" : "Retrieve customer contact details",
+        "operationId" : "getCustomerContactByUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer unique id in finzly system"
+          }
+        }, {
+          "name" : "contactUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Contact unique id in finzly system"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Customer Contact" ],
+        "summary" : "Update customer contact",
+        "description" : "Update customer contact details",
+        "operationId" : "updateCustomerContactByUID",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer unique id in finzly system"
+          }
+        }, {
+          "name" : "contactUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Contact unique id in finzly system"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomerContact"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Error" : {
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Error code assigned by the system",
+            "example" : "invalidMethod"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Error description to provide addtional details about the error code",
+            "example" : "Invalid HTTP method used"
+          }
+        }
+      },
+      "Pagination" : {
+        "properties" : {
+          "totalRecords" : {
+            "type" : "number",
+            "description" : "Total number of records exist in the system for a given filter",
+            "format" : "integer",
+            "example" : 100
+          },
+          "returnedRecords" : {
+            "type" : "number",
+            "description" : "Total number of records returned",
+            "format" : "integer",
+            "example" : 10
+          },
+          "pageReturned" : {
+            "type" : "number",
+            "description" : "Current number of page returned",
+            "format" : "integer",
+            "example" : 2
+          },
+          "pageSize" : {
+            "type" : "number",
+            "description" : "Total number of records in a given pages",
+            "format" : "integer",
+            "example" : 10
+          }
+        }
+      },
+      "AccountExternal" : {
+        "properties" : {
+          "externalProvider" : {
+            "type" : "string",
+            "description" : "Identifier of the system of record",
+            "example" : "Plaid"
+          },
+          "externalId" : {
+            "type" : "string",
+            "description" : "External account id",
+            "example" : "1234567"
+          },
+          "externalAuthToken" : {
+            "type" : "string",
+            "description" : "External account auth token",
+            "example" : "1234567"
+          }
+        }
+      },
+      "Groups" : {
+        "type" : "object",
+        "properties" : {
+          "condition" : {
+            "type" : "string",
+            "example" : "OR"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "groups" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Groups"
+            }
+          },
+          "fields" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Fields"
+            }
+          }
+        }
+      },
+      "Fields" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "example" : "beneficiaryBankSWIFT"
+          },
+          "displayName" : {
+            "type" : "string",
+            "example" : "Beneficiary Bank SWIFT"
+          },
+          "swiftCode" : {
+            "type" : "string"
+          },
+          "swiftTag" : {
+            "type" : "string"
+          },
+          "fieldLength" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "PaymentNoteOptionValueChildren" : {
+        "type" : "object",
+        "properties" : {
+          "data" : {
+            "$ref" : "#/components/schemas/PaymentNoteOptionValueChildren_data"
+          }
+        }
+      },
+      "CustomerAddress" : {
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode" ],
+        "properties" : {
+          "addressLine1" : {
+            "type" : "string",
+            "description" : "Address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "type" : "string",
+            "description" : "Address Line 2",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "City",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "type" : "string",
+            "description" : "State",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "type" : "string",
+            "description" : "Postal code",
+            "example" : "28269"
+          },
+          "countryCode" : {
+            "type" : "string",
+            "description" : "ISO country code",
+            "example" : "USA"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country name",
+            "example" : "UNITED STATES OF AMERICA"
+          }
+        }
+      },
+      "CustomerAdditonalProfileDetails" : {
+        "properties" : {
+          "creditclient" : {
+            "type" : "boolean"
+          },
+          "accountanalysis" : {
+            "type" : "boolean"
+          },
+          "sso" : {
+            "type" : "boolean"
+          },
+          "billingcustomer" : {
+            "type" : "boolean"
+          },
+          "restrictedaccess" : {
+            "type" : "boolean"
+          },
+          "achPositivePay" : {
+            "type" : "boolean"
+          },
+          "achWhitelist" : {
+            "type" : "boolean"
+          },
+          "achNonPrefund" : {
+            "type" : "boolean"
+          },
+          "achNonPrefundLimit" : {
+            "type" : "string"
+          },
+          "paymentFileAuthentication" : {
+            "type" : "boolean"
+          },
+          "detailsofCharge" : {
+            "type" : "string",
+            "enum" : [ "OUR", "BEN", "SHA" ]
+          },
+          "fxPricingTier" : {
+            "type" : "string"
+          },
+          "crediValueAdjustment" : {
+            "type" : "string"
+          }
+        }
+      },
+      "LegalEntityAccessSettings" : {
+        "properties" : {
+          "allowOnlineAccess" : {
+            "type" : "boolean"
+          },
+          "userPinForNewEntry" : {
+            "type" : "boolean"
+          },
+          "userDualApproval" : {
+            "type" : "boolean"
+          },
+          "userPinForApproval" : {
+            "type" : "boolean"
+          },
+          "notificationsDualApproval" : {
+            "type" : "boolean"
+          },
+          "customerPinForNewEntry" : {
+            "type" : "boolean"
+          },
+          "customerDualApproval" : {
+            "type" : "boolean"
+          },
+          "customerPinForApproval" : {
+            "type" : "boolean"
+          },
+          "benePinForNewEntry" : {
+            "type" : "boolean"
+          },
+          "beneDualApproval" : {
+            "type" : "boolean"
+          },
+          "benePinForApproval" : {
+            "type" : "boolean"
+          },
+          "paymentPinForNewEntry" : {
+            "type" : "boolean"
+          },
+          "paymentLimitforFirstApprover" : {
+            "type" : "number"
+          },
+          "paymentDualApproval" : {
+            "type" : "boolean"
+          },
+          "paymentLimitforSecondApprover" : {
+            "type" : "number"
+          },
+          "paymentNumberOfApprovers" : {
+            "type" : "number",
+            "enum" : [ 0, 1, 2 ]
+          },
+          "paymentPinForApproval" : {
+            "type" : "boolean"
+          },
+          "feeTierForApproval" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "CreateUpdateCustomerResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success or Failure"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "CUST001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to create a customer due to the mandatory attribute <attribute-name> is not provide."
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CreateUpdateCustomerResponse_data"
+          }
+        }
+      },
+      "CreateCustomerRequest" : {
+        "required" : [ "addressLine1", "city", "countryCode", "customerType", "externalReferenceId", "legalName", "mailAddressSameAsLegal", "shortName", "state", "taxId" ],
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "REQ123"
+          },
+          "legalName" : {
+            "type" : "string",
+            "description" : "Customer's legal name",
+            "example" : "ABC Bank"
+          },
+          "shortName" : {
+            "type" : "string",
+            "description" : "Customer's short name",
+            "example" : "BOFA"
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Customer ID",
+            "example" : "CUST123"
+          },
+          "customerType" : {
+            "type" : "string",
+            "description" : "Type of customer",
+            "example" : "Corporate,Consumer,Downstream Partner,Financial Institution,Processing Org",
+            "enum" : [ "Corporate", "Consumer", "Financial Institution", "Downstream Partner", "Processing Org" ]
+          },
+          "taxId" : {
+            "type" : "string",
+            "description" : "Tax ID",
+            "example" : "123456789"
+          },
+          "achCompanyID" : {
+            "type" : "string",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : "1234567899"
+          },
+          "lei" : {
+            "type" : "string",
+            "description" : "Legal Entity ID for accounting/tax purpose",
+            "example" : "ABC1234"
+          },
+          "swiftcode" : {
+            "type" : "string",
+            "description" : "SWIFT code",
+            "example" : "BOFAUS3N"
+          },
+          "language" : {
+            "type" : "string",
+            "description" : "Suported language",
+            "example" : "English"
+          },
+          "emailAddress" : {
+            "type" : "string",
+            "description" : "Customer Email Address",
+            "example" : "abc@abc.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Customer's Phone number",
+            "example" : "123-124-9877"
+          },
+          "faxNumber" : {
+            "type" : "string",
+            "description" : "Customer's phone number",
+            "example" : "123-124-9877"
+          },
+          "website" : {
+            "type" : "string",
+            "description" : "Customer's website",
+            "example" : "http://www.finzly.com"
+          },
+          "logoUrl" : {
+            "type" : "string",
+            "description" : "Customer's logo url",
+            "example" : "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+          },
+          "linkedinUrl" : {
+            "type" : "string",
+            "description" : "Customer's LinkedIn profile URL",
+            "example" : "https://www.linkedin.com/company/finzly"
+          },
+          "twitterUrl" : {
+            "type" : "string",
+            "description" : "Customer's twitter url",
+            "example" : "https://twitter.com/finzly"
+          },
+          "legalAddress" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "mailAddressSameAsLegal" : {
+            "type" : "boolean"
+          },
+          "mailingAddress" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "relationshipType" : {
+            "type" : "string",
+            "description" : "Relationship Type",
+            "example" : "Customer or Bank or ThirdParty or Self",
+            "enum" : [ "customer", "bank", "thirdparty", "self" ]
+          },
+          "partnerOrgShortName" : {
+            "type" : "string",
+            "description" : "This is shortname of the partner org. This is required if the relationshipType is Third Party optional otherwise.",
+            "example" : "ABC"
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Cost Center code",
+            "example" : "123123121"
+          },
+          "relationshipManager" : {
+            "type" : "string",
+            "description" : "Relationship manager name. It needs to be a valid user login id in the system",
+            "example" : "testuser"
+          },
+          "originatingOfficer" : {
+            "type" : "string",
+            "description" : "Originating Officer name. Its needs to be a valid user login id in the system",
+            "example" : "testuser"
+          },
+          "parentEntityShortName" : {
+            "type" : "string",
+            "description" : "This is shortname of the parent org",
+            "example" : "ParentEntity"
+          },
+          "addtionalProfileDetails" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
+            }
+          },
+          "secCodes" : {
+            "type" : "array",
+            "description" : "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity",
+            "items" : {
+              "type" : "string",
+              "example" : "WEB,CCD,PPD,TEL,IAT"
+            }
+          },
+          "note" : {
+            "type" : "string"
+          },
+          "legalEntityAccessSettings" : {
+            "$ref" : "#/components/schemas/LegalEntityAccessSettings"
+          }
+        }
+      },
+      "UpdateCustomerRequest" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "REQ123"
+          },
+          "legalName" : {
+            "type" : "string",
+            "description" : "Customer's legal name",
+            "example" : "ABC Bank"
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Customer Id assigned by the user.",
+            "example" : "CUST123"
+          },
+          "customerType" : {
+            "type" : "string",
+            "description" : "Type of customer",
+            "example" : "Corporate",
+            "enum" : [ "Corporate", "Consumer", "Financial Institution", "Downstream Partner", "Processing Org" ]
+          },
+          "taxId" : {
+            "type" : "string",
+            "description" : "Tax ID / TIN/SSN",
+            "example" : "123456789"
+          },
+          "achCompanyID" : {
+            "type" : "string",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : "1234567899"
+          },
+          "lei" : {
+            "type" : "string",
+            "description" : "Legal Entity ID for accounting/tax purpose",
+            "example" : "ABC1234"
+          },
+          "swiftcode" : {
+            "type" : "string",
+            "description" : "SWIFT code",
+            "example" : "BOFAUS3N"
+          },
+          "language" : {
+            "type" : "string",
+            "description" : "Suported language",
+            "example" : "English"
+          },
+          "emailAddress" : {
+            "type" : "string",
+            "description" : "Customer Email Address",
+            "example" : "abc@abc.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Customer's Phone number",
+            "example" : "123-124-9877"
+          },
+          "faxNumber" : {
+            "type" : "string",
+            "description" : "Customer's phone number",
+            "example" : "123-124-9877"
+          },
+          "website" : {
+            "type" : "string",
+            "description" : "Customer's website",
+            "example" : "http://www.finzly.com"
+          },
+          "logoUrl" : {
+            "type" : "string",
+            "description" : "Customer's logo url",
+            "example" : "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+          },
+          "linkedinUrl" : {
+            "type" : "string",
+            "description" : "Customer's LinkedIn profile URL",
+            "example" : "https://www.linkedin.com/company/finzly"
+          },
+          "twitterUrl" : {
+            "type" : "string",
+            "description" : "Customer's twitter url",
+            "example" : "https://twitter.com/finzly"
+          },
+          "legalAddress" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "mailAddressSameAsLegal" : {
+            "type" : "boolean"
+          },
+          "mailingAddress" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "relationshipType" : {
+            "type" : "string",
+            "description" : "Relationship Type",
+            "example" : "Customer or Bank or ThirdParty or Self",
+            "enum" : [ "customer", "bank", "thirdparty", "self" ]
+          },
+          "partnerOrgShortName" : {
+            "type" : "string",
+            "description" : "This is shortname of the partner org. This is required if the relationshipType is Third Party optional otherwise",
+            "example" : "ABC"
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Cost Center code",
+            "example" : "123123121"
+          },
+          "relationshipManager" : {
+            "type" : "string",
+            "description" : "Relationship manager name. It needs to be a valid user login id in the system",
+            "example" : "testuser"
+          },
+          "originatingOfficer" : {
+            "type" : "string",
+            "description" : "Originating Officer name. Its needs to be a valid user login id in the system",
+            "example" : "testuser"
+          },
+          "parentEntityShortName" : {
+            "type" : "string",
+            "description" : "This is shortname of the parent org",
+            "example" : "ParentEntity"
+          },
+          "addtionalProfileDetails" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
+            }
+          },
+          "secCodes" : {
+            "type" : "array",
+            "description" : "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity",
+            "items" : {
+              "type" : "string",
+              "example" : "WEB"
+            }
+          },
+          "note" : {
+            "type" : "string"
+          },
+          "legalEntityAccessSettings" : {
+            "$ref" : "#/components/schemas/LegalEntityAccessSettings"
+          }
+        }
+      },
+      "GetCustomersResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "CUST001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to get the customer: <Reason>"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetCustomerDetailResponse"
+            }
+          }
+        }
+      },
+      "GetCustomerDetailResponse" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing purpose (if needed).",
+            "example" : "tran12780"
+          },
+          "legalName" : {
+            "type" : "string",
+            "description" : "Customer's legal name",
+            "example" : "DEMO Bank"
+          },
+          "shortName" : {
+            "type" : "string",
+            "description" : "Customer's short name",
+            "example" : "DMOB"
+          },
+          "customerUID" : {
+            "type" : "number",
+            "description" : "The unique identifier associated with the customer record assigned by the Finzly system.",
+            "example" : 111222
+          },
+          "customerType" : {
+            "type" : "string",
+            "description" : "Type of the customers in the Finzly CRM system",
+            "example" : "Consumer or Corporate or Downstream Partner or Processing Org or Financial Institution",
+            "enum" : [ "Consumer", "Corporate", "Financial Institution", "Downstream Partner", "Processing Org" ]
+          },
+          "taxId" : {
+            "type" : "string",
+            "description" : "A tax id that the US government uses to identify business entities located in the US number.",
+            "example" : "123456789"
+          },
+          "achCompanyID" : {
+            "type" : "string",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : "1234567899"
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Customer id assigned by the user.",
+            "example" : "12347890"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current status of the customer.",
+            "example" : "Active, Suspended,New,Pending"
+          },
+          "lei" : {
+            "type" : "string",
+            "description" : "Legal Entity Identifier (LEI) associated with the customer",
+            "example" : "ABC1234"
+          },
+          "swiftcode" : {
+            "type" : "string",
+            "description" : "SWIFT code that identifies your bank, country, location, and branch",
+            "example" : "BOFAUS3N"
+          },
+          "language" : {
+            "type" : "string",
+            "description" : "language",
+            "example" : "English"
+          },
+          "emailAddress" : {
+            "type" : "string",
+            "description" : "Customer email address",
+            "example" : "abc@bank.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Customer phone number",
+            "example" : "1112223333"
+          },
+          "faxNumber" : {
+            "type" : "string",
+            "description" : "Customer fax number",
+            "example" : "1231249877"
+          },
+          "website" : {
+            "type" : "string",
+            "description" : "Customer website url address",
+            "example" : "http://www.bank.com"
+          },
+          "logoUrl" : {
+            "type" : "string",
+            "description" : "Customer logo url",
+            "example" : "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+          },
+          "linkedinUrl" : {
+            "type" : "string",
+            "description" : "Company linkedin URL",
+            "example" : "https://www.linkedin.com/company/finzly"
+          },
+          "twitterUrl" : {
+            "type" : "string",
+            "description" : "Customer twitter url",
+            "example" : "https://twitter.com/bank"
+          },
+          "legalAddress" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "mailAddressSameAsLegal" : {
+            "type" : "boolean"
+          },
+          "mailingAddress" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "relationshipType" : {
+            "type" : "string",
+            "description" : "Relationship Type",
+            "example" : "Customer or Bank or ThirdParty or Self",
+            "enum" : [ "customer", "bank", "thirdparty", "self" ]
+          },
+          "partnerOrgShortName" : {
+            "type" : "string",
+            "description" : "This is the shortname associated with the customer defined in the CRM system as 'Downstream Partner'. This is required only if the customer relationshipType is Third party",
+            "example" : "TESTBANK"
+          },
+          "processingOrgShortName" : {
+            "type" : "string",
+            "description" : "This is the shortname associated with the processing org the customer is associated with.",
+            "example" : "POBANK"
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Cost Center associated with the customer entity",
+            "example" : "123123121"
+          },
+          "relationshipManager" : {
+            "type" : "string",
+            "description" : "Relationship manager name. It needs to be a valid user login id in the finzly system.",
+            "example" : "testuser"
+          },
+          "originatingOfficer" : {
+            "type" : "string",
+            "description" : "Originating Officer name. Its needs to be a valid user login id in the finzly system.",
+            "example" : "testuser"
+          },
+          "parentEntityShortName" : {
+            "type" : "string",
+            "description" : "This is the shortname associated with the existing customer legal entity act as a parent entity",
+            "example" : "TESTBANK"
+          },
+          "addtionalProfileDetails" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
+            }
+          },
+          "secCodes" : {
+            "type" : "array",
+            "description" : "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity",
+            "items" : {
+              "type" : "string",
+              "example" : "WEB"
+            }
+          },
+          "note" : {
+            "type" : "string",
+            "description" : "Free form text to leave any notes for the csutomer entity.",
+            "example" : "Notes for the customer"
+          },
+          "legalEntityAccessSettings" : {
+            "$ref" : "#/components/schemas/LegalEntityAccessSettings"
+          }
+        }
+      },
+      "UpdateAccountRequest" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "number"
+          },
+          "accountId" : {
+            "type" : "string"
+          },
+          "accountType" : {
+            "type" : "string",
+            "enum" : [ "Deposit", "Loan" ]
+          },
+          "accountSubType" : {
+            "type" : "string",
+            "enum" : [ "Checking", "Saving", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
+          },
+          "systemOfRecords" : {
+            "type" : "string",
+            "enum" : [ "Other Core", "External" ]
+          },
+          "accountNumber" : {
+            "type" : "string"
+          },
+          "currency" : {
+            "type" : "string"
+          },
+          "accountName" : {
+            "type" : "string"
+          },
+          "masterGl" : {
+            "type" : "string"
+          },
+          "enableOffset" : {
+            "type" : "string",
+            "description" : "Enable offset account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "enableWire" : {
+            "type" : "string",
+            "description" : "Enable or Disable for the wire transaction",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "defaultOffset" : {
+            "type" : "string",
+            "description" : "Default offset account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "feeAccount" : {
+            "type" : "string",
+            "description" : "Whether the accountNumber is a Fee account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "returnAccount" : {
+            "type" : "string",
+            "description" : "Whether the accountNumber is a Return account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "fboAccountNumber" : {
+            "type" : "string",
+            "example" : "for e.g. 1122344"
+          },
+          "country" : {
+            "type" : "string"
+          },
+          "countryCode" : {
+            "type" : "string"
+          },
+          "routingNumber" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UpdateAccountResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "ACC001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to update an account: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/UpdateAccountResponse_data"
+          }
+        }
+      },
+      "CreateAccountRequest" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string"
+          },
+          "accountName" : {
+            "type" : "string"
+          },
+          "accountNumber" : {
+            "type" : "string"
+          },
+          "accountType" : {
+            "type" : "string",
+            "enum" : [ "Deposit", "Loan" ]
+          },
+          "accountSubType" : {
+            "type" : "string",
+            "enum" : [ "Checking", "Saving", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
+          },
+          "currency" : {
+            "type" : "string"
+          },
+          "countryCode" : {
+            "type" : "string"
+          },
+          "costCenter" : {
+            "type" : "string"
+          },
+          "enableOffset" : {
+            "type" : "string",
+            "description" : "Enable offset account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "enableWire" : {
+            "type" : "string",
+            "description" : "Enable or Disable for the wire transaction",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "defaultOffset" : {
+            "type" : "string",
+            "description" : "Default offset account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "feeAccount" : {
+            "type" : "string",
+            "description" : "Whether the accountNumber is a Fee account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "returnAccount" : {
+            "type" : "string",
+            "description" : "Whether the accountNumber is a Return account",
+            "example" : "Yes or No",
+            "enum" : [ "true", "false" ]
+          },
+          "fboAccountNumber" : {
+            "type" : "string"
+          },
+          "systemOfRecords" : {
+            "type" : "string",
+            "enum" : [ "Other Core", "External" ]
+          },
+          "routingNumber" : {
+            "type" : "string"
+          },
+          "masterGl" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateAccountResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "ACC001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to create an account: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CreateAccountResponse_data"
+          }
+        }
+      },
+      "SearchAccountResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "ACC001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to get an account: <Reason>"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerBankAccount"
+            }
+          }
+        }
+      },
+      "GetAccountResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "ACC001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to get an account: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CustomerBankAccount"
+          }
+        }
+      },
+      "CustomerBankAccount" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Account unique identifier assigned by the system",
+            "example" : "100100"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Account Name",
+            "example" : "Checking"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Account Number",
+            "example" : "1122345"
+          },
+          "fboAccountNumber" : {
+            "type" : "string",
+            "description" : "FBO Account Number",
+            "example" : "2233445"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Account Type",
+            "example" : "DEPOSIT or LOAN"
+          },
+          "subType" : {
+            "type" : "string",
+            "description" : "Account Type",
+            "example" : "Checking, Saving, Psuedo"
+          },
+          "systemOfRecord" : {
+            "type" : "string",
+            "description" : "Identifier of the system of record",
+            "example" : "Other Core or External"
+          },
+          "balanceType" : {
+            "type" : "string",
+            "description" : "Account balance type in the bank core system",
+            "example" : "DDA etc."
+          },
+          "ledgerBalance" : {
+            "type" : "string",
+            "description" : "Account ledger balance amount in the bank core system",
+            "example" : "24000.00"
+          },
+          "availableBalance" : {
+            "type" : "string",
+            "description" : "Account balance amount in the bank core system",
+            "example" : "25000.00"
+          },
+          "availableBalanceStatus" : {
+            "type" : "string",
+            "description" : "Account balance status in the bank core system",
+            "example" : "NSF"
+          },
+          "amountPrecision" : {
+            "type" : "string",
+            "description" : "Amount amountPrecision"
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency Code is ISO format",
+            "example" : "USD"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country Name",
+            "example" : "UNITED STATE OF AMERICA etc."
+          },
+          "bankId" : {
+            "type" : "string",
+            "description" : "Bank routing number",
+            "example" : "11223498"
+          },
+          "bankName" : {
+            "type" : "string",
+            "description" : "Name of the bank associated with the bankId",
+            "example" : "Chase etc."
+          },
+          "bankIdType" : {
+            "type" : "string",
+            "description" : "Bank identifier type",
+            "example" : "By ABA or By Address"
+          },
+          "enableWires" : {
+            "type" : "boolean",
+            "description" : "Wire status",
+            "example" : false
+          },
+          "enableOffset" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Offset account",
+            "example" : false
+          },
+          "defaultOffset" : {
+            "type" : "boolean",
+            "description" : "Default offset account",
+            "example" : false
+          },
+          "feeAccount" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Fee account",
+            "example" : false
+          },
+          "returnAccount" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Return account",
+            "example" : false
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Account status",
+            "example" : "Active etc."
+          },
+          "externalAccount" : {
+            "$ref" : "#/components/schemas/AccountExternal"
+          }
+        }
+      },
+      "CustomerContact" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed)."
+          },
+          "templateName" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "emailAddress" : {
+            "type" : "string",
+            "description" : "Customer Email Address",
+            "example" : "abc@abc.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Customer's Phone number",
+            "example" : "123-124-9877"
+          },
+          "contactBank" : {
+            "$ref" : "#/components/schemas/CustomerContact_contactBank"
+          },
+          "intermediaryBank" : {
+            "$ref" : "#/components/schemas/CustomerContact_intermediaryBank"
+          },
+          "otherInfo" : {
+            "$ref" : "#/components/schemas/CustomerContact_otherInfo"
+          },
+          "regulartoryReporting" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerContact_regulartoryReporting"
+            }
+          }
+        }
+      },
+      "CreateCustomerContactResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "CUST001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to create a customer contact: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CreateCustomerContactResponse_data"
+          }
+        }
+      },
+      "SearchCustomerContactResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "CUST001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to search the customer contact: <Reason>"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerContact"
+            }
+          }
+        }
+      },
+      "GetCustomerContactResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success or Failure",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "CUST001 etc."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to get a customer contact: <Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CustomerContact"
+          }
+        }
+      },
+      "PaymentNoteOptionValueChildren_data" : {
+        "type" : "object",
+        "properties" : {
+          "displayName" : {
+            "type" : "string",
+            "example" : "Drivers Licence"
+          },
+          "swiftCode" : {
+            "type" : "string",
+            "example" : "DVB001"
+          },
+          "group" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "children" : {
+            "$ref" : "#/components/schemas/PaymentNoteOptionValueChildren"
+          }
+        }
+      },
+      "CreateUpdateCustomerResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "customerUID" : {
+            "type" : "string",
+            "description" : "Customer id within Finzly's CRM system",
+            "example" : "123"
+          },
+          "externalReferenceId" : {
+            "type" : "string"
+          },
+          "shortName" : {
+            "type" : "string"
+          },
+          "customerEntityStatus" : {
+            "type" : "string",
+            "description" : "Status of the customer",
+            "example" : "New"
+          }
+        }
+      },
+      "UpdateAccountResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Account unique identifier assigned by the system"
+          },
+          "externalReferenceId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateAccountResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "accountUID" : {
+            "type" : "string"
+          },
+          "externalReferenceId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CustomerContact_contactBank" : {
+        "type" : "object",
+        "properties" : {
+          "country" : {
+            "type" : "string"
+          },
+          "accountNo" : {
+            "type" : "string"
+          },
+          "accountCcy" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "nationalCode" : {
+            "type" : "string",
+            "example" : "0125487"
+          },
+          "swiftCode" : {
+            "type" : "string",
+            "example" : "USBNX000"
+          }
+        }
+      },
+      "CustomerContact_intermediaryBank" : {
+        "type" : "object",
+        "properties" : {
+          "country" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "nationalCode" : {
+            "type" : "string"
+          },
+          "swiftCode" : {
+            "type" : "string"
+          },
+          "coverMessageRequired" : {
+            "type" : "string"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          }
+        }
+      },
+      "CustomerContact_otherInfo" : {
+        "type" : "object",
+        "properties" : {
+          "beneficiaryNotes" : {
+            "type" : "string"
+          },
+          "otherBeneBankInfo" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CustomerContact_regulartoryReporting" : {
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateCustomerContactResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "customerContactUID" : {
+            "type" : "string",
+            "description" : "Customer contact unique identifier created by the system."
+          },
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "External reference id received in the request."
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "oAuth2" : {
+        "type" : "oauth2",
+        "description" : "BankOS OpenBanking API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow.",
+        "flows" : {
+          "authorizationCode" : {
+            "authorizationUrl" : "https://sandbox-security-uat.finzly.io/auth",
+            "tokenUrl" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
+            "scopes" : {
+              "roles" : "manage"
+            }
+          }
+        }
+      }
+    }
+  }
+}
