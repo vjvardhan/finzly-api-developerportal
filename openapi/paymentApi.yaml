@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment API",
-    "version" : "2.2.3"
+    "version" : "2.2.4"
   },
   "servers" : [ {
     "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
@@ -1923,6 +1923,11 @@
           "proprietaryCode" : {
             "type" : "string",
             "description" : "This is applicable for the fedwire payment where the local instrument set to PROP"
+          },
+          "operationNote" : {
+            "maxLength" : 200,
+            "type" : "string",
+            "description" : "Operation Notes"
           }
         }
       },
@@ -2010,6 +2015,11 @@
             "type" : "string",
             "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field",
             "example" : "Remittance Notes"
+          },
+          "operationNote" : {
+            "maxLength" : 200,
+            "type" : "string",
+            "description" : "Operation Notes"
           }
         }
       },
