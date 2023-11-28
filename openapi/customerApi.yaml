@@ -1560,7 +1560,7 @@
         }
       },
       "CreateCustomerRequest" : {
-        "required" : [ "addressLine1", "city", "costCenter", "country", "countryCode", "customerType", "externalReferenceId", "legalName", "mailAddressSameAsLegal", "originatingOfficer", "postalCode", "shortName", "state", "taxId" ],
+        "required" : [ "addressLine1", "city", "costCenter", "country", "countryCode", "customerType", "externalReferenceId", "language", "legalName", "mailAddressSameAsLegal", "originatingOfficer", "postalCode", "shortName", "state", "taxId" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
