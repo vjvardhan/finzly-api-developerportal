@@ -2966,7 +2966,7 @@
         }
       },
       "CreditPaymentRequest" : {
-        "required" : [ "externalReferenceId", "paymentAmount", "paymentCurrency", "paymentNotes", "receiver", "sender", "speed" ],
+        "required" : [ "externalReferenceId", "paymentAmount", "paymentCurrency", "receiver", "sender", "speed" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -3109,7 +3109,7 @@
         }
       },
       "DebitPaymentRequest" : {
-        "required" : [ "externalReferenceId", "paymentAmount", "paymentCurrency", "paymentNotes", "receiver", "sender", "speed" ],
+        "required" : [ "externalReferenceId", "paymentAmount", "paymentCurrency", "receiver", "sender", "speed" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -4506,7 +4506,7 @@
           "noOfPayments" : {
             "type" : "number",
             "description" : "The number of payment should be at least 1.",
-            "example" : 0
+            "example" : 1
           }
         }
       },
