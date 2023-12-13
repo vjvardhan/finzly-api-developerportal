@@ -4495,18 +4495,17 @@
           },
           "payUntil" : {
             "type" : "string",
-            "description" : "Allowed values are Cancelled, EndDate and NumberOfPayments. Number of payment is mandatory when pay until is NumberOfPayments. The end date is mandatory when payUntil is EndDate.",
-            "example" : "EndDate"
+            "description" : "Allowed values are Cancelled, EndDate and NumberOfPayments.",
+            "example" : "NumberOfPayments"
           },
           "endDate" : {
             "type" : "string",
-            "description" : "Recurring End Date date in MM/dd/yyyy format. End Date should not be less than the current date.",
-            "format" : "date"
+            "description" : "Recurring End Date date in MM/dd/yyyy format. End Date should not be less than the current date.The end date is mandatory when payUntil is EndDate."
           },
           "noOfPayments" : {
             "type" : "number",
-            "description" : "The number of payment should be at least 1.",
-            "example" : 1
+            "description" : "The number of payment should be at least 1.  Number of payment is mandatory when pay until is NumberOfPayments.",
+            "example" : 10
           }
         }
       },
