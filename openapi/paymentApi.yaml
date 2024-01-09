@@ -734,7 +734,7 @@
       "put" : {
         "tags" : [ "Positive Pay" ],
         "summary" : "Approve All PositivePay Exceptions",
-        "description" : "Approve all positivepay exceptions",
+        "description" : "Approve all positivepay exceptions.",
         "operationId" : "approveAllExceptions",
         "requestBody" : {
           "content" : {
