@@ -21,9 +21,6 @@
     "name" : "Payments",
     "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
   }, {
-    "name" : "Bulk Payments",
-    "description" : "Bulk Payments APIs enables third-parties, banks, and bank's downstream partners to upload a NACHA and Finzly CSV file.\n"
-  }, {
     "name" : "Bank",
     "description" : "To fetch the bank info by routing number.\n"
   }, {
