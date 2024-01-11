@@ -1766,26 +1766,24 @@
       "routingNumber" : {
         "properties" : {
           "institutionName" : {
-            "maxLength" : 20,
             "type" : "string",
-            "description" : "Fee Name. This is an optional field.",
-            "example" : "Custom etc."
+            "description" : "Bank Name. This is an optional field.",
+            "example" : "ABC Bank etc."
           },
           "nationalIdName" : {
             "type" : "string",
-            "description" : "Fee Currency defaulted to USD if not provided.",
-            "example" : "USD"
+            "description" : "nationalId name. This is an optional field..",
+            "example" : "ABA etc."
           },
           "nationalId" : {
-            "maxLength" : 9,
-            "type" : "number",
-            "description" : "Fee to be charged for the payment transaction."
+            "type" : "string",
+            "description" : "bank routing number. This is not an optional field.",
+            "example" : "123656698 etc."
           },
           "recordTypeCode" : {
-            "maxLength" : 20,
             "type" : "string",
-            "description" : "Fee Name. This is an optional field.",
-            "example" : "Custom etc."
+            "description" : "record type code. This is an optional field.",
+            "example" : "SEND etc."
           },
           "routingAddress" : {
             "type" : "array",
