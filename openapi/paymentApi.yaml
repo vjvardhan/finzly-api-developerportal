@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment API",
-    "version" : "2.2.7"
+    "version" : "2.2.8"
   },
   "servers" : [ {
     "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
@@ -21,6 +21,9 @@
     "name" : "Payments",
     "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
   }, {
+    "name" : "Bulk Payment",
+    "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported.\n  1. FX\n  2. ACH - NACHA format\n  3. Wire\n  4. RTP\n  5. FedNow.      \n \n"
+  }, {
     "name" : "Bank",
     "description" : "To fetch the bank info by routing number.\n"
   }, {
@@ -28,6 +31,88 @@
     "description" : "Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules for ACH debits or Fedwire drawdown requests or RFP (Request For Pay) request.\n\nPostive Pay Exeption APIs enable users to approve or reject the exceptions identified by the postive pay rules engine.\n"
   } ],
   "paths" : {
+    "/v1/payments/customers/{customerUID}/files" : {
+      "post" : {
+        "tags" : [ "Bulk Payment" ],
+        "summary" : "To upload the payment file.",
+        "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported. 1. FX 2. ACH - NACHA format 3. Wire 4. RTP 5. FedNow",
+        "operationId" : "bulkUpload",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer unique Id."
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/customerUID_files_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "bulk payment file",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BulkPaymentResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Successfully processed request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BulkPaymentResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter environment"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "405" : {
+            "description" : "bad input parameter environment"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
     "/v1/banks/{routingNumber}" : {
       "post" : {
         "tags" : [ "Bank" ],
@@ -3558,6 +3643,15 @@
           }
         }
       },
+      "BulkPaymentResponse" : {
+        "properties" : {
+          "message" : {
+            "type" : "string",
+            "description" : "Error/success message indicating the issue in API call along with the reason or you will get success message with HTTP status code.",
+            "example" : "<message>"
+          }
+        }
+      },
       "BankApiResponse" : {
         "properties" : {
           "message" : {
@@ -4835,6 +4929,16 @@
             "type" : "string"
           }
         }
+      },
+      "customerUID_files_body" : {
+        "type" : "object",
+        "properties" : {
+          "file" : {
+            "type" : "string",
+            "format" : "binary"
+          }
+        },
+        "description" : "Only csv and txt files formates are allowed."
       },
       "PaymentNoteOptionValueChildren_data" : {
         "type" : "object",
