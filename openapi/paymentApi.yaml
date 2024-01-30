@@ -2357,12 +2357,12 @@
           "requestedExecutionDate" : {
             "type" : "string",
             "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. 1.If earlyPayment set to 'False', then the debtor should instruct payment on the date indicated in the request for payment 2.If earlyPayment set to 'True', then the debtor may instruct payment prior to the date indicated in the request for payment.",
-            "example" : "07-21-2022."
+            "example" : "07-21-2022"
           },
           "expiryDate" : {
             "type" : "string",
             "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. Beyond this date debitor can no longer accept/pay or decline/reject the request for payment.",
-            "example" : "07-21-2022."
+            "example" : "07-21-2022"
           },
           "amountModificationAllowed" : {
             "type" : "boolean",
