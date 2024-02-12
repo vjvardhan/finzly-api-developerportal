@@ -33,6 +33,17 @@
             "description" : "customer Unique Identifier."
           }
         } ],
+        "requestBody" : {
+          "description" : "Credit Payment Request fields",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/userRequest"
+              }
+            }
+          },
+          "required" : true
+        },
         "responses" : {
           "default" : {
             "description" : "Save user details",
@@ -99,6 +110,83 @@
             "type" : "string",
             "description" : "Error description to provide addtional details about the error code",
             "example" : "Invalid HTTP method used"
+          }
+        }
+      },
+      "userRequest" : {
+        "required" : [ "department", "email", "externalReferenceId", "firstName", "lastName", "loginId", "mobile", "roleUIDs" ],
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "User101"
+          },
+          "loginId" : {
+            "type" : "string",
+            "description" : "unique identifier.",
+            "example" : "user123"
+          },
+          "firstName" : {
+            "type" : "string",
+            "description" : "User first name.",
+            "example" : "john"
+          },
+          "lastName" : {
+            "type" : "string",
+            "description" : "last name of user",
+            "example" : "T."
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "users email id",
+            "example" : "user123@gamil.com"
+          },
+          "mobile" : {
+            "type" : "string",
+            "description" : "User contact number",
+            "example" : "9389989658"
+          },
+          "department" : {
+            "type" : "string",
+            "description" : "valid department code",
+            "example" : "Admin etc"
+          },
+          "otherDepartment" : {
+            "type" : "array",
+            "description" : "valid list of department codes",
+            "example" : "Admin etc."
+          },
+          "ssoEnabled" : {
+            "type" : "string",
+            "example" : "true,false"
+          },
+          "emulationUser" : {
+            "type" : "string",
+            "example" : "true,false"
+          },
+          "roleUIDs" : {
+            "type" : "array",
+            "description" : "valid list of department codes",
+            "example" : "adminRole etc."
+          },
+          "limits" : {
+            "$ref" : "#/components/schemas/userlimits"
+          }
+        }
+      },
+      "userlimits" : {
+        "properties" : {
+          "limitUID" : {
+            "type" : "string",
+            "example" : "FX_LIMIT, etc"
+          },
+          "appCode" : {
+            "type" : "string",
+            "example" : "finzly.cashos.cashosfx, etc"
+          },
+          "limitValue" : {
+            "type" : "string",
+            "example" : "FX_DAILY_LIMIT, etc"
           }
         }
       },
