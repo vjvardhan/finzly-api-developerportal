@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment API",
-    "version" : "2.2.8"
+    "version" : "2.2.9"
   },
   "servers" : [ {
     "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
@@ -1639,7 +1639,7 @@
         }
       },
       "SenderReceiverCreditorDebtorAddress" : {
-        "required" : [ "addressLine1", "countryCode" ],
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
         "properties" : {
           "addressLine1" : {
             "maxLength" : 35,
@@ -1679,10 +1679,10 @@
             "example" : "US, CN, AR etc."
           }
         },
-        "description" : "The address related to either sender,receiver,creditor, or debtor. This is an optional field and needed only when the account does not exist in the Finzly-CRM system."
+        "description" : "The address pertains to the sender, receiver, creditor, or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
       },
       "BankAddress" : {
-        "required" : [ "addressLine1", "countryCode" ],
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
         "properties" : {
           "addressLine1" : {
             "maxLength" : 35,
@@ -1722,7 +1722,7 @@
             "example" : "US, CN, AR etc."
           }
         },
-        "description" : "The bank address details and it is required for the bank not in US country code."
+        "description" : "The bank address information is required for banks located outside the United States. If any of the address fields are provided, it is mandatory to include addressLine1, city, state, postalCode, and countryCode."
       },
       "Approver" : {
         "properties" : {
@@ -1798,6 +1798,35 @@
           }
         },
         "description" : "The bank or intermediary bank details is needed to process the payment and it is required when the sender/receiver/debtor/creditor are not configured in the Finzly-CRM system. Based on the bankIDType either bankId or swiftCode is required. For the speed associated with the fedwire payment rail, this will be mapped to {4100} for the receiver bank and to {4000} for the receiver intermediary bank."
+      },
+      "rfpInfo" : {
+        "properties" : {
+          "requestedExecutionDate" : {
+            "type" : "string",
+            "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. 1.If set to 'False', then the debtor should instruct payment on the date indicated in the request for payment 2.If set to 'True', then the debtor may instruct payment prior to the date indicated in the request for payment.",
+            "example" : "07-21-2022."
+          },
+          "expiryDate" : {
+            "type" : "string",
+            "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. Beyond this date debitor can no longer accept/pay or decline/reject the request for payment.",
+            "example" : "07-21-2022."
+          },
+          "amountModificationAllowed" : {
+            "type" : "boolean",
+            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the debtor may instruct payment for an amount different than the amount indicated in the request for payment (Instructed Amount). 2.If it is 'False', then the debtor should instruct payment for the exact amount as indicated in the request for payment (Instructed Amount).",
+            "example" : false
+          },
+          "earlyPayment" : {
+            "type" : "boolean",
+            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the debtor may instruct payment prior to the date indicated in the request for payment (Requested Execution Date). 2.If it is 'False', then the debtor should instruct payment on the date indicated in the request for payment (Requested Execution Date).",
+            "example" : false
+          },
+          "guaranteedPayment" : {
+            "type" : "boolean",
+            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the creditor requests payment guarantees from the debtor when.scheduling the payment 2.If it is 'False', then the creditor does not request payment guarantee from the debtor.when scheduling the payment.",
+            "example" : false
+          }
+        }
       },
       "Fee" : {
         "properties" : {
@@ -2353,31 +2382,6 @@
             "maxLength" : 200,
             "type" : "string",
             "description" : "Operation Notes"
-          },
-          "requestedExecutionDate" : {
-            "type" : "string",
-            "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. 1.If earlyPayment set to 'False', then the debtor should instruct payment on the date indicated in the request for payment 2.If earlyPayment set to 'True', then the debtor may instruct payment prior to the date indicated in the request for payment.",
-            "example" : "07-21-2022"
-          },
-          "expiryDate" : {
-            "type" : "string",
-            "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. Beyond this date debitor can no longer accept/pay or decline/reject the request for payment.",
-            "example" : "07-21-2022"
-          },
-          "amountModificationAllowed" : {
-            "type" : "boolean",
-            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the debtor may instruct payment for an amount different than the amount indicated in the request for payment (Instructed Amount). 2.If it is 'False', then the debtor should instruct payment for the exact amount as indicated in the request for payment (Instructed Amount).",
-            "example" : false
-          },
-          "earlyPayment" : {
-            "type" : "boolean",
-            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the debtor may instruct payment prior to the date indicated in the request for payment (Requested Execution Date). 2.If it is 'False', then the debtor should instruct payment on the date indicated in the request for payment (Requested Execution Date).",
-            "example" : false
-          },
-          "guaranteedPayment" : {
-            "type" : "boolean",
-            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the creditor requests payment guarantees from the debtor when.scheduling the payment 2.If it is 'False', then the creditor does not request payment guarantee from the debtor.when scheduling the payment.",
-            "example" : false
           }
         }
       },
@@ -3497,6 +3501,9 @@
             "type" : "string",
             "description" : "Speed associated with the payment based on the delivery time and fee. The Speed names and associated payment rail can be configured or defined by the bank/financial institutions. The supported payment rails in FinzlyOS are ACH, Fedwire, RTP or FedNow. The following are the standard speed names and payment rails configured by default Economy - [ACH-REGULAR], Economy Plus [ACH-SAMEDAY], Express [FEDWIRE], Instant [FEDNOW or RTP].",
             "example" : "Economy, Economy Plus, Express, Instant"
+          },
+          "rfpInfo" : {
+            "$ref" : "#/components/schemas/rfpInfo"
           },
           "paymentNotes" : {
             "maxLength" : 200,
