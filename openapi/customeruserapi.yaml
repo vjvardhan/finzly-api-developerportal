@@ -39,7 +39,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/saveUserResponse"
+                  "$ref" : "#/components/schemas/userResponse"
                 }
               }
             }
@@ -49,7 +49,7 @@
             "content" : {
               "*/*" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/saveUserResponse"
+                  "$ref" : "#/components/schemas/userResponse"
                 }
               }
             }
@@ -102,7 +102,7 @@
           }
         }
       },
-      "saveUserResponse" : {
+      "userResponse" : {
         "properties" : {
           "message" : {
             "type" : "string",
@@ -110,16 +110,16 @@
             "example" : "<Reason>"
           },
           "data" : {
-            "$ref" : "#/components/schemas/saveUserResponse_data"
+            "$ref" : "#/components/schemas/userResponse_data"
           }
         }
       },
-      "saveUserResponse_data" : {
+      "userResponse_data" : {
         "type" : "object",
         "properties" : {
           "userUUID" : {
             "type" : "string",
-            "description" : "The unique userUUID reference user saved successfully.",
+            "description" : "Newly created user id.",
             "example" : "f37f6757-c546-42d4-8235-5965419b495d."
           }
         }
