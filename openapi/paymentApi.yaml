@@ -2356,27 +2356,27 @@
           },
           "requestedExecutionDate" : {
             "type" : "string",
-            "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. 1.If set to 'False', then the debtor should instruct payment on the date indicated in the request for payment 2.If set to 'True', then the debtor may instruct payment prior to the date indicated in the request for payment.",
+            "description" : "This field is required for RFP FEDNOW payments, and the valid date format is [MM-dd-yyyy]. If earlyPayment is set to 'False,' the debtor must instruct payment on the date specified in the request for payment. If earlyPayment is set to 'True,' the debtor has the option to instruct payment before the date indicated in the request for payment.",
             "example" : "07-21-2022."
           },
           "expiryDate" : {
             "type" : "string",
-            "description" : "This is mandatory field for RFP FEDNOW payment. The valid date format is in [MM-dd-yyyy]. Beyond this date debitor can no longer accept/pay or decline/reject the request for payment.",
+            "description" : "This field is required for RFP FEDNOW payments, and the valid date format is [MM-dd-yyyy]. After this date, the debtor is no longer able to accept, pay, decline, or reject the request for payment.",
             "example" : "07-21-2022."
           },
           "amountModificationAllowed" : {
             "type" : "boolean",
-            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the debtor may instruct payment for an amount different than the amount indicated in the request for payment (Instructed Amount). 2.If it is 'False', then the debtor should instruct payment for the exact amount as indicated in the request for payment (Instructed Amount).",
+            "description" : "This field is optional for RFP FEDNOW payments. When set to 'True,' the debtor has the option to instruct payment for an amount different than the one indicated in the request for payment (Instructed Amount). When set to 'False,' the debtor is required to instruct payment for the exact amount specified in the request for payment (Instructed Amount).",
             "example" : false
           },
           "earlyPayment" : {
             "type" : "boolean",
-            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the debtor may instruct payment prior to the date indicated in the request for payment (Requested Execution Date). 2.If it is 'False', then the debtor should instruct payment on the date indicated in the request for payment (Requested Execution Date).",
+            "description" : "This field is optional for RFP FEDNOW payments. When set to 'True,' the debtor is allowed to instruct payment before the date indicated in the request for payment (Requested Execution Date). When set to 'False,' the debtor is required to instruct payment on the date indicated in the request for payment (Requested Execution Date).",
             "example" : false
           },
           "guaranteedPayment" : {
             "type" : "boolean",
-            "description" : "This is optinal field for RFP FEDNOW payment. 1.If it is 'True', then the creditor requests payment guarantees from the debtor when.scheduling the payment 2.If it is 'False', then the creditor does not request payment guarantee from the debtor.when scheduling the payment.",
+            "description" : "This field is optional for RFP FEDNOW payments. When set to 'True,' the creditor requests payment guarantees from the debtor when scheduling the payment. When set to 'False,' the creditor does not request payment guarantees from the debtor when scheduling the payment.",
             "example" : false
           }
         }
