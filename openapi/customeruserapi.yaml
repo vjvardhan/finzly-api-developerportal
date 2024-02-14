@@ -19,7 +19,7 @@
     "/v1/customer/{customerUID}/users" : {
       "post" : {
         "tags" : [ "Users" ],
-        "summary" : "Create new user.",
+        "summary" : "Create new customer user.",
         "description" : "To save customer user details in the system.",
         "operationId" : "saveUserDetails",
         "parameters" : [ {
