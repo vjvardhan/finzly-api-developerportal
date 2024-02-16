@@ -1,5 +1,5 @@
 type: reference-docs
-definitionId: paymentWebhookApi
+definitionId: customeruserAPI
 settings:
   generateCodeSamples:
     languages:
