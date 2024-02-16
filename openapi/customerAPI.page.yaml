@@ -1,5 +1,5 @@
 type: reference-docs
-definitionId: customerAPI
+definitionId: customerApi
 settings:
   generateCodeSamples:
     languages:
