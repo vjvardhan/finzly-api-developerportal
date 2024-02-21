@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.2.2"
+    "version" : "2.2.3"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -26,6 +26,9 @@
   }, {
     "name" : "Customer Contact",
     "description" : "Customer Contact APIs helps you to manage the customer  beneficiaries (contacts) in the finzly CRM system. \n\nOnce the contacts are defined the contact UID can be used in the payment API as a receiver [accountUID] to initiate a payment request. \n\nFollowing use cases helps you to understand the current customer contacts capabilities exposed via APIs\n\n1. Create Customer Contact\n2. Update Customer Contact\n3. Search Customer Contacts\n4. Get Customer Contact Details\n"
+  }, {
+    "name" : "Customer User",
+    "description" : "Customer user APIs helps you to manage the users associated with the customer.\n\nFollowing use cases helps you to understand the current customer accounts capabilities exposed via APIs\n\n1. Create Customer User\n2. Update Customer User\n"
   } ],
   "paths" : {
     "/v2/customers" : {
@@ -1241,6 +1244,176 @@
               "*/*" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateCustomerContactResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/customer/{customerUID}/users" : {
+      "post" : {
+        "tags" : [ "Customer Users" ],
+        "summary" : "Create new customer user.",
+        "description" : "To save customer user details in the system.",
+        "operationId" : "save",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "customer Unique Identifier."
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Credit Payment Request fields",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomerUserCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Save user details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerUserResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerUserResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/customer/{customerUID}/users/{userUID}" : {
+      "put" : {
+        "tags" : [ "Customer Users" ],
+        "summary" : "Update existing customer user.",
+        "description" : "To update existing customer user details in the system.",
+        "operationId" : "update",
+        "parameters" : [ {
+          "name" : "customerUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "customer Unique Identifier."
+          }
+        }, {
+          "name" : "userUID",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "customer Unique Identifier."
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Credit Payment Request fields",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CustomerUserUpdateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Save user details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerUserUpdateRequest"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CustomerUserResponse"
                 }
               }
             }
@@ -2534,6 +2707,125 @@
           }
         }
       },
+      "CustomerUserCreateRequest" : {
+        "required" : [ "email", "externalReferenceId", "firstName", "lastName", "loginId", "mobile", "roleUIDs" ],
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "User101"
+          },
+          "loginId" : {
+            "type" : "string",
+            "description" : "unique identifier.",
+            "example" : "user123"
+          },
+          "firstName" : {
+            "type" : "string",
+            "description" : "User first name.",
+            "example" : "john"
+          },
+          "lastName" : {
+            "type" : "string",
+            "description" : "last name of user",
+            "example" : "T."
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "users email id",
+            "example" : "user123@gamil.com"
+          },
+          "mobile" : {
+            "type" : "string",
+            "description" : "User contact number",
+            "example" : "9389989658"
+          },
+          "roleUIDs" : {
+            "type" : "array",
+            "description" : "valid list of role ids.",
+            "example" : "f37f6757-d345-ffff4-8235-5965419b495d etc."
+          },
+          "applications" : {
+            "$ref" : "#/components/schemas/Applications"
+          }
+        }
+      },
+      "CustomerUserUpdateRequest" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "User101"
+          },
+          "loginId" : {
+            "type" : "string",
+            "description" : "unique identifier.",
+            "example" : "user123"
+          },
+          "firstName" : {
+            "type" : "string",
+            "description" : "User first name.",
+            "example" : "john"
+          },
+          "lastName" : {
+            "type" : "string",
+            "description" : "last name of user",
+            "example" : "T."
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "users email id",
+            "example" : "user123@gamil.com"
+          },
+          "mobile" : {
+            "type" : "string",
+            "description" : "User contact number",
+            "example" : "9389989658"
+          },
+          "roleUIDs" : {
+            "type" : "array",
+            "description" : "valid list of role ids.",
+            "example" : "f37f6757-d345-ffff4-8235-5965419b495d etc."
+          },
+          "applications" : {
+            "$ref" : "#/components/schemas/Applications"
+          }
+        }
+      },
+      "Applications" : {
+        "properties" : {
+          "appcode" : {
+            "type" : "string",
+            "example" : "finzly.cashos.cashosfx, etc"
+          },
+          "limits" : {
+            "$ref" : "#/components/schemas/UserLimit"
+          }
+        }
+      },
+      "UserLimit" : {
+        "properties" : {
+          "key" : {
+            "type" : "string",
+            "example" : "FX_DAILY_LIMIT, etc"
+          },
+          "value" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "CustomerUserResponse" : {
+        "properties" : {
+          "message" : {
+            "type" : "string",
+            "description" : "Error message indicating the issue in API call along with the reason.",
+            "example" : "<Reason>"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CustomerUserResponse_data"
+          }
+        }
+      },
       "PaymentNoteOptionValueChildren_data" : {
         "type" : "object",
         "properties" : {
@@ -2681,6 +2973,16 @@
           "externalReferenceId" : {
             "type" : "string",
             "description" : "External reference id received in the request."
+          }
+        }
+      },
+      "CustomerUserResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "userUUID" : {
+            "type" : "string",
+            "description" : "Newly created user id.",
+            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
           }
         }
       }
