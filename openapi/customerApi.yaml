@@ -1284,7 +1284,7 @@
     },
     "/v1/customer/{customerUID}/users" : {
       "post" : {
-        "tags" : [ "Customer Users" ],
+        "tags" : [ "Customer User" ],
         "summary" : "Create new customer user.",
         "description" : "To save customer user details in the system.",
         "operationId" : "save",
@@ -1296,7 +1296,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         } ],
         "requestBody" : {
@@ -1364,7 +1364,7 @@
     },
     "/v1/customer/{customerUID}/users/{userUID}" : {
       "put" : {
-        "tags" : [ "Customer Users" ],
+        "tags" : [ "Customer User" ],
         "summary" : "Update existing customer user.",
         "description" : "To update existing customer user details in the system.",
         "operationId" : "update",
@@ -1376,7 +1376,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         }, {
           "name" : "userUID",
@@ -1454,7 +1454,7 @@
     },
     "/v1/customers/{customerId}/roles" : {
       "post" : {
-        "tags" : [ "Customer Roles" ],
+        "tags" : [ "Customer Role" ],
         "summary" : "Create new customer role.",
         "description" : "To save customer role details in the system.",
         "operationId" : "save-role",
@@ -1534,9 +1534,9 @@
     },
     "/v1/customers/{customerId}/roles/{roleId}" : {
       "get" : {
-        "tags" : [ "Customer Roles" ],
-        "summary" : "Create new customer role.",
-        "description" : "To save customer role details in the system.",
+        "tags" : [ "Customer Role" ],
+        "summary" : "Get customer role.",
+        "description" : "Get customer role details in the system.",
         "operationId" : "get-role",
         "parameters" : [ {
           "name" : "customerId",
@@ -2879,7 +2879,7 @@
           },
           "loginId" : {
             "type" : "string",
-            "description" : "unique identifier.",
+            "description" : "Unique identifier.",
             "example" : "user123"
           },
           "firstName" : {
@@ -2955,9 +2955,11 @@
         }
       },
       "Applications" : {
+        "required" : [ "appcode" ],
         "properties" : {
           "appcode" : {
             "type" : "string",
+            "description" : "application code",
             "example" : "finzly.cashos.cashosfx, etc"
           },
           "limits" : {
@@ -2966,13 +2968,16 @@
         }
       },
       "UserLimit" : {
+        "required" : [ "key", "value" ],
         "properties" : {
           "key" : {
             "type" : "string",
+            "description" : "limit code",
             "example" : "FX_DAILY_LIMIT, etc"
           },
           "value" : {
-            "type" : "integer"
+            "type" : "integer",
+            "description" : "value for the limit"
           }
         }
       },
