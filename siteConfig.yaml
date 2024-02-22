@@ -19,7 +19,6 @@ oasDefinitions:
   customerApi: ./openapi/customerApi.yaml
   userApi: ./openapi/userAPI.yaml
   paymentWebhookApi: ./openapi/paymentWebhookApi.yaml
-  customeruserAPI: ./openapi/customeruserapi.yaml
 
 # postBodyScripts:
 scripts:
