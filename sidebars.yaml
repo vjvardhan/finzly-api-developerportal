@@ -111,14 +111,10 @@ training:
       expanded: false
       pages:
         - page: openapi/fxAPI.page.yaml/*
-    - group: Customer and Accounts
+    - group: Customer
       expanded: false
       pages:
-        - page: openapi/customerAPI.page.yaml/*
-    - group: Customer Users and Roles
-      expanded: false
-      pages:
-        - page: openapi/customeruserAPI.page.yaml/*       
+        - page: openapi/customerAPI.page.yaml/*    
     - group: Webhooks
       expanded: false
       pages:
