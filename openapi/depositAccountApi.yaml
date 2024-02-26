@@ -1,0 +1,250 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Deposit Account",
+    "description" : "Customer Deposit Accounts APIs helps you to manage the accounts associated with the customer.Following use cases helps you to understand the current customer accounts capabilities exposed via APIs. 1. Create Customer Deposit Account",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "paths" : {
+    "/v1/bank/account" : {
+      "post" : {
+        "tags" : [ "Deposit Account" ],
+        "summary" : "Create deposit account",
+        "description" : "Create a deposit account",
+        "operationId" : "depositAccount",
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DepositAccountRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Error" : {
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Error code assigned by the system",
+            "example" : "invalidMethod"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Error description to provide addtional details about the error code",
+            "example" : "Invalid HTTP method used"
+          }
+        }
+      },
+      "DepositAccountRequest" : {
+        "required" : [ "accountName", "productCode" ],
+        "properties" : {
+          "productCode" : {
+            "type" : "string"
+          },
+          "accountName" : {
+            "type" : "string"
+          },
+          "accountNumber" : {
+            "type" : "string"
+          },
+          "stopDebits" : {
+            "type" : "string"
+          },
+          "stopWires" : {
+            "type" : "string"
+          },
+          "collateralized" : {
+            "type" : "string"
+          },
+          "legalHold" : {
+            "type" : "string"
+          },
+          "statementFrequency" : {
+            "type" : "string"
+          },
+          "nextStatementDate" : {
+            "type" : "string"
+          },
+          "deceasedOwner" : {
+            "type" : "string"
+          },
+          "notification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Notification"
+            }
+          },
+          "debitCards" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DebitCards"
+            }
+          },
+          "party" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Party"
+            }
+          }
+        }
+      },
+      "Notification" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "legalEntityId" : {
+            "type" : "string"
+          },
+          "emailList" : {
+            "type" : "string"
+          },
+          "phoneNumberList" : {
+            "type" : "string"
+          },
+          "depositAccountId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DebitCards" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "cardNumber" : {
+            "type" : "string"
+          },
+          "cardExpiryDate" : {
+            "type" : "string"
+          },
+          "nameOnCard" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "depositAccountId" : {
+            "type" : "string"
+          },
+          "result" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Party" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "counterPartyShortName" : {
+            "type" : "string"
+          },
+          "relationship" : {
+            "type" : "string"
+          },
+          "addedOn" : {
+            "type" : "string"
+          },
+          "depositAccountId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DepositAccount" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string"
+          },
+          "productCode" : {
+            "type" : "string"
+          },
+          "accountName" : {
+            "type" : "string"
+          },
+          "accountNumber" : {
+            "type" : "string"
+          },
+          "routingNumber" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DepositAccountResponse" : {
+        "properties" : {
+          "message" : {
+            "type" : "string",
+            "description" : "Error message indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "<Reason>"
+          },
+          "depositAccount" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DepositAccount"
+            }
+          }
+        }
+      }
+    }
+  }
+}
