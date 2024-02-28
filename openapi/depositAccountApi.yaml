@@ -77,6 +77,338 @@
           }
         }
       }
+    },
+    "/v1/bank/account/{accountId}" : {
+      "put" : {
+        "tags" : [ "Deposit Account" ],
+        "summary" : "Update deposit account",
+        "description" : "Update a deposit account",
+        "operationId" : "updateDepositAccount",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateDepositAccountRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/bank/account/{accountId}/close" : {
+      "post" : {
+        "tags" : [ "Deposit Account" ],
+        "summary" : "Close deposit account",
+        "description" : "Close a deposit account",
+        "operationId" : "closeDepositAccount",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Account Info",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CloseDepositAccountRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CloseDepositAccountResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CloseDepositAccountResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/bank/account/{accountId}/transactions" : {
+      "post" : {
+        "tags" : [ "Deposit Account" ],
+        "summary" : "Transactions deposit account",
+        "description" : "Transactions a deposit account",
+        "operationId" : "transactionsDepositAccount",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "description" : "Which number of page of results to be returned",
+            "example" : "1"
+          }
+        }, {
+          "name" : "records",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "maximum" : 1000,
+            "type" : "string",
+            "description" : "Total number of records to be returned for a given page",
+            "example" : "100"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Request for filter the data",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DepositTransactionSearch"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositTransactionResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositTransactionResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/bank/account/{accountId}/balance" : {
+      "get" : {
+        "tags" : [ "Deposit Account" ],
+        "summary" : "Get deposit account details",
+        "description" : "Get a deposit account",
+        "operationId" : "GetDepositAccount",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositAccountBalance"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositAccountBalance"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -110,6 +442,216 @@
           }
         }
       },
+      "UpdateDepositAccountRequest" : {
+        "properties" : {
+          "productCode" : {
+            "type" : "string",
+            "description" : "This is a mandatory field. productCode is associated with the curruncy, Product Name, Maintenance Fee, Account Type and Book. And product code should present in tesystem.",
+            "example" : "BBCCOO"
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Account name is an unique field",
+            "example" : "test123"
+          },
+          "stopDebits" : {
+            "type" : "boolean"
+          },
+          "stopWires" : {
+            "type" : "boolean"
+          },
+          "collateralized" : {
+            "type" : "boolean"
+          },
+          "legalHold" : {
+            "type" : "boolean"
+          },
+          "statementFrequency" : {
+            "type" : "string"
+          },
+          "nextStatementDate" : {
+            "type" : "string",
+            "example" : "02/28/2024"
+          },
+          "deceasedOwner" : {
+            "type" : "boolean"
+          },
+          "notification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Notification"
+            }
+          },
+          "debitCards" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DebitCards"
+            }
+          },
+          "party" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Party"
+            }
+          }
+        }
+      },
+      "Notification" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "legalEntityId" : {
+            "type" : "string"
+          },
+          "emailList" : {
+            "type" : "string"
+          },
+          "phoneNumberList" : {
+            "type" : "string"
+          },
+          "depositAccountId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DebitCards" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "cardNumber" : {
+            "type" : "string"
+          },
+          "cardExpiryDate" : {
+            "type" : "string",
+            "example" : "02/28/2024"
+          },
+          "nameOnCard" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "depositAccountId" : {
+            "type" : "string"
+          },
+          "result" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Party" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "counterPartyShortName" : {
+            "type" : "string"
+          },
+          "relationship" : {
+            "type" : "string"
+          },
+          "addedOn" : {
+            "type" : "string"
+          },
+          "depositAccountId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CloseDepositAccountRequest" : {
+        "properties" : {
+          "comments" : {
+            "type" : "string",
+            "description" : "Reason to close deposit account",
+            "example" : "<Reason>"
+          }
+        }
+      },
+      "DepositAccountBalance" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "number",
+            "description" : "Deposit account unique id",
+            "example" : 101
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Account number",
+            "example" : "89895656"
+          },
+          "accountCurrency" : {
+            "type" : "string",
+            "description" : "Account currency associated with product code.",
+            "example" : "USD, CAD, etc."
+          },
+          "currentBalance" : {
+            "type" : "number",
+            "description" : "Account balance",
+            "example" : 100000.0
+          },
+          "ledgerBalanceInAccountCcy" : {
+            "type" : "number",
+            "description" : "Ledger balance account balance",
+            "example" : 100000.0
+          },
+          "ledgerBalanceInLedgerCcy" : {
+            "type" : "number",
+            "description" : "Ledger balance balance in the ledger account.",
+            "example" : 100000.0
+          },
+          "result" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Result"
+            }
+          }
+        }
+      },
+      "Result" : {
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Code for the result",
+            "example" : "ACC101, etc."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Descreption for the result code.",
+            "example" : "BBCCOO"
+          }
+        }
+      },
+      "DepositTransactionSearch" : {
+        "properties" : {
+          "postingFromDate" : {
+            "type" : "string",
+            "description" : "From posting date",
+            "example" : "02/28/2024"
+          },
+          "postingToDate" : {
+            "type" : "string",
+            "description" : "To posting date",
+            "example" : "02/28/2024"
+          },
+          "toAmount" : {
+            "type" : "number",
+            "description" : "Deposit account unique id",
+            "example" : 100
+          },
+          "fromAmount" : {
+            "type" : "number",
+            "description" : "Deposit account unique id",
+            "example" : 10
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Account type",
+            "example" : "credit, debit"
+          }
+        }
+      },
       "DepositAccount" : {
         "properties" : {
           "accountUID" : {
@@ -139,6 +681,15 @@
           }
         }
       },
+      "CloseDepositAccountResponse" : {
+        "properties" : {
+          "message" : {
+            "type" : "string",
+            "description" : "Success or Error message.",
+            "example" : "<Reason>"
+          }
+        }
+      },
       "DepositAccountResponse" : {
         "properties" : {
           "message" : {
@@ -150,6 +701,125 @@
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/DepositAccount"
+            }
+          }
+        }
+      },
+      "DepositTransactionResponse" : {
+        "properties" : {
+          "depositTransaction" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DepositTransaction"
+            }
+          },
+          "pagination" : {
+            "type" : "string",
+            "description" : "Return the pagination object along with page and total number for records"
+          }
+        }
+      },
+      "DepositTransaction" : {
+        "properties" : {
+          "description" : {
+            "type" : "string",
+            "description" : "Account information"
+          },
+          "postingDate" : {
+            "type" : "string",
+            "description" : "posting date",
+            "example" : "02/28/2024"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Transaction amount",
+            "example" : 100
+          },
+          "balance" : {
+            "type" : "number",
+            "description" : "Account balance",
+            "example" : 1000
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Account number",
+            "example" : "89865689"
+          },
+          "transactionCurrency" : {
+            "type" : "string",
+            "description" : "Transaction currency",
+            "example" : "USD, CAD, etc."
+          },
+          "creditDebitType" : {
+            "type" : "string",
+            "enum" : [ "Credit", "Debit" ]
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "Unique id for the transaction."
+          },
+          "source" : {
+            "type" : "string",
+            "example" : "Deposit"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "Category associated with the payment",
+            "example" : "Deposit"
+          },
+          "conversionRate" : {
+            "type" : "number",
+            "description" : "Conversion rate",
+            "example" : 1.6
+          },
+          "overrideMemoError" : {
+            "type" : "string",
+            "description" : "Memo post error"
+          },
+          "paymentReferenceNo" : {
+            "type" : "string",
+            "description" : "Payment unique id"
+          },
+          "paymentStatus" : {
+            "type" : "string",
+            "description" : "Payment status",
+            "example" : "PROCESSING"
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Cost center associated with the payment"
+          },
+          "offsetGL" : {
+            "type" : "string",
+            "description" : "off set GL number"
+          },
+          "createdBy" : {
+            "type" : "string",
+            "description" : "Creator name"
+          },
+          "lastUpdatedBy" : {
+            "type" : "string",
+            "description" : "Last data updated by"
+          },
+          "trancode" : {
+            "type" : "string",
+            "description" : "trancode associated with payment"
+          },
+          "action" : {
+            "type" : "string",
+            "description" : "Action"
+          },
+          "errorMessage" : {
+            "type" : "string"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Notes"
+          },
+          "result" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Result"
             }
           }
         }
