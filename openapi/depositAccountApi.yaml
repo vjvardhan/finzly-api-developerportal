@@ -99,134 +99,43 @@
         "required" : [ "accountName", "productCode" ],
         "properties" : {
           "productCode" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "This is a mandatory field. productCode is associated with the curruncy, Product Name, Maintenance Fee, Account Type and Book. And product code should present in tesystem.",
+            "example" : "BBCCOO"
           },
           "accountName" : {
-            "type" : "string"
-          },
-          "accountNumber" : {
-            "type" : "string"
-          },
-          "stopDebits" : {
-            "type" : "string"
-          },
-          "stopWires" : {
-            "type" : "string"
-          },
-          "collateralized" : {
-            "type" : "string"
-          },
-          "legalHold" : {
-            "type" : "string"
-          },
-          "statementFrequency" : {
-            "type" : "string"
-          },
-          "nextStatementDate" : {
-            "type" : "string"
-          },
-          "deceasedOwner" : {
-            "type" : "string"
-          },
-          "notification" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Notification"
-            }
-          },
-          "debitCards" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/DebitCards"
-            }
-          },
-          "party" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Party"
-            }
-          }
-        }
-      },
-      "Notification" : {
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "legalEntityId" : {
-            "type" : "string"
-          },
-          "emailList" : {
-            "type" : "string"
-          },
-          "phoneNumberList" : {
-            "type" : "string"
-          },
-          "depositAccountId" : {
-            "type" : "string"
-          }
-        }
-      },
-      "DebitCards" : {
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "cardNumber" : {
-            "type" : "string"
-          },
-          "cardExpiryDate" : {
-            "type" : "string"
-          },
-          "nameOnCard" : {
-            "type" : "string"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "depositAccountId" : {
-            "type" : "string"
-          },
-          "result" : {
-            "type" : "string"
-          }
-        }
-      },
-      "Party" : {
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "counterPartyShortName" : {
-            "type" : "string"
-          },
-          "relationship" : {
-            "type" : "string"
-          },
-          "addedOn" : {
-            "type" : "string"
-          },
-          "depositAccountId" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Account name is an unique field",
+            "example" : "test123"
           }
         }
       },
       "DepositAccount" : {
         "properties" : {
           "accountUID" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Deposit account unique id",
+            "example" : "101"
           },
           "productCode" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "productCode should be valid and present in the system.",
+            "example" : "BBCCOO"
           },
           "accountName" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Newly created deposite account name",
+            "example" : "test123"
           },
           "accountNumber" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Newly created deposite account number",
+            "example" : "888893725"
           },
           "routingNumber" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "valid routingNumber and it should present in the system.",
+            "example" : "120055699"
           }
         }
       },
