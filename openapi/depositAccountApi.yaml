@@ -415,6 +415,224 @@
           }
         }
       }
+    },
+    "/v1/debitcard/{accountId}/issueCard" : {
+      "post" : {
+        "tags" : [ "Deposit Debit Card" ],
+        "summary" : "Create Debit Card",
+        "description" : "Create a debit Card",
+        "operationId" : "debitCard",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Debit card details",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DepositDebitCardRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositDebitCardResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositDebitCardResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/debitcard/freeze/{cardId}" : {
+      "put" : {
+        "tags" : [ "Deposit Debit Card" ],
+        "summary" : "Freeze debit card",
+        "description" : "Freeze Debit Card",
+        "operationId" : "freezeDebitCard",
+        "parameters" : [ {
+          "name" : "cardId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "card unique identifier associated with the card details in the Finzly's CRM system"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositDebitCardResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositDebitCardResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/debitcard/unfreeze/{cardId}" : {
+      "put" : {
+        "tags" : [ "Deposit Debit Card" ],
+        "summary" : "Unfreeze debit card",
+        "description" : "Unfreeze Debit Card",
+        "operationId" : "unfreezeDebitCard",
+        "parameters" : [ {
+          "name" : "cardId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "card unique identifier associated with the card details in the Finzly's CRM system"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositDebitCardResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DepositDebitCardResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -430,6 +648,14 @@
             "type" : "string",
             "description" : "Error description to provide addtional details about the error code",
             "example" : "Invalid HTTP method used"
+          }
+        }
+      },
+      "DepositDebitCardRequest" : {
+        "properties" : {
+          "cardName" : {
+            "type" : "string",
+            "description" : "Specifies card name is an unique field."
           }
         }
       },
@@ -685,6 +911,39 @@
             "type" : "string",
             "description" : "valid routingNumber and it should present in the system.",
             "example" : "120055699"
+          }
+        }
+      },
+      "DepositDebitCardResponse" : {
+        "properties" : {
+          "accountId" : {
+            "type" : "number",
+            "description" : "Specifies account unique id."
+          },
+          "cardExpiryDate" : {
+            "type" : "string",
+            "description" : "Specifies a card expiry date.",
+            "example" : "02/28/2024"
+          },
+          "cardNumber" : {
+            "type" : "string",
+            "description" : "Specifies a card number",
+            "example" : "329898983"
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "Specifies card unique id",
+            "example" : "100"
+          },
+          "cardName" : {
+            "type" : "string",
+            "description" : "Specifies a card name",
+            "example" : "ACB101"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Specifies card status",
+            "example" : "FREEZED,ACTIVE"
           }
         }
       },
