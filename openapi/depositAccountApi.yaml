@@ -2,11 +2,17 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Deposit Account",
-    "description" : "Customer Deposit Accounts APIs helps you to manage the accounts associated with the customer.Following use cases helps you to understand the current customer accounts capabilities exposed via APIs. 1. Create Customer Deposit Account",
     "version" : "1.0.0"
   },
   "servers" : [ {
     "url" : "/"
+  } ],
+  "tags" : [ {
+    "name" : "Deposit Account",
+    "description" : "Deposit Accounts APIs helps you to manage the accounts associated with the customer.Following use cases helps you to understand the current customer accounts capabilities exposed via APIs. 1. Create Deposit Account 2. Update Deposit Account 3. Close Deposit Account 4. Get Transaction Details List 5. Fetch Account Balance"
+  }, {
+    "name" : "Deposit Debit Card",
+    "description" : "Deposit Debit Card APIs helps you to manage the accounts associated with the customer.Following use cases helps you to understand the current customer accounts capabilities exposed via APIs. 1. Issue Debit Card 2. Freeze Debit Card 3. Unfreeze Debit Card"
   } ],
   "paths" : {
     "/v1/bank/account" : {
@@ -431,6 +437,7 @@
         "required" : [ "accountName", "productCode" ],
         "properties" : {
           "productCode" : {
+            "maxLength" : 50,
             "type" : "string",
             "description" : "This is a mandatory field. productCode is associated with the curruncy, Product Name, Maintenance Fee, Account Type and Book. And product code should present in tesystem.",
             "example" : "BBCCOO"
@@ -578,7 +585,7 @@
           },
           "accountNumber" : {
             "type" : "string",
-            "description" : "Account number",
+            "description" : "Account number which is autogenrated while creating account",
             "example" : "89895656"
           },
           "accountCurrency" : {
@@ -637,12 +644,12 @@
           },
           "toAmount" : {
             "type" : "number",
-            "description" : "Deposit account unique id",
+            "description" : "To amount",
             "example" : 100
           },
           "fromAmount" : {
             "type" : "number",
-            "description" : "Deposit account unique id",
+            "description" : "From amount",
             "example" : 10
           },
           "type" : {
@@ -723,16 +730,16 @@
         "properties" : {
           "description" : {
             "type" : "string",
-            "description" : "Account information"
+            "description" : "Specifies description for the transaction."
           },
           "postingDate" : {
             "type" : "string",
-            "description" : "posting date",
+            "description" : "Specifies posting date for the transaction.",
             "example" : "02/28/2024"
           },
           "amount" : {
             "type" : "number",
-            "description" : "Transaction amount",
+            "description" : "Specifies amount of the transaction",
             "example" : 100
           },
           "balance" : {
@@ -742,16 +749,17 @@
           },
           "accountNumber" : {
             "type" : "string",
-            "description" : "Account number",
+            "description" : "Specifies account number of an account for the transaction",
             "example" : "89865689"
           },
           "transactionCurrency" : {
             "type" : "string",
-            "description" : "Transaction currency",
+            "description" : "Specifies currency of an account for the transaction",
             "example" : "USD, CAD, etc."
           },
           "creditDebitType" : {
             "type" : "string",
+            "description" : "Specifies the credit/ debit type for the transaction.",
             "enum" : [ "Credit", "Debit" ]
           },
           "id" : {
@@ -760,16 +768,17 @@
           },
           "source" : {
             "type" : "string",
+            "description" : "Specifies source of the transaction",
             "example" : "Deposit"
           },
           "category" : {
             "type" : "string",
-            "description" : "Category associated with the payment",
+            "description" : "Specifies category of the transaction",
             "example" : "Deposit"
           },
           "conversionRate" : {
             "type" : "number",
-            "description" : "Conversion rate",
+            "description" : "Specifies conversion rate for a multicurrency account transaction, if the convertion rate is not provided the it is automaticlly fetched.",
             "example" : 1.6
           },
           "overrideMemoError" : {
@@ -782,16 +791,16 @@
           },
           "paymentStatus" : {
             "type" : "string",
-            "description" : "Payment status",
+            "description" : "Specifies payment status for the transaction.",
             "example" : "PROCESSING"
           },
           "costCenter" : {
             "type" : "string",
-            "description" : "Cost center associated with the payment"
+            "description" : "Specifies cost center of the transaction, where cost center fetch from the staticdata"
           },
           "offsetGL" : {
             "type" : "string",
-            "description" : "off set GL number"
+            "description" : "Specifies offsetGL for the transaction."
           },
           "createdBy" : {
             "type" : "string",
@@ -803,7 +812,7 @@
           },
           "trancode" : {
             "type" : "string",
-            "description" : "trancode associated with payment"
+            "description" : "Specifies trancode for the transaction, which is fetched from the system."
           },
           "action" : {
             "type" : "string",
