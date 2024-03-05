@@ -1792,10 +1792,13 @@
           "achWhitelist" : {
             "type" : "boolean"
           },
-          "achNonPrefund" : {
+          "achPrefund" : {
             "type" : "boolean"
           },
-          "achNonPrefundLimit" : {
+          "achPrefundDebitLimit" : {
+            "type" : "string"
+          },
+          "achPrefundCreditLimit" : {
             "type" : "string"
           },
           "paymentFileAuthentication" : {
