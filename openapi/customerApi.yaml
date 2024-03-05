@@ -2026,7 +2026,7 @@
             "description" : "This is shortname of the parent org",
             "example" : "ParentEntity"
           },
-          "addtionalProfileDetails" : {
+          "additionalProfileDetails" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
@@ -2171,7 +2171,7 @@
             "description" : "This is shortname of the parent org",
             "example" : "ParentEntity"
           },
-          "addtionalProfileDetails" : {
+          "additionalProfileDetails" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
@@ -2365,7 +2365,7 @@
             "description" : "This is the shortname associated with the existing customer legal entity act as a parent entity",
             "example" : "TESTBANK"
           },
-          "addtionalProfileDetails" : {
+          "additionalProfileDetails" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
