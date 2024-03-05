@@ -1623,7 +1623,7 @@
           },
           "description" : {
             "type" : "string",
-            "description" : "Error description to provide addtional details about the error code",
+            "description" : "Error description to provide additional details about the error code",
             "example" : "Invalid HTTP method used"
           }
         }
