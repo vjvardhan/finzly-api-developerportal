@@ -1300,7 +1300,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "Credit User Request fields",
+          "description" : "Create User Request fields",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -1466,7 +1466,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         } ],
         "requestBody" : {
@@ -2882,7 +2882,7 @@
           },
           "loginId" : {
             "type" : "string",
-            "description" : "unique identifier.",
+            "description" : "Unique identifier.",
             "example" : "user123"
           },
           "firstName" : {
@@ -2954,7 +2954,7 @@
           },
           "loginId" : {
             "type" : "string",
-            "description" : "unique identifier.",
+            "description" : "Unique identifier.",
             "example" : "user123"
           },
           "firstName" : {
