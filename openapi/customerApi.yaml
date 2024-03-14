@@ -1282,14 +1282,14 @@
         }
       }
     },
-    "/v1/customer/{customerUID}/users" : {
+    "/v1/customer/{customerId}/users" : {
       "post" : {
         "tags" : [ "Customer User" ],
         "summary" : "Create new customer user.",
         "description" : "To save customer user details in the system.",
         "operationId" : "save",
         "parameters" : [ {
-          "name" : "customerUID",
+          "name" : "customerId",
           "in" : "path",
           "required" : true,
           "style" : "simple",
@@ -1362,14 +1362,14 @@
         }
       }
     },
-    "/v1/customer/{customerUID}/users/{userUID}" : {
+    "/v1/customer/{customerId}/users/{userId}" : {
       "put" : {
         "tags" : [ "Customer User" ],
         "summary" : "Update existing customer user.",
         "description" : "To update existing customer user details in the system.",
         "operationId" : "update",
         "parameters" : [ {
-          "name" : "customerUID",
+          "name" : "customerId",
           "in" : "path",
           "required" : true,
           "style" : "simple",
@@ -1379,7 +1379,7 @@
             "description" : "Customer Unique Identifier."
           }
         }, {
-          "name" : "userUID",
+          "name" : "userId",
           "in" : "path",
           "required" : true,
           "style" : "simple",
