@@ -2992,7 +2992,7 @@
       },
       "CustomerUserResponse" : {
         "properties" : {
-          "userUUID" : {
+          "userId" : {
             "type" : "string",
             "example" : "f37f6757-c546-42d4-8235-5965419b495d."
           },
@@ -3228,7 +3228,7 @@
       "CustomerUserResponse_data" : {
         "type" : "object",
         "properties" : {
-          "userUUID" : {
+          "userId" : {
             "type" : "string",
             "description" : "Newly created user id.",
             "example" : "f37f6757-c546-42d4-8235-5965419b495d."
