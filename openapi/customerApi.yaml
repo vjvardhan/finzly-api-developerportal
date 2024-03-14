@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.2.4"
+    "version" : "2.2.5"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -1282,14 +1282,14 @@
         }
       }
     },
-    "/v1/customer/{customerUID}/users" : {
+    "/v1/customer/{customerId}/users" : {
       "post" : {
         "tags" : [ "Customer User" ],
         "summary" : "Create new customer user.",
         "description" : "To save customer user details in the system.",
         "operationId" : "save",
         "parameters" : [ {
-          "name" : "customerUID",
+          "name" : "customerId",
           "in" : "path",
           "required" : true,
           "style" : "simple",
@@ -1300,7 +1300,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "Credit Payment Request fields",
+          "description" : "Create User Request fields",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -1362,14 +1362,14 @@
         }
       }
     },
-    "/v1/customer/{customerUID}/users/{userUID}" : {
+    "/v1/customer/{customerId}/users/{userId}" : {
       "put" : {
         "tags" : [ "Customer User" ],
         "summary" : "Update existing customer user.",
         "description" : "To update existing customer user details in the system.",
         "operationId" : "update",
         "parameters" : [ {
-          "name" : "customerUID",
+          "name" : "customerId",
           "in" : "path",
           "required" : true,
           "style" : "simple",
@@ -1379,7 +1379,7 @@
             "description" : "Customer Unique Identifier."
           }
         }, {
-          "name" : "userUID",
+          "name" : "userId",
           "in" : "path",
           "required" : true,
           "style" : "simple",
@@ -1390,7 +1390,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "Credit Payment Request fields",
+          "description" : "Update User Request fields",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -1466,7 +1466,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         } ],
         "requestBody" : {
@@ -2873,7 +2873,7 @@
         }
       },
       "CustomerUserCreateRequest" : {
-        "required" : [ "email", "externalReferenceId", "firstName", "lastName", "loginId", "mobile", "roleUIDs" ],
+        "required" : [ "department", "email", "externalReferenceId", "firstName", "lastName", "loginId", "mobile", "roleNames" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -2905,13 +2905,43 @@
             "description" : "User contact number",
             "example" : "9389989658"
           },
-          "roleUIDs" : {
+          "roleNames" : {
             "type" : "array",
             "description" : "valid list of role ids.",
-            "example" : "f37f6757-d345-ffff4-8235-5965419b495d etc."
+            "example" : "Admin etc."
           },
           "applications" : {
-            "$ref" : "#/components/schemas/Applications"
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Applications"
+            }
+          }
+        }
+      },
+      "Applications" : {
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "application name",
+            "example" : "Foreign Exchange, etc"
+          },
+          "limits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/limits"
+            }
+          }
+        }
+      },
+      "limits" : {
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Limit code",
+            "example" : "Per Transaction Payment Limits, etc"
+          },
+          "value" : {
+            "type" : "integer"
           }
         }
       },
@@ -2924,7 +2954,7 @@
           },
           "loginId" : {
             "type" : "string",
-            "description" : "unique identifier.",
+            "description" : "Unique identifier.",
             "example" : "user123"
           },
           "firstName" : {
@@ -2947,45 +2977,25 @@
             "description" : "User contact number",
             "example" : "9389989658"
           },
-          "roleUIDs" : {
+          "roleNames" : {
             "type" : "array",
             "description" : "valid list of role ids.",
-            "example" : "f37f6757-d345-ffff4-8235-5965419b495d etc."
+            "example" : "Admin etc."
           },
           "applications" : {
-            "$ref" : "#/components/schemas/Applications"
-          }
-        }
-      },
-      "Applications" : {
-        "required" : [ "appcode" ],
-        "properties" : {
-          "appcode" : {
-            "type" : "string",
-            "description" : "application code",
-            "example" : "finzly.cashos.cashosfx, etc"
-          },
-          "limits" : {
-            "$ref" : "#/components/schemas/UserLimit"
-          }
-        }
-      },
-      "UserLimit" : {
-        "required" : [ "key", "value" ],
-        "properties" : {
-          "key" : {
-            "type" : "string",
-            "description" : "limit code",
-            "example" : "FX_DAILY_LIMIT, etc"
-          },
-          "value" : {
-            "type" : "integer",
-            "description" : "value for the limit"
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Applications"
+            }
           }
         }
       },
       "CustomerUserResponse" : {
         "properties" : {
+          "userId" : {
+            "type" : "string",
+            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
+          },
           "message" : {
             "type" : "string",
             "description" : "Error message indicating the issue in API call along with the reason.",
@@ -2997,7 +3007,7 @@
         }
       },
       "CustomerRoleCreateRequest" : {
-        "required" : [ "applications", "description", "externalReferenceId", "name" ],
+        "required" : [ "description", "externalReferenceId", "name" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -3006,54 +3016,55 @@
           },
           "name" : {
             "type" : "string",
-            "description" : "unique identifier.",
-            "example" : "test123"
+            "description" : "Role name.",
+            "example" : "Admin"
           },
           "description" : {
             "type" : "string",
-            "description" : "New role for new customers",
-            "example" : "New role for new customers"
+            "description" : "Description for the role.",
+            "example" : "Role for admin users"
           },
           "applications" : {
-            "$ref" : "#/components/schemas/RoleApplication"
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RoleApplication"
+            }
           }
         }
       },
       "RoleApplication" : {
         "properties" : {
-          "appcode" : {
+          "name" : {
             "type" : "string",
-            "example" : "finzly.cashos.cashosfx, etc"
+            "description" : "application name",
+            "example" : "Foreign Exchange, etc"
           },
           "entitlements" : {
             "type" : "array",
-            "example" : [ "vTrd", "mFXQ" ]
+            "example" : "View Portal,Manage Account, etc"
           },
-          "limit" : {
-            "$ref" : "#/components/schemas/RoleLimit"
-          }
-        }
-      },
-      "RoleLimit" : {
-        "properties" : {
-          "key" : {
-            "type" : "string",
-            "example" : "FX_DAILY_LIMIT, etc"
-          },
-          "value" : {
-            "type" : "integer"
+          "limits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/limits"
+            }
           }
         }
       },
       "CustomerRoleResponse" : {
         "properties" : {
+          "roleId" : {
+            "type" : "string",
+            "description" : "Newly role UUID",
+            "example" : "123fdhsfh47834jsdh84754"
+          },
           "message" : {
             "type" : "string",
             "description" : "Error message indicating the issue in API call along with the reason.",
             "example" : "<Reason>"
           },
           "data" : {
-            "$ref" : "#/components/schemas/CustomerUserResponse_data"
+            "type" : "object"
           }
         }
       },
@@ -3217,7 +3228,7 @@
       "CustomerUserResponse_data" : {
         "type" : "object",
         "properties" : {
-          "userUUID" : {
+          "userId" : {
             "type" : "string",
             "description" : "Newly created user id.",
             "example" : "f37f6757-c546-42d4-8235-5965419b495d."
