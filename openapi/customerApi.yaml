@@ -1344,17 +1344,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1386,7 +1376,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         } ],
         "requestBody" : {
@@ -1434,17 +1424,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1476,7 +1456,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         } ],
         "responses" : {
@@ -1484,14 +1464,7 @@
             "description" : "Update user status"
           },
           "204" : {
-            "description" : "No Contant",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/CustomerUserResponse"
-                }
-              }
-            }
+            "description" : "The user status updated successfully."
           },
           "400" : {
             "description" : "Bad request"
@@ -1506,17 +1479,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1548,7 +1511,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "customer Unique Identifier."
+            "description" : "Customer Unique Identifier."
           }
         } ],
         "responses" : {
@@ -1556,14 +1519,7 @@
             "description" : "Update user status"
           },
           "204" : {
-            "description" : "No Contant",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/CustomerUserResponse"
-                }
-              }
-            }
+            "description" : "The user status updated successfully."
           },
           "400" : {
             "description" : "Bad request"
@@ -1578,17 +1534,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1639,7 +1585,7 @@
             "content" : {
               "*/*" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CustomerRoleResponse"
+                  "$ref" : "#/components/schemas/GetCustomerUserResponse"
                 }
               }
             }
@@ -1657,17 +1603,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1725,7 +1661,7 @@
         },
         "responses" : {
           "default" : {
-            "description" : "Get user details by userId",
+            "description" : "Get user details based upon search criteria",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1757,17 +1693,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1836,17 +1762,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -1935,17 +1851,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
@@ -2015,17 +1921,7 @@
             "description" : "The resource you were trying to reach is not found"
           },
           "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
+            "description" : "Internal server error"
           },
           "503" : {
             "description" : "Service unavailable"
