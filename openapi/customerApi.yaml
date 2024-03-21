@@ -1675,6 +1675,106 @@
         }
       }
     },
+    "/v1/customers/{customerId}/users//users/search" : {
+      "post" : {
+        "tags" : [ "Customer User" ],
+        "summary" : "Search customer user.",
+        "description" : "Get customer user details in the system.",
+        "operationId" : "search-user",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer Unique Identifier."
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "number",
+            "description" : "page index."
+          }
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "number",
+            "description" : "page size."
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Search criteria",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SearchCustomerUserRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "Get user details by userId",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchCustomerUserResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchCustomerUserResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
     "/v1/customers/{customerId}/roles/{roleId}" : {
       "get" : {
         "tags" : [ "Customer Role" ],
@@ -1718,7 +1818,106 @@
             "content" : {
               "*/*" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CustomerRoleResponse"
+                  "$ref" : "#/components/schemas/GetCustomerRoleResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      }
+    },
+    "/v1/customers/{customerId}/roles/search" : {
+      "get" : {
+        "tags" : [ "Customer Role" ],
+        "summary" : "Search customer role.",
+        "description" : "Search customer role details in the system.",
+        "operationId" : "search-role",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "Customer Unique Identifier."
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "number",
+            "description" : "page index."
+          }
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "number",
+            "description" : "page size."
+          }
+        }, {
+          "name" : "roleName",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "number",
+            "description" : "page size."
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Get role details",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchCustomerRoleResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchCustomerRoleResponse"
                 }
               }
             }
@@ -3168,6 +3367,95 @@
           }
         }
       },
+      "SearchCustomerUserRequest" : {
+        "properties" : {
+          "loginId" : {
+            "type" : "string",
+            "description" : "Unique identifier.",
+            "example" : "user123"
+          },
+          "firstName" : {
+            "type" : "string",
+            "description" : "User first name.",
+            "example" : "john"
+          },
+          "lastName" : {
+            "type" : "string",
+            "description" : "last name of user",
+            "example" : "T."
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "users email id",
+            "example" : "user123@gamil.com"
+          },
+          "mobile" : {
+            "type" : "string",
+            "description" : "User contact number",
+            "example" : "9389989658"
+          }
+        }
+      },
+      "SearchCustomerRoleResponse" : {
+        "properties" : {
+          "totalElements" : {
+            "type" : "number",
+            "description" : "Total number of users",
+            "example" : 1212
+          },
+          "totalPages" : {
+            "type" : "number",
+            "description" : "Total number of pages",
+            "example" : 40
+          },
+          "size" : {
+            "type" : "number",
+            "description" : "Return of records",
+            "example" : 50
+          },
+          "page" : {
+            "type" : "number",
+            "description" : "Current page",
+            "example" : 0
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetCustomerRoleResponse"
+            }
+          }
+        }
+      },
+      "SearchCustomerUserResponse" : {
+        "properties" : {
+          "totalElements" : {
+            "type" : "number",
+            "description" : "Total number of users",
+            "example" : 1212
+          },
+          "totalPages" : {
+            "type" : "number",
+            "description" : "Total number of pages",
+            "example" : 40
+          },
+          "size" : {
+            "type" : "number",
+            "description" : "Return of records",
+            "example" : 50
+          },
+          "page" : {
+            "type" : "number",
+            "description" : "Current page",
+            "example" : 0
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetCustomerUserResponse"
+            }
+          }
+        }
+      },
       "CustomerUserUpdateRequest" : {
         "properties" : {
           "externalReferenceId" : {
@@ -3297,15 +3585,86 @@
       },
       "GetCustomerUserResponse" : {
         "properties" : {
-          "data" : {
-            "$ref" : "#/components/schemas/GetCustomerUserResponse_data"
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). "
+          },
+          "loginId" : {
+            "type" : "string",
+            "description" : "Unique identifier.",
+            "example" : "user123"
+          },
+          "firstName" : {
+            "type" : "string",
+            "description" : "User first name.",
+            "example" : "john"
+          },
+          "lastName" : {
+            "type" : "string",
+            "description" : "last name of user.",
+            "example" : "T"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "users email id.",
+            "example" : "user123@gamil.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "User contact number.",
+            "example" : "9389989658"
+          },
+          "roleNames" : {
+            "type" : "array",
+            "description" : "Unique identifier.",
+            "example" : "user123",
+            "items" : {
+              "type" : "string",
+              "example" : "Admin,User"
+            }
+          },
+          "limits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/limits"
+            }
           }
         }
       },
       "GetCustomerRoleResponse" : {
         "properties" : {
-          "data" : {
-            "$ref" : "#/components/schemas/GetCustomerRoleResponse_data"
+          "id" : {
+            "type" : "string",
+            "description" : "Newly created role id.",
+            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Newly created role id.",
+            "example" : "adminRole."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Newly created role id.",
+            "example" : "Newly created role id."
+          },
+          "leId" : {
+            "type" : "number",
+            "description" : "Customer id  associated with role.",
+            "example" : 11950.0
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status of role.",
+            "example" : "Active,New,etc"
+          },
+          "owner" : {
+            "type" : "string",
+            "description" : "Owner of the role.",
+            "example" : "Bank,Customer"
+          },
+          "applications" : {
+            "$ref" : "#/components/schemas/RoleApplication"
           }
         }
       },
@@ -3466,93 +3825,6 @@
             "type" : "string",
             "description" : "Newly created user id.",
             "example" : "f37f6757-c546-42d4-8235-5965419b495d."
-          }
-        }
-      },
-      "GetCustomerUserResponse_data" : {
-        "type" : "object",
-        "properties" : {
-          "externalReferenceId" : {
-            "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). "
-          },
-          "loginId" : {
-            "type" : "string",
-            "description" : "Unique identifier.",
-            "example" : "user123"
-          },
-          "firstName" : {
-            "type" : "string",
-            "description" : "User first name.",
-            "example" : "john"
-          },
-          "lastName" : {
-            "type" : "string",
-            "description" : "last name of user.",
-            "example" : "T"
-          },
-          "email" : {
-            "type" : "string",
-            "description" : "users email id.",
-            "example" : "user123@gamil.com"
-          },
-          "phoneNumber" : {
-            "type" : "string",
-            "description" : "User contact number.",
-            "example" : "9389989658"
-          },
-          "roleNames" : {
-            "type" : "array",
-            "description" : "Unique identifier.",
-            "example" : "user123",
-            "items" : {
-              "type" : "string",
-              "example" : "Admin,User"
-            }
-          },
-          "limits" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/limits"
-            }
-          }
-        }
-      },
-      "GetCustomerRoleResponse_data" : {
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "description" : "Newly created role id.",
-            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
-          },
-          "name" : {
-            "type" : "string",
-            "description" : "Newly created role id.",
-            "example" : "adminRole."
-          },
-          "description" : {
-            "type" : "string",
-            "description" : "Newly created role id.",
-            "example" : "Newly created role id."
-          },
-          "leId" : {
-            "type" : "number",
-            "description" : "Customer id  associated with role.",
-            "example" : 11950.0
-          },
-          "status" : {
-            "type" : "string",
-            "description" : "Status of role.",
-            "example" : "Active,New,etc"
-          },
-          "owner" : {
-            "type" : "string",
-            "description" : "Owner of the role.",
-            "example" : "Bank,Customer"
-          },
-          "applications" : {
-            "$ref" : "#/components/schemas/RoleApplication"
           }
         }
       }
