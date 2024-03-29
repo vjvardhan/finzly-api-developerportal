@@ -3261,6 +3261,7 @@
           },
           "value" : {
             "type" : "number",
+            "description" : "Limit value",
             "example" : 1022.23
           }
         }
@@ -3416,7 +3417,7 @@
         }
       },
       "CustomerRoleCreateRequest" : {
-        "required" : [ "description", "externalReferenceId", "name" ],
+        "required" : [ "applications", "description", "externalReferenceId", "name" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -3435,6 +3436,7 @@
           },
           "applications" : {
             "type" : "array",
+            "description" : "Customer applications which are present in the Bank's customer app store. Minimum one application should be provided.",
             "items" : {
               "$ref" : "#/components/schemas/RoleApplication"
             }
@@ -3442,15 +3444,16 @@
         }
       },
       "RoleApplication" : {
+        "required" : [ "entitlements", "name" ],
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "Application names which are present in the Bank's customer app store. The allowed application names are Accounts, Bulk Payments, Contacts,Digital Banking Portal, Foreign Exchange, Group Payments, Positive Rules, User Admin and Payments",
+            "description" : "The allowed application names are Accounts, Bulk Payments, Contacts,Digital Banking Portal, Foreign Exchange, Group Payments, Positive Rules, User Admin and Payments",
             "example" : "Accounts"
           },
           "entitlements" : {
             "type" : "array",
-            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. Accounts - [Manage Account, View Account] Bulk payments - [ Approve bulk payments, Upload Bulk                 Payment File, View bulk payments] Contacts - [ Manage Contacts, View Contacts] Digital Banking Portal - [View Portal] Foreign Exchange - [Cancel Trades, Create/Instruct Trades, SPOT Trade, View Trades] Group Payments - [Approve Group, Initiate & Cancel Group Payment, Manage Group, View Group] Payments - [Approve Payments, Cancel Payments, Initiate Payments, Return Payments, Reversal Payments, View Payments] Positive Rules - [Manage Exception, Manage Positive Rules, View Positive Rules] User Admin - [Activate Users, Add/Update/Delete Category, Manage Roles, Manage Users, Suspend Users, View Category, View Roles and Users]",
+            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. \nAccounts - [Manage Account, View Account]\nBulk payments - [ Approve bulk payments, Upload Bulk                 Payment File, View bulk payments]\nContacts - [ Manage Contacts, View Contacts] \nDigital Banking Portal - [View Portal]\nForeign Exchange - [Cancel Trades, Create/Instruct Trades,\nSPOT Trade, View Trades]\nGroup Payments - [Approve Group, Initiate & Cancel Group Payment, Manage Group, View Group]\nPayments - [Approve Payments, Cancel Payments, Initiate Payments, Return Payments, Reversal Payments, View Payments]\nPositive Rules - [Manage Exception, Manage Positive Rules, View Positive Rules]\nUser Admin - [Activate Users, Add/Update/Delete Category, Manage Roles, Manage Users, Suspend Users, View Category, View Roles and Users]\n",
             "items" : {
               "type" : "string",
               "example" : "Manage Account, View Account"
