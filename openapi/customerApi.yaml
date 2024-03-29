@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.2.5"
+    "version" : "2.2.6"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -1877,7 +1877,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "Credit Payment Request fields",
+          "description" : "Customer role fileds",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -3245,6 +3245,7 @@
           },
           "limits" : {
             "type" : "array",
+            "description" : "Application limits are optional.",
             "items" : {
               "$ref" : "#/components/schemas/limits"
             }
@@ -3255,11 +3256,12 @@
         "properties" : {
           "code" : {
             "type" : "string",
-            "description" : "Limit code",
+            "description" : "Each application has a valid limit name. The allowed limits are listed below. Foreign Exchange - [Daily Payment Limits, Per Transaction Payment Limits] Payments - [Daily Payment Approve Limits, Daily Payment Limits, Monthly Payment Approve Limits, Monthly Payment Limits, Per Transaction Payment Approve Limits, Per Transaction Payment Limits]",
             "example" : "Per Transaction Payment Limits, etc"
           },
           "value" : {
-            "type" : "integer"
+            "type" : "number",
+            "example" : 1022.23
           }
         }
       },
@@ -3423,8 +3425,8 @@
           },
           "name" : {
             "type" : "string",
-            "description" : "Role name.",
-            "example" : "Admin"
+            "description" : "A valid role name can consist of alphanumeric characters.",
+            "example" : "Admin, ManagerRole1"
           },
           "description" : {
             "type" : "string",
@@ -3443,19 +3445,20 @@
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "application name",
-            "example" : "Foreign Exchange, etc"
+            "description" : "Application names which are present in the Bank's customer app store. The allowed application names are Accounts, Bulk Payments, Contacts,Digital Banking Portal, Foreign Exchange, Group Payments, Positive Rules, User Admin and Payments",
+            "example" : "Accounts"
           },
           "entitlements" : {
             "type" : "array",
-            "description" : "Provide all valid entitlments",
+            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. Accounts - [Manage Account, View Account] Bulk payments - [ Approve bulk payments, Upload Bulk                 Payment File, View bulk payments] Contacts - [ Manage Contacts, View Contacts] Digital Banking Portal - [View Portal] Foreign Exchange - [Cancel Trades, Create/Instruct Trades, SPOT Trade, View Trades] Group Payments - [Approve Group, Initiate & Cancel Group Payment, Manage Group, View Group] Payments - [Approve Payments, Cancel Payments, Initiate Payments, Return Payments, Reversal Payments, View Payments] Positive Rules - [Manage Exception, Manage Positive Rules, View Positive Rules] User Admin - [Activate Users, Add/Update/Delete Category, Manage Roles, Manage Users, Suspend Users, View Category, View Roles and Users]",
             "items" : {
               "type" : "string",
-              "example" : "View Portal,Manage Account"
+              "example" : "Manage Account, View Account"
             }
           },
           "limits" : {
             "type" : "array",
+            "description" : "Application limits are optional.",
             "items" : {
               "$ref" : "#/components/schemas/limits"
             }
