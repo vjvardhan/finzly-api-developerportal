@@ -1282,7 +1282,7 @@
         }
       }
     },
-    "/v1/customer/{customerId}/users" : {
+    "/api/user-management/v1/customer/{customerId}/users" : {
       "post" : {
         "tags" : [ "Customer User" ],
         "summary" : "Create new customer user.",
@@ -1352,7 +1352,7 @@
         }
       }
     },
-    "/v1/customer/{customerId}/users/{userId}" : {
+    "/api/user-management/v1/customer/{customerId}/users/{userId}" : {
       "put" : {
         "tags" : [ "Customer User" ],
         "summary" : "Update existing customer user.",
@@ -1432,7 +1432,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/users/{userId}/suspend" : {
+    "/api/user-management/v1/customers/{customerId}/users/{userId}/suspend" : {
       "put" : {
         "tags" : [ "Customer User" ],
         "summary" : "Suspend customer user.",
@@ -1487,7 +1487,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/users/{userId}/activate" : {
+    "/api/user-management/v1/customers/{customerId}/users/{userId}/activate" : {
       "put" : {
         "tags" : [ "Customer User" ],
         "summary" : "Activate customer user.",
@@ -1542,7 +1542,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/users/{userId}" : {
+    "/api/user-management/v1/customers/{customerId}/users/{userId}" : {
       "get" : {
         "tags" : [ "Customer User" ],
         "summary" : "Get customer user.",
@@ -1611,7 +1611,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/users//users/search" : {
+    "/api/user-management/v1/customers/{customerId}/users//users/search" : {
       "post" : {
         "tags" : [ "Customer User" ],
         "summary" : "Search customer user.",
@@ -1701,7 +1701,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/roles/{roleId}" : {
+    "/api/user-management/v1/customers/{customerId}/roles/{roleId}" : {
       "get" : {
         "tags" : [ "Customer Role" ],
         "summary" : "Get customer role.",
@@ -1770,7 +1770,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/roles/search" : {
+    "/api/user-management/v1/customers/{customerId}/roles/search" : {
       "get" : {
         "tags" : [ "Customer Role" ],
         "summary" : "Search customer role.",
@@ -1789,22 +1789,22 @@
         }, {
           "name" : "page",
           "in" : "query",
-          "required" : true,
+          "required" : false,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page index."
+            "description" : "page index. Default page index is zero."
           }
         }, {
           "name" : "size",
           "in" : "query",
-          "required" : true,
+          "required" : false,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page size."
+            "description" : "page size. Default page size is ten."
           }
         }, {
           "name" : "roleName",
@@ -1813,8 +1813,8 @@
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "type" : "number",
-            "description" : "page size."
+            "type" : "string",
+            "description" : "Role name."
           }
         } ],
         "responses" : {
@@ -1859,7 +1859,7 @@
         }
       }
     },
-    "/v1/customers/{customerId}/roles" : {
+    "/api/user-management/v1/customers/{customerId}/roles" : {
       "post" : {
         "tags" : [ "Customer Role" ],
         "summary" : "Create new customer role.",
@@ -3225,11 +3225,12 @@
           },
           "roleNames" : {
             "type" : "array",
-            "description" : "valid list of role ids.",
-            "example" : "Admin etc."
+            "description" : "Valid list of existing role names.",
+            "example" : "Admin, NewRole1"
           },
           "applications" : {
             "type" : "array",
+            "description" : "Customer applications which are present in the Bank's customer app store. Minimum one application should be provided.",
             "items" : {
               "$ref" : "#/components/schemas/Applications"
             }
@@ -3240,8 +3241,8 @@
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "application name",
-            "example" : "Foreign Exchange, etc"
+            "description" : "The allowed application names are Accounts, Bulk Payments, Contacts,Digital Banking Portal, Foreign Exchange, Group Payments, Positive Rules, User Admin and Payments",
+            "example" : "Accounts"
           },
           "limits" : {
             "type" : "array",
@@ -3299,7 +3300,7 @@
         "properties" : {
           "totalElements" : {
             "type" : "number",
-            "description" : "Total number of users",
+            "description" : "Total records exist in the system for the match the search criteria.",
             "example" : 1212
           },
           "totalPages" : {
@@ -3309,16 +3310,17 @@
           },
           "size" : {
             "type" : "number",
-            "description" : "Return of records",
+            "description" : "Page size",
             "example" : 50
           },
           "page" : {
             "type" : "number",
-            "description" : "Current page",
+            "description" : "Page index",
             "example" : 0
           },
           "data" : {
             "type" : "array",
+            "description" : "Search results",
             "items" : {
               "$ref" : "#/components/schemas/GetCustomerRoleResponse"
             }
@@ -3389,11 +3391,12 @@
           },
           "roleNames" : {
             "type" : "array",
-            "description" : "valid list of role ids.",
-            "example" : "Admin etc."
+            "description" : "Valid list of existing role names.",
+            "example" : "Admin, NewRole1"
           },
           "applications" : {
             "type" : "array",
+            "description" : "Customer applications which are present in the Bank's customer app store. Minimum one application should be provided.",
             "items" : {
               "$ref" : "#/components/schemas/Applications"
             }
@@ -3537,18 +3540,18 @@
         "properties" : {
           "id" : {
             "type" : "string",
-            "description" : "Newly created role id.",
+            "description" : "Role id.",
             "example" : "f37f6757-c546-42d4-8235-5965419b495d."
           },
           "name" : {
             "type" : "string",
-            "description" : "Newly created role id.",
+            "description" : "Role name.",
             "example" : "adminRole."
           },
           "description" : {
             "type" : "string",
-            "description" : "Newly created role id.",
-            "example" : "Newly created role id."
+            "description" : "Role description.",
+            "example" : "Role description."
           },
           "leId" : {
             "type" : "number",
@@ -3558,12 +3561,12 @@
           "status" : {
             "type" : "string",
             "description" : "Status of role.",
-            "example" : "Active,New,etc"
+            "example" : "Active, New, etc"
           },
           "owner" : {
             "type" : "string",
-            "description" : "Owner of the role.",
-            "example" : "Bank,Customer"
+            "description" : "The owner of this role will indicate who created it.",
+            "example" : "Bank, Customer"
           },
           "applications" : {
             "$ref" : "#/components/schemas/RoleApplication"
