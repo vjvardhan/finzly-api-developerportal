@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.2.6"
+    "version" : "2.2.7"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -2089,7 +2089,7 @@
       },
       "CustomerAdditonalProfileDetails" : {
         "properties" : {
-          "creditclient" : {
+          "creditClient" : {
             "type" : "boolean"
           },
           "accountanalysis" : {
@@ -2098,10 +2098,10 @@
           "sso" : {
             "type" : "boolean"
           },
-          "billingcustomer" : {
+          "billingCustomer" : {
             "type" : "boolean"
           },
-          "restrictedaccess" : {
+          "restrictedAccess" : {
             "type" : "boolean"
           },
           "achPositivePay" : {
@@ -2122,14 +2122,14 @@
           "paymentFileAuthentication" : {
             "type" : "boolean"
           },
-          "detailsofCharge" : {
+          "detailsOfCharge" : {
             "type" : "string",
             "enum" : [ "OUR", "BEN", "SHA" ]
           },
           "fxPricingTier" : {
             "type" : "string"
           },
-          "crediValueAdjustment" : {
+          "creditValueAdjustment" : {
             "type" : "string"
           }
         }
