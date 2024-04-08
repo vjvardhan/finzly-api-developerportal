@@ -2487,10 +2487,7 @@
             "example" : "ParentEntity"
           },
           "additionalProfileDetails" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
-            }
+            "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
           },
           "secCodes" : {
             "type" : "array",
