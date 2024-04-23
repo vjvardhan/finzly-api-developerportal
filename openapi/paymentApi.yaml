@@ -2981,6 +2981,11 @@
             "type" : "string",
             "description" : "Current state of the rule whether Active or Expired etc.",
             "example" : "Active or Expired"
+          },
+          "paymentRuleType" : {
+            "type" : "string",
+            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
+            "example" : "ACH, FEDWIRE, RFP"
           }
         }
       },
