@@ -3235,7 +3235,7 @@
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "The allowed application names are Accounts, Bulk_Payments, Contacts,Digital_Banking_Portal, Foreign_Exchange, Group_Payments, Positive_Rules, User_Admin, Consumer_Payments, Customer and Payments",
+            "description" : "The allowed application names are \n1. Accounts\n2. Bulk_Payments\n3. Contacts\n4. Digital_Banking_Portal\n5. Foreign_Exchange\n6. Group_Payments\n7. Positive_Rules\n8. User_Admin\n9. Consumer_Payments\n10. Customer \n11. Payments\n",
             "example" : "Accounts"
           },
           "limits" : {
@@ -3251,7 +3251,7 @@
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "Each application has a valid limit name. The allowed limits are listed below. \nForeign Exchange - [Daily_Payment_Limits, Per_Transaction_Payment_Limits] \nPayments - [Daily_Payment_Approve_Limits, Daily_Payment_Limits, Monthly_Payment_Approve_Limits, Monthly_Payment_Limits, Per_Transaction_Payment_Approve_Limits, Per_Transaction_Payment_Limits]\n",
+            "description" : "Each application has a valid limit name. The allowed limits are listed below. \n1. Foreign Exchange - [Daily_Payment_Limits,  Per_Transaction_Payment_Limits] \n\n2. Payments - [Daily_Payment_Approve_Limits, Daily_Payment_Limits, Monthly_Payment_Limits, Monthly_Payment_Approve_Limits, Per_Transaction_Payment_Approve_Limits, Per_Transaction_Payment_Limits]\n",
             "example" : "Daily_Payment_Approve_Limits, etc"
           },
           "value" : {
@@ -3445,15 +3445,15 @@
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "The allowed application names are Accounts, Bulk Payments, Contacts,Digital Banking Portal, Foreign Exchange, Group Payments, Positive Rules, User Admin and Payments",
+            "description" : "The allowed application names are \n1. Accounts\n2. Bulk_Payments\n3. Contacts,\n4. Foreign_Exchange \n5. Group_Payments \n6. Positive_Rules\n7. User_Admin \n8. Payments\n9. Digital_Banking_Portal\n",
             "example" : "Accounts"
           },
           "entitlements" : {
             "type" : "array",
-            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. \nAccounts - [Manage_Account, View_Account]\nBulk payments - [ Approve_bulk_payments, Upload_Bulk_Payment_File, View_bulk_payments]\nContacts - [ Manage_Contacts, View_Contacts] \nDigital Banking Portal - [View_Portal]\nForeign Exchange - [Cancel_Trades, Create_Instruct_Trades,\nSpot_Trade, View_Trades]\nGroup Payments - [Approve_Group, Initiate_Cancel_Group_Payment, Manage_Group, View_Group]\nPayments - [Reversal_Payments, Return_Payments, Cancel_Payments, Approve_Payments, Initiate_Payments, View_Payments]\nPositive Rules - [View_Positive_Rules, Manage_Positive_Rules, Manage_Exception]\nUser Admin - [View_Roles_And_Users, Manage_Roles, Manage_Users, Activate_Users, Add_Update_Delete_Category, View_Category, Suspend_Users]\nConsumer - [consumer]\n",
+            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. \n1. Accounts - [Manage_Account, View_Account]\n              \n2. Bulk_Payments - [ Approve_bulk_payments,Upload_Bulk_Payment_File, View_bulk_payments]\n\n3. Contacts - [ Manage_Contacts, View_Contacts] \n\n4. Digital_Banking_Portal - [View_Portal]\n\n5. Foreign_Exchange - [Cancel_Trades, View_Trades,Spot_Trade, Create_Instruct_Trades]\n\n6. Group_Payments - [Approve_Group, View_Group, Initiate_Cancel_Group_Payment, Manage_Group]\n\n7. Payments - [Reversal_Payments, Return_Payments, Cancel_Payments, Approve_Payments, Initiate_Payments, View_Payments]\n\n8. Positive_Rules - [View_Positive_Rules, Manage_Exception,  Manage_Positive_Rules]\n\n9.  User_Admin - [View_Roles_And_Users, Manage_Roles,       Manage_Users, Activate_Users, Add_Update_Delete_Category, View_Category, Suspend_Users]\n\n10. Consumer - [consumer]\n",
             "items" : {
               "type" : "string",
-              "example" : "Manage_Account, View_Account"
+              "example" : "Manage_Account,  View_Account"
             }
           },
           "limits" : {
