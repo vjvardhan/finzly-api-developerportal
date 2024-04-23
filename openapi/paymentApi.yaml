@@ -2866,7 +2866,7 @@
             "type" : "string",
             "description" : "Positive Pay Rule Exception expiry date time in (EST)",
             "format" : "date",
-            "example" : "0010-11-14"
+            "example" : "0010-10-20"
           },
           "positivePayDecisionStatus" : {
             "type" : "string",
