@@ -2768,8 +2768,7 @@
           "decisionDateTime" : {
             "type" : "string",
             "description" : "Decision date and time in (EST)",
-            "format" : "date",
-            "example" : "0011-05-16"
+            "format" : "date"
           },
           "amount" : {
             "type" : "number",
@@ -2860,13 +2859,13 @@
             "type" : "string",
             "description" : "Decision date and time in (EST)",
             "format" : "date",
-            "example" : "0010-11-14"
+            "example" : "0007-11-14"
           },
           "expiryDateTime" : {
             "type" : "string",
             "description" : "Positive Pay Rule Exception expiry date time in (EST)",
             "format" : "date",
-            "example" : "0010-10-20"
+            "example" : "0007-11-14"
           },
           "positivePayDecisionStatus" : {
             "type" : "string",
@@ -2885,7 +2884,7 @@
             "type" : "string",
             "description" : "Approval date and time in (EST)",
             "format" : "date",
-            "example" : "0011-05-17"
+            "example" : "0007-11-14"
           }
         }
       },
@@ -3323,7 +3322,7 @@
         }
       },
       "ApproveAllPositivePayExceptionRequest" : {
-        "required" : [ "paymentUID" ],
+        "required" : [ "externalReferenceId" ],
         "properties" : {
           "paymentUID" : {
             "type" : "array",
