@@ -3251,7 +3251,7 @@
         "properties" : {
           "name" : {
             "type" : "string",
-            "description" : "Each application has a valid limit name. The allowed limits are listed below. \n1. Foreign Exchange - [Daily_Payment_Limits,  Per_Transaction_Payment_Limits] \n\n2. Payments - [Daily_Payment_Approve_Limits, Daily_Payment_Limits, Monthly_Payment_Limits, Monthly_Payment_Approve_Limits, Per_Transaction_Payment_Approve_Limits, Per_Transaction_Payment_Limits]\n",
+            "description" : "Each application has a valid limit name. The allowed limits are listed below. \n1. Foreign_Exchange - [Daily_Payment_Limits,  Per_Transaction_Payment_Limits] \n\n2. Payments - [Daily_Payment_Approve_Limits, Daily_Payment_Limits, Monthly_Payment_Limits, Monthly_Payment_Approve_Limits, Per_Transaction_Payment_Approve_Limits, Per_Transaction_Payment_Limits]\n",
             "example" : "Daily_Payment_Approve_Limits, etc"
           },
           "value" : {
