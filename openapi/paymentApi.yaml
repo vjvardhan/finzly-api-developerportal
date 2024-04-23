@@ -1734,7 +1734,6 @@
           "approvedDate" : {
             "type" : "string",
             "description" : "Approver Date",
-            "format" : "dateTime",
             "example" : "03-03-2023"
           }
         }
@@ -1749,7 +1748,6 @@
           "submissionDate" : {
             "type" : "string",
             "description" : "Submission Date",
-            "format" : "dateTime",
             "example" : "03-03-2023"
           },
           "approvers" : {
@@ -2011,8 +2009,7 @@
           "endDate" : {
             "type" : "string",
             "description" : "This is needed when the payUntil is set to EndDate. The valid date fromat is MM-dd-yyyy.",
-            "format" : "date",
-            "example" : "0008-11-12"
+            "example" : "01-29-2023"
           },
           "numberOfPayments" : {
             "maxLength" : 1000,
@@ -2027,13 +2024,11 @@
         "properties" : {
           "fromDate" : {
             "type" : "string",
-            "description" : "From date",
-            "format" : "date"
+            "description" : "From date"
           },
           "toDate" : {
             "type" : "string",
-            "description" : "To date",
-            "format" : "date"
+            "description" : "To date"
           },
           "currency" : {
             "type" : "string",
@@ -2205,7 +2200,6 @@
           "discountExpiryDateTime" : {
             "type" : "string",
             "description" : "Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.",
-            "format" : "date-time",
             "example" : "2022-01-01T17:32:25Z"
           },
           "fxContractNumber" : {
@@ -2323,7 +2317,6 @@
           "discountExpiryDateTime" : {
             "type" : "string",
             "description" : "Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.",
-            "format" : "date-time",
             "example" : "2022-01-01T17:32:25Z"
           },
           "fxContractNumber" : {
@@ -2768,7 +2761,7 @@
           "decisionDateTime" : {
             "type" : "string",
             "description" : "Decision date and time in (EST)",
-            "format" : "date"
+            "example" : "04-23-2024"
           },
           "amount" : {
             "type" : "number",
@@ -2858,8 +2851,7 @@
           "exceptionDateTime" : {
             "type" : "string",
             "description" : "Decision date and time in (EST)",
-            "format" : "date",
-            "example" : "0007-11-14"
+            "example" : "01-17-2024"
           },
           "expiryDateTime" : {
             "type" : "string",
@@ -2969,14 +2961,12 @@
           "effectiveDate" : {
             "type" : "string",
             "description" : "Rule effective date in mm-dd-yyyy format",
-            "format" : "date",
-            "example" : "0016-07-14"
+            "example" : "11-01-2022"
           },
           "expiryDate" : {
             "type" : "string",
             "description" : "Rule expiration date in mm-dd-yyyy format",
-            "format" : "date",
-            "example" : "0016-07-14"
+            "example" : "11-01-2022"
           },
           "status" : {
             "type" : "string",
@@ -3225,14 +3215,12 @@
           "effectiveDate" : {
             "type" : "string",
             "description" : "Rule effective date in mm-dd-yyyy format",
-            "format" : "date",
-            "example" : "0016-07-14"
+            "example" : "11-01-2022"
           },
           "expiryDate" : {
             "type" : "string",
             "description" : "Rule effective date in mm-dd-yyyy format",
-            "format" : "date",
-            "example" : "0016-07-14"
+            "example" : "11-01-2022"
           }
         }
       },
@@ -3308,19 +3296,17 @@
           "effectiveDate" : {
             "type" : "string",
             "description" : "Rule effective date in mm-dd-yyyy format",
-            "format" : "date",
-            "example" : "0016-07-14"
+            "example" : "11-01-2022"
           },
           "expiryDate" : {
             "type" : "string",
             "description" : "Rule effective date in mm-dd-yyyy format",
-            "format" : "date",
-            "example" : "0016-07-14"
+            "example" : "11-01-2022"
           }
         }
       },
       "ApproveAllPositivePayExceptionRequest" : {
-        "required" : [ "externalReferenceId" ],
+        "required" : [ "paymentUID" ],
         "properties" : {
           "paymentUID" : {
             "type" : "array",
@@ -3355,8 +3341,7 @@
           "paymentDate" : {
             "type" : "string",
             "description" : "This is an optional field. It signifies the payment date on which the Finzly system will pick up the payment to process. The payment date will be default to the current date if it is empty. The valid date format is in [MM-dd-yyyy]. User can set the payment date as current date or future date however, for the payment sets to the current date, the Finzly system may change the date based upon the bank/FI configuration for-instance, If the payment SPEED associated with the ACH [SAMEDAY/REGULAR], FEDWIRE and the last submission cutoff time is passed then the payment date will be set to the next business date, or the payment request will be rejected [as per the bank chosen behavior].",
-            "format" : "date",
-            "example" : "0014-03-15"
+            "example" : "07-21-2022"
           },
           "speed" : {
             "maxLength" : 20,
@@ -3416,8 +3401,7 @@
           "paymentDate" : {
             "type" : "string",
             "description" : "Payment date in mm-dd-yyyy format.",
-            "format" : "date",
-            "example" : "0014-03-15"
+            "example" : "07-21-2022"
           },
           "channel" : {
             "type" : "string",
@@ -3498,8 +3482,7 @@
           "paymentDate" : {
             "type" : "string",
             "description" : "This is an optional field. It signifies the payment date on which the Finzly system will pick up the payment to process. The payment date will be default to the current date if it is empty. The valid date format is in [MM-dd-yyyy]. User can set the payment date as current date or future date however, for the payment sets to the current date, the Finzly system may change the date based upon the bank/FI configuration for-instance, If the payment SPEED associated with the ACH [SAMEDAY/REGULAR], FEDWIRE and the last submission cutoff time is passed then the payment date will be set to the next business date, or the payment request will be rejected [as per the bank chosen behavior].",
-            "format" : "date",
-            "example" : "0014-03-15"
+            "example" : "07-21-2022"
           },
           "speed" : {
             "maxLength" : 20,
@@ -3723,13 +3706,11 @@
           "startDate" : {
             "type" : "string",
             "description" : "Start Date for the recurrence.",
-            "format" : "date",
             "example" : "2023-06-23"
           },
           "endDate" : {
             "type" : "string",
             "description" : "End Date for the recurrence.",
-            "format" : "date",
             "example" : "2023-07-23"
           },
           "endNumberPayments" : {
