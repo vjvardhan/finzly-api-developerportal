@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment API",
-    "version" : "2.2.9"
+    "version" : "2.3.0"
   },
   "servers" : [ {
     "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
@@ -2858,12 +2858,13 @@
           "exceptionDateTime" : {
             "type" : "string",
             "description" : "Decision date and time in (EST)",
-            "format" : "date"
+            "format" : "date",
+            "example" : "0007-11-14"
           },
           "expiryDateTime" : {
             "type" : "string",
             "description" : "Positive Pay Rule Exception expiry date time in (EST)",
-            "format" : "date"
+            "example" : "01-17-2024"
           },
           "positivePayDecisionStatus" : {
             "type" : "string",
@@ -2881,7 +2882,7 @@
           "approvedDate" : {
             "type" : "string",
             "description" : "Approval date and time in (EST)",
-            "format" : "date"
+            "example" : "01-17-2024"
           }
         }
       },
@@ -2981,6 +2982,11 @@
             "type" : "string",
             "description" : "Current state of the rule whether Active or Expired etc.",
             "example" : "Active or Expired"
+          },
+          "paymentRuleType" : {
+            "type" : "string",
+            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
+            "example" : "ACH, FEDWIRE, RFP"
           }
         }
       },
@@ -3136,6 +3142,7 @@
         }
       },
       "PositivePayRule" : {
+        "required" : [ "ruleUID" ],
         "type" : "object",
         "properties" : {
           "ruleUID" : {
@@ -3230,6 +3237,7 @@
         }
       },
       "AddPositivePayRule" : {
+        "required" : [ "amountType", "customerAccountNumber", "effectivedate", "frequency", "paymentRuleType" ],
         "type" : "object",
         "properties" : {
           "paymentRuleType" : {
@@ -3312,6 +3320,7 @@
         }
       },
       "ApproveAllPositivePayExceptionRequest" : {
+        "required" : [ "externalReferenceId" ],
         "properties" : {
           "paymentUID" : {
             "type" : "array",
