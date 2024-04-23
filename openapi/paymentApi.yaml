@@ -1679,7 +1679,7 @@
             "example" : "US, CN, AR etc."
           }
         },
-        "description" : "The address pertains to the sender, receiver, creditor, or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
+        "description" : "The address pertains to the sender, receiver, creditor, or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode. Adn this is applicable only for the sender for receiver address is an optional."
       },
       "BankAddress" : {
         "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
@@ -2022,6 +2022,10 @@
       },
       "PaymentSearch" : {
         "properties" : {
+          "paymentUUID" : {
+            "type" : "string",
+            "description" : "Payment UID"
+          },
           "fromDate" : {
             "type" : "string",
             "description" : "From date"
@@ -2034,13 +2038,17 @@
             "type" : "string",
             "description" : "Payment currency"
           },
-          "minPaymentAmount" : {
+          "minAmount" : {
             "type" : "number",
             "description" : "Minimum payment amount"
           },
-          "maxPaymentAmount" : {
+          "maxAmount" : {
             "type" : "number",
             "description" : "Maximum payment amount"
+          },
+          "paymentAmount" : {
+            "type" : "number",
+            "description" : "Payment amount"
           },
           "forexContractNo" : {
             "type" : "string",
@@ -2073,6 +2081,10 @@
           "status" : {
             "type" : "string",
             "description" : "Payment status"
+          },
+          "wireType" : {
+            "type" : "string",
+            "description" : "Payment wire type"
           },
           "page" : {
             "type" : "integer",
@@ -2522,6 +2534,12 @@
           "swiftNote" : {
             "type" : "string",
             "description" : "This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          },
+          "correspondentBankId" : {
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "This is an optional field. This is used to provide the \"routing number\" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the \"correspondentBankId\" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup.",
+            "example" : "026009593 etc."
           }
         },
         "description" : "Payment sender and account details from which the money will be deducted."
@@ -3356,12 +3374,6 @@
             "description" : "Payment notes provided by the payment originator. These notes are passed to the payment network as per the specification such as for ACH upto 10 chars, Fedwire upto 35 chars [Tag 6400 - Beneficiary information], SWIFT upto 140 chars [Tag 70], RTP/FedNow upto 140 chars [ISO 20022 - RmtInf Tag]. The value will be truncated if it exceeds the data length limit.",
             "example" : "Payment Notes"
           },
-          "correspondentBankId" : {
-            "maxLength" : 10,
-            "type" : "string",
-            "description" : "This is an optional field. This is used to provide the \"routing number\" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the \"correspondentBankId\" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup.",
-            "example" : "026009593 etc."
-          },
           "sender" : {
             "$ref" : "#/components/schemas/PaymentSender"
           },
@@ -3798,10 +3810,10 @@
             "type" : "string",
             "description" : "The payment date when the payment is processed"
           },
-          "senderUID" : {
+          "senderAccountUID" : {
             "maxLength" : 11,
             "type" : "string",
-            "description" : "Sender unique identifier [customerUID] defined in the Finzly-CRM system and associated with the payment.",
+            "description" : "Sender account unique identifier defined in the Finzly-CRM system and associated with the payment.",
             "example" : "3248 etc."
           },
           "senderAmount" : {
