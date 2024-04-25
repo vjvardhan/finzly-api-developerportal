@@ -2105,7 +2105,7 @@
           },
           "limit" : {
             "type" : "integer",
-            "description" : "Number of records to be included in each page. The minimum limit is 1 and the maximum limit is configurable in the system. If it is not configured then the default max limit is 1000.",
+            "description" : "Number of records to be included in each page. The minimum limit is 1 and the maximum limit is configurable in the system. If it is not configured then the default max limit is 100.",
             "example" : 10
           }
         },
