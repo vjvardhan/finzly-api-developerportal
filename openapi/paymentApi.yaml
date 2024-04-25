@@ -973,9 +973,12 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/PaymentSearchResponse"
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/PaymentSearchResponse"
+                  }
                 }
               }
             }
@@ -983,9 +986,12 @@
           "200" : {
             "description" : "Successfully processed request",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/PaymentSearchResponse"
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/PaymentSearchResponse"
+                  }
                 }
               }
             }
