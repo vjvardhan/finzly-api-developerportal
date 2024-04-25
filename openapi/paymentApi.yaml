@@ -1679,7 +1679,7 @@
             "example" : "US, CN, AR etc."
           }
         },
-        "description" : "The address pertains to the sender, receiver, creditor, or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
+        "description" : "The address pertains to the sender, receiver, creditor, or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode. Adn this is applicable only for the sender for receiver address is an optional."
       },
       "BankAddress" : {
         "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
@@ -2021,67 +2021,91 @@
         "description" : "Set the payment recurrence based on the available options."
       },
       "PaymentSearch" : {
+        "required" : [ "limit", "page" ],
         "properties" : {
+          "paymentUUID" : {
+            "type" : "string",
+            "description" : "Payment unique identifier.",
+            "example" : "1369308"
+          },
           "fromDate" : {
             "type" : "string",
-            "description" : "From date"
+            "description" : "From date. The valid date format is in [MM-dd-yyyy]. ",
+            "example" : "03-25-2024"
           },
           "toDate" : {
             "type" : "string",
-            "description" : "To date"
+            "description" : "To date. The valid date format is in [MM-dd-yyyy]",
+            "example" : "04-25-2024"
           },
           "currency" : {
             "type" : "string",
-            "description" : "Payment currency"
+            "description" : "Payment currency. The valid country currency code should be per ISO 4217 standard.",
+            "example" : "USD"
           },
-          "minPaymentAmount" : {
+          "minAmount" : {
             "type" : "number",
-            "description" : "Minimum payment amount"
+            "description" : "Minimum payment amount.",
+            "example" : 100.0
           },
-          "maxPaymentAmount" : {
+          "maxAmount" : {
             "type" : "number",
-            "description" : "Maximum payment amount"
+            "description" : "Maximum payment amount.",
+            "example" : 1000.0
+          },
+          "paymentAmount" : {
+            "type" : "number",
+            "description" : "Payment amount.",
+            "example" : 120.0
           },
           "forexContractNo" : {
             "type" : "string",
-            "description" : "FX contract number"
-          },
-          "paymentType" : {
-            "type" : "string",
-            "description" : "Payment type"
+            "description" : "FX contract number is present only for the internal payment",
+            "example" : "13896558"
           },
           "receiverAccountNo" : {
             "type" : "string",
-            "description" : "Receiver account number"
+            "description" : "Receiver's bank account number for the withdrawal of funds.",
+            "example" : "2236569989"
           },
           "receiverName" : {
             "type" : "string",
-            "description" : "Receiver name"
+            "description" : "Receiver bank account number to which money will be withdrawn.",
+            "example" : "xyz"
           },
           "senderName" : {
             "type" : "string",
-            "description" : "Sender name associated with the payment."
+            "description" : "Name of the sender linked to the payment.",
+            "example" : "corp"
           },
           "senderAccountNo" : {
             "type" : "string",
-            "description" : "Sender account number"
+            "description" : "Sender's bank account number from which money will be withdrawn.",
+            "example" : "2288556932"
           },
           "sourceRefNo" : {
             "type" : "string",
-            "description" : "Payment source reference number"
+            "description" : "Payment source reference number",
+            "example" : "839489343"
           },
           "status" : {
             "type" : "string",
-            "description" : "Payment status"
+            "description" : "Payment status, e.g. PROCESSED, TRANSMITTED_TO_FED, CANCELLED, FUTURE_DATED, PENDING_APPROVAL, PARTIALLY_APPROVED, APPROVED, etc...",
+            "example" : "PROCESSED"
+          },
+          "wireType" : {
+            "type" : "string",
+            "description" : "Payment wire type e.g. OUTGOING_PAYMENT, INCOMING_PAYMENT",
+            "example" : "OUTGOING_PAYMENT"
           },
           "page" : {
             "type" : "integer",
-            "description" : "Which page of results are to be returned",
+            "description" : "What page of results should be returned? The minimum page size is 1.",
             "example" : 1
           },
           "limit" : {
             "type" : "integer",
-            "description" : "How many records are returned in the result set",
+            "description" : "Number of records to be included in each page. The minimum limit is 1 and the maximum limit is configurable in the system. If it is not configured then the default max limit is 100.",
             "example" : 10
           }
         },
@@ -2522,6 +2546,12 @@
           "swiftNote" : {
             "type" : "string",
             "description" : "This is applicable for the CTP fedwire payment where the local instrument set to COVS"
+          },
+          "correspondentBankId" : {
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "This is an optional field. This is used to provide the \"routing number\" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the \"correspondentBankId\" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup.",
+            "example" : "026009593"
           }
         },
         "description" : "Payment sender and account details from which the money will be deducted."
@@ -3356,12 +3386,6 @@
             "description" : "Payment notes provided by the payment originator. These notes are passed to the payment network as per the specification such as for ACH upto 10 chars, Fedwire upto 35 chars [Tag 6400 - Beneficiary information], SWIFT upto 140 chars [Tag 70], RTP/FedNow upto 140 chars [ISO 20022 - RmtInf Tag]. The value will be truncated if it exceeds the data length limit.",
             "example" : "Payment Notes"
           },
-          "correspondentBankId" : {
-            "maxLength" : 10,
-            "type" : "string",
-            "description" : "This is an optional field. This is used to provide the \"routing number\" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the \"correspondentBankId\" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup.",
-            "example" : "026009593 etc."
-          },
           "sender" : {
             "$ref" : "#/components/schemas/PaymentSender"
           },
@@ -3732,101 +3756,107 @@
         "properties" : {
           "paymentUID" : {
             "type" : "integer",
-            "description" : "The unique payment reference id assigned by the Finzly-Payment system."
+            "description" : "The unique payment reference id assigned by the Finzly-Payment system.",
+            "example" : 110289
           },
           "externalReferenceId" : {
             "maxLength" : 255,
             "type" : "string",
             "description" : "Unique reference id set by the originator system.",
-            "example" : "pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc."
+            "example" : "pymtref10012"
           },
           "sourceReferenceId" : {
             "maxLength" : 255,
             "type" : "string",
             "description" : "Source reference id signifies the bulk file id for the payment originated via FTP.",
-            "example" : "10011 etc."
+            "example" : "10011"
           },
           "counterParty" : {
             "maxLength" : 255,
             "type" : "string",
             "description" : "Legal entity name exist in the Finzly-CRM system and associated with the payment.",
-            "example" : "ABC Shipping etc."
+            "example" : "ABC Shipping"
           },
           "counterPartyId" : {
             "maxLength" : 11,
             "type" : "string",
             "description" : "Legal entity [CustomerUID] exist in the Finzly-CRM system and associated with the payment.",
-            "example" : "10920 etc."
+            "example" : "10920"
           },
           "customerType" : {
             "maxLength" : 45,
             "type" : "string",
             "description" : "Customer type associated with the payment.",
-            "example" : "Corporate or Consumer"
+            "example" : "Corporate"
           },
           "businessUnit" : {
             "maxLength" : 255,
             "type" : "string",
             "description" : "Processing org name assigned to the payment.",
-            "example" : "Bank Name etc."
+            "example" : "Bank Name"
           },
           "businessUnitId" : {
             "maxLength" : 11,
             "type" : "string",
             "description" : "Processing org id assigned to the payment.",
-            "example" : "189 etc."
+            "example" : "189"
           },
           "channel" : {
             "maxLength" : 50,
             "type" : "string",
             "description" : "The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
-            "example" : "API, TELLER etc."
+            "example" : "API"
           },
           "costCenter" : {
             "maxLength" : 50,
             "type" : "string",
             "description" : "The cost center associated with the payment. A cost center is also known as a cost pool or expense center",
-            "example" : "562687, Global etc."
+            "example" : "562687"
           },
           "book" : {
             "maxLength" : 50,
             "type" : "string",
             "description" : "The book associated with the payment. The book is needed to assign proper GL accounts.",
-            "example" : "ACH, Wire etc."
+            "example" : "ACH"
           },
           "paymentDate" : {
             "type" : "string",
-            "description" : "The payment date when the payment is processed"
+            "description" : "The payment date when the payment is processed",
+            "example" : "2024-04-25"
           },
-          "senderUID" : {
+          "senderAccountUID" : {
             "maxLength" : 11,
             "type" : "string",
-            "description" : "Sender unique identifier [customerUID] defined in the Finzly-CRM system and associated with the payment.",
+            "description" : "Sender account unique identifier defined in the Finzly-CRM system and associated with the payment.",
             "example" : "3248 etc."
           },
           "senderAmount" : {
             "type" : "string",
-            "description" : "The sender payment amount."
+            "description" : "The sender payment amount.",
+            "example" : "10"
           },
           "senderCurrency" : {
             "maxLength" : 3,
             "type" : "string",
-            "description" : "Sender currency in ISO Currency Code format"
+            "description" : "Sender currency in ISO Currency Code format",
+            "example" : "USD"
           },
           "receiverAmount" : {
             "type" : "number",
-            "description" : "Thereceiver payment amount."
+            "description" : "Thereceiver payment amount.",
+            "example" : 10
           },
           "receiverCurrency" : {
             "maxLength" : 3,
             "type" : "string",
-            "description" : "Receiver currency in ISO Currency Code format"
+            "description" : "Receiver currency in ISO Currency Code format",
+            "example" : "USD"
           },
           "deliveryMethod" : {
             "maxLength" : 20,
             "type" : "string",
             "description" : "One of the payment network delivery methods that includes ACH, FEDWIRE, RTP, FEDNOW, SWIFT",
-            "example" : "ACH, FEDWIRE, RTP, FEDNOW, SWIFT"
+            "example" : "ACH"
           },
           "paymentNotes" : {
             "maxLength" : 140,
@@ -3837,25 +3867,25 @@
           "deliveryAgentType" : {
             "type" : "string",
             "description" : "Debit account type. The possible values are Deposit, GL, MCA.",
-            "example" : "Deposit, GL, MCA"
+            "example" : "Deposit"
           },
           "wireType" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Wire type associated with the payment request.",
-            "example" : "Type of Payment - Same Day or Regular ACH. Possible values are REGULAR_ACH, SAME_DAY_ACH, WIRE, BOOK_TRANSFER, REALTIME_RTP, REALTIME_FEDNOW, SPOT_SWIFT, SAME_DAY_SWIFT, NEXT_DAY_SWIFT etc."
+            "example" : "OUTGOING_PAYMENT"
           },
           "senderName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Sender name associated with the payment.",
+            "description" : "Name of the sender linked to the payment.",
             "example" : "Sender Name"
           },
           "senderAccountNumber" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender bank account number associated with the payment.",
-            "example" : "8982618 etc."
+            "example" : "8982618"
           },
           "senderAccountName" : {
             "maxLength" : 255,
@@ -3866,52 +3896,62 @@
           "senderAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender address 1"
+            "description" : "Sender address 1",
+            "example" : "2815 Coliseum Centre Dr"
           },
           "senderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender address 2"
+            "description" : "Sender address 2",
+            "example" : "2815 Coliseum Centre Dr"
           },
           "senderCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender city"
+            "description" : "Sender city",
+            "example" : "Charlotte"
           },
           "senderState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender State"
+            "description" : "Sender State",
+            "example" : "Charlotte"
           },
           "senderZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Zip Code"
+            "description" : "Sender Zip Code",
+            "example" : "121254"
           },
           "senderCountryCode" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Country Code"
+            "description" : "Sender Country Code",
+            "example" : "US"
           },
           "senderCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Country Name"
+            "description" : "Sender Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "senderAccountType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Account Type"
+            "description" : "Sender Account Type",
+            "example" : "Deposit"
           },
           "senderBankIdType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank ID type such as NID, SWIFT."
+            "description" : "Sender Bank ID type such as NID, SWIFT.",
+            "example" : "NID"
           },
           "senderBankId" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank ID value per the senderBankIdType"
+            "description" : "Sender Bank ID value per the senderBankIdType",
+            "example" : "101206101"
           },
           "senderBankName" : {
             "maxLength" : 255,
@@ -3921,7 +3961,8 @@
           "senderBankAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank Address 1"
+            "description" : "Sender Bank Address 1",
+            "example" : "9019 STATE ROUTE 7"
           },
           "senderBankAddress2" : {
             "maxLength" : 35,
@@ -3931,142 +3972,170 @@
           "senderBankCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank City"
+            "description" : "Sender Bank City",
+            "example" : "LEE'S SUMMIT"
           },
           "senderBankState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank State"
+            "description" : "Sender Bank State",
+            "example" : "MO"
           },
           "senderBankZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank Zip/Postal code"
+            "description" : "Sender Bank Zip/Postal code",
+            "example" : "64064"
           },
           "senderBankCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Bank Country Name"
+            "description" : "Sender Bank Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "intermediarySenderName" : {
             "maxLength" : 25,
             "type" : "string",
-            "description" : "Sender Intermediary Bank Name"
+            "description" : "Sender Intermediary Bank Name",
+            "example" : "Finzly bank"
           },
           "intermediarySenderAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank Address 1"
+            "description" : "Sender Intermediary Bank Address 1",
+            "example" : "119 N. MAIN ST"
           },
           "intermediarySenderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank Address 2"
+            "description" : "Sender Intermediary Bank Address 2",
+            "example" : "119 N. MAIN ST"
           },
           "intermediarySenderCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank City"
+            "description" : "Sender Intermediary Bank City",
+            "example" : "FAYETTE"
           },
           "intermediarySenderState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank State"
+            "description" : "Sender Intermediary Bank State",
+            "example" : "MO"
           },
           "intermediarySenderZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank Zip/Postal code"
+            "description" : "Sender Intermediary Bank Zip/Postal code",
+            "example" : "65248"
           },
           "intermediarySenderCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank Country Name"
+            "description" : "Sender Intermediary Bank Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "intermediarySenderId" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank ID"
+            "description" : "Sender Intermediary Bank ID",
+            "example" : "101902735"
           },
           "intermediarySenderIdType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Intermediary Bank ID Type"
+            "description" : "Sender Intermediary Bank ID Type",
+            "example" : "NID"
           },
           "ultimateSenderName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Ultimate Sender Name"
+            "description" : "Ultimate Sender Name",
+            "example" : "Ultimate Sender Name"
           },
           "ultimateSenderAccountNumber" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Account Number"
+            "description" : "Ultimate Sender Account Number",
+            "example" : "9901020301"
           },
           "ultimateSenderAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Address 1"
+            "description" : "Ultimate Sender Address 1",
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Address 2"
+            "description" : "Ultimate Sender Address 2",
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderTaxId" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender ACH Company ID"
+            "description" : "Ultimate Sender ACH Company ID",
+            "example" : "656565"
           },
           "ultimateSenderCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender City"
+            "description" : "Ultimate Sender City",
+            "example" : "FAYETTE"
           },
           "ultimateSenderState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender State"
+            "description" : "Ultimate Sender State",
+            "example" : "MO"
           },
           "ultimateSenderZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Zip/Postal code"
+            "description" : "Ultimate Sender Zip/Postal code",
+            "example" : "653598"
           },
           "ultimateSenderCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Country Name"
+            "description" : "Ultimate Sender Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "fboAccountName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "FBO account name"
+            "description" : "FBO account name",
+            "example" : "Bank account name"
           },
           "fboAccountNumber" : {
             "maxLength" : 100,
             "type" : "string",
-            "description" : "FBO account number"
+            "description" : "FBO account number",
+            "example" : "25896565"
           },
           "fboAccountType" : {
             "maxLength" : 30,
             "type" : "string",
-            "description" : "FBO account type"
+            "description" : "FBO account type e.g. Saving, Deposit, Loan",
+            "example" : "saving"
           },
           "receiverName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Receiver name"
+            "description" : "Receiver name",
+            "example" : "xyz"
           },
           "receiverAccountNumber" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver account number"
+            "description" : "Receiver account number",
+            "example" : "2565656"
           },
           "receiverAccountType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver account type"
+            "description" : "Receiver account type",
+            "example" : "Deposit"
           },
           "receiverType" : {
             "maxLength" : 35,
@@ -4076,199 +4145,224 @@
           "receiverAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Address 1"
+            "description" : "Receiver Address 1",
+            "example" : "PO BOX 27025"
           },
           "receiverAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Address 2"
+            "description" : "Receiver Address 2",
+            "example" : "PO BOX 27025"
           },
           "receiverCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver City"
+            "description" : "Receiver City",
+            "example" : "RICHMOND"
           },
           "receiverState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver State"
+            "description" : "Receiver State",
+            "example" : "VA"
           },
           "receiverZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Zip/Postal Code"
+            "description" : "Receiver Zip/Postal Code",
+            "example" : "235963"
           },
           "receiverCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Country"
+            "description" : "Receiver Country",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "receiverPhoneNumber" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Phone number"
+            "description" : "Receiver Phone number",
+            "example" : "789565689"
           },
           "receiverEmail" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Email"
+            "description" : "Receiver Email",
+            "example" : "abc@gmail.com"
           },
           "receiverBankIdType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank ID Type such as NID, SWIFT"
+            "description" : "Receiver Bank ID Type such as NID, SWIFT",
+            "example" : "NID"
           },
           "receiverBankId" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank ID value"
+            "description" : "Receiver Bank ID value",
+            "example" : "2359430"
           },
           "receiverBankName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Receiver Bank Name"
+            "description" : "Receiver Bank Name",
+            "example" : "BANK OF AMERICA N.A"
           },
           "receiverBankAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank Address 1"
+            "description" : "Receiver Bank Address 1",
+            "example" : "PO BOX 27025"
           },
           "receiverBankAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank Address 2"
+            "description" : "Receiver Bank Address 2",
+            "example" : "PO BOX 27025"
           },
           "receiverBankCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank City"
+            "description" : "Receiver Bank City",
+            "example" : "RICHMOND"
           },
           "receiverBankState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank State"
+            "description" : "Receiver Bank State",
+            "example" : "VA"
           },
           "receiverBankZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank Zip/Postal Code"
+            "description" : "Receiver Bank Zip/Postal Code",
+            "example" : "126565"
           },
           "receiverBankCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Bank Country Name"
+            "description" : "Receiver Bank Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "intermediaryReceiverName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank Name"
+            "description" : "Intermediary Receiver Bank Name",
+            "example" : "TAMPA STATE BANK"
           },
           "intermediaryReceiverAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank Address 1"
+            "description" : "Intermediary Receiver Bank Address 1",
+            "example" : "326 MAIN"
           },
           "intermediaryReceiverAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank Address 2"
+            "description" : "Intermediary Receiver Bank Address 2",
+            "example" : "326 MAIN"
           },
           "intermediaryReceiverCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank City"
+            "description" : "Intermediary Receiver Bank City",
+            "example" : "TAMPA"
           },
           "intermediaryReceiverState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank State"
+            "description" : "Intermediary Receiver Bank State",
+            "example" : "KS"
           },
           "intermediaryReceiverZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank Zip/Postal Code"
+            "description" : "Intermediary Receiver Bank Zip/Postal Code",
+            "example" : "254455"
           },
           "intermediaryReceiverCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank Country Name"
+            "description" : "Intermediary Receiver Bank Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "intermediaryReceiverIdType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank ID Type"
+            "description" : "Intermediary Receiver Bank ID Type",
+            "example" : "NID"
           },
           "intermediaryReceiverId" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Intermediary Receiver Bank ID value"
+            "description" : "Intermediary Receiver Bank ID value",
+            "example" : "101110572"
           },
           "ultimateReceiverName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Ultimate Receiver Name"
+            "description" : "Ultimate Receiver Name",
+            "example" : "xyz"
           },
           "ultimateReceiverAccountNumber" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver Account Number"
+            "description" : "Ultimate Receiver Account Number",
+            "example" : "89895656"
           },
           "ultimateReceiverAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver Address 1"
+            "description" : "Ultimate Receiver Address 1",
+            "example" : "sr no. 101"
           },
           "ultimateReceiverAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver Address 2"
+            "description" : "Ultimate Receiver Address 2",
+            "example" : "sr no. 1"
           },
           "ultimateReceiverTaxId" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver ACH Company ID"
+            "description" : "Ultimate Receiver ACH Company ID",
+            "example" : "21545"
           },
           "ultimateReceiverCity" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Receiver Ultimate City"
+            "description" : "Receiver Ultimate City",
+            "example" : "TAMPA"
           },
           "ultimateReceiverState" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver State"
+            "description" : "Ultimate Receiver State",
+            "example" : "KS"
           },
           "ultimateReceiverZip" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver Zip/Postal Code"
+            "description" : "Ultimate Receiver Zip/Postal Code",
+            "example" : "265989"
           },
           "ultimateReceiverCountry" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Receiver Country Name"
+            "description" : "Ultimate Receiver Country Name",
+            "example" : "UNITED STATES OF AMERICA"
           },
           "quoteId" : {
             "maxLength" : 200,
             "type" : "string",
             "description" : "FX quote associated with the SWIFT payment.",
-            "example" : "Payment for the invoice ABC123"
+            "example" : "248a3f96-7bb0-47a5-84b7-348f02930225"
           },
           "forexContract" : {
             "maxLength" : 255,
             "type" : "string",
             "description" : "Receiver Bank Address 1",
-            "example" : "1325"
-          },
-          "recurrence" : {
-            "$ref" : "#/components/schemas/PaymentRecurrenceSearch"
-          },
-          "status" : {
-            "type" : "string",
-            "example" : "FUTURE_DATED"
-          },
-          "audit" : {
-            "$ref" : "#/components/schemas/Audit"
+            "example" : "9898989"
           },
           "createdBy" : {
             "type" : "string",
@@ -4583,17 +4677,20 @@
           "ultimateSenderAccountNumber" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Account Number"
+            "description" : "Ultimate Sender Account Number",
+            "example" : "9901020301"
           },
           "ultimateSenderAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Address 1"
+            "description" : "Ultimate Sender Address 1",
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Address 2"
+            "description" : "Ultimate Sender Address 2",
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderTaxId" : {
             "maxLength" : 35,
