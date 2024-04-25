@@ -2065,7 +2065,7 @@
           },
           "receiverAccountNo" : {
             "type" : "string",
-            "description" : "Receiver bank account number to which money will be deposited.",
+            "description" : "Receiver's bank account number for the withdrawal of funds.",
             "example" : "2236569989"
           },
           "receiverName" : {
@@ -2075,12 +2075,12 @@
           },
           "senderName" : {
             "type" : "string",
-            "description" : "Sender name associated with the payment.",
+            "description" : "Name of the sender linked to the payment.",
             "example" : "corp"
           },
           "senderAccountNo" : {
             "type" : "string",
-            "description" : "Sender bank account number to which money will be withdrawn.",
+            "description" : "Sender's bank account number from which money will be withdrawn.",
             "example" : "2288556932"
           },
           "sourceRefNo" : {
@@ -2100,12 +2100,12 @@
           },
           "page" : {
             "type" : "integer",
-            "description" : "Which page of results are to be returned. The minimum page size is 1.",
+            "description" : "What page of results should be returned? The minimum page size is 1.",
             "example" : 1
           },
           "limit" : {
             "type" : "integer",
-            "description" : "How many records are returned in the result set. The minimum limit is 1 and the maximum limit is configurable in the system. If it is not configured then the default max limit is 1000",
+            "description" : "Number of records to be included in each page. The minimum limit is 1 and the maximum limit is configurable in the system. If it is not configured then the default max limit is 1000.",
             "example" : 10
           }
         },
@@ -2551,7 +2551,7 @@
             "maxLength" : 10,
             "type" : "string",
             "description" : "This is an optional field. This is used to provide the \"routing number\" for the receiver correspondent bank in order to process the international Fedwire payment [where the receiver bank country is outside of the USA]. If the \"correspondentBankId\" is blank for the international Fedwire payment, then the Finzly system uses the internal configuration to get the correspondent bank details based on the country and currency setup.",
-            "example" : "026009593 etc."
+            "example" : "026009593"
           }
         },
         "description" : "Payment sender and account details from which the money will be deducted."
@@ -3878,7 +3878,7 @@
           "senderName" : {
             "maxLength" : 255,
             "type" : "string",
-            "description" : "Sender name associated with the payment.",
+            "description" : "Name of the sender linked to the payment.",
             "example" : "Sender Name"
           },
           "senderAccountNumber" : {
@@ -3897,13 +3897,13 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender address 1",
-            "example" : "2815 Coliseum Centre Dr, Charlotte, NC 28217"
+            "example" : "2815 Coliseum Centre Dr"
           },
           "senderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender address 2",
-            "example" : "2815 Coliseum Centre Dr, Charlotte, NC 28217"
+            "example" : "2815 Coliseum Centre Dr"
           },
           "senderCity" : {
             "maxLength" : 35,
@@ -3997,7 +3997,7 @@
             "maxLength" : 25,
             "type" : "string",
             "description" : "Sender Intermediary Bank Name",
-            "example" : "Sender Intermediary Bank Name"
+            "example" : "Finzly bank"
           },
           "intermediarySenderAddress1" : {
             "maxLength" : 35,
@@ -4057,19 +4057,19 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Ultimate Sender Account Number",
-            "example" : "2265659"
+            "example" : "9901020301"
           },
           "ultimateSenderAddress1" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Ultimate Sender Address 1",
-            "example" : "Ultimate Sender Address 1"
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Ultimate Sender Address 2",
-            "example" : "Ultimate Sender Address 2"
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderTaxId" : {
             "maxLength" : 35,
@@ -4116,7 +4116,7 @@
           "fboAccountType" : {
             "maxLength" : 30,
             "type" : "string",
-            "description" : "FBO account type",
+            "description" : "FBO account type e.g. Saving, Deposit, Loan",
             "example" : "saving"
           },
           "receiverName" : {
@@ -4677,17 +4677,20 @@
           "ultimateSenderAccountNumber" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Account Number"
+            "description" : "Ultimate Sender Account Number",
+            "example" : "9901020301"
           },
           "ultimateSenderAddress1" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Address 1"
+            "description" : "Ultimate Sender Address 1",
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderAddress2" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Ultimate Sender Address 2"
+            "description" : "Ultimate Sender Address 2",
+            "example" : "119 N. MAIN ST"
           },
           "ultimateSenderTaxId" : {
             "maxLength" : 35,
