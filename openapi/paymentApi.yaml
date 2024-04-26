@@ -4491,7 +4491,7 @@
           },
           "senderAmount" : {
             "type" : "string",
-            "description" : "The sender payment amount (payed amount).",
+            "description" : "The sender payment amount (paid amount).",
             "example" : "100"
           },
           "senderCurrency" : {
