@@ -1830,6 +1830,36 @@
           }
         }
       },
+      "fedWireDetails" : {
+        "properties" : {
+          "businessFunctionCode" : {
+            "maxLength" : 20,
+            "type" : "string",
+            "description" : "Fee Name. This is an optional field.",
+            "example" : "Custom"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Fee Currency defaulted to USD if not provided.",
+            "example" : "some comments."
+          },
+          "originatorToBeneficiaryInformation" : {
+            "type" : "string",
+            "description" : "originator to beneficiary information.",
+            "example" : "some notes for the beneficiary"
+          },
+          "imad" : {
+            "type" : "string",
+            "description" : "It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers",
+            "example" : "20220627MMQCTR7B000012"
+          },
+          "omad" : {
+            "type" : "string",
+            "description" : "The OMAD indicates a unique number assigned to each transfer providing delivery-related information",
+            "example" : "0328QMGFNP6400002503281343FT0120232023"
+          }
+        }
+      },
       "routingNumber" : {
         "properties" : {
           "institutionName" : {
@@ -5028,16 +5058,6 @@
             "description" : "FX Contract Number",
             "example" : "1325"
           },
-          "imad" : {
-            "type" : "string",
-            "description" : "It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers",
-            "example" : "20220627MMQCTR7B000012"
-          },
-          "omad" : {
-            "type" : "string",
-            "description" : "The OMAD indicates a unique number assigned to each transfer providing delivery-related information",
-            "example" : "0328QMGFNP6400002503281343FT0120232023"
-          },
           "fee" : {
             "type" : "array",
             "items" : {
@@ -5046,6 +5066,9 @@
           },
           "recurrence" : {
             "$ref" : "#/components/schemas/PaymentRecurrenceSearch"
+          },
+          "fedWireDetails" : {
+            "$ref" : "#/components/schemas/fedWireDetails"
           },
           "status" : {
             "type" : "string",
