@@ -1907,22 +1907,22 @@
           "institutionName" : {
             "type" : "string",
             "description" : "Bank Name. This is an optional field.",
-            "example" : "ABC Bank etc."
+            "example" : "ABC Bank"
           },
           "nationalIdName" : {
             "type" : "string",
             "description" : "nationalId name. This is an optional field..",
-            "example" : "ABA etc."
+            "example" : "ABA"
           },
           "nationalId" : {
             "type" : "string",
             "description" : "bank routing number. This is not an optional field.",
-            "example" : "123656698 etc."
+            "example" : "123656698"
           },
           "recordTypeCode" : {
             "type" : "string",
             "description" : "record type code. This is an optional field.",
-            "example" : "SEND etc."
+            "example" : "SEND"
           },
           "routingAddress" : {
             "type" : "array",
@@ -1968,20 +1968,20 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Country specific postal/zip code. This is an optional field.",
-            "example" : "28269 etc."
+            "example" : "28269"
           },
           "countryCode" : {
             "maxLength" : 2,
             "minLength" : 2,
             "type" : "string",
             "description" : "Country codes per ISO 3166.",
-            "example" : "US, CN, AR etc."
+            "example" : "US"
           },
           "country" : {
             "maxLength" : 20,
             "type" : "string",
             "description" : "Country name. This is an optional field.",
-            "example" : "USA etc."
+            "example" : "USA"
           }
         }
       },
@@ -1990,7 +1990,7 @@
           "institutionName" : {
             "type" : "array",
             "description" : "List of delivery methods. This is an optional field.",
-            "example" : "ACH,FEDNOW etc."
+            "example" : "ACH"
           }
         }
       },
@@ -2071,7 +2071,7 @@
             "maxLength" : 20,
             "type" : "array",
             "description" : "List of ervices. This is an optional field.",
-            "example" : "Custom etc."
+            "example" : "Custom"
           }
         }
       },
@@ -2617,7 +2617,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Receiver bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the receiver information are not needed.",
-            "example" : "209219 etc."
+            "example" : "209219"
           },
           "accountNumber" : {
             "maxLength" : 35,
@@ -2643,7 +2643,7 @@
             "minLength" : 3,
             "type" : "string",
             "description" : "Receiver currency. The valid currency code should be per ISO 4217 standard.",
-            "example" : "USD, EUR etc."
+            "example" : "USD"
           },
           "name" : {
             "maxLength" : 35,
@@ -2689,7 +2689,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Creditor bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.",
-            "example" : "1021 etc."
+            "example" : "1021"
           },
           "achCompanyID" : {
             "maxLength" : 10,
@@ -2701,13 +2701,13 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Bank account number to which the money will be deposited",
-            "example" : "123452334 etc."
+            "example" : "123452334"
           },
           "accountType" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL.",
-            "example" : "Deposit or GL"
+            "example" : "Deposit"
           },
           "subAccountType" : {
             "maxLength" : 20,
@@ -2764,7 +2764,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Debtor bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the debtor information are not needed.",
-            "example" : "1021 etc."
+            "example" : "1021"
           },
           "accountNumber" : {
             "maxLength" : 35,
@@ -2789,7 +2789,7 @@
             "minLength" : 3,
             "type" : "string",
             "description" : "Debtor currency. The valid currency code should be per ISO 4217 standard.",
-            "example" : "USD, EUR etc."
+            "example" : "USD"
           },
           "name" : {
             "maxLength" : 35,
@@ -2856,12 +2856,12 @@
           "positivePayDecisionStatus" : {
             "type" : "string",
             "description" : "Decision status",
-            "example" : "PENDING, APPROVED, REJECTED etc."
+            "example" : "PENDING"
           },
           "secCode" : {
             "type" : "string",
             "description" : "SEC code associated with the ACH postive rule",
-            "example" : "CCD, PPD etc."
+            "example" : "CCD"
           }
         }
       },
@@ -2876,7 +2876,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PPD001 etc."
+            "example" : "PPD001"
           },
           "message" : {
             "type" : "string",
@@ -2949,7 +2949,7 @@
           },
           "secCode" : {
             "type" : "string",
-            "example" : "CCD, PPD etc."
+            "example" : "CCD"
           },
           "approvedBy" : {
             "type" : "string",
@@ -2973,7 +2973,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PPD001 etc."
+            "example" : "PPD001"
           },
           "message" : {
             "type" : "string",
@@ -2998,7 +2998,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PPD001 etc."
+            "example" : "PPD001"
           },
           "message" : {
             "type" : "string",
@@ -3056,12 +3056,12 @@
           "status" : {
             "type" : "string",
             "description" : "Current state of the rule whether Active or Expired etc.",
-            "example" : "Active or Expired"
+            "example" : "Active"
           },
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH, FEDWIRE, RFP"
+            "example" : "ACH"
           }
         }
       },
@@ -3077,7 +3077,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "PP001 etc."
+            "example" : "PP001"
           },
           "message" : {
             "type" : "string",
@@ -3104,7 +3104,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "PP001 etc."
+            "example" : "PP001"
           },
           "message" : {
             "type" : "string",
@@ -3126,7 +3126,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PP001 etc."
+            "example" : "PP001"
           },
           "message" : {
             "type" : "string",
@@ -3151,7 +3151,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PP001 etc."
+            "example" : "PP001"
           },
           "message" : {
             "type" : "string",
@@ -3176,7 +3176,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PP001 etc."
+            "example" : "PP001"
           },
           "message" : {
             "type" : "string",
@@ -3201,7 +3201,7 @@
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "PP001 etc."
+            "example" : "PP001"
           },
           "message" : {
             "type" : "string",
@@ -3285,17 +3285,17 @@
           "frequency" : {
             "type" : "string",
             "description" : "Positive pay rule frequency",
-            "example" : "Onetime, Weekly etc."
+            "example" : "Onetime"
           },
           "secCode" : {
             "type" : "string",
             "description" : "SEC code associated with the ACH postive rule",
-            "example" : "CCD, PPD etc."
+            "example" : "CCD"
           },
           "status" : {
             "type" : "string",
             "description" : "Current state of the rule whether Active or Expired etc.",
-            "example" : "Active, Expired"
+            "example" : "Active"
           },
           "effectiveDate" : {
             "type" : "string",
@@ -3371,12 +3371,12 @@
           "frequency" : {
             "type" : "string",
             "description" : "Positive pay rule frequency",
-            "example" : "Onetime, Weekly etc."
+            "example" : "Onetime"
           },
           "secCode" : {
             "type" : "string",
             "description" : "SEC code associated with the ACH postive rule",
-            "example" : "CCD, PPD etc."
+            "example" : "CCD"
           },
           "effectiveDate" : {
             "type" : "string",
@@ -3545,19 +3545,20 @@
           "externalReferenceId" : {
             "type" : "string",
             "description" : "Unique reference id set by the originator system. For the speed assocated with the Fedwire payment this will be mapped to {3320} Tag. The {3320} tag limit is 16 characters",
-            "example" : "pymtref10012 or 123e4567-e89b-12d3-a456-426614174000 etc."
+            "example" : "pymtref10012"
           },
           "paymentAmount" : {
             "type" : "number",
             "description" : "Payment amount. The payment amount are validated as per the limit set by the payment rails or by the bank for the customer. For the Fedwire payment this will be mapped to {2000} tag.The payment rail limit per transaction are RTP upto 1M$, FedNow upto $500K, Fedwire upto $9,999,999,999.99, Same Day ACH upto 1M$.",
-            "format" : "double"
+            "format" : "double",
+            "example" : 123.0
           },
           "paymentCurrency" : {
             "maxLength" : 3,
             "minLength" : 3,
             "type" : "string",
             "description" : "Sender payment currency code. The valid country currency code should be per ISO 4217 standard.",
-            "example" : "USD or EUR etc."
+            "example" : "USD"
           },
           "paymentDate" : {
             "type" : "string",
@@ -3568,7 +3569,7 @@
             "maxLength" : 20,
             "type" : "string",
             "description" : "Speed associated with the payment based on the delivery time and fee. The Speed names and associated payment rail can be configured or defined by the bank/financial institutions. The supported payment rails in FinzlyOS are ACH, Fedwire, RTP or FedNow. The following are the standard speed names and payment rails configured by default Economy - [ACH-REGULAR], Economy Plus [ACH-SAMEDAY], Express [FEDWIRE], Instant [FEDNOW or RTP].",
-            "example" : "Economy, Economy Plus, Express, Instant"
+            "example" : "Economy"
           },
           "paymentNotes" : {
             "maxLength" : 200,
@@ -3599,13 +3600,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Failure code associated with the error.",
-            "example" : "PAYMENT001 etc."
+            "example" : "PAYMENT001"
           },
           "message" : {
             "type" : "string",
@@ -3803,7 +3804,7 @@
             "maxLength" : 50,
             "type" : "string",
             "description" : "Recurrence status",
-            "example" : "Active etc."
+            "example" : "Active"
           }
         },
         "description" : "Set the payment recurrence based on the available options."
@@ -3884,7 +3885,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Sender account unique identifier defined in the Finzly-CRM system and associated with the payment.",
-            "example" : "3248 etc."
+            "example" : "3248"
           },
           "senderAmount" : {
             "type" : "string",
@@ -4423,12 +4424,12 @@
           "createdBy" : {
             "type" : "string",
             "description" : "Payment Created By",
-            "example" : "System etc."
+            "example" : "System"
           },
           "creationDateTime" : {
             "type" : "string",
             "description" : "Payment Creation Date Time",
-            "example" : "2023-06-23T14:56:59 etc."
+            "example" : "2023-06-23T14:56:59"
           }
         },
         "description" : "Search payments based on various parameters. This provides limited payment data in comparison with GetPayment response."
@@ -5090,12 +5091,12 @@
           "createdBy" : {
             "type" : "string",
             "description" : "Payment Created By",
-            "example" : "System etc."
+            "example" : "System"
           },
           "creationDateTime" : {
             "type" : "string",
             "description" : "Payment Creation Date Time",
-            "example" : "2023-06-23T14:56:59 etc."
+            "example" : "2023-06-23T14:56:59"
           }
         }
       },
