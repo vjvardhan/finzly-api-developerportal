@@ -1401,7 +1401,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Payment Unique Identifier"
+            "description" : "Payment Unique Identifier. Return payment functionality is applicable only for outgoing payments and payment status should be other than the 'Processed'."
           }
         } ],
         "requestBody" : {
@@ -1485,7 +1485,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Payment Unique Identifier"
+            "description" : "Payment Unique Identifier. Reverse payment functionality is applicable only for incoming payments and payment status should be other than the 'Processed'. Reverse functionality is not supported for the SWIFT payment type."
           }
         } ],
         "requestBody" : {
@@ -3608,12 +3608,12 @@
         "properties" : {
           "achReturnCode" : {
             "type" : "string",
-            "description" : "Valid ACH return code such as R01,R02 etc.",
+            "description" : "If the payment type is ACH then the achReturnCode is mandatory and valid ACH return code such as R01,R02 etc.",
             "example" : "R01"
           },
           "returnNotes" : {
             "type" : "string",
-            "description" : "Return notes",
+            "description" : "If the payment type is FEDWIRE then the 'returnNotes' is mandatory.",
             "example" : "Invalid payment request."
           }
         }
@@ -3623,17 +3623,17 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Failure",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
-            "description" : "Code associated with the error.",
-            "example" : "PAYMENT003 etc."
+            "description" : "If the status is Success then the code will be null otherwise code associated with an error.",
+            "example" : "PAYMENT003"
           },
           "message" : {
             "type" : "string",
-            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "description" : "If the status is Success then the code will be null otherwise error message corresponding to an error code indicating the issue in API call along with the reason.",
             "example" : "Failed to return a payment: <Reason>"
           },
           "data" : {
@@ -3645,7 +3645,7 @@
         "properties" : {
           "reversalNotes" : {
             "type" : "string",
-            "description" : "Reversal notes"
+            "description" : "Reversal notes. It is an optional field"
           }
         }
       },
@@ -3654,17 +3654,17 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
-            "description" : "Code associated with the error.",
-            "example" : "PAYMENT004 etc."
+            "description" : "If the status is Success then the code will be null otherwise code associated with an error.",
+            "example" : "PAYMENT004"
           },
           "message" : {
             "type" : "string",
-            "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
+            "description" : "If the status is Success then the code will be null otherwise error message corresponding to an error code indicating the issue in API call along with the reason.",
             "example" : "Failed to reverse a payment: <Reason>"
           },
           "data" : {
@@ -5213,7 +5213,8 @@
             "type" : "string",
             "description" : "Payment status."
           }
-        }
+        },
+        "description" : "If the status is Failure then data will be null"
       },
       "ReversePaymentResponse_data" : {
         "type" : "object",
@@ -5222,7 +5223,8 @@
             "type" : "string",
             "description" : "Payment unique identifier."
           }
-        }
+        },
+        "description" : "If the status is Failure then data will be null"
       }
     },
     "securitySchemes" : {
