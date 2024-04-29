@@ -3540,7 +3540,7 @@
         }
       },
       "DebitPaymentRequest" : {
-        "required" : [ "externalReferenceId", "paymentAmount", "paymentCurrency", "receiver", "sender", "speed" ],
+        "required" : [ "creditor", "debtor", "externalReferenceId", "paymentAmount", "paymentCurrency", "speed" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
