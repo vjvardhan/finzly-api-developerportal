@@ -1650,7 +1650,7 @@
           }
         }
       },
-      "SenderReceiverCreditorDebtorAddress" : {
+      "SenderOrCreditAddress" : {
         "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
         "properties" : {
           "addressLine1" : {
@@ -1681,17 +1681,59 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Country specific postal/zip code. This is an optional field needed for the domestic payment.",
-            "example" : "28269 etc."
+            "example" : "28269"
           },
           "countryCode" : {
             "maxLength" : 2,
             "minLength" : 2,
             "type" : "string",
             "description" : "Country codes per ISO 3166",
-            "example" : "US, CN, AR etc."
+            "example" : "US."
           }
         },
-        "description" : "The address pertains to the sender, receiver, creditor, or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode. Adn this is applicable only for the sender for receiver address is an optional."
+        "description" : "The address pertains to the sender or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
+      },
+      "ReceiverOrDebtorAddress" : {
+        "properties" : {
+          "addressLine1" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Bank address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Bank address line 2. This is an optional field.",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "City Name. This is an optional field needed for the domestic payment",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "State Name. This is an optional field needed for the domestic payment",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Country specific postal/zip code. This is an optional field needed for the domestic payment.",
+            "example" : "28269"
+          },
+          "countryCode" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string",
+            "description" : "Country codes per ISO 3166",
+            "example" : "US"
+          }
+        },
+        "description" : "The address pertains to the receiver or debtor. This field is optional."
       },
       "BankAddress" : {
         "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
@@ -1724,14 +1766,14 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Country specific postal/zip code. This is an optional field.",
-            "example" : "28269 etc."
+            "example" : "28269"
           },
           "countryCode" : {
             "maxLength" : 2,
             "minLength" : 2,
             "type" : "string",
             "description" : "Country codes per ISO 3166.",
-            "example" : "US, CN, AR etc."
+            "example" : "US"
           }
         },
         "description" : "The bank address information is required for banks located outside the United States. If any of the address fields are provided, it is mandatory to include addressLine1, city, state, postalCode, and countryCode."
@@ -1776,13 +1818,13 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "The bank unique identifier type. Use SWIFT for the international money transfer. Use NID to identify the country specific bank id such as IBAN mainly for european countries, CLABE for Mexico, ABA for USA  etc.",
-            "example" : "NID, SWIFT"
+            "example" : "NID"
           },
           "bankId" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "This is needed when the bankIdType is set to 'NID'",
-            "example" : "072000326 [ABA], 002665000000000001 [CLABE] etc."
+            "example" : "072000326"
           },
           "swiftCode" : {
             "maxLength" : 35,
@@ -1801,7 +1843,7 @@
             "minLength" : 2,
             "type" : "string",
             "description" : "Country codes per ISO 3166. This is an optional field",
-            "example" : "US, CN, AR etc."
+            "example" : "US"
           },
           "address" : {
             "$ref" : "#/components/schemas/BankAddress"
@@ -2040,13 +2082,13 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Frequency associated with the payment recurrence. The valid values are Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly.",
-            "example" : "Daily, Weekly, BiWeekly, Monthly, Quarterly, SemiAnnually, Yearly"
+            "example" : "Daily"
           },
           "payUntil" : {
             "maxLength" : 25,
             "type" : "string",
             "description" : "The end of payment recurrence. If it is set to Cancelled that means payment will be processing as per the frequency until it cancelled. If it is set to EndDate that means payment will be processing per the frequency until the defined EndDate. If it is set to NumberOfPayments that means payment will be processing per the frequency until the defined number of payments. ",
-            "example" : "Cancelled, EndDate, NumberOfPayments",
+            "example" : "Cancelled",
             "enum" : [ "Cancelled", "EndDate", "NumberOfPayments" ]
           },
           "endDate" : {
@@ -2214,66 +2256,51 @@
             "maxLength" : 25,
             "type" : "string",
             "description" : "The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
-            "example" : "API, TELLER etc."
+            "example" : "API"
           },
           "costCenter" : {
             "maxLength" : 25,
             "type" : "string",
             "description" : "This is an optional field. A cost center is a function within an organization that does not directly add to profit but still costs money to operate, such as the accounting, HR, or IT departments",
-            "example" : "12897 etc."
+            "example" : "12897"
           },
           "requestMethod" : {
             "maxLength" : 45,
             "type" : "string",
             "description" : "This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
-            "example" : "WALK-IN, PHONE-IN etc."
+            "example" : "WALK-IN"
           },
           "detailsOfCharges" : {
             "maxLength" : 3,
             "minLength" : 3,
             "type" : "string",
             "description" : "who pays the payment charges. This is an optional field. For the speed associated with the FEDWIRE only BEN and SHA are applicable values. For the speed associated with the SWIFT OUR, BEN and SHA are applicable values.",
-            "example" : "OUR, BEN, or SHA"
+            "example" : "OUR"
           },
           "secCode" : {
             "maxLength" : 3,
             "type" : "string",
             "description" : "An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. This is an optional field needed only for the speed associated with the ACH payment rail.",
-            "example" : "CCD, PPD etc."
+            "example" : "CCD"
           },
           "transactionTypeCode" : {
             "maxLength" : 3,
             "minLength" : 3,
             "type" : "string",
             "description" : "This is an optional field. This is a secondary secCode can be set when the sec code is set to IAT.",
-            "example" : "ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc."
+            "example" : "ANN"
           },
           "receiverIdentificationNumber" : {
             "maxLength" : 50,
             "type" : "string",
             "description" : "This is an optional field. This is Receiver’s DFI Identification Number can be set when the secCode is set to IAT",
-            "example" : "12334356 etc."
-          },
-          "fullAmount" : {
-            "type" : "number",
-            "description" : "Full payment amount and applicable for request for payment (RFP) request.",
-            "example" : 100.0
-          },
-          "discountAmount" : {
-            "type" : "number",
-            "description" : "Discounted amount and applicable for request for payment (RFP) request.",
-            "example" : 100.0
-          },
-          "discountExpiryDateTime" : {
-            "type" : "string",
-            "description" : "Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.",
-            "example" : "2022-01-01T17:32:25Z"
+            "example" : "12334356"
           },
           "fxContractNumber" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Unique identifier associated with the FX trade applicable for the international payment",
-            "example" : "111234 etc."
+            "example" : "111234"
           },
           "originatortoBeneficiary" : {
             "maxLength" : 140,
@@ -2291,7 +2318,7 @@
             "maxLength" : 10,
             "type" : "string",
             "description" : "This is applicable for the RTP payment. This is an optional field",
-            "example" : "EMAIL or URID",
+            "example" : "EMAIL",
             "enum" : [ "EMAIL", "URID" ]
           },
           "paymentRemittanceNotes" : {
@@ -2302,7 +2329,7 @@
           "localInstruments" : {
             "type" : "string",
             "description" : "Local instrument code applicable for the CTP fedwire payment or RTP payment",
-            "example" : "COVS, ANSI, STANDARD, ZELLE etc.",
+            "example" : "COVS",
             "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE" ]
           },
           "referenceForBeneficiary" : {
@@ -2331,66 +2358,51 @@
             "maxLength" : 25,
             "type" : "string",
             "description" : "The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
-            "example" : "API, TELLER etc."
+            "example" : "API"
           },
           "costCenter" : {
             "maxLength" : 25,
             "type" : "string",
             "description" : "This is an optional field. A cost center is a function within an organization that does not directly add to profit but still costs money to operate, such as the accounting, HR, or IT departments",
-            "example" : "12897 etc."
+            "example" : "12897"
           },
           "requestMethod" : {
             "maxLength" : 45,
             "type" : "string",
             "description" : "This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
-            "example" : "WALK-IN, PHONE-IN etc."
+            "example" : "WALK-IN"
           },
           "detailsOfCharges" : {
             "maxLength" : 3,
             "minLength" : 3,
             "type" : "string",
             "description" : "who pays the payment charges. This is an optional field. For the speed associated with the FEDWIRE only BEN and SHA are applicable values. For the speed associated with the SWIFT OUR, BEN and SHA are applicable values.",
-            "example" : "OUR, BEN, or SHA"
+            "example" : "OUR"
           },
           "secCode" : {
             "maxLength" : 3,
             "type" : "string",
             "description" : "An SEC code is a three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. This is an optional field needed only for the speed associated with the ACH payment rail.",
-            "example" : "CCD, PPD etc."
+            "example" : "CCD"
           },
           "transactionTypeCode" : {
             "maxLength" : 3,
             "minLength" : 3,
             "type" : "string",
             "description" : "This is an optional field. This is a secondary secCode can be set when the sec code is set to IAT.",
-            "example" : "ANN, BUS, DEP, LOA, MIS, MOR, PEN, RLS, SAL, TAX etc."
+            "example" : "ANN"
           },
           "receiverIdentificationNumber" : {
             "maxLength" : 50,
             "type" : "string",
             "description" : "This is an optional field. This is Receiver’s DFI Identification Number can be set when the secCode is set to IAT.",
-            "example" : "12334356 etc."
-          },
-          "fullAmount" : {
-            "type" : "number",
-            "description" : "Full payment amount and applicable for request for payment (RFP) request.",
-            "example" : 100.0
-          },
-          "discountAmount" : {
-            "type" : "number",
-            "description" : "Discounted amount and applicable for request for payment (RFP) request.",
-            "example" : 100.0
-          },
-          "discountExpiryDateTime" : {
-            "type" : "string",
-            "description" : "Upto the specified datetime the discount amount is valid and it is mandatory if the discount amount is specified.",
-            "example" : "2022-01-01T17:32:25Z"
+            "example" : "12334356"
           },
           "fxContractNumber" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Unique identifier associated with the FX trade applicable for the international payment",
-            "example" : "111234 etc."
+            "example" : "111234"
           },
           "originatortoBeneficiary" : {
             "maxLength" : 140,
@@ -2417,27 +2429,27 @@
           "requestedExecutionDate" : {
             "type" : "string",
             "description" : "This field is required for RFP FEDNOW payments, and the valid date format is [MM-dd-yyyy]. If earlyPayment is set to 'False,' the debtor must instruct payment on the date specified in the request for payment. If earlyPayment is set to 'True,' the debtor has the option to instruct payment before the date indicated in the request for payment.",
-            "example" : "07-21-2022."
+            "example" : "07-21-2022"
           },
           "expiryDate" : {
             "type" : "string",
             "description" : "This field is required for RFP FEDNOW payments, and the valid date format is [MM-dd-yyyy]. After this date, the debtor is no longer able to accept, pay, decline, or reject the request for payment.",
-            "example" : "07-21-2022."
+            "example" : "07-21-2022"
           },
           "amountModificationAllowed" : {
             "type" : "boolean",
             "description" : "This field is optional for RFP FEDNOW payments. When set to 'True,' the debtor has the option to instruct payment for an amount different than the one indicated in the request for payment (Instructed Amount). When set to 'False,' the debtor is required to instruct payment for the exact amount specified in the request for payment (Instructed Amount).",
-            "example" : false
+            "example" : true
           },
           "earlyPayment" : {
             "type" : "boolean",
             "description" : "This field is optional for RFP FEDNOW payments. When set to 'True,' the debtor is allowed to instruct payment before the date indicated in the request for payment (Requested Execution Date). When set to 'False,' the debtor is required to instruct payment on the date indicated in the request for payment (Requested Execution Date).",
-            "example" : false
+            "example" : true
           },
           "guaranteedPayment" : {
             "type" : "boolean",
             "description" : "This field is optional for RFP FEDNOW payments. When set to 'True,' the creditor requests payment guarantees from the debtor when scheduling the payment. When set to 'False,' the creditor does not request payment guarantees from the debtor when scheduling the payment.",
-            "example" : false
+            "example" : true
           }
         }
       },
@@ -2453,12 +2465,12 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.",
-            "example" : "123452334 etc."
+            "example" : "123452334"
           },
           "accountType" : {
             "type" : "string",
             "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are DDA or GL.",
-            "example" : "DDA or GL",
+            "example" : "DDA",
             "enum" : [ "DDA", "GL" ]
           },
           "currency" : {
@@ -2471,7 +2483,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Optional field, only required when accountUID is not provided and accountType is DDA",
-            "example" : "022300173 etc."
+            "example" : "022300173"
           }
         }
       },
@@ -2481,18 +2493,18 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Transfer payment sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.",
-            "example" : "022300173 etc."
+            "example" : "022300173"
           },
           "accountNumber" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.",
-            "example" : "123452334 etc."
+            "example" : "123452334"
           },
           "accountType" : {
             "type" : "string",
             "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are DDA or GL.",
-            "example" : "DDA or GL",
+            "example" : "DDA",
             "enum" : [ "DDA", "GL" ]
           },
           "currency" : {
@@ -2505,7 +2517,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Optional field, only required when accountUID is not provided and accountType is DDA",
-            "example" : "022300173 etc."
+            "example" : "022300173"
           }
         }
       },
@@ -2515,7 +2527,7 @@
             "maxLength" : 11,
             "type" : "string",
             "description" : "Sender bank account unique identifier exist in the Finzly-CRM system. This is an optional field, if this is provided then rest of the sender information are not needed.",
-            "example" : "1021 etc."
+            "example" : "1021"
           },
           "achCompanyID" : {
             "maxLength" : 10,
@@ -2527,19 +2539,19 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender bank account number from where the money will be withdrawn. This is an optional field, it is required when the accountUID is not provided.",
-            "example" : "123452334 etc."
+            "example" : "123452334"
           },
           "accountType" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL.",
-            "example" : "Deposit or GL"
+            "example" : "Deposit"
           },
           "subAccountType" : {
             "maxLength" : 20,
             "type" : "string",
             "description" : "This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings or GL.",
-            "example" : "Checking, Savings or GL"
+            "example" : "Checking"
           },
           "name" : {
             "maxLength" : 50,
@@ -2551,24 +2563,24 @@
             "maxLength" : 45,
             "type" : "string",
             "description" : "Type of the entity. It is required when the accountUID is empty and accountType is Deposit. The valid values are Consumer or Corporate.",
-            "example" : "Consumer or Corporate",
+            "example" : "Consumer",
             "enum" : [ "Consumer", "Corporate" ]
           },
           "address" : {
-            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+            "$ref" : "#/components/schemas/SenderOrCreditAddress"
           },
           "bankIdType" : {
             "maxLength" : 10,
             "type" : "string",
             "description" : "This is an optional field, it is required when the accountUID is not provided. The unique identifier type to identifiy the bank details. You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.",
-            "example" : "NID or SWIFT",
+            "example" : "NID",
             "enum" : [ "NID", "SWIFT" ]
           },
           "bankId" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "This is an optional field required only if the sender account does not exists in the CRM system. This signifies the NID (ABA/Routing numner) or SWIFT code as per the bankIdType. For the speed associated with the fedwire payment rail, this will be mapped to {3100} tag.",
-            "example" : "101206101 or FBOLUS6LXXX"
+            "example" : "101206101"
           },
           "phone" : {
             "maxLength" : 35,
@@ -2640,7 +2652,7 @@
             "example" : "Receiver name"
           },
           "address" : {
-            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+            "$ref" : "#/components/schemas/ReceiverOrDebtorAddress"
           },
           "phone" : {
             "maxLength" : 35,
@@ -2717,7 +2729,7 @@
             "enum" : [ "Consumer", "Corporate" ]
           },
           "address" : {
-            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+            "$ref" : "#/components/schemas/SenderOrCreditAddress"
           },
           "bankIdType" : {
             "maxLength" : 10,
@@ -2786,7 +2798,7 @@
             "example" : "XYZ Name"
           },
           "address" : {
-            "$ref" : "#/components/schemas/SenderReceiverCreditorDebtorAddress"
+            "$ref" : "#/components/schemas/ReceiverOrDebtorAddress"
           },
           "phone" : {
             "maxLength" : 35,
@@ -3402,14 +3414,15 @@
           "paymentAmount" : {
             "type" : "number",
             "description" : "Payment amount. The payment amount are validated as per the limit set by the payment rails or by the bank for the customer. For the Fedwire payment this will be mapped to {2000} tag.The payment rail limit per transaction are RTP upto 1M$, FedNow upto $500K, Fedwire upto $9,999,999,999.99, Same Day ACH upto 1M$.",
-            "format" : "double"
+            "format" : "double",
+            "example" : 175.0
           },
           "paymentCurrency" : {
             "maxLength" : 3,
             "minLength" : 3,
             "type" : "string",
-            "description" : "Sender payment currency code. The valid country currency code should be per ISO 4217 standard.",
-            "example" : "USD or EUR etc."
+            "description" : "Receiver payment currency code. The valid country currency code should be per ISO 4217 standard.",
+            "example" : "USD"
           },
           "paymentDate" : {
             "type" : "string",
@@ -3420,7 +3433,7 @@
             "maxLength" : 20,
             "type" : "string",
             "description" : "Speed associated with the payment based on the delivery time and fee. The Speed names and associated payment rail can be configured or defined by the bank/financial institutions. The supported payment rails in FinzlyOS are ACH, Fedwire, SWIFT, RTP or FedNow. The following are the standard speed names and payment rails configured by default Economy - [ACH-REGULAR], Economy Plus [ACH-SAMEDAY], Express [FEDWIRE], Instant [FEDNOW or RTP], ON [SWIFT], TN [SWIFT], SPOT [SWIFT].",
-            "example" : "Economy, Economy Plus, Express, Instant, ON, TN, SPOT etc."
+            "example" : "Economy"
           },
           "paymentNotes" : {
             "maxLength" : 200,
@@ -3473,7 +3486,7 @@
           "channel" : {
             "type" : "string",
             "description" : "Channel associated with the payment",
-            "example" : "API, TELLER etc."
+            "example" : "API"
           }
         }
       },
@@ -3482,13 +3495,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "BOOKTRF001 etc."
+            "example" : "BOOKTRF001"
           },
           "message" : {
             "type" : "string",
@@ -5165,13 +5178,16 @@
         "type" : "object",
         "properties" : {
           "paymentUID" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "1359899"
           },
           "paymentStatus" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "PROCESSED"
           },
           "externalReferenceId" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "87878745a78r787"
           }
         }
       },
