@@ -3485,7 +3485,7 @@
           },
           "channel" : {
             "type" : "string",
-            "description" : "Channel associated with the payment",
+            "description" : "The channel name set by the payment origination system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
             "example" : "API"
           }
         }
