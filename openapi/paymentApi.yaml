@@ -2846,7 +2846,7 @@
           "decisionDateTime" : {
             "type" : "string",
             "description" : "Decision date and time in (EST)",
-            "example" : "04-23-2024"
+            "example" : "23-04-2024"
           },
           "amount" : {
             "type" : "number",
@@ -2895,7 +2895,8 @@
         "properties" : {
           "exceptionUID" : {
             "type" : "string",
-            "description" : "Unique identifier associated with positive pay exception"
+            "description" : "Unique identifier associated with positive pay exception",
+            "example" : "266565"
           },
           "paymentUID" : {
             "type" : "string",
@@ -2905,7 +2906,7 @@
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH, FEDWIRE, RFP"
+            "example" : "ACH"
           },
           "amount" : {
             "type" : "number",
@@ -3008,6 +3009,7 @@
         }
       },
       "SearchPositivePayRuleRequest" : {
+        "required" : [ "limit", "page" ],
         "properties" : {
           "companyBankId" : {
             "type" : "string",
@@ -3018,11 +3020,6 @@
             "type" : "string",
             "description" : "The name of the company or entity that originated the payment request",
             "example" : "XYZ Name"
-          },
-          "companyBankName" : {
-            "type" : "string",
-            "description" : "Bank name where the company account is held.",
-            "example" : "XYZ Bank"
           },
           "companyAccountNumber" : {
             "type" : "string",
@@ -3071,7 +3068,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
@@ -3087,7 +3084,7 @@
           "data" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/PositivePayRule"
+              "$ref" : "#/components/schemas/GetPositivePayRule"
             }
           }
         }
@@ -3098,7 +3095,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
@@ -3112,7 +3109,7 @@
             "example" : "Failed to get positive rule: <Reason>"
           },
           "data" : {
-            "$ref" : "#/components/schemas/PositivePayRule"
+            "$ref" : "#/components/schemas/GetPositivePayRule"
           }
         }
       },
@@ -3216,6 +3213,98 @@
           }
         }
       },
+      "GetPositivePayRule" : {
+        "type" : "object",
+        "properties" : {
+          "ruleUID" : {
+            "type" : "number",
+            "description" : "Positive rule unique reference id",
+            "format" : "int64",
+            "example" : 123456789
+          },
+          "paymentRuleType" : {
+            "type" : "string",
+            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
+            "example" : "ACH"
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Customer name associated with the payment positive rule",
+            "example" : "ABC Company"
+          },
+          "customerAccountNumber" : {
+            "type" : "string",
+            "description" : "Bank Account Number",
+            "example" : "12387878"
+          },
+          "achCompanyID" : {
+            "type" : "number",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : 122334789
+          },
+          "beneBankId" : {
+            "type" : "string",
+            "description" : "Bank unique id that is used to identify a specific bank",
+            "example" : "12345678"
+          },
+          "beneName" : {
+            "type" : "string",
+            "description" : "A beneficiary is the person or entity that will receive the payment",
+            "example" : "XYZ Name"
+          },
+          "beneBankName" : {
+            "type" : "string",
+            "description" : "Beneficiary bank name",
+            "example" : "Bank Name"
+          },
+          "beneAccountNumber" : {
+            "type" : "string",
+            "description" : "A beneficiary bank account number",
+            "example" : "12345678"
+          },
+          "amount" : {
+            "type" : "number",
+            "description" : "Payment amount",
+            "example" : 10.0
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency Code",
+            "example" : "USD",
+            "default" : "USD"
+          },
+          "amountType" : {
+            "type" : "string",
+            "description" : "Type of amount associated with the postive pay rule.",
+            "example" : "Exact or Maximum"
+          },
+          "frequency" : {
+            "type" : "string",
+            "description" : "Positive pay rule frequency",
+            "example" : "Onetime"
+          },
+          "secCode" : {
+            "type" : "string",
+            "description" : "SEC code associated with the ACH postive rule",
+            "example" : "CCD"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current state of the rule whether Active or Expired etc.",
+            "example" : "Active"
+          },
+          "effectiveDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "example" : "11-01-2022"
+          },
+          "expiryDate" : {
+            "type" : "string",
+            "description" : "Rule effective date in mm-dd-yyyy format",
+            "example" : "11-01-2022"
+          }
+        }
+      },
       "PositivePayRule" : {
         "required" : [ "ruleUID" ],
         "type" : "object",
@@ -3229,7 +3318,7 @@
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH, FEDWIRE, RFP"
+            "example" : "ACH"
           },
           "customerName" : {
             "type" : "string",
@@ -3316,7 +3405,7 @@
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH, FEDWIRE, RFP"
+            "example" : "ACH"
           },
           "customerName" : {
             "type" : "string",
