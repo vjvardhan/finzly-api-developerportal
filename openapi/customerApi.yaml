@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.2.8"
+    "version" : "2.2.9"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -476,7 +476,7 @@
           "schema" : {
             "type" : "string",
             "description" : "Type of account",
-            "example" : "Saving or Checking"
+            "example" : "Savings or Checking"
           }
         }, {
           "name" : "status",
@@ -2715,7 +2715,7 @@
           },
           "accountSubType" : {
             "type" : "string",
-            "enum" : [ "Checking", "Saving", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
+            "enum" : [ "Checking", "Savings", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
           },
           "systemOfRecords" : {
             "type" : "string",
@@ -2818,7 +2818,7 @@
           },
           "accountSubType" : {
             "type" : "string",
-            "enum" : [ "Checking", "Saving", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
+            "enum" : [ "Checking", "Savings", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
           },
           "currency" : {
             "type" : "string"
@@ -2976,7 +2976,7 @@
           "subType" : {
             "type" : "string",
             "description" : "Account Type",
-            "example" : "Checking, Saving, Psuedo"
+            "example" : "Checking, Savings, Psuedo"
           },
           "systemOfRecord" : {
             "type" : "string",
@@ -3450,7 +3450,7 @@
           },
           "entitlements" : {
             "type" : "array",
-            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. \n1. Accounts -\n    i. Manage_Account\n    \n    ii. View_Account\n    \n              \n2. Bulk_Payments - \n\n    i. Approve_bulk_payments\n    \n    ii. Upload_Bulk_Payment_File\n    \n    iii. View_bulk_payments\n    \n\n3. Contacts -\n\n    i. Manage_Contacts\n    \n    ii. View_Contacts\n    \n\n4. Digital_Banking_Portal -\n\n    i. View_Portal\n\n5. Foreign_Exchange - \n\n    i. Cancel_Trades\n    \n    ii. View_Trades\n    \n    iii. Spot_Trade\n    \n    iv. Create_Instruct_Trades\n    \n\n6. Group_Payments -\n\n    i. Approve_Group\n    \n    ii. View_Group\n    \n    iii. Initiate_Cancel_Group_Payment\n    \n    iv. Manage_Group\n    \n\n7. Payments -\n\n    i. Reversal_Payments\n    \n    ii. View_Payments\n    \n    iii. Return_Payments\n    \n    iv. Cancel_Payments\n    \n    v. Initiate_Payments\n    \n    vi. Approve_Payments\n    \n\n8. Positive_Rules - \n\n    i. Manage_Exception\n    \n    ii. View_Positive_Rules\n    \n    iii. Manage_Positive_Rules\n    \n\n9.  User_Admin - \n\n    i. View_Roles_And_Users\n    \n    ii. Manage_Roles\n    \n    iii. Manage_Users\n    \n    iv. Activate_Users\n    \n    v. View_Category\n    \n    vi. Add_Update_Delete_Category\n    \n    vii. Suspend_Users\n    \n",
+            "description" : "Entitlements control application access, with each app having its own set. The allowed entitlements are listed below. \n1. Accounts -\n\n    i. Manage_Account\n    \n    ii. View_Account\n    \n    \n              \n2. Bulk_Payments - \n\n    i. Approve_bulk_payments\n    \n    ii. Upload_Bulk_Payment_File\n    \n    iii. View_bulk_payments\n    \n\n3. Contacts -\n\n    i. Manage_Contacts\n    \n    ii. View_Contacts\n    \n\n4. Digital_Banking_Portal -\n\n    i. View_Portal\n\n5. Foreign_Exchange - \n\n    i. Cancel_Trades\n    \n    ii. View_Trades\n    \n    iii. Spot_Trade\n    \n    iv. Create_Instruct_Trades\n    \n\n6. Group_Payments -\n\n    i. Approve_Group\n    \n    ii. View_Group\n    \n    iii. Initiate_Cancel_Group_Payment\n    \n    iv. Manage_Group\n    \n\n7. Payments -\n\n    i. Reversal_Payments\n    \n    ii. View_Payments\n    \n    iii. Return_Payments\n    \n    iv. Cancel_Payments\n    \n    v. Initiate_Payments\n    \n    vi. Approve_Payments\n    \n\n8. Positive_Rules - \n\n    i. Manage_Exception\n    \n    ii. View_Positive_Rules\n    \n    iii. Manage_Positive_Rules\n    \n\n9.  User_Admin - \n\n    i. View_Roles_And_Users\n    \n    ii. Manage_Roles\n    \n    iii. Manage_Users\n    \n    iv. Activate_Users\n    \n    v. View_Category\n    \n    vi. Add_Update_Delete_Category\n    \n    vii. Suspend_Users\n    \n",
             "items" : {
               "type" : "string",
               "example" : "Manage_Account,  View_Account"
