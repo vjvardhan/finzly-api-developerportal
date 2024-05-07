@@ -670,44 +670,123 @@
           },
           "accountName" : {
             "type" : "string",
-            "description" : "Account name is an unique field",
+            "description" : "Account name is an unique field and it is a mandatory field.",
             "example" : "test123"
+          },
+          "maturityDate" : {
+            "type" : "string",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]",
+            "example" : "05-21-2024"
+          },
+          "effectiveDate" : {
+            "type" : "string",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is gretter that the maturityDate and current date.",
+            "example" : "06-21-2024"
+          },
+          "isStopDebits" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
+          },
+          "isCollateralized" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
+          },
+          "isDeceasedOwner" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
+          },
+          "isLegalHold" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
+          },
+          "isEnableNotifications" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
+          },
+          "nextStatementDate" : {
+            "type" : "string",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is gretter that the current date.",
+            "example" : "06-21-2024"
+          },
+          "statementType" : {
+            "type" : "string",
+            "description" : "This is an optional field. The default value is PDF.",
+            "example" : "PDF",
+            "enum" : [ "PDF", "MT940", "MT950", "ISO", "BAI" ]
+          },
+          "statementFrequency" : {
+            "type" : "string",
+            "description" : "This is an optional field. The default value is MONTHLY.",
+            "example" : "MONTHLY",
+            "enum" : [ "MONTHLY", "QUARTERLY", "HALF_YEARLY", "ANNUALLY" ]
+          },
+          "party" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AddDepositAccountParty"
+            }
+          },
+          "notification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AddDepositAccountNotification"
+            }
           }
         }
       },
       "UpdateDepositAccountRequest" : {
         "properties" : {
-          "productCode" : {
-            "type" : "string",
-            "description" : "This is a mandatory field. productCode is associated with the curruncy, Product Name, Maintenance Fee, Account Type and Book. And product code should present in tesystem.",
-            "example" : "BBCCOO"
-          },
           "accountName" : {
             "type" : "string",
-            "description" : "Account name is an unique field",
+            "description" : "Account name is an unique field.",
             "example" : "test123"
           },
-          "stopDebits" : {
-            "type" : "boolean"
+          "isStopDebits" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
           },
-          "stopWires" : {
-            "type" : "boolean"
+          "isCollateralized" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
           },
-          "collateralized" : {
-            "type" : "boolean"
+          "isDeceasedOwner" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
           },
-          "legalHold" : {
-            "type" : "boolean"
+          "isLegalHold" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
           },
-          "statementFrequency" : {
-            "type" : "string"
+          "isEnableNotifications" : {
+            "type" : "boolean",
+            "description" : "boolean value and it is an optional field. The default value is false.",
+            "example" : true
           },
           "nextStatementDate" : {
             "type" : "string",
-            "example" : "02/28/2024"
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is gretter that the current date.",
+            "example" : "06-21-2024"
           },
-          "deceasedOwner" : {
-            "type" : "boolean"
+          "statementType" : {
+            "type" : "string",
+            "description" : "This is an optional field. The default value is PDF.",
+            "example" : "PDF",
+            "enum" : [ "PDF", "MT940", "MT950", "ISO", "BAI" ]
+          },
+          "statementFrequency" : {
+            "type" : "string",
+            "description" : "This is an optional field. The default value is MONTHLY.",
+            "example" : "MONTHLY",
+            "enum" : [ "MONTHLY", "QUARTERLY", "HALF_YEARLY", "ANNUALLY" ]
           },
           "notification" : {
             "type" : "array",
@@ -774,22 +853,67 @@
           }
         }
       },
+      "AddDepositAccountNotification" : {
+        "properties" : {
+          "email" : {
+            "type" : "string",
+            "description" : "The valid email id.",
+            "example" : "abc@finzly.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Valid phone number",
+            "example" : "9865321478"
+          }
+        }
+      },
+      "AddDepositAccountParty" : {
+        "properties" : {
+          "counterPartyShortName" : {
+            "type" : "string",
+            "description" : "This is a short name of the legal entity.",
+            "example" : "BANKA"
+          },
+          "relationship" : {
+            "type" : "string",
+            "description" : "Type of the counterParty.",
+            "example" : "OWNER",
+            "enum" : [ "OWNER", "COWNER", "BENEFICIARY", "ESCROW" ]
+          },
+          "addedOn" : {
+            "type" : "string",
+            "description" : "The valid date format is in [MM-dd-yyyy]",
+            "example" : "02-28-2024"
+          }
+        }
+      },
       "Party" : {
         "properties" : {
           "id" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "UUID of the party which is associated with the deposit account.",
+            "example" : "70d38a9e-a609-4e2a-4444-8e02e140e6df"
           },
           "counterPartyShortName" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "This is a short name of the legal entity.",
+            "example" : "BANKA"
           },
           "relationship" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Type of the counterParty",
+            "example" : "OWNER",
+            "enum" : [ "OWNER", "COWNER", "BENEFICIARY", "ESCROW" ]
           },
           "addedOn" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "The valid date format is in [MM-dd-yyyy]",
+            "example" : "02-28-2024"
           },
           "depositAccountId" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Deposit account Id.",
+            "example" : "103"
           }
         }
       },
