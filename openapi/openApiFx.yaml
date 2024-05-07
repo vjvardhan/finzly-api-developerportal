@@ -475,22 +475,22 @@
           "externalReferenceId" : {
             "type" : "string",
             "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
-            "example" : "REQ123 or 1274878"
+            "example" : "REQ123"
           },
           "channel" : {
             "type" : "string",
-            "description" : "FX quote request origination source",
-            "example" : "ONLINE, FXDesk etc."
+            "description" : "The channel name set by the FX quote request system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
+            "example" : "ONLINE."
           },
           "customerId" : {
             "type" : "string",
             "description" : "The value based on the customerIdType",
-            "example" : "112344 for DDA"
+            "example" : "112344"
           },
           "customerIdType" : {
             "type" : "string",
             "description" : "CustomerId type",
-            "example" : "CustomerUID, CustomerShortName,CustomerId, DDA",
+            "example" : "CustomerUID",
             "enum" : [ "CustomerUID", "CustomerShortName", "CustomerId", "DDA" ]
           },
           "sellCurrency" : {
@@ -516,13 +516,13 @@
           "productType" : {
             "type" : "string",
             "description" : "FX financial instrument such SPOT or FORWARD",
-            "example" : "SPOT or FORWARD",
+            "example" : "SPOT",
             "enum" : [ "SPOT", "FORWARD" ]
           },
           "tenor" : {
             "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.",
-            "example" : "SPOT, ON, TN, nW, nM, nY where n is a number"
+            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN",
+            "example" : "SPOT"
           },
           "valueDate" : {
             "type" : "string",
@@ -537,12 +537,12 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "FXQUOTE001 etc."
+            "example" : "FXQUOTE001"
           },
           "message" : {
             "type" : "string",
@@ -564,7 +564,7 @@
           "autoCover" : {
             "type" : "boolean",
             "description" : "This is an optional field. Set the value to true if auto cover is needed during the acceptance of FX quote.",
-            "example" : false
+            "example" : true
           },
           "autoCoverDelay" : {
             "type" : "integer",
@@ -578,17 +578,17 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "FXQUOTE002 etc."
+            "example" : "FXQUOTE002"
           },
           "message" : {
             "type" : "string",
             "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to accept a quote: <failure reason>"
+            "example" : "<failure reason>"
           },
           "data" : {
             "$ref" : "#/components/schemas/FXAcceptQuoteResponse_data"
@@ -600,17 +600,17 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "FXQUOTE003 etc."
+            "example" : "FXQUOTE003"
           },
           "message" : {
             "type" : "string",
             "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to reject a quote: <failure reason>"
+            "example" : "<failure reason>"
           },
           "data" : {
             "$ref" : "#/components/schemas/FXRejectQuoteResponse_data"
@@ -622,17 +622,17 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "FX001 etc."
+            "example" : "FX001"
           },
           "message" : {
             "type" : "string",
             "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to perform the cover trade: <failure reason>"
+            "example" : "<failure reason>"
           },
           "data" : {
             "$ref" : "#/components/schemas/FXCoverTradeResponse_data"
@@ -644,17 +644,17 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "FX001 etc."
+            "example" : "FX001"
           },
           "message" : {
             "type" : "string",
             "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to get trade information: <failure reason>"
+            "example" : "<failure reason>"
           },
           "data" : {
             "$ref" : "#/components/schemas/FXTradeInfoResponse_data"
@@ -666,32 +666,22 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "FX001 etc."
+            "example" : "FX001"
           },
           "message" : {
             "type" : "string",
             "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to cancel a trade: <failure reason>"
+            "example" : "<failure reason>"
           },
           "data" : {
             "$ref" : "#/components/schemas/FXTradeCancelResponse_data"
           }
         }
-      },
-      "PricingTier" : {
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        },
-        "description" : "PricingTier"
       },
       "FXQuoteResponse_data" : {
         "type" : "object",
@@ -699,7 +689,7 @@
           "externalReferenceId" : {
             "type" : "string",
             "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
-            "example" : "REQ123 or 1274878"
+            "example" : "REQ123"
           },
           "quoteUUID" : {
             "type" : "string",
@@ -746,13 +736,13 @@
           "productType" : {
             "type" : "string",
             "description" : "FX financial instrument such SPOT or FORWARD",
-            "example" : "SPOT or FORWARD",
+            "example" : "SPOT",
             "enum" : [ "SPOT", "FORWARD" ]
           },
           "tenor" : {
             "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.",
-            "example" : "SPOT, ON, TN, nW, nM, nY where n is a number"
+            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN.",
+            "example" : "SPOT"
           },
           "valueDate" : {
             "type" : "string",
@@ -763,7 +753,7 @@
           "externalPricingSystemRefId" : {
             "type" : "string",
             "description" : "Unique reference id returned by the external system provider.",
-            "example" : "R1274878 etc."
+            "example" : "R1274878"
           }
         }
       },
@@ -799,7 +789,7 @@
           "direction" : {
             "type" : "string",
             "description" : "Buy or Sell",
-            "example" : "Buy or Sell"
+            "example" : "Buy"
           },
           "baseCcy" : {
             "type" : "string",
@@ -823,8 +813,8 @@
           },
           "tenor" : {
             "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.",
-            "example" : "SPOT, ON, TN, nW, nM, nY where n is a number"
+            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN",
+            "example" : "SPOT"
           },
           "exchangeRate" : {
             "type" : "number",
@@ -856,7 +846,7 @@
           "externalPricingSystemRefId" : {
             "type" : "string",
             "description" : "Unique reference id returned by the external system provider.",
-            "example" : "R1274878 etc."
+            "example" : "R1274878"
           }
         }
       },
@@ -891,7 +881,7 @@
           "externalPricingSystemRefId" : {
             "type" : "string",
             "description" : "Unique reference id provided by the external system",
-            "example" : "R1274878 etc."
+            "example" : "R1274878"
           },
           "channel" : {
             "type" : "string",
@@ -901,13 +891,13 @@
           "customerIdType" : {
             "type" : "string",
             "description" : "CustomerId type associated with the cover trade",
-            "example" : "CustomerUID, CustomerShortName,CustomerId, DDA",
+            "example" : "CustomerUI",
             "enum" : [ "CustomerUID", "CustomerShortName", "CustomerId", "DDA" ]
           },
           "customerId" : {
             "type" : "string",
             "description" : "The value based on the customerIdType associated with the cover trade",
-            "example" : "112344 for DDA"
+            "example" : "112344"
           },
           "tradeDate" : {
             "type" : "string",
@@ -929,7 +919,7 @@
           "direction" : {
             "type" : "string",
             "description" : "Buy or Sell",
-            "example" : "Buy or Sell"
+            "example" : "Buy"
           },
           "baseCcy" : {
             "type" : "string",
@@ -953,8 +943,8 @@
           },
           "tenor" : {
             "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.",
-            "example" : "SPOT, ON, TN, nW, nM, nY where n is a number"
+            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. SPOT, TN, ON",
+            "example" : "SPOT"
           },
           "allInRate" : {
             "type" : "number",
@@ -991,7 +981,7 @@
           "direction" : {
             "type" : "string",
             "description" : "Buy or Sell",
-            "example" : "Buy or Sell"
+            "example" : "Buy"
           },
           "baseCcy" : {
             "type" : "string",
@@ -1015,8 +1005,8 @@
           },
           "tenor" : {
             "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate.",
-            "example" : "SPOT, ON, TN, nW, nM, nY where n is a number"
+            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN",
+            "example" : "SPOT"
           },
           "exchangeRate" : {
             "type" : "number",
@@ -1058,7 +1048,7 @@
           "tradeStatus" : {
             "type" : "string",
             "description" : "Trade status after trade cancelation",
-            "example" : "Cancelled etc."
+            "example" : "Cancelled"
           }
         }
       }
