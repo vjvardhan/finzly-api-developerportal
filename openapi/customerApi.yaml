@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.2.9"
+    "version" : "2.3.0"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -2087,6 +2087,35 @@
           }
         }
       },
+      "CustomerAppLimit" : {
+        "properties" : {
+          "appName" : {
+            "type" : "string",
+            "description" : "A vailid application name which is present in the finzly system. e.g. Payment Galaxy, Confirms",
+            "example" : "Payment Galaxy"
+          },
+          "appLimits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerLimit"
+            }
+          }
+        }
+      },
+      "CustomerLimit" : {
+        "properties" : {
+          "kay" : {
+            "type" : "string",
+            "description" : "A valid appication limit code which is associated with the provided application name. e.g. | 1. Payment Galaxy FEDWIRE_PAYMENT_LIMIT_PER_FILE, FEDWIRE_PAYMENT_LIMIT_PER_DAY, FEDWIRE_PAYMENT_LIMIT_PER_MONTH, FEDWIRE_PAYMENT_LIMIT_PER_TRANSACTION, FEDWIRE_PAYMENT_LIMIT_PER_WEEK, INSTANT_PAYMENT_LIMIT_PER_DAY, INSTANT_PAYMENT_LIMIT_PER_FILE, INSTANT_PAYMENT_LIMIT_PER_MONTH, NO_OF_ACH_BATCHES_PER_FILE, INSTANT_PAYMENT_LIMIT_PER_TRANSACTION, INSTANT_PAYMENT_LIMIT_PER_WEEK, NO_OF_ACH_FILES_PER_DAY, NO_OF_ACH_FILES_PER_MONTH, SWIFT_PAYMENT_LIMIT_PER_MONTH, SWIFT_PAYMENT_LIMIT_PER_DAY, SWIFT_PAYMENT_LIMIT_PER_TRANSACTION, SWIFT_PAYMENT_LIMIT_PER_WEEK, ACH_PAYMENT_LIMIT_PER_TRANSACTION, ACH_POP_CREDIT_LIMIT_PER_BATCH, ACH_POP_CREDIT_TRANSACTION_LIMIT, ACH_POP_DEBIT_LIMIT_PER_BATCH, ACH_POP_DEBIT_TRANSACTION_LIMIT, ACH_PPD_CREDIT_LIMIT_PER_BATCH, ACH_PPD_CREDIT_TRANSACTION_LIMIT, ACH_PPD_DEBIT_LIMIT_PER_BATCH, ACH_PPD_DEBIT_TRANSACTION_LIMIT, ACH_WEB_CREDIT_LIMIT_PER_BATCH, ACH_WEB_CREDIT_TRANSACTION_LIMIT, ACH_WEB_DEBIT_LIMIT_PER_BATCH, ACH_WEB_DEBIT_TRANSACTION_LIMIT, ACH_WHITELIST_LIMIT 2. Confrms FX_FORWARD_LIMIT, FX_DAILY_SETTLEMENT_LIMIT",
+            "example" : "FEDWIRE_PAYMENT_LIMIT_PER_DAY"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "The value should be non negative.",
+            "example" : "1000"
+          }
+        }
+      },
       "CustomerAdditonalProfileDetails" : {
         "properties" : {
           "creditClient" : {
@@ -2198,12 +2227,12 @@
           "status" : {
             "type" : "string",
             "description" : "This will return Success/Failed",
-            "example" : "Success or Failure"
+            "example" : "Success"
           },
           "code" : {
             "type" : "string",
             "description" : "This will indicate the error code in case of API error",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -2216,7 +2245,7 @@
         }
       },
       "CreateCustomerRequest" : {
-        "required" : [ "addressLine1", "city", "costCenter", "country", "countryCode", "customerType", "externalReferenceId", "language", "legalName", "mailAddressSameAsLegal", "originatingOfficer", "postalCode", "shortName", "state", "taxId" ],
+        "required" : [ "costCenter", "customerType", "externalReferenceId", "language", "legalAddress", "legalName", "mailAddressSameAsLegal", "originatingOfficer", "relationshipManager", "shortName", "taxId" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -2235,13 +2264,13 @@
           },
           "customerId" : {
             "type" : "string",
-            "description" : "Customer ID",
+            "description" : "Customer Id, this is an optional field and if it is provided then it is unique.",
             "example" : "CUST123"
           },
           "customerType" : {
             "type" : "string",
             "description" : "Type of customer",
-            "example" : "Corporate,Consumer,Downstream Partner,Financial Institution,Processing Org",
+            "example" : "Corporate",
             "enum" : [ "Corporate", "Consumer", "Financial Institution", "Downstream Partner", "Processing Org" ]
           },
           "taxId" : {
@@ -2316,7 +2345,7 @@
           "relationshipType" : {
             "type" : "string",
             "description" : "Relationship Type",
-            "example" : "Customer or Bank or ThirdParty or Self",
+            "example" : "Customer",
             "enum" : [ "customer", "bank", "thirdparty", "self" ]
           },
           "partnerOrgShortName" : {
@@ -2349,14 +2378,16 @@
           },
           "secCodes" : {
             "type" : "array",
-            "description" : "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity",
+            "description" : "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity. e.g. WEB,CCD,PPD,TEL,IAT, etc..",
             "items" : {
               "type" : "string",
-              "example" : "WEB,CCD,PPD,TEL,IAT"
+              "example" : "WEB"
             }
           },
           "note" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "notes",
+            "example" : "Note for the LE"
           },
           "legalEntityAccessSettings" : {
             "$ref" : "#/components/schemas/LegalEntityAccessSettings"
@@ -2502,6 +2533,12 @@
           },
           "legalEntityAccessSettings" : {
             "$ref" : "#/components/schemas/LegalEntityAccessSettings"
+          },
+          "limits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerAppLimit"
+            }
           }
         }
       },
@@ -3224,9 +3261,9 @@
             "description" : "Valid list of existing role names.",
             "example" : "Admin, NewRole1"
           },
-          "applications" : {
+          "applicationLimits" : {
             "type" : "array",
-            "description" : "Customer applications which are present in the Bank's customer app store. Minimum one application should be provided.",
+            "description" : "Application limits are optional.",
             "items" : {
               "$ref" : "#/components/schemas/Applications"
             }
@@ -3234,6 +3271,7 @@
         }
       },
       "Applications" : {
+        "required" : [ "name" ],
         "properties" : {
           "name" : {
             "type" : "string",
@@ -3242,7 +3280,7 @@
           },
           "limits" : {
             "type" : "array",
-            "description" : "Application limits are optional.",
+            "description" : "Limits are optional.",
             "items" : {
               "$ref" : "#/components/schemas/limits"
             }
@@ -3250,15 +3288,16 @@
         }
       },
       "limits" : {
+        "required" : [ "name" ],
         "properties" : {
           "name" : {
             "type" : "string",
             "description" : "Each application has a valid limit name. The allowed limits are listed below. \n1. Foreign_Exchange - \n    i. Daily_Payment_Limits\n    \n    ii. Per_Transaction_Payment_Limits\n\n2. Payments - \n    i. Daily_Payment_Approve_Limits\n    \n    ii. Daily_Payment_Limits\n    \n    iii. Monthly_Payment_Limits\n    \n    iv. Monthly_Payment_Approve_Limits\n    \n    v. Per_Transaction_Payment_Approve_Limits\n    \n    vi. Per_Transaction_Payment_Limits\n    \n",
-            "example" : "Daily_Payment_Approve_Limits, etc"
+            "example" : "Daily_Payment_Approve_Limits"
           },
           "value" : {
             "type" : "number",
-            "description" : "Limit value",
+            "description" : "Limit value. In the update flow sytem will override the exsiting value.",
             "example" : 1022.23
           }
         }
@@ -3390,9 +3429,9 @@
             "description" : "Valid list of existing role names.",
             "example" : "Admin, NewRole1"
           },
-          "applications" : {
+          "applicationLimits" : {
             "type" : "array",
-            "description" : "Customer applications which are present in the Bank's customer app store. Minimum one application should be provided.",
+            "description" : "Application limits are optional.",
             "items" : {
               "$ref" : "#/components/schemas/Applications"
             }
@@ -3598,10 +3637,12 @@
             "example" : "123"
           },
           "externalReferenceId" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "89895487eyr878"
           },
           "shortName" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "ACBCORP"
           },
           "customerEntityStatus" : {
             "type" : "string",
