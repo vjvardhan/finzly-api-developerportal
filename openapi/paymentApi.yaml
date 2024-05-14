@@ -114,7 +114,7 @@
       }
     },
     "/v1/banks/{routingNumber}" : {
-      "get" : {
+      "post" : {
         "tags" : [ "Bank" ],
         "summary" : "To fetch the bank information.",
         "description" : "To fetch the bank details based on bank routing number.",
@@ -2196,6 +2196,34 @@
         },
         "description" : "Payment search parameters"
       },
+      "Pagination" : {
+        "properties" : {
+          "totalRecords" : {
+            "type" : "number",
+            "description" : "Total number of records exist in the system for a given filter",
+            "format" : "integer",
+            "example" : 100
+          },
+          "returnedRecords" : {
+            "type" : "number",
+            "description" : "Total number of records returned",
+            "format" : "integer",
+            "example" : 10
+          },
+          "pageReturned" : {
+            "type" : "number",
+            "description" : "Current number of page returned",
+            "format" : "integer",
+            "example" : 2
+          },
+          "pageSize" : {
+            "type" : "number",
+            "description" : "Total number of records in a given pages",
+            "format" : "integer",
+            "example" : 10
+          }
+        }
+      },
       "Groups" : {
         "type" : "object",
         "properties" : {
@@ -2846,7 +2874,7 @@
           "decisionDateTime" : {
             "type" : "string",
             "description" : "Decision date and time in (EST)",
-            "example" : "23-04-2024"
+            "example" : "04-23-2024"
           },
           "amount" : {
             "type" : "number",
@@ -2883,6 +2911,9 @@
             "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
             "example" : "Failed to get the positive pay exception information: <Failure Reason>."
           },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
           "data" : {
             "type" : "array",
             "items" : {
@@ -2895,8 +2926,7 @@
         "properties" : {
           "exceptionUID" : {
             "type" : "string",
-            "description" : "Unique identifier associated with positive pay exception",
-            "example" : "266565"
+            "description" : "Unique identifier associated with positive pay exception"
           },
           "paymentUID" : {
             "type" : "string",
@@ -2906,7 +2936,7 @@
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH"
+            "example" : "ACH, FEDWIRE, RFP"
           },
           "amount" : {
             "type" : "number",
@@ -3009,19 +3039,23 @@
         }
       },
       "SearchPositivePayRuleRequest" : {
-        "required" : [ "limit", "page" ],
         "properties" : {
-          "companyBankId" : {
+          "beneBankId" : {
             "type" : "string",
             "description" : "Bank unique id or routing number that is used to identify a specific bank",
             "example" : "12345678"
           },
-          "companyName" : {
+          "beneName" : {
             "type" : "string",
             "description" : "The name of the company or entity that originated the payment request",
             "example" : "XYZ Name"
           },
-          "companyAccountNumber" : {
+          "beneBankName" : {
+            "type" : "string",
+            "description" : "Bank name where the company account is held.",
+            "example" : "XYZ Bank"
+          },
+          "beneAccountNumber" : {
             "type" : "string",
             "description" : "A company bank account number",
             "example" : "12345678"
@@ -3068,7 +3102,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success",
+            "example" : "Success or Failure",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
@@ -3081,10 +3115,13 @@
             "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
             "example" : "Failed to get positive rules: <Reason>"
           },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
           "data" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/GetPositivePayRule"
+              "$ref" : "#/components/schemas/PositivePayRule"
             }
           }
         }
@@ -3095,7 +3132,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success",
+            "example" : "Success or Failure",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
@@ -3109,7 +3146,7 @@
             "example" : "Failed to get positive rule: <Reason>"
           },
           "data" : {
-            "$ref" : "#/components/schemas/GetPositivePayRule"
+            "$ref" : "#/components/schemas/PositivePayRule"
           }
         }
       },
@@ -3213,98 +3250,6 @@
           }
         }
       },
-      "GetPositivePayRule" : {
-        "type" : "object",
-        "properties" : {
-          "ruleUID" : {
-            "type" : "number",
-            "description" : "Positive rule unique reference id",
-            "format" : "int64",
-            "example" : 123456789
-          },
-          "paymentRuleType" : {
-            "type" : "string",
-            "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH"
-          },
-          "customerName" : {
-            "type" : "string",
-            "description" : "Customer name associated with the payment positive rule",
-            "example" : "ABC Company"
-          },
-          "customerAccountNumber" : {
-            "type" : "string",
-            "description" : "Bank Account Number",
-            "example" : "12387878"
-          },
-          "achCompanyID" : {
-            "type" : "number",
-            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
-            "example" : 122334789
-          },
-          "beneBankId" : {
-            "type" : "string",
-            "description" : "Bank unique id that is used to identify a specific bank",
-            "example" : "12345678"
-          },
-          "beneName" : {
-            "type" : "string",
-            "description" : "A beneficiary is the person or entity that will receive the payment",
-            "example" : "XYZ Name"
-          },
-          "beneBankName" : {
-            "type" : "string",
-            "description" : "Beneficiary bank name",
-            "example" : "Bank Name"
-          },
-          "beneAccountNumber" : {
-            "type" : "string",
-            "description" : "A beneficiary bank account number",
-            "example" : "12345678"
-          },
-          "amount" : {
-            "type" : "number",
-            "description" : "Payment amount",
-            "example" : 10.0
-          },
-          "currency" : {
-            "type" : "string",
-            "description" : "Currency Code",
-            "example" : "USD",
-            "default" : "USD"
-          },
-          "amountType" : {
-            "type" : "string",
-            "description" : "Type of amount associated with the postive pay rule.",
-            "example" : "Exact or Maximum"
-          },
-          "frequency" : {
-            "type" : "string",
-            "description" : "Positive pay rule frequency",
-            "example" : "Onetime"
-          },
-          "secCode" : {
-            "type" : "string",
-            "description" : "SEC code associated with the ACH postive rule",
-            "example" : "CCD"
-          },
-          "status" : {
-            "type" : "string",
-            "description" : "Current state of the rule whether Active or Expired etc.",
-            "example" : "Active"
-          },
-          "effectiveDate" : {
-            "type" : "string",
-            "description" : "Rule effective date in mm-dd-yyyy format",
-            "example" : "11-01-2022"
-          },
-          "expiryDate" : {
-            "type" : "string",
-            "description" : "Rule effective date in mm-dd-yyyy format",
-            "example" : "11-01-2022"
-          }
-        }
-      },
       "PositivePayRule" : {
         "required" : [ "ruleUID" ],
         "type" : "object",
@@ -3318,7 +3263,7 @@
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH"
+            "example" : "ACH, FEDWIRE, RFP"
           },
           "customerName" : {
             "type" : "string",
@@ -3405,7 +3350,7 @@
           "paymentRuleType" : {
             "type" : "string",
             "description" : "Payment type associated with the rule such as ACH for Postive Pay, FEDWIRE for Drawdown, RTP for Request for Pay etc.",
-            "example" : "ACH"
+            "example" : "ACH, FEDWIRE, RFP"
           },
           "customerName" : {
             "type" : "string",
@@ -3836,6 +3781,9 @@
             "type" : "string",
             "description" : "Error message corresponding to the error code indicating the issue in API call along with the reason.",
             "example" : "<Reason>"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
           },
           "data" : {
             "type" : "array",
