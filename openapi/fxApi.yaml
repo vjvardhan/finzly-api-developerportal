@@ -773,7 +773,7 @@
           "tradeStatus" : {
             "type" : "string",
             "description" : "Trade status after acceptance of fx quote",
-            "example" : "Booked etc."
+            "example" : "Booked"
           },
           "tradeDate" : {
             "type" : "string",
