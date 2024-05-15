@@ -5,7 +5,7 @@
     "version" : "2.2.2"
   },
   "servers" : [ {
-    "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
+    "url" : "https://security-uat.finzly.net/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
     "description" : "Authentication",
     "variables" : {
       "tenant" : {
@@ -1059,8 +1059,8 @@
         "description" : "BankOS OpenBanking API uses OAuth 2.0 authcodeflow with PKCE for end user authorization or implicit grant flow for system API accounts. A support request to Finzly is required to use implicit grant flow.",
         "flows" : {
           "authorizationCode" : {
-            "authorizationUrl" : "https://sandbox-security-uat.finzly.io/auth",
-            "tokenUrl" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
+            "authorizationUrl" : "https://security-uat.finzly.net/auth",
+            "tokenUrl" : "https://security-uat.finzly.net/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
             "scopes" : {
               "roles" : "manage"
             }
