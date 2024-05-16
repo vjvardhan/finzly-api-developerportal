@@ -2553,7 +2553,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -2827,7 +2827,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -2924,7 +2924,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -2947,7 +2947,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -2973,7 +2973,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -3025,7 +3025,7 @@
           "balanceType" : {
             "type" : "string",
             "description" : "Account balance type in the bank core system",
-            "example" : "DDA etc."
+            "example" : "DDA"
           },
           "ledgerBalance" : {
             "type" : "string",
@@ -3054,7 +3054,7 @@
           "country" : {
             "type" : "string",
             "description" : "Country Name",
-            "example" : "UNITED STATE OF AMERICA etc."
+            "example" : "UNITED STATE OF AMERICA "
           },
           "bankId" : {
             "type" : "string",
@@ -3064,7 +3064,7 @@
           "bankName" : {
             "type" : "string",
             "description" : "Name of the bank associated with the bankId",
-            "example" : "Chase etc."
+            "example" : "Chase "
           },
           "bankIdType" : {
             "type" : "string",
@@ -3099,7 +3099,7 @@
           "status" : {
             "type" : "string",
             "description" : "Account status",
-            "example" : "Active etc."
+            "example" : "Active"
           },
           "externalAccount" : {
             "$ref" : "#/components/schemas/AccountExternal"
@@ -3159,7 +3159,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -3182,7 +3182,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -3211,7 +3211,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -3357,7 +3357,7 @@
             "type" : "array",
             "description" : "Search results",
             "items" : {
-              "$ref" : "#/components/schemas/GetCustomerRoleResponse"
+              "$ref" : "#/components/schemas/SearchRoleResponse"
             }
           }
         }
@@ -3571,6 +3571,40 @@
           }
         }
       },
+      "SearchRoleResponse" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Role id.",
+            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Role name.",
+            "example" : "adminRole."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Role description.",
+            "example" : "Role description."
+          },
+          "leId" : {
+            "type" : "number",
+            "description" : "Customer id  associated with role.",
+            "example" : 11950.0
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status of role.",
+            "example" : "Active"
+          },
+          "owner" : {
+            "type" : "string",
+            "description" : "The owner of this role will indicate who created it.",
+            "example" : "Bank, Customer"
+          }
+        }
+      },
       "GetCustomerRoleResponse" : {
         "properties" : {
           "id" : {
@@ -3596,7 +3630,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of role.",
-            "example" : "Active, New, etc"
+            "example" : "Active"
           },
           "owner" : {
             "type" : "string",
