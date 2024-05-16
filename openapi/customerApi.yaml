@@ -138,7 +138,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomersResponse"
                 }
@@ -148,7 +148,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomersResponse"
                 }
@@ -525,7 +525,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchAccountResponse"
                 }
@@ -535,7 +535,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchAccountResponse"
                 }
@@ -989,7 +989,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchCustomerContactResponse"
                 }
@@ -999,7 +999,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchCustomerContactResponse"
                 }
@@ -1630,22 +1630,22 @@
         }, {
           "name" : "page",
           "in" : "query",
-          "required" : false,
+          "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page index. It is an optional field if the page index is not provided then the default value 1 will be applied."
+            "description" : "page index."
           }
         }, {
           "name" : "size",
           "in" : "query",
-          "required" : false,
+          "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page size. It is an optional field if the page size is not provided then the default value 10 will be applied."
+            "description" : "page size."
           }
         } ],
         "requestBody" : {
@@ -2121,9 +2121,6 @@
           "creditClient" : {
             "type" : "boolean"
           },
-          "accountanalysis" : {
-            "type" : "boolean"
-          },
           "sso" : {
             "type" : "boolean"
           },
@@ -2143,23 +2140,28 @@
             "type" : "boolean"
           },
           "achPrefundDebitLimit" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "100.0"
           },
           "achPrefundCreditLimit" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "100.0"
           },
           "paymentFileAuthentication" : {
             "type" : "boolean"
           },
           "detailsOfCharge" : {
             "type" : "string",
+            "example" : "OUR",
             "enum" : [ "OUR", "BEN", "SHA" ]
           },
           "fxPricingTier" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "Finzly Test"
           },
           "creditValueAdjustment" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "0.00010"
           }
         }
       },
@@ -2288,7 +2290,7 @@
             "description" : "Legal Entity ID for accounting/tax purpose",
             "example" : "ABC1234"
           },
-          "swiftcode" : {
+          "swiftCode" : {
             "type" : "string",
             "description" : "SWIFT code",
             "example" : "BOFAUS3N"
@@ -2313,7 +2315,7 @@
             "description" : "Customer's phone number",
             "example" : "123-124-9877"
           },
-          "website" : {
+          "webSite" : {
             "type" : "string",
             "description" : "Customer's website",
             "example" : "http://www.finzly.com"
@@ -2432,7 +2434,7 @@
             "description" : "Legal Entity ID for accounting/tax purpose",
             "example" : "ABC1234"
           },
-          "swiftcode" : {
+          "swiftCode" : {
             "type" : "string",
             "description" : "SWIFT code",
             "example" : "BOFAUS3N"
@@ -2457,7 +2459,7 @@
             "description" : "Customer's phone number",
             "example" : "123-124-9877"
           },
-          "website" : {
+          "webSite" : {
             "type" : "string",
             "description" : "Customer's website",
             "example" : "http://www.finzly.com"
@@ -2553,7 +2555,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2827,7 +2829,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2924,7 +2926,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2947,7 +2949,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2973,7 +2975,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3025,7 +3027,7 @@
           "balanceType" : {
             "type" : "string",
             "description" : "Account balance type in the bank core system",
-            "example" : "DDA"
+            "example" : "DDA etc."
           },
           "ledgerBalance" : {
             "type" : "string",
@@ -3054,7 +3056,7 @@
           "country" : {
             "type" : "string",
             "description" : "Country Name",
-            "example" : "UNITED STATE OF AMERICA "
+            "example" : "UNITED STATE OF AMERICA etc."
           },
           "bankId" : {
             "type" : "string",
@@ -3064,7 +3066,7 @@
           "bankName" : {
             "type" : "string",
             "description" : "Name of the bank associated with the bankId",
-            "example" : "Chase "
+            "example" : "Chase etc."
           },
           "bankIdType" : {
             "type" : "string",
@@ -3099,7 +3101,7 @@
           "status" : {
             "type" : "string",
             "description" : "Account status",
-            "example" : "Active"
+            "example" : "Active etc."
           },
           "externalAccount" : {
             "$ref" : "#/components/schemas/AccountExternal"
@@ -3159,7 +3161,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3182,7 +3184,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3211,7 +3213,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3357,7 +3359,7 @@
             "type" : "array",
             "description" : "Search results",
             "items" : {
-              "$ref" : "#/components/schemas/SearchRoleResponse"
+              "$ref" : "#/components/schemas/GetCustomerRoleResponse"
             }
           }
         }
@@ -3387,7 +3389,7 @@
           "data" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/SearchUserResponse"
+              "$ref" : "#/components/schemas/GetCustomerUserResponse"
             }
           }
         }
@@ -3523,58 +3525,6 @@
           }
         }
       },
-      "SearchUserResponse" : {
-        "properties" : {
-          "externalReferenceId" : {
-            "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). "
-          },
-          "loginId" : {
-            "type" : "string",
-            "description" : "Unique identifier.",
-            "example" : "user123"
-          },
-          "firstName" : {
-            "type" : "string",
-            "description" : "User first name.",
-            "example" : "john"
-          },
-          "lastName" : {
-            "type" : "string",
-            "description" : "last name of user.",
-            "example" : "T"
-          },
-          "email" : {
-            "type" : "string",
-            "description" : "users email id.",
-            "example" : "user123@gamil.com"
-          },
-          "phoneNumber" : {
-            "type" : "string",
-            "description" : "User contact number.",
-            "example" : "9389989658"
-          },
-          "roleNames" : {
-            "type" : "array",
-            "description" : "Unique identifier.",
-            "example" : "user123",
-            "items" : {
-              "type" : "string",
-              "example" : "Admin"
-            }
-          },
-          "status" : {
-            "type" : "string",
-            "description" : "It's indecates that current status of the user. e.g. Active, Pending, Suspended, etc..",
-            "example" : "Active"
-          },
-          "shortName" : {
-            "type" : "string",
-            "description" : "Legal entity short name which is associated with the user.",
-            "example" : "CORP1"
-          }
-        }
-      },
       "GetCustomerUserResponse" : {
         "properties" : {
           "externalReferenceId" : {
@@ -3615,55 +3565,11 @@
               "example" : "Admin,User"
             }
           },
-          "status" : {
-            "type" : "string",
-            "description" : "It's indecates that current status of the user. e.g. Active, Pending, Suspended, etc..",
-            "example" : "Active"
-          },
-          "shortName" : {
-            "type" : "string",
-            "description" : "Legal entity short name which is associated with the user.",
-            "example" : "CORP1"
-          },
           "limits" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/limits"
             }
-          }
-        }
-      },
-      "SearchRoleResponse" : {
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "description" : "Role id.",
-            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
-          },
-          "name" : {
-            "type" : "string",
-            "description" : "Role name.",
-            "example" : "adminRole."
-          },
-          "description" : {
-            "type" : "string",
-            "description" : "Role description.",
-            "example" : "Role description."
-          },
-          "leId" : {
-            "type" : "number",
-            "description" : "Customer id  associated with role.",
-            "example" : 11950.0
-          },
-          "status" : {
-            "type" : "string",
-            "description" : "Status of role.",
-            "example" : "Active"
-          },
-          "owner" : {
-            "type" : "string",
-            "description" : "The owner of this role will indicate who created it.",
-            "example" : "Bank, Customer"
           }
         }
       },
@@ -3692,7 +3598,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of role.",
-            "example" : "Active"
+            "example" : "Active, New, etc"
           },
           "owner" : {
             "type" : "string",
