@@ -138,7 +138,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomersResponse"
                 }
@@ -148,7 +148,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomersResponse"
                 }
@@ -525,7 +525,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchAccountResponse"
                 }
@@ -535,7 +535,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchAccountResponse"
                 }
@@ -989,7 +989,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchCustomerContactResponse"
                 }
@@ -999,7 +999,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchCustomerContactResponse"
                 }
@@ -2121,9 +2121,6 @@
           "creditClient" : {
             "type" : "boolean"
           },
-          "accountanalysis" : {
-            "type" : "boolean"
-          },
           "sso" : {
             "type" : "boolean"
           },
@@ -2143,23 +2140,28 @@
             "type" : "boolean"
           },
           "achPrefundDebitLimit" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "100.0"
           },
           "achPrefundCreditLimit" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "100.0"
           },
           "paymentFileAuthentication" : {
             "type" : "boolean"
           },
           "detailsOfCharge" : {
             "type" : "string",
+            "example" : "OUR",
             "enum" : [ "OUR", "BEN", "SHA" ]
           },
           "fxPricingTier" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "Finzly Test"
           },
           "creditValueAdjustment" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "0.00010"
           }
         }
       },
@@ -2288,7 +2290,7 @@
             "description" : "Legal Entity ID for accounting/tax purpose",
             "example" : "ABC1234"
           },
-          "swiftcode" : {
+          "swiftCode" : {
             "type" : "string",
             "description" : "SWIFT code",
             "example" : "BOFAUS3N"
@@ -2313,7 +2315,7 @@
             "description" : "Customer's phone number",
             "example" : "123-124-9877"
           },
-          "website" : {
+          "webSite" : {
             "type" : "string",
             "description" : "Customer's website",
             "example" : "http://www.finzly.com"
@@ -2432,7 +2434,7 @@
             "description" : "Legal Entity ID for accounting/tax purpose",
             "example" : "ABC1234"
           },
-          "swiftcode" : {
+          "swiftCode" : {
             "type" : "string",
             "description" : "SWIFT code",
             "example" : "BOFAUS3N"
@@ -2457,7 +2459,7 @@
             "description" : "Customer's phone number",
             "example" : "123-124-9877"
           },
-          "website" : {
+          "webSite" : {
             "type" : "string",
             "description" : "Customer's website",
             "example" : "http://www.finzly.com"
@@ -2553,7 +2555,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2827,7 +2829,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2924,7 +2926,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2947,7 +2949,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -2973,7 +2975,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001"
+            "example" : "ACC001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3025,7 +3027,7 @@
           "balanceType" : {
             "type" : "string",
             "description" : "Account balance type in the bank core system",
-            "example" : "DDA"
+            "example" : "DDA etc."
           },
           "ledgerBalance" : {
             "type" : "string",
@@ -3054,7 +3056,7 @@
           "country" : {
             "type" : "string",
             "description" : "Country Name",
-            "example" : "UNITED STATE OF AMERICA "
+            "example" : "UNITED STATE OF AMERICA etc."
           },
           "bankId" : {
             "type" : "string",
@@ -3064,7 +3066,7 @@
           "bankName" : {
             "type" : "string",
             "description" : "Name of the bank associated with the bankId",
-            "example" : "Chase "
+            "example" : "Chase etc."
           },
           "bankIdType" : {
             "type" : "string",
@@ -3099,7 +3101,7 @@
           "status" : {
             "type" : "string",
             "description" : "Account status",
-            "example" : "Active"
+            "example" : "Active etc."
           },
           "externalAccount" : {
             "$ref" : "#/components/schemas/AccountExternal"
@@ -3159,7 +3161,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3182,7 +3184,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3211,7 +3213,7 @@
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001"
+            "example" : "CUST001 etc."
           },
           "message" : {
             "type" : "string",
@@ -3357,7 +3359,7 @@
             "type" : "array",
             "description" : "Search results",
             "items" : {
-              "$ref" : "#/components/schemas/SearchRoleResponse"
+              "$ref" : "#/components/schemas/GetCustomerRoleResponse"
             }
           }
         }
@@ -3571,40 +3573,6 @@
           }
         }
       },
-      "SearchRoleResponse" : {
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "description" : "Role id.",
-            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
-          },
-          "name" : {
-            "type" : "string",
-            "description" : "Role name.",
-            "example" : "adminRole."
-          },
-          "description" : {
-            "type" : "string",
-            "description" : "Role description.",
-            "example" : "Role description."
-          },
-          "leId" : {
-            "type" : "number",
-            "description" : "Customer id  associated with role.",
-            "example" : 11950.0
-          },
-          "status" : {
-            "type" : "string",
-            "description" : "Status of role.",
-            "example" : "Active"
-          },
-          "owner" : {
-            "type" : "string",
-            "description" : "The owner of this role will indicate who created it.",
-            "example" : "Bank, Customer"
-          }
-        }
-      },
       "GetCustomerRoleResponse" : {
         "properties" : {
           "id" : {
@@ -3630,7 +3598,7 @@
           "status" : {
             "type" : "string",
             "description" : "Status of role.",
-            "example" : "Active"
+            "example" : "Active, New, etc"
           },
           "owner" : {
             "type" : "string",
