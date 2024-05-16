@@ -298,7 +298,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomersResponse"
                 }
@@ -603,7 +603,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateAccountResponse"
                 }
@@ -613,7 +613,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateAccountResponse"
                 }
@@ -2549,13 +2549,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -2619,7 +2619,7 @@
           "status" : {
             "type" : "string",
             "description" : "Current status of the customer.",
-            "example" : "Active, Suspended,New,Pending"
+            "example" : "Active"
           },
           "lei" : {
             "type" : "string",
@@ -2717,10 +2717,7 @@
             "example" : "TESTBANK"
           },
           "additionalProfileDetails" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
-            }
+            "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
           },
           "secCodes" : {
             "type" : "array",
@@ -2823,13 +2820,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -2845,30 +2842,44 @@
         "required" : [ "accountName", "accountNumber", "accountSubType", "accountType", "currency", "externalReferenceId", "masterGl", "routingNumber", "systemOfRecords" ],
         "properties" : {
           "externalReferenceId" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "REQ123"
           },
           "accountName" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Name for the account",
+            "example" : "xyz"
           },
           "accountNumber" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "User bank account number.",
+            "example" : "2136565"
           },
           "accountType" : {
             "type" : "string",
+            "description" : "Bank account type.",
             "enum" : [ "Deposit", "Loan" ]
           },
           "accountSubType" : {
             "type" : "string",
+            "description" : "Bank account sub type.",
             "enum" : [ "Checking", "Savings", "CD", "Money Market", "Pseudo", "HSA (Health Saving Account)" ]
           },
           "currency" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Account currency. Currency Code is ISO format.",
+            "example" : "USD"
           },
           "countryCode" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "ISO country code.",
+            "example" : "US"
           },
           "costCenter" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Cost Center associated with the customer entity",
+            "example" : "5235666"
           },
           "enableOffset" : {
             "type" : "string",
@@ -2891,13 +2902,13 @@
           "feeAccount" : {
             "type" : "string",
             "description" : "Whether the accountNumber is a Fee account",
-            "example" : "Yes or No",
+            "example" : "Yes",
             "enum" : [ "true", "false" ]
           },
           "returnAccount" : {
             "type" : "string",
             "description" : "Whether the accountNumber is a Return account",
-            "example" : "Yes or No",
+            "example" : "Yes",
             "enum" : [ "true", "false" ]
           },
           "fboAccountNumber" : {
@@ -2905,13 +2916,66 @@
           },
           "systemOfRecords" : {
             "type" : "string",
+            "description" : "System of records.",
             "enum" : [ "Other Core", "External" ]
           },
           "routingNumber" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Valid routing number/bankId",
+            "example" : "101206101"
           },
           "masterGl" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Master gl.",
+            "example" : "9898965"
+          },
+          "reason" : {
+            "type" : "string",
+            "example" : "Notes"
+          },
+          "isUnderWritten" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "debitExposureLimit" : {
+            "type" : "number",
+            "example" : 1000
+          },
+          "creditExposureLimit" : {
+            "type" : "number",
+            "example" : 1000
+          },
+          "bankIdType" : {
+            "type" : "string",
+            "example" : "NationalBankCode",
+            "enum" : [ "NationalBankCode", "SwiftBic" ]
+          },
+          "accountAnalysis" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "callbackLimit" : {
+            "type" : "number",
+            "example" : 1000
+          },
+          "enableCallbacks" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "accountFeatures" : {
+            "$ref" : "#/components/schemas/AccountFeatures"
+          }
+        }
+      },
+      "AccountFeatures" : {
+        "properties" : {
+          "rfpReceive" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "rfpSend" : {
+            "type" : "boolean",
+            "example" : true
           }
         }
       },
@@ -2920,13 +2984,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -2943,13 +3007,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -2969,13 +3033,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "ACC001 etc."
+            "example" : "ACC001"
           },
           "message" : {
             "type" : "string",
@@ -3027,7 +3091,7 @@
           "balanceType" : {
             "type" : "string",
             "description" : "Account balance type in the bank core system",
-            "example" : "DDA etc."
+            "example" : "DDA"
           },
           "ledgerBalance" : {
             "type" : "string",
@@ -3056,7 +3120,7 @@
           "country" : {
             "type" : "string",
             "description" : "Country Name",
-            "example" : "UNITED STATE OF AMERICA etc."
+            "example" : "UNITED STATE OF AMERICA"
           },
           "bankId" : {
             "type" : "string",
@@ -3066,7 +3130,7 @@
           "bankName" : {
             "type" : "string",
             "description" : "Name of the bank associated with the bankId",
-            "example" : "Chase etc."
+            "example" : "Chase"
           },
           "bankIdType" : {
             "type" : "string",
@@ -3101,7 +3165,7 @@
           "status" : {
             "type" : "string",
             "description" : "Account status",
-            "example" : "Active etc."
+            "example" : "Active"
           },
           "externalAccount" : {
             "$ref" : "#/components/schemas/AccountExternal"
@@ -3155,13 +3219,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -3178,13 +3242,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
@@ -3207,13 +3271,13 @@
           "status" : {
             "type" : "string",
             "description" : "Status of the API request either it will be a success or a failure",
-            "example" : "Success or Failure",
+            "example" : "Success",
             "enum" : [ "Success", "Failure" ]
           },
           "code" : {
             "type" : "string",
             "description" : "Code associated with the error.",
-            "example" : "CUST001 etc."
+            "example" : "CUST001"
           },
           "message" : {
             "type" : "string",
