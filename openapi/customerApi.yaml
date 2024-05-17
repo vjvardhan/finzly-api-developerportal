@@ -3453,7 +3453,7 @@
           "data" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/GetCustomerUserResponse"
+              "$ref" : "#/components/schemas/SearchUserResponse"
             }
           }
         }
