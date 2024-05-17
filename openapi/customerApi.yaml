@@ -1630,22 +1630,22 @@
         }, {
           "name" : "page",
           "in" : "query",
-          "required" : true,
+          "required" : false,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page index."
+            "description" : "page index. If page index is not provided then the default index i.e 1 will be applicable."
           }
         }, {
           "name" : "size",
           "in" : "query",
-          "required" : true,
+          "required" : false,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page size."
+            "description" : "page size.If page size is not provided then the default index i.e 10 will be applicable."
           }
         } ],
         "requestBody" : {
@@ -1673,7 +1673,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchCustomerUserResponse"
                 }
@@ -3589,6 +3589,49 @@
           }
         }
       },
+      "SearchUserResponse" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). "
+          },
+          "loginId" : {
+            "type" : "string",
+            "description" : "Unique identifier.",
+            "example" : "user123"
+          },
+          "firstName" : {
+            "type" : "string",
+            "description" : "User first name.",
+            "example" : "john"
+          },
+          "lastName" : {
+            "type" : "string",
+            "description" : "last name of user.",
+            "example" : "T"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "users email id.",
+            "example" : "user123@gamil.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "User contact number.",
+            "example" : "9389989658"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "User current status in the system.",
+            "example" : "Active"
+          },
+          "shortName" : {
+            "type" : "string",
+            "description" : "Legal entity short name which is associated with the user.",
+            "example" : "CORP1"
+          }
+        }
+      },
       "GetCustomerUserResponse" : {
         "properties" : {
           "externalReferenceId" : {
@@ -3619,6 +3662,16 @@
             "type" : "string",
             "description" : "User contact number.",
             "example" : "9389989658"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "User current status in the system.",
+            "example" : "Active"
+          },
+          "shortName" : {
+            "type" : "string",
+            "description" : "Legal entity short name which is associated with the user.",
+            "example" : "CORP1"
           },
           "roleNames" : {
             "type" : "array",
