@@ -1296,7 +1296,8 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer Unique Identifier and which is associated with the token legal entity.",
+            "example" : "103"
           }
         } ],
         "requestBody" : {
@@ -1366,7 +1367,8 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer Unique Identifier and which is associated with the token legal entity.",
+            "example" : "103"
           }
         }, {
           "name" : "userId",
@@ -1376,7 +1378,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer user unique Identifier. It should be associated with the requested legal entity."
           }
         } ],
         "requestBody" : {
@@ -1446,7 +1448,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity."
           }
         }, {
           "name" : "userId",
@@ -1456,7 +1458,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer user unique identifier. It should be associated with the requested legal entity."
           }
         } ],
         "responses" : {
@@ -1501,7 +1503,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity."
           }
         }, {
           "name" : "userId",
@@ -1511,7 +1513,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer user unique identifier. It should be associated with the requested legal entity."
           }
         } ],
         "responses" : {
@@ -1556,7 +1558,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity."
           }
         }, {
           "name" : "userId",
@@ -1566,7 +1568,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "User Unique Identifier."
+            "description" : "Customer user unique identifier. It should be associated with the requested legal entity."
           }
         } ],
         "responses" : {
@@ -1625,7 +1627,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity."
           }
         }, {
           "name" : "page",
@@ -1715,7 +1717,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity"
           }
         }, {
           "name" : "roleId",
@@ -1784,7 +1786,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity"
           }
         }, {
           "name" : "page",
@@ -1873,7 +1875,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Customer Unique Identifier."
+            "description" : "Customer unique identifier and which is associated with the token legal entity"
           }
         } ],
         "requestBody" : {
@@ -2741,7 +2743,8 @@
         "required" : [ "externalReferenceId" ],
         "properties" : {
           "externalReferenceId" : {
-            "type" : "number"
+            "type" : "number",
+            "example" : 89856556
           },
           "accountId" : {
             "type" : "string"
@@ -3176,7 +3179,8 @@
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed)."
+            "description" : "Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed).",
+            "example" : "89856556"
           },
           "templateName" : {
             "type" : "string"
@@ -3299,37 +3303,37 @@
           },
           "loginId" : {
             "type" : "string",
-            "description" : "Unique identifier.",
+            "description" : "Unique identifier. Only characters, numbers and special characters are allowed.",
             "example" : "user123"
           },
           "firstName" : {
             "type" : "string",
-            "description" : "User first name.",
-            "example" : "john"
+            "description" : "User first name. Only characters are allowed.",
+            "example" : "John"
           },
           "lastName" : {
             "type" : "string",
-            "description" : "last name of user",
-            "example" : "T."
+            "description" : "Last name of user. Only characters are allowed.",
+            "example" : "Cane."
           },
           "email" : {
             "type" : "string",
-            "description" : "users email id",
+            "description" : "The valid users emailId\"",
             "example" : "user123@gamil.com"
           },
           "mobile" : {
             "type" : "string",
-            "description" : "User contact number",
+            "description" : "User contact number. Only digits are allowed.",
             "example" : "9389989658"
           },
           "roleNames" : {
             "type" : "array",
-            "description" : "Valid list of existing role names.",
+            "description" : "Valid role names, which is associated with the requested legal entity.",
             "example" : "Admin, NewRole1"
           },
           "applicationLimits" : {
             "type" : "array",
-            "description" : "Application limits are optional.",
+            "description" : "Application limits are optional. If it ia provided then it should be the valid and which associated with the provided roles.",
             "items" : {
               "$ref" : "#/components/schemas/Applications"
             }
@@ -3346,7 +3350,7 @@
           },
           "limits" : {
             "type" : "array",
-            "description" : "Limits are optional.",
+            "description" : "Limits are optional. If it is provided then it should be greater than or equals to zero. If it is not provided then no limit will be applicable.",
             "items" : {
               "$ref" : "#/components/schemas/limits"
             }
@@ -3465,39 +3469,34 @@
             "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
             "example" : "User101"
           },
-          "loginId" : {
-            "type" : "string",
-            "description" : "Unique identifier.",
-            "example" : "user123"
-          },
           "firstName" : {
             "type" : "string",
-            "description" : "User first name.",
-            "example" : "john"
+            "description" : "User first name. Only characters are allowed.",
+            "example" : "John"
           },
           "lastName" : {
             "type" : "string",
-            "description" : "last name of user",
-            "example" : "T."
+            "description" : "Last name of user. Only characters are allowed.",
+            "example" : "Cane."
           },
           "email" : {
             "type" : "string",
-            "description" : "users email id",
+            "description" : "The valid users emailId\"",
             "example" : "user123@gamil.com"
           },
           "mobile" : {
             "type" : "string",
-            "description" : "User contact number",
+            "description" : "User contact number. Only digits are allowed.",
             "example" : "9389989658"
           },
           "roleNames" : {
             "type" : "array",
-            "description" : "Valid list of existing role names.",
+            "description" : "Valid role names, which is associated with the requested legal entity.",
             "example" : "Admin, NewRole1"
           },
           "applicationLimits" : {
             "type" : "array",
-            "description" : "Application limits are optional.",
+            "description" : "Application limits are optional. If it ia provided then it should be the valid and which associated with the provided roles.",
             "items" : {
               "$ref" : "#/components/schemas/Applications"
             }
@@ -3593,7 +3592,8 @@
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). "
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). ",
+            "example" : "89856556"
           },
           "loginId" : {
             "type" : "string",
@@ -3636,7 +3636,8 @@
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed). "
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "89856556"
           },
           "loginId" : {
             "type" : "string",
@@ -3778,7 +3779,8 @@
             "description" : "Account unique identifier assigned by the system"
           },
           "externalReferenceId" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "89856556"
           }
         }
       },
@@ -3789,7 +3791,8 @@
             "type" : "string"
           },
           "externalReferenceId" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "89856556"
           }
         }
       },
@@ -3875,7 +3878,8 @@
           },
           "externalReferenceId" : {
             "type" : "string",
-            "description" : "External reference id received in the request."
+            "description" : "External reference id received in the request.",
+            "example" : "89856556"
           }
         }
       },
