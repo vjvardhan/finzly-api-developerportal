@@ -114,7 +114,7 @@
       }
     },
     "/v1/banks/{routingNumber}" : {
-      "post" : {
+      "get" : {
         "tags" : [ "Bank" ],
         "summary" : "To fetch the bank information.",
         "description" : "To fetch the bank details based on bank routing number.",
