@@ -3344,7 +3344,7 @@
           "address" : {
             "$ref" : "#/components/schemas/CustomerAddress"
           },
-          "emailAddress" : {
+          "email" : {
             "type" : "string",
             "description" : "Customer Email Address",
             "example" : "abc@abc.com"
@@ -3993,7 +3993,8 @@
             "type" : "string"
           },
           "coverMessageRequired" : {
-            "type" : "string"
+            "type" : "boolean",
+            "example" : true
           },
           "address" : {
             "$ref" : "#/components/schemas/CustomerAddress"
@@ -4003,7 +4004,7 @@
       "CustomerContact_otherInfo" : {
         "type" : "object",
         "properties" : {
-          "beneficiaryNotes" : {
+          "beneNotes" : {
             "type" : "string"
           },
           "otherBeneBankInfo" : {
