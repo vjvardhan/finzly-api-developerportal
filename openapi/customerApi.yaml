@@ -509,7 +509,7 @@
           "schema" : {
             "type" : "string"
           },
-          "example" : "true or false"
+          "example" : true
         }, {
           "name" : "accountNumber",
           "in" : "query",
@@ -3023,10 +3023,13 @@
             "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
             "example" : "Failed to get an account: <Reason>"
           },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
           "data" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/CustomerBankAccount"
+              "$ref" : "#/components/schemas/SearchCustomerBankAccount"
             }
           }
         }
@@ -3051,6 +3054,144 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/CustomerBankAccount"
+          }
+        }
+      },
+      "SearchCustomerBankAccount" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Account unique identifier assigned by the system",
+            "example" : "100100"
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Account Name",
+            "example" : "Demo 1"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Account Number",
+            "example" : "1122345"
+          },
+          "fboAccountNumber" : {
+            "type" : "string",
+            "description" : "FBO Account Number",
+            "example" : "2233445"
+          },
+          "accountType" : {
+            "type" : "string",
+            "description" : "Account Type. e.g. DEPOSIT, LOAN",
+            "example" : "DEPOSIT"
+          },
+          "accountSubType" : {
+            "type" : "string",
+            "description" : "Account Type. e.g Savings, Checking, Psuedo",
+            "example" : "Checking"
+          },
+          "systemOfRecords" : {
+            "type" : "string",
+            "description" : "Identifier of the system of record. e.g Other Core,  External",
+            "example" : "Other Core"
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency Code is ISO format",
+            "example" : "USD"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country Name",
+            "example" : "UNITED STATE OF AMERICA"
+          },
+          "routingNumber" : {
+            "type" : "string",
+            "description" : "Bank routing number",
+            "example" : "11223498"
+          },
+          "bankIdType" : {
+            "type" : "string",
+            "description" : "Bank identifier type",
+            "example" : "By ABA or By Address"
+          },
+          "enableWires" : {
+            "type" : "boolean",
+            "description" : "Wire status",
+            "example" : false
+          },
+          "enableOffset" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Offset account",
+            "example" : false
+          },
+          "defaultOffset" : {
+            "type" : "boolean",
+            "description" : "Default offset account",
+            "example" : false
+          },
+          "feeAccount" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Fee account",
+            "example" : false
+          },
+          "returnAccount" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Return account",
+            "example" : false
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Account status",
+            "example" : "Active"
+          },
+          "accountAnalysis" : {
+            "type" : "boolean",
+            "description" : "Account analysis status.",
+            "example" : false
+          },
+          "callbackLimit" : {
+            "type" : "number",
+            "description" : "Call back limit.",
+            "example" : 10000.0
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Valid cost center which is associated with the legal entity.",
+            "example" : "CCD"
+          },
+          "countryCode" : {
+            "type" : "string",
+            "description" : "Valid country code.",
+            "example" : "US"
+          },
+          "creditExposureLimit" : {
+            "type" : "number",
+            "description" : "Credit exposure limit. Which is applicable for the credit payments for the legal entity.",
+            "example" : 5000.0
+          },
+          "debitExposureLimit" : {
+            "type" : "number",
+            "description" : "Debit exposure limit. Which is applicable for the credit payments for the legal entity.",
+            "example" : 50000.0
+          },
+          "enableCallbacks" : {
+            "type" : "boolean",
+            "description" : "Flag for the call back functionality.",
+            "example" : true
+          },
+          "isUnderWritten" : {
+            "type" : "boolean",
+            "description" : "Under writen.",
+            "example" : true
+          },
+          "masterGl" : {
+            "type" : "string",
+            "description" : "Master GL number.",
+            "example" : "5001"
+          },
+          "reason" : {
+            "type" : "string",
+            "example" : "Type here..."
           }
         }
       },
@@ -3170,8 +3311,20 @@
             "description" : "Account status",
             "example" : "Active"
           },
-          "externalAccount" : {
-            "$ref" : "#/components/schemas/AccountExternal"
+          "countryCode" : {
+            "type" : "string",
+            "description" : "Valid country code.",
+            "example" : "US"
+          },
+          "masterGl" : {
+            "type" : "string",
+            "description" : "Master GL number.",
+            "example" : "5001"
+          },
+          "accountAnalysis" : {
+            "type" : "boolean",
+            "description" : "Account analysis.",
+            "example" : true
           }
         }
       },
