@@ -509,7 +509,7 @@
           "schema" : {
             "type" : "string"
           },
-          "example" : "true or false"
+          "example" : true
         }, {
           "name" : "accountNumber",
           "in" : "query",
@@ -1067,7 +1067,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateCustomerContactResponse"
                 }
@@ -1077,7 +1077,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateCustomerContactResponse"
                 }
@@ -1146,7 +1146,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomerContactResponse"
                 }
@@ -1156,7 +1156,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomerContactResponse"
                 }
@@ -1796,7 +1796,8 @@
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page index. Default page index is zero."
+            "description" : "page index. It is an optional attribute if it is not provided then the default value is 1.",
+            "example" : 1
           }
         }, {
           "name" : "size",
@@ -1806,7 +1807,8 @@
           "explode" : true,
           "schema" : {
             "type" : "number",
-            "description" : "page size. Default page size is ten."
+            "description" : "page size. It is an optional attribute if it is not provided then the default value is 10.",
+            "example" : 10
           }
         }, {
           "name" : "roleName",
@@ -1833,7 +1835,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/SearchCustomerRoleResponse"
                 }
@@ -2046,6 +2048,51 @@
         "properties" : {
           "data" : {
             "$ref" : "#/components/schemas/PaymentNoteOptionValueChildren_data"
+          }
+        }
+      },
+      "CustomerContactIntermediaryBankAddress" : {
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode" ],
+        "properties" : {
+          "addressLine1" : {
+            "type" : "string",
+            "description" : "Address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "type" : "string",
+            "description" : "Address Line 2",
+            "example" : "Suite 210"
+          },
+          "addressLine3" : {
+            "type" : "string",
+            "description" : "Address Line 3",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "City",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "type" : "string",
+            "description" : "State",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "type" : "string",
+            "description" : "Postal code",
+            "example" : "28269"
+          },
+          "countryCode" : {
+            "type" : "string",
+            "description" : "ISO country code",
+            "example" : "USA"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country name",
+            "example" : "UNITED STATES OF AMERICA"
           }
         }
       },
@@ -3023,10 +3070,13 @@
             "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
             "example" : "Failed to get an account: <Reason>"
           },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
           "data" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/CustomerBankAccount"
+              "$ref" : "#/components/schemas/SearchCustomerBankAccount"
             }
           }
         }
@@ -3051,6 +3101,144 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/CustomerBankAccount"
+          }
+        }
+      },
+      "SearchCustomerBankAccount" : {
+        "properties" : {
+          "accountUID" : {
+            "type" : "string",
+            "description" : "Account unique identifier assigned by the system",
+            "example" : "100100"
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Account Name",
+            "example" : "Demo 1"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Account Number",
+            "example" : "1122345"
+          },
+          "fboAccountNumber" : {
+            "type" : "string",
+            "description" : "FBO Account Number",
+            "example" : "2233445"
+          },
+          "accountType" : {
+            "type" : "string",
+            "description" : "Account Type. e.g. DEPOSIT, LOAN",
+            "example" : "DEPOSIT"
+          },
+          "accountSubType" : {
+            "type" : "string",
+            "description" : "Account Type. e.g Savings, Checking, Psuedo",
+            "example" : "Checking"
+          },
+          "systemOfRecords" : {
+            "type" : "string",
+            "description" : "Identifier of the system of record. e.g Other Core,  External",
+            "example" : "Other Core"
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency Code is ISO format",
+            "example" : "USD"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country Name",
+            "example" : "UNITED STATE OF AMERICA"
+          },
+          "routingNumber" : {
+            "type" : "string",
+            "description" : "Bank routing number",
+            "example" : "11223498"
+          },
+          "bankIdType" : {
+            "type" : "string",
+            "description" : "Bank identifier type",
+            "example" : "By ABA or By Address"
+          },
+          "enableWires" : {
+            "type" : "boolean",
+            "description" : "Wire status",
+            "example" : false
+          },
+          "enableOffset" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Offset account",
+            "example" : false
+          },
+          "defaultOffset" : {
+            "type" : "boolean",
+            "description" : "Default offset account",
+            "example" : false
+          },
+          "feeAccount" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Fee account",
+            "example" : false
+          },
+          "returnAccount" : {
+            "type" : "boolean",
+            "description" : "Whether the accountNumber is a Return account",
+            "example" : false
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Account status",
+            "example" : "Active"
+          },
+          "accountAnalysis" : {
+            "type" : "boolean",
+            "description" : "Account analysis status.",
+            "example" : false
+          },
+          "callbackLimit" : {
+            "type" : "number",
+            "description" : "Call back limit.",
+            "example" : 10000.0
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Valid cost center which is associated with the legal entity.",
+            "example" : "CCD"
+          },
+          "countryCode" : {
+            "type" : "string",
+            "description" : "Valid country code.",
+            "example" : "US"
+          },
+          "creditExposureLimit" : {
+            "type" : "number",
+            "description" : "Credit exposure limit. Which is applicable for the credit payments for the legal entity.",
+            "example" : 5000.0
+          },
+          "debitExposureLimit" : {
+            "type" : "number",
+            "description" : "Debit exposure limit. Which is applicable for the credit payments for the legal entity.",
+            "example" : 50000.0
+          },
+          "enableCallbacks" : {
+            "type" : "boolean",
+            "description" : "Flag for the call back functionality.",
+            "example" : true
+          },
+          "isUnderWritten" : {
+            "type" : "boolean",
+            "description" : "Under writen.",
+            "example" : true
+          },
+          "masterGl" : {
+            "type" : "string",
+            "description" : "Master GL number.",
+            "example" : "5001"
+          },
+          "reason" : {
+            "type" : "string",
+            "example" : "Type here..."
           }
         }
       },
@@ -3170,8 +3358,20 @@
             "description" : "Account status",
             "example" : "Active"
           },
-          "externalAccount" : {
-            "$ref" : "#/components/schemas/AccountExternal"
+          "countryCode" : {
+            "type" : "string",
+            "description" : "Valid country code.",
+            "example" : "US"
+          },
+          "masterGl" : {
+            "type" : "string",
+            "description" : "Master GL number.",
+            "example" : "5001"
+          },
+          "accountAnalysis" : {
+            "type" : "boolean",
+            "description" : "Account analysis.",
+            "example" : true
           }
         }
       },
@@ -3182,16 +3382,25 @@
             "description" : "Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed).",
             "example" : "89856556"
           },
+          "contactUID" : {
+            "type" : "string",
+            "description" : "Contact unique identifier.",
+            "example" : "1023"
+          },
           "templateName" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Contact unique name.",
+            "example" : "bene 1"
           },
           "name" : {
-            "type" : "string"
+            "type" : "string",
+            "description" : "Contact name.",
+            "example" : "John"
           },
           "address" : {
             "$ref" : "#/components/schemas/CustomerAddress"
           },
-          "emailAddress" : {
+          "email" : {
             "type" : "string",
             "description" : "Customer Email Address",
             "example" : "abc@abc.com"
@@ -3329,7 +3538,10 @@
           "roleNames" : {
             "type" : "array",
             "description" : "Valid role names, which is associated with the requested legal entity.",
-            "example" : "Admin, NewRole1"
+            "items" : {
+              "type" : "string",
+              "example" : "Admin"
+            }
           },
           "applicationLimits" : {
             "type" : "array",
@@ -3374,6 +3586,11 @@
       },
       "SearchCustomerUserRequest" : {
         "properties" : {
+          "userId" : {
+            "type" : "string",
+            "description" : "User unique identifer.",
+            "example" : "f945bc67-c44b-4f88-91d9-d09434e4dd37"
+          },
           "loginId" : {
             "type" : "string",
             "description" : "Unique identifier.",
@@ -3394,10 +3611,20 @@
             "description" : "users email id",
             "example" : "user123@gamil.com"
           },
-          "mobile" : {
+          "phoneNumber" : {
             "type" : "string",
             "description" : "User contact number",
             "example" : "9389989658"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current status of the user",
+            "example" : "Active"
+          },
+          "shortName" : {
+            "type" : "string",
+            "description" : "The name of the legal entity associated with the user.",
+            "example" : "CORP"
           }
         }
       },
@@ -3415,19 +3642,19 @@
           },
           "size" : {
             "type" : "number",
-            "description" : "Page size",
+            "description" : "Page size.",
             "example" : 50
           },
           "page" : {
             "type" : "number",
-            "description" : "Page index",
-            "example" : 0
+            "description" : "Page index.",
+            "example" : 1
           },
           "data" : {
             "type" : "array",
             "description" : "Search results",
             "items" : {
-              "$ref" : "#/components/schemas/GetCustomerRoleResponse"
+              "$ref" : "#/components/schemas/SearchRoleResponse"
             }
           }
         }
@@ -3452,7 +3679,7 @@
           "page" : {
             "type" : "number",
             "description" : "Current page",
-            "example" : 0
+            "example" : 1
           },
           "data" : {
             "type" : "array",
@@ -3634,10 +3861,10 @@
       },
       "GetCustomerUserResponse" : {
         "properties" : {
-          "externalReferenceId" : {
+          "userId" : {
             "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
-            "example" : "89856556"
+            "description" : "User unique identifer.",
+            "example" : "f945bc67-c44b-4f88-91d9-d09434e4dd37"
           },
           "loginId" : {
             "type" : "string",
@@ -3677,10 +3904,9 @@
           "roleNames" : {
             "type" : "array",
             "description" : "Unique identifier.",
-            "example" : "user123",
             "items" : {
               "type" : "string",
-              "example" : "Admin,User"
+              "example" : "Admin"
             }
           },
           "limits" : {
@@ -3688,6 +3914,45 @@
             "items" : {
               "$ref" : "#/components/schemas/limits"
             }
+          }
+        }
+      },
+      "SearchRoleResponse" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Role id.",
+            "example" : "f37f6757-c546-42d4-8235-5965419b495d."
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Role name.",
+            "example" : "adminRole."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Role description.",
+            "example" : "Role description."
+          },
+          "leId" : {
+            "type" : "number",
+            "description" : "Customer id  associated with role.",
+            "example" : 11950.0
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status of role.",
+            "example" : "Active"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Type of the role. e.g. Bank, customer",
+            "example" : "CUSTOMER"
+          },
+          "owner" : {
+            "type" : "string",
+            "description" : "The owner of this role will indicate who created it.",
+            "example" : "Bank, Customer"
           }
         }
       },
@@ -3713,10 +3978,15 @@
             "description" : "Customer id  associated with role.",
             "example" : 11950.0
           },
+          "type" : {
+            "type" : "string",
+            "description" : "Type of the role. e.g. Bank, customer",
+            "example" : "CUSTOMER"
+          },
           "status" : {
             "type" : "string",
             "description" : "Status of role.",
-            "example" : "Active, New, etc"
+            "example" : "Active"
           },
           "owner" : {
             "type" : "string",
@@ -3840,17 +4110,18 @@
             "type" : "string"
           },
           "coverMessageRequired" : {
-            "type" : "string"
+            "type" : "boolean",
+            "example" : true
           },
           "address" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/CustomerContactIntermediaryBankAddress"
           }
         }
       },
       "CustomerContact_otherInfo" : {
         "type" : "object",
         "properties" : {
-          "beneficiaryNotes" : {
+          "beneNotes" : {
             "type" : "string"
           },
           "otherBeneBankInfo" : {
