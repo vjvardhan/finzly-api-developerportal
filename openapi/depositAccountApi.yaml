@@ -732,10 +732,7 @@
             }
           },
           "notification" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/AddDepositAccountNotification"
-            }
+            "$ref" : "#/components/schemas/AddDepositAccountNotification"
           }
         }
       },
@@ -789,10 +786,7 @@
             "enum" : [ "MONTHLY", "QUARTERLY", "HALF_YEARLY", "ANNUALLY" ]
           },
           "notification" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Notification"
-            }
+            "$ref" : "#/components/schemas/Notification"
           },
           "debitCards" : {
             "type" : "array",
