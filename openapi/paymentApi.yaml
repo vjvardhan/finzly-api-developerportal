@@ -5246,6 +5246,11 @@
             "type" : "string",
             "description" : "Returing the unique reference id provided by the originator system.",
             "example" : "123e4567"
+          },
+          "recurranceId" : {
+            "type" : "string",
+            "description" : "The unique recurrence id which is associated with the payment.",
+            "example" : "5599"
           }
         }
       },
