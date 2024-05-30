@@ -526,9 +526,9 @@
           },
           "valueDate" : {
             "type" : "string",
-            "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate.The date format is in yyyy-mm-dd.",
+            "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate.The date format is in mm-dd-yyyy.",
             "format" : "date",
-            "example" : "2020-01-01"
+            "example" : "0006-07-13"
           }
         }
       },
