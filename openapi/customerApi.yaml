@@ -3530,7 +3530,7 @@
             "description" : "The valid users emailId\"",
             "example" : "user123@gamil.com"
           },
-          "mobile" : {
+          "phoneNumber" : {
             "type" : "string",
             "description" : "User contact number. Only digits are allowed.",
             "example" : "9389989658"
@@ -3711,7 +3711,7 @@
             "description" : "The valid users emailId\"",
             "example" : "user123@gamil.com"
           },
-          "mobile" : {
+          "phoneNumber" : {
             "type" : "string",
             "description" : "User contact number. Only digits are allowed.",
             "example" : "9389989658"
