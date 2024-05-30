@@ -527,8 +527,7 @@
           "valueDate" : {
             "type" : "string",
             "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate.The date format is in mm-dd-yyyy.",
-            "format" : "date",
-            "example" : "0006-07-13"
+            "example" : "01-01-2020"
           }
         }
       },
@@ -747,7 +746,6 @@
           "valueDate" : {
             "type" : "string",
             "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "externalPricingSystemRefId" : {
@@ -778,7 +776,6 @@
           "tradeDate" : {
             "type" : "string",
             "description" : "The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "ccyPair" : {
@@ -825,7 +822,6 @@
           "valueDate" : {
             "type" : "string",
             "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "referenceSpotRate" : {
@@ -840,8 +836,7 @@
           },
           "executionTime" : {
             "type" : "string",
-            "description" : "The execution time",
-            "format" : "date"
+            "description" : "The execution time"
           },
           "externalPricingSystemRefId" : {
             "type" : "string",
@@ -902,13 +897,11 @@
           "tradeDate" : {
             "type" : "string",
             "description" : "The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "valueDate" : {
             "type" : "string",
             "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "ccyPair" : {
@@ -970,7 +963,6 @@
           "tradeDate" : {
             "type" : "string",
             "description" : "The trade date is the date on which a transaction was executed. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "ccyPair" : {
@@ -1017,7 +1009,6 @@
           "valueDate" : {
             "type" : "string",
             "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.",
-            "format" : "date",
             "example" : "2020-01-01"
           },
           "referenceSpotRate" : {
@@ -1032,8 +1023,7 @@
           },
           "executionTime" : {
             "type" : "string",
-            "description" : "The execution time",
-            "format" : "date"
+            "description" : "The execution time"
           }
         }
       },
