@@ -2823,36 +2823,36 @@
           "enableOffset" : {
             "type" : "string",
             "description" : "Enable offset account",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "enableWire" : {
             "type" : "string",
             "description" : "Enable or Disable for the wire transaction",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "defaultOffset" : {
             "type" : "string",
             "description" : "Default offset account",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "feeAccount" : {
             "type" : "string",
             "description" : "Whether the accountNumber is a Fee account",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "returnAccount" : {
             "type" : "string",
             "description" : "Whether the accountNumber is a Return account",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "fboAccountNumber" : {
             "type" : "string",
-            "example" : "for e.g. 1122344"
+            "example" : "1122344"
           },
           "country" : {
             "type" : "string"
@@ -2934,32 +2934,32 @@
           "enableOffset" : {
             "type" : "string",
             "description" : "Enable offset account",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "enableWire" : {
             "type" : "string",
-            "description" : "Enable or Disable for the wire transaction",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "description" : "Enable or Disable for the wire transaction. It is an mandatory filed",
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "defaultOffset" : {
             "type" : "string",
             "description" : "Default offset account",
-            "example" : "Yes or No",
-            "enum" : [ "true", "false" ]
+            "example" : "Yes",
+            "enum" : [ "Yes", "No" ]
           },
           "feeAccount" : {
             "type" : "string",
             "description" : "Whether the accountNumber is a Fee account",
             "example" : "Yes",
-            "enum" : [ "true", "false" ]
+            "enum" : [ "Yes", "No" ]
           },
           "returnAccount" : {
             "type" : "string",
             "description" : "Whether the accountNumber is a Return account",
             "example" : "Yes",
-            "enum" : [ "true", "false" ]
+            "enum" : [ "Yes", "No" ]
           },
           "fboAccountNumber" : {
             "type" : "string"
