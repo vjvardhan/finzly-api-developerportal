@@ -2934,13 +2934,13 @@
           "enableOffset" : {
             "type" : "string",
             "description" : "Enable offset account",
-            "example" : "Yes or No",
+            "example" : "true",
             "enum" : [ "true", "false" ]
           },
           "enableWire" : {
             "type" : "string",
-            "description" : "Enable or Disable for the wire transaction",
-            "example" : "Yes or No",
+            "description" : "Enable or Disable for the wire transaction. It is an mandatory filed",
+            "example" : "true",
             "enum" : [ "true", "false" ]
           },
           "defaultOffset" : {
