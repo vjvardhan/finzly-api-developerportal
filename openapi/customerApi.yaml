@@ -2933,33 +2933,28 @@
           },
           "enableOffset" : {
             "type" : "string",
-            "description" : "Enable offset account",
-            "example" : "Yes",
-            "enum" : [ "Yes", "No" ]
+            "description" : "Enable offset account. Possible values are 'Yes','No'",
+            "example" : "Yes"
           },
           "enableWire" : {
             "type" : "string",
-            "description" : "Enable or Disable for the wire transaction. It is an mandatory filed",
-            "example" : "Yes",
-            "enum" : [ "Yes", "No" ]
+            "description" : "Enable or Disable for the wire transaction. The default value is 'Yes' Possible values are 'Yes','No'",
+            "example" : "Yes"
           },
           "defaultOffset" : {
             "type" : "string",
-            "description" : "Default offset account",
-            "example" : "Yes",
-            "enum" : [ "Yes", "No" ]
+            "description" : "Default offset account.Possible values are 'Yes','No'",
+            "example" : "Yes"
           },
           "feeAccount" : {
             "type" : "string",
-            "description" : "Whether the accountNumber is a Fee account",
-            "example" : "Yes",
-            "enum" : [ "Yes", "No" ]
+            "description" : "Whether the accountNumber is a Fee account. Possible values are 'Yes','No'",
+            "example" : "Yes"
           },
           "returnAccount" : {
             "type" : "string",
-            "description" : "Whether the accountNumber is a Return account",
-            "example" : "Yes",
-            "enum" : [ "Yes", "No" ]
+            "description" : "Whether the accountNumber is a Return account. Possible values are 'Yes','No'",
+            "example" : "Yes"
           },
           "fboAccountNumber" : {
             "type" : "string"
