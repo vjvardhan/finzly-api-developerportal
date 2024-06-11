@@ -675,12 +675,12 @@
           },
           "maturityDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. The maturityDate greater that or equals to the current date.",
             "example" : "05-21-2024"
           },
           "effectiveDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is greater that the maturityDate if it is provided otherwise it should be greater than the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is less that or equals to the maturityDate if it is provided otherwise it should be greater than or equals to the current date.",
             "example" : "06-21-2024"
           },
           "isStopDebits" : {
