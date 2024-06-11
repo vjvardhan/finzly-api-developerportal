@@ -665,7 +665,7 @@
           "productCode" : {
             "maxLength" : 50,
             "type" : "string",
-            "description" : "This is a mandatory field. productCode is associated with the curruncy, Product Name, Maintenance Fee, Account Type and Book. And product code should present in tesystem.",
+            "description" : "This is a mandatory field. productCode is associated with the currency, Product Name, Maintenance Fee, Account Type and Book. And product code should present in the system.",
             "example" : "BBCCOO"
           },
           "accountName" : {
