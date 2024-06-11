@@ -196,7 +196,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CloseDepositAccountResponse"
                 }
@@ -206,7 +206,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CloseDepositAccountResponse"
                 }
@@ -299,7 +299,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositTransactionResponse"
                 }
@@ -309,7 +309,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositTransactionResponse"
                 }
@@ -368,7 +368,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositAccountBalance"
                 }
@@ -378,7 +378,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositAccountBalance"
                 }
@@ -448,7 +448,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositDebitCardResponse"
                 }
@@ -458,7 +458,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositDebitCardResponse"
                 }
@@ -517,7 +517,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositDebitCardResponse"
                 }
@@ -527,7 +527,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositDebitCardResponse"
                 }
@@ -586,7 +586,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositDebitCardResponse"
                 }
@@ -596,7 +596,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositDebitCardResponse"
                 }
@@ -665,7 +665,7 @@
           "productCode" : {
             "maxLength" : 50,
             "type" : "string",
-            "description" : "This is a mandatory field. productCode is associated with the curruncy, Product Name, Maintenance Fee, Account Type and Book. And product code should present in tesystem.",
+            "description" : "This is a mandatory field. productCode is associated with the currency, Product Name, Maintenance Fee, Account Type and Book. And product code should present in the system.",
             "example" : "BBCCOO"
           },
           "accountName" : {
@@ -675,12 +675,12 @@
           },
           "maturityDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. The maturityDate greater that or equals to the current date.",
             "example" : "05-21-2024"
           },
           "effectiveDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is gretter that the maturityDate and current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is less that or equals to the maturityDate if it is provided otherwise it should be greater than or equals to the current date.",
             "example" : "06-21-2024"
           },
           "isStopDebits" : {
@@ -710,7 +710,7 @@
           },
           "nextStatementDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is gretter that the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is greater that the current date.",
             "example" : "06-21-2024"
           },
           "statementType" : {
@@ -770,7 +770,7 @@
           },
           "nextStatementDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is gretter that the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is greater that the current date.",
             "example" : "06-21-2024"
           },
           "statementType" : {
