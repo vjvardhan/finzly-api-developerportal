@@ -19,10 +19,10 @@
   } ],
   "tags" : [ {
     "name" : "Payments",
-    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, SWIFT, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
+    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
   }, {
     "name" : "Bulk Payment",
-    "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported.\n  1. FX\n  2. ACH - NACHA format\n  3. Wire\n  4. RTP\n  5. FedNow.      \n \n"
+    "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported.\n  1. ACH - NACHA format\n  2. Wire\n  3. RTP\n  4. FedNow.      \n \n"
   }, {
     "name" : "Bank",
     "description" : "To fetch the bank info by routing number.\n"
@@ -35,7 +35,7 @@
       "post" : {
         "tags" : [ "Bulk Payment" ],
         "summary" : "To upload the payment file.",
-        "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported. 1. FX 2. ACH - NACHA format 3. Wire 4. RTP 5. FedNow",
+        "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported. 1. ACH - NACHA format 2. Wire 3. RTP 4. FedNow",
         "operationId" : "bulkUpload",
         "parameters" : [ {
           "name" : "customerUID",
@@ -1694,6 +1694,7 @@
         "description" : "The address pertains to the sender or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
       },
       "ReceiverOrDebtorAddress" : {
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
         "properties" : {
           "addressLine1" : {
             "maxLength" : 35,
@@ -2640,6 +2641,7 @@
         "description" : "Payment sender and account details from which the money will be deducted."
       },
       "PaymentReceiver" : {
+        "required" : [ "address" ],
         "properties" : {
           "accountUID" : {
             "maxLength" : 11,
