@@ -470,7 +470,7 @@
         }
       },
       "FXQuoteRequest" : {
-        "required" : [ "customerId", "customerIdType", "externalReferenceId", "productType" ],
+        "required" : [ "buyCurrency", "customerId", "customerIdType", "externalReferenceId", "productType", "sellCurrency" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -528,28 +528,6 @@
             "type" : "string",
             "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate.The date format is in mm-dd-yyyy.",
             "example" : "01-01-2020"
-          }
-        }
-      },
-      "FXQuoteResponse" : {
-        "properties" : {
-          "status" : {
-            "type" : "string",
-            "description" : "This will return Success/Failed",
-            "example" : "Success"
-          },
-          "code" : {
-            "type" : "string",
-            "description" : "This will indicate the error code in case of API error",
-            "example" : "FXQUOTE001"
-          },
-          "message" : {
-            "type" : "string",
-            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to get a FX Quote due to the mandatory attribute <attribute-name> is not provide."
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/FXQuoteResponse_data"
           }
         }
       },
@@ -638,6 +616,28 @@
           }
         }
       },
+      "FXQuoteResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "This will return Success/Failed",
+            "example" : "Success"
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "This will indicate the error code in case of API error",
+            "example" : "FXQUOTE001"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
+            "example" : "Failed to get a FX Quote due to the mandatory attribute <attribute-name> is not provide."
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/FXQuoteResponse_data"
+          }
+        }
+      },
       "FXTradeInfoResponse" : {
         "properties" : {
           "status" : {
@@ -679,79 +679,6 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/FXTradeCancelResponse_data"
-          }
-        }
-      },
-      "FXQuoteResponse_data" : {
-        "type" : "object",
-        "properties" : {
-          "externalReferenceId" : {
-            "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
-            "example" : "REQ123"
-          },
-          "quoteUUID" : {
-            "type" : "string",
-            "description" : "FX Quote universally unique identifier (UUID)",
-            "example" : "123e4567-e89b-12d3-a456-426614174000"
-          },
-          "expirySeconds" : {
-            "type" : "integer",
-            "description" : "Time in seconds after which the FX quote will expire",
-            "example" : 30
-          },
-          "exchangeRate" : {
-            "type" : "number",
-            "description" : "The price of one currency in terms of the other",
-            "example" : 1.2,
-            "default" : 0
-          },
-          "invertedRate" : {
-            "type" : "number",
-            "description" : "Time in seconds after which the FX quote will expire",
-            "example" : 0.83,
-            "default" : 0
-          },
-          "sellCurrency" : {
-            "type" : "string",
-            "description" : "Sell Currency",
-            "example" : "EUR"
-          },
-          "buyCurrency" : {
-            "type" : "string",
-            "description" : "Buy Currency",
-            "example" : "INR"
-          },
-          "fundingAmount" : {
-            "type" : "number",
-            "description" : "Funding Amount. Only one is needed between fundingAmount and transferAmount",
-            "example" : 10000
-          },
-          "transferAmount" : {
-            "type" : "number",
-            "description" : "Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount",
-            "example" : 1000
-          },
-          "productType" : {
-            "type" : "string",
-            "description" : "FX financial instrument such SPOT or FORWARD",
-            "example" : "SPOT",
-            "enum" : [ "SPOT", "FORWARD" ]
-          },
-          "tenor" : {
-            "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN.",
-            "example" : "SPOT"
-          },
-          "valueDate" : {
-            "type" : "string",
-            "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.",
-            "example" : "2020-01-01"
-          },
-          "externalPricingSystemRefId" : {
-            "type" : "string",
-            "description" : "Unique reference id returned by the external system provider.",
-            "example" : "R1274878"
           }
         }
       },
@@ -842,6 +769,11 @@
             "type" : "string",
             "description" : "Unique reference id returned by the external system provider.",
             "example" : "R1274878"
+          },
+          "counterpartyId" : {
+            "type" : "string",
+            "description" : "The counterpartyId associated with the fx trade.",
+            "example" : "11950"
           }
         }
       },
@@ -952,6 +884,100 @@
           }
         }
       },
+      "FXQuoteResponse_data" : {
+        "type" : "object",
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
+            "example" : "REQ123"
+          },
+          "quoteUUID" : {
+            "type" : "string",
+            "description" : "FX Quote universally unique identifier (UUID)",
+            "example" : "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "expirySeconds" : {
+            "type" : "integer",
+            "description" : "Time in seconds after which the FX quote will expire",
+            "example" : 30
+          },
+          "expiryTime" : {
+            "type" : "number",
+            "description" : "The price of one currency in terms of the other",
+            "example" : 1.2,
+            "default" : 0
+          },
+          "exchangeRate" : {
+            "type" : "number",
+            "description" : "The price of one currency in terms of the other",
+            "example" : 1.2,
+            "default" : 0
+          },
+          "invertedRate" : {
+            "type" : "number",
+            "description" : "Time in seconds after which the FX quote will expire",
+            "example" : 0.83,
+            "default" : 0
+          },
+          "baseCcy" : {
+            "type" : "string",
+            "description" : "Sell Currency",
+            "example" : "EUR"
+          },
+          "quoteCcy" : {
+            "type" : "string",
+            "description" : "Buy Currency",
+            "example" : "INR"
+          },
+          "spotRate" : {
+            "type" : "number",
+            "description" : "The offered rate",
+            "example" : 100
+          },
+          "fwdPoints" : {
+            "type" : "number",
+            "description" : "The number of basis points added to or subtracted from the current spot rate of a currency pair to determine the forward rate for delivery on a specific value date",
+            "example" : 100
+          },
+          "allInRate" : {
+            "type" : "number",
+            "description" : "All in rate",
+            "example" : 0.83
+          },
+          "quoteAmount" : {
+            "type" : "number",
+            "description" : "Funding Amount. Only one is needed between fundingAmount and transferAmount",
+            "example" : 10000
+          },
+          "baseAmount" : {
+            "type" : "number",
+            "description" : "Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount",
+            "example" : 1000
+          },
+          "productType" : {
+            "type" : "string",
+            "description" : "FX financial instrument such SPOT or FORWARD",
+            "example" : "SPOT",
+            "enum" : [ "SPOT", "FORWARD" ]
+          },
+          "tenor" : {
+            "type" : "string",
+            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN.",
+            "example" : "SPOT"
+          },
+          "valueDate" : {
+            "type" : "string",
+            "description" : "The delivery date on which counterparties to a transaction agree to settle their respective obligations by making payments and transferring ownership.Only one is needed between tenor or valueDate. The date format is in yyyy-mm-dd.",
+            "example" : "2020-01-01"
+          },
+          "externalPricingSystemRefId" : {
+            "type" : "string",
+            "description" : "Unique reference id returned by the external system provider.",
+            "example" : "R1274878"
+          }
+        }
+      },
       "FXTradeInfoResponse_data" : {
         "type" : "object",
         "properties" : {
@@ -988,7 +1014,7 @@
           "quoteCcy" : {
             "type" : "string",
             "description" : "The second currency is the quote currency, which states how much of the quote currency is required to buy one unit of the base currency.",
-            "example" : "USD"
+            "example" : "EUR"
           },
           "quoteAmount" : {
             "type" : "number",
@@ -1023,7 +1049,13 @@
           },
           "executionTime" : {
             "type" : "string",
-            "description" : "The execution time"
+            "description" : "The execution time",
+            "example" : "1800"
+          },
+          "counterpartyId" : {
+            "type" : "string",
+            "description" : "The counterpartyId associated with the fx trade.",
+            "example" : "11950"
           }
         }
       },
