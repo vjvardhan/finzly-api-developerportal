@@ -1694,6 +1694,7 @@
         "description" : "The address pertains to the sender or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
       },
       "ReceiverOrDebtorAddress" : {
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
         "properties" : {
           "addressLine1" : {
             "maxLength" : 35,
@@ -2640,6 +2641,7 @@
         "description" : "Payment sender and account details from which the money will be deducted."
       },
       "PaymentReceiver" : {
+        "required" : [ "address" ],
         "properties" : {
           "accountUID" : {
             "maxLength" : 11,
