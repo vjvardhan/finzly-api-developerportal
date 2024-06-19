@@ -860,7 +860,7 @@
             "type" : "string",
             "description" : "Type of the counterParty.",
             "example" : "OWNER",
-            "enum" : [ "OWNER", "COWNER", "BENEFICIARY", "ESCROW" ]
+            "enum" : [ "OWNER", "CO-OWNER", "BENEFICIARY", "ESCROW" ]
           },
           "addedOn" : {
             "type" : "string",
@@ -885,7 +885,7 @@
             "type" : "string",
             "description" : "Type of the counterParty",
             "example" : "OWNER",
-            "enum" : [ "OWNER", "COWNER", "BENEFICIARY", "ESCROW" ]
+            "enum" : [ "OWNER", "CO-OWNER", "BENEFICIARY", "ESCROW" ]
           }
         }
       },
