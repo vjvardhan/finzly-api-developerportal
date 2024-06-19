@@ -31,7 +31,7 @@
     "description" : "Postive Pay Rules APIs enable third-parties, bank's customers and downstream partners to define postive rules for ACH debits or Fedwire drawdown requests or RFP (Request For Pay) request.\n\nPostive Pay Exeption APIs enable users to approve or reject the exceptions identified by the postive pay rules engine.\n"
   } ],
   "paths" : {
-    "/v1/payments/customers/{customerUID}/files" : {
+    "/v1/payments/customers/{customerUID}/files/{fileType}" : {
       "post" : {
         "tags" : [ "Bulk Payment" ],
         "summary" : "To upload the payment file.",
@@ -47,12 +47,22 @@
             "type" : "string",
             "description" : "Customer unique Id."
           }
+        }, {
+          "name" : "fileType",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "File type. Possible values are csv/fedwire/rtp/ach."
+          }
         } ],
         "requestBody" : {
           "content" : {
             "multipart/form-data" : {
               "schema" : {
-                "$ref" : "#/components/schemas/customerUID_files_body"
+                "$ref" : "#/components/schemas/files_fileType_body"
               }
             }
           },
@@ -5222,7 +5232,7 @@
           }
         }
       },
-      "customerUID_files_body" : {
+      "files_fileType_body" : {
         "type" : "object",
         "properties" : {
           "file" : {
