@@ -3462,7 +3462,7 @@
           },
           "secCode" : {
             "type" : "string",
-            "description" : "SEC code associated with the ACH postive rule",
+            "description" : "SEC code associated with the ACH postive rule. It is an optional field. If secCode is not provided in the request then the default value i.e 'ALL' will be applicable.",
             "example" : "CCD"
           },
           "effectiveDate" : {
