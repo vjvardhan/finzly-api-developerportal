@@ -675,12 +675,12 @@
           },
           "maturityDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. The maturityDate greater that or equals to the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. The maturityDate greater than or equals to the current date.",
             "example" : "05-21-2024"
           },
           "effectiveDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is less that or equals to the maturityDate if it is provided otherwise it should be greater than or equals to the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. effectiveDate is less than or equals to the maturityDate if it is provided otherwise it should be greater than or equals to the current date.",
             "example" : "06-21-2024"
           },
           "isStopDebits" : {
@@ -710,7 +710,7 @@
           },
           "nextStatementDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is greater that the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is greater than the current date.",
             "example" : "06-21-2024"
           },
           "statementType" : {
@@ -770,7 +770,7 @@
           },
           "nextStatementDate" : {
             "type" : "string",
-            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is greater that the current date.",
+            "description" : "This is an optional field. The valid date format is in [MM-dd-yyyy]. nextStatementDate is greater than the current date.",
             "example" : "06-21-2024"
           },
           "statementType" : {
@@ -860,7 +860,7 @@
             "type" : "string",
             "description" : "Type of the counterParty.",
             "example" : "OWNER",
-            "enum" : [ "OWNER", "COWNER", "BENEFICIARY", "ESCROW" ]
+            "enum" : [ "OWNER", "CO-OWNER", "BENEFICIARY", "ESCROW" ]
           },
           "addedOn" : {
             "type" : "string",
@@ -885,7 +885,7 @@
             "type" : "string",
             "description" : "Type of the counterParty",
             "example" : "OWNER",
-            "enum" : [ "OWNER", "COWNER", "BENEFICIARY", "ESCROW" ]
+            "enum" : [ "OWNER", "CO-OWNER", "BENEFICIARY", "ESCROW" ]
           }
         }
       },
@@ -1039,7 +1039,7 @@
           "status" : {
             "type" : "string",
             "description" : "Specifies card status e.g. FREEZED,ACTIVE",
-            "example" : "FREEZED"
+            "example" : "Active"
           }
         }
       },
