@@ -1039,7 +1039,7 @@
           "status" : {
             "type" : "string",
             "description" : "Specifies card status e.g. FREEZED,ACTIVE",
-            "example" : "FREEZED"
+            "example" : "Active"
           }
         }
       },
