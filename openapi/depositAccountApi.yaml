@@ -861,11 +861,6 @@
             "description" : "Type of the counterParty.",
             "example" : "OWNER",
             "enum" : [ "OWNER", "CO-OWNER", "BENEFICIARY", "ESCROW" ]
-          },
-          "addedOn" : {
-            "type" : "string",
-            "description" : "The valid date format is in [MM-dd-yyyy]",
-            "example" : "02-28-2024"
           }
         }
       },
