@@ -738,6 +738,11 @@
       },
       "UpdateDepositAccountRequest" : {
         "properties" : {
+          "accountName" : {
+            "type" : "string",
+            "description" : "Account name is an unique field.",
+            "example" : "test123"
+          },
           "isStopDebits" : {
             "type" : "boolean",
             "description" : "boolean value and it is an optional field. The default value is false.",
