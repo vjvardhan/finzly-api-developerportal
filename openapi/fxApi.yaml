@@ -532,6 +532,7 @@
         }
       },
       "FXAcceptQuoteRequest" : {
+        "required" : [ "quoteUUID" ],
         "properties" : {
           "quoteUUID" : {
             "type" : "string",
