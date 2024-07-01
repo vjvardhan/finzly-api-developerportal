@@ -1457,7 +1457,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Payment Unique Identifier. Return payment functionality is applicable only for outgoing payments and payment status should be other than the 'Processed'."
+            "description" : "Payment Unique Identifier. Return payment functionality is applicable only for incoming payments and payment status should be other than the 'Processed'."
           }
         } ],
         "requestBody" : {
@@ -1541,7 +1541,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Payment Unique Identifier. Reverse payment functionality is applicable only for incoming payments and payment status should be other than the 'Processed'. Reverse functionality is not supported for the SWIFT payment type."
+            "description" : "Payment Unique Identifier. Reverse payment functionality is applicable only for outgoing payments and payment status should be other than the 'Processed'. Reverse functionality is not supported for the SWIFT payment type."
           }
         } ],
         "requestBody" : {
@@ -3755,7 +3755,7 @@
         "properties" : {
           "reversalNotes" : {
             "type" : "string",
-            "description" : "Reversal notes. It is an optional field"
+            "description" : "Reversal notes. It is a mandatory field"
           }
         }
       },
