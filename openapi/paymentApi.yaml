@@ -5203,16 +5203,6 @@
         "required" : [ "frequency" ],
         "type" : "object",
         "properties" : {
-          "frequency" : {
-            "type" : "string",
-            "description" : "Allowed values are daily, weekly, biweekly, Monthly, quarterly, semiannually and yearly.",
-            "example" : "Monthly"
-          },
-          "payUntil" : {
-            "type" : "string",
-            "description" : "Allowed values are Cancelled, EndDate and NumberOfPayments.",
-            "example" : "NumberOfPayments"
-          },
           "endDate" : {
             "type" : "string",
             "description" : "Recurring End Date date in MM/dd/yyyy format. End Date should not be less than the current date.The end date is mandatory when payUntil is EndDate."
