@@ -5209,7 +5209,7 @@
           },
           "noOfPayments" : {
             "type" : "number",
-            "description" : "The number of payment should be at least 1.  Number of payment is mandatory when pay until is NumberOfPayments.",
+            "description" : "The number of payment should be at least 1.  Number of payment is mandatory when pay until is NumberOfPayments. The value of noOfPayments should not exceed the current value of noOfPayments.",
             "example" : 10
           }
         }
