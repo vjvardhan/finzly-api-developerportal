@@ -1457,7 +1457,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Payment Unique Identifier. Return payment functionality is applicable only for outgoing payments and payment status should be other than the 'Processed'."
+            "description" : "Payment Unique Identifier. Return payment functionality is applicable only for incoming payments and payment status should be other than the 'Processed'."
           }
         } ],
         "requestBody" : {
@@ -1541,7 +1541,7 @@
           "explode" : false,
           "schema" : {
             "type" : "string",
-            "description" : "Payment Unique Identifier. Reverse payment functionality is applicable only for incoming payments and payment status should be other than the 'Processed'. Reverse functionality is not supported for the SWIFT payment type."
+            "description" : "Payment Unique Identifier. Reverse payment functionality is applicable only for outgoing payments and payment status should be other than the 'Processed'. Reverse functionality is not supported for the SWIFT payment type."
           }
         } ],
         "requestBody" : {
@@ -3755,7 +3755,7 @@
         "properties" : {
           "reversalNotes" : {
             "type" : "string",
-            "description" : "Reversal notes. It is an optional field"
+            "description" : "Reversal notes. It is a mandatory field"
           }
         }
       },
@@ -5203,23 +5203,13 @@
         "required" : [ "frequency" ],
         "type" : "object",
         "properties" : {
-          "frequency" : {
-            "type" : "string",
-            "description" : "Allowed values are daily, weekly, biweekly, Monthly, quarterly, semiannually and yearly.",
-            "example" : "Monthly"
-          },
-          "payUntil" : {
-            "type" : "string",
-            "description" : "Allowed values are Cancelled, EndDate and NumberOfPayments.",
-            "example" : "NumberOfPayments"
-          },
           "endDate" : {
             "type" : "string",
             "description" : "Recurring End Date date in MM/dd/yyyy format. End Date should not be less than the current date.The end date is mandatory when payUntil is EndDate."
           },
           "noOfPayments" : {
             "type" : "number",
-            "description" : "The number of payment should be at least 1.  Number of payment is mandatory when pay until is NumberOfPayments.",
+            "description" : "The number of payment should be at least 1.  Number of payment is mandatory when pay until is NumberOfPayments. The value of noOfPayments should not exceed the current value of noOfPayments.",
             "example" : 10
           }
         }
