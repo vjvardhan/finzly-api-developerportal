@@ -898,18 +898,7 @@
             "description" : "FX Quote universally unique identifier (UUID)",
             "example" : "123e4567-e89b-12d3-a456-426614174000"
           },
-          "expirySeconds" : {
-            "type" : "integer",
-            "description" : "Time in seconds after which the FX quote will expire",
-            "example" : 30
-          },
           "expiryTime" : {
-            "type" : "number",
-            "description" : "The price of one currency in terms of the other",
-            "example" : 1.2,
-            "default" : 0
-          },
-          "exchangeRate" : {
             "type" : "number",
             "description" : "The price of one currency in terms of the other",
             "example" : 1.2,
@@ -933,8 +922,8 @@
           },
           "spotRate" : {
             "type" : "number",
-            "description" : "The offered rate",
-            "example" : 100
+            "description" : "The price of one currency in terms of the other.",
+            "example" : 1.2
           },
           "fwdPoints" : {
             "type" : "number",
@@ -955,17 +944,6 @@
             "type" : "number",
             "description" : "Beneficiay receive amount. Only one is needed between fundingAmount and transferAmount",
             "example" : 1000
-          },
-          "productType" : {
-            "type" : "string",
-            "description" : "FX financial instrument such SPOT or FORWARD",
-            "example" : "SPOT",
-            "enum" : [ "SPOT", "FORWARD" ]
-          },
-          "tenor" : {
-            "type" : "string",
-            "description" : "The length of time remaining before a financial contract expires. Only one is needed between tenor or valueDate. e.g. SPOT, ON, TN.",
-            "example" : "SPOT"
           },
           "valueDate" : {
             "type" : "string",
