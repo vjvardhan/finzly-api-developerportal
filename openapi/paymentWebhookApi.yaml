@@ -10,7 +10,7 @@
   "paths" : {
     "/payments" : {
       "post" : {
-        "tags" : [ "Payment Webhook Notifications" ],
+        "tags" : [ "Payment Webhook Notifications." ],
         "summary" : "Payment details",
         "description" : "Webhook API allows Finzly customers to get real-time notifications on the payment data that belongs to them based on the configured payment events such as payment is Processed, Cancelled, HOLD, etc.",
         "operationId" : "notifyPaymentStatus",
