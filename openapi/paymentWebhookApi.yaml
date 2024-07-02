@@ -774,7 +774,6 @@
             "example" : "United States of America"
           },
           "paymentNocDetails" : {
-            "type" : "object",
             "description" : "Applicable for the ACH payment when NOC is orginated or received."
           },
           "iMad" : {
@@ -866,7 +865,6 @@
             "example" : "LTR"
           },
           "beneficiaryFIAdviceInformation" : {
-            "type" : "object",
             "description" : "Beneficiary FI Advice Information"
           },
           "beneficiaryAdviceCode" : {
@@ -876,7 +874,6 @@
             "example" : "LTR"
           },
           "beneficiaryAdviceInformation" : {
-            "type" : "object",
             "description" : "Beneficiary Advice Information"
           },
           "beneficiaryFIInformation" : {
@@ -886,19 +883,13 @@
             "example" : "notes"
           },
           "rtpDetails" : {
-            "type" : "object",
             "description" : "Payment rtp details. This will be populated for the rtp payment."
           },
           "fedNowDetails" : {
-            "type" : "object",
             "description" : "Payment fednow details. This will be populated for the fennow payment."
           },
           "paymentReturnDetails" : {
-            "type" : "array",
-            "description" : "Payment return details. This will be populated for the returned payment.",
-            "items" : {
-              "type" : "object"
-            }
+            "description" : "Payment return details. This will be populated for the returned payment."
           },
           "creationDateTime" : {
             "type" : "string",
