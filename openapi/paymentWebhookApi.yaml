@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment Webhook",
-    "version" : "1.2.2"
+    "version" : "1.2.3"
   },
   "servers" : [ {
     "url" : "/"
@@ -12,7 +12,7 @@
       "post" : {
         "tags" : [ "Payment Webhook Notifications." ],
         "summary" : "Payment details",
-        "description" : "Webhook API allows Finzly customers to get real-time notifications on the payment data that belongs to them based on the configured payment events such as payment is Processed, Cancelled, HOLD,",
+        "description" : "Webhook API allows Finzly customers to get real-time notifications on the payment data that belongs to them based on the configured payment events such as payment is Processed, Cancelled, HOLD, etc...",
         "operationId" : "notifyPaymentStatus",
         "requestBody" : {
           "content" : {
@@ -80,7 +80,7 @@
             "maxLength" : 255,
             "type" : "string",
             "description" : "External reference id set by the originator system",
-            "example" : "197297287383, payref1189"
+            "example" : "197297287383"
           },
           "sourceReferenceId" : {
             "maxLength" : 35,
@@ -115,7 +115,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Payment Status such as VALIDATED, VALIDATION_FAILURE, AUTHORIZED, MEMO_POSTED, READY_TO_TRANSMIT, TRANSMITTED,PROCESSED, CANCELLED",
-            "example" : "VALIDATION_FAILURE, PROCESSED, CANCELLED"
+            "example" : "VALIDATION_FAILURE"
           },
           "validationFailureMessages" : {
             "type" : "string",
@@ -131,7 +131,7 @@
             "maxLength" : 20,
             "type" : "string",
             "description" : "Delivery method associated with the payment such as ACH, FEDWIRE, RTP, FEDNOW, SWIFT",
-            "example" : "ACH, FEDWIRE, RTP, FEDNOW, SWIFT"
+            "example" : "ACH"
           },
           "feeAmount" : {
             "maximum" : 10000000000000000,
@@ -151,7 +151,7 @@
             "maxLength" : 3,
             "type" : "string",
             "description" : "Inbound or Outbound Payment Indicator.",
-            "example" : "IN or OUT"
+            "example" : "IN"
           },
           "paymentNote1" : {
             "maxLength" : 35,
@@ -175,7 +175,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Type of Payment - Same Day or Regular ACH. Possible values are REGULAR_ACH, SAME_DAY_ACH, WIRE, BOOK_TRANSFER, REALTIME_RTP, REALTIME_FEDNOW, SPOT_SWIFT, SAME_DAY_SWIFT, NEXT_DAY_SWIFT",
-            "example" : "SAME_DAY_ACH, WIRE"
+            "example" : "SAME_DAY_ACH"
           },
           "senderBankCountry" : {
             "type" : "string",
@@ -185,7 +185,7 @@
           "feeName" : {
             "type" : "string",
             "description" : "Fee name.",
-            "example" : "Express"
+            "example" : "Custom"
           },
           "memoPostFailureReason" : {
             "type" : "string",
@@ -338,7 +338,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Receiver Bank Id Type",
-            "example" : "NID or SWIFT"
+            "example" : "NID"
           },
           "receiverBankId" : {
             "maxLength" : 35,
@@ -380,7 +380,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Intermediary Receiver Bank ID Type",
-            "example" : "NID or SWIFT"
+            "example" : "NID"
           },
           "intermediaryReceiverBankId" : {
             "maxLength" : 35,
@@ -506,7 +506,7 @@
             "maxLength" : 10,
             "type" : "string",
             "description" : "Payment entry type such as CREDIT or DEBIT",
-            "example" : "CREDIT or DEBIT"
+            "example" : "CREDIT"
           },
           "senderName" : {
             "maxLength" : 255,
@@ -537,14 +537,14 @@
           "senderAccountType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Sender Account Type such as Deposit or GL",
-            "example" : "Deposit or GL"
+            "description" : "Sender Account Type such as Deposit or GL or Loan",
+            "example" : "DepositL"
           },
           "senderType" : {
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender Type - Corporate, Consumer, Downstream Partner",
-            "example" : "Corporate, Consumer"
+            "example" : "Corporate"
           },
           "senderAddress1" : {
             "maxLength" : 35,
@@ -585,7 +585,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender Identifier type the possible values are Driving License,Passport, Tax ID",
-            "example" : "Driving License, Passport, Tax ID"
+            "example" : "Driving License"
           },
           "senderId" : {
             "maxLength" : 35,
@@ -597,7 +597,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender Identifier type (2) the possible values are Driving License, Passport, Tax ID",
-            "example" : "Driving License, Passport, Tax ID"
+            "example" : "Driving License"
           },
           "senderId2" : {
             "maxLength" : 35,
@@ -616,7 +616,7 @@
             "maxLength" : 35,
             "type" : "string",
             "description" : "Sender Bank Id Type",
-            "example" : "NID or SWIFT"
+            "example" : "NID"
           },
           "senderBankId" : {
             "maxLength" : 35,
@@ -774,14 +774,15 @@
             "example" : "United States of America"
           },
           "paymentNocDetails" : {
-            "$ref" : "#/components/schemas/payment_paymentNocDetails"
+            "type" : "object",
+            "description" : "Applicable for the ACH payment when NOC is orginated or received."
           },
-          "imad" : {
+          "iMad" : {
             "type" : "string",
             "description" : "It is a unique number given to each FedWire payment when using the Federal Reserve Bank Service and can be used to investigate and track wire transfers",
             "example" : "20220627MMQCTR7B000012"
           },
-          "omad" : {
+          "oMad" : {
             "type" : "string",
             "description" : "The OMAD indicates a unique number assigned to each transfer providing delivery-related information",
             "example" : "0328QMGFNP6400002503281343FT0120232023"
@@ -808,19 +809,19 @@
             "maxLength" : 140,
             "type" : "string",
             "description" : "Request Method associated with the payment origination",
-            "example" : "WALK-IN, PHONE-IN"
+            "example" : "WALK-IN"
           },
           "achSecCode" : {
             "maxLength" : 3,
             "type" : "string",
             "description" : "ACH SEC Code. Applicable for the ACH payment rail.",
-            "example" : "PPD, CCD"
+            "example" : "PPD"
           },
           "achTransactionCode" : {
             "maxLength" : 10,
             "type" : "string",
             "description" : "ACH transaction code.",
-            "example" : "21, 22, 23"
+            "example" : "21"
           },
           "achTraceId" : {
             "maxLength" : 25,
@@ -838,13 +839,13 @@
             "maxLength" : 3,
             "type" : "string",
             "description" : "Fedwire busines function code",
-            "example" : "CTR, CTP"
+            "example" : "CTR"
           },
           "fedwireDetailsOfCharge" : {
             "maxLength" : 3,
             "type" : "string",
             "description" : "Fedwire details of charge",
-            "example" : "SHA, BEN"
+            "example" : "SHA"
           },
           "fedwireComments" : {
             "maxLength" : 255,
@@ -865,7 +866,8 @@
             "example" : "LTR"
           },
           "beneficiaryFIAdviceInformation" : {
-            "$ref" : "#/components/schemas/payment_beneficiaryFIAdviceInformation"
+            "type" : "object",
+            "description" : "Beneficiary FI Advice Information"
           },
           "beneficiaryAdviceCode" : {
             "maxLength" : 3,
@@ -874,7 +876,8 @@
             "example" : "LTR"
           },
           "beneficiaryAdviceInformation" : {
-            "$ref" : "#/components/schemas/payment_beneficiaryAdviceInformation"
+            "type" : "object",
+            "description" : "Beneficiary Advice Information"
           },
           "beneficiaryFIInformation" : {
             "maxLength" : 255,
@@ -883,16 +886,18 @@
             "example" : "notes"
           },
           "rtpDetails" : {
-            "type" : "object"
+            "type" : "object",
+            "description" : "Payment rtp details. This will be populated for the rtp payment."
           },
           "fedNowDetails" : {
-            "type" : "object"
+            "type" : "object",
+            "description" : "Payment fednow details. This will be populated for the fennow payment."
           },
           "paymentReturnDetails" : {
             "type" : "array",
             "description" : "Payment return details. This will be populated for the returned payment.",
             "items" : {
-              "$ref" : "#/components/schemas/payment_paymentReturnDetails"
+              "type" : "object"
             }
           },
           "creationDateTime" : {
@@ -909,97 +914,6 @@
           }
         },
         "description" : "Payment information"
-      },
-      "payment_paymentNocDetails" : {
-        "type" : "object",
-        "properties" : {
-          "nocCode" : {
-            "type" : "string",
-            "description" : "Code assciated with NOC",
-            "example" : "C01, C02"
-          },
-          "originalAccountNumber" : {
-            "type" : "string",
-            "description" : "Original account number",
-            "example" : "112233"
-          },
-          "correctedAccountNumber" : {
-            "type" : "string",
-            "description" : "Corrected account number",
-            "example" : "112244"
-          },
-          "originalRoutingNumber" : {
-            "type" : "string",
-            "description" : "Original routing number",
-            "example" : "70192837"
-          },
-          "correctedRoutingNumber" : {
-            "type" : "string",
-            "description" : "Corrected routing number",
-            "example" : "70192832"
-          },
-          "originalTranCode" : {
-            "type" : "string",
-            "description" : "Original tran code",
-            "example" : "27"
-          },
-          "correctedTranCode" : {
-            "type" : "string",
-            "description" : "Corrected tran code",
-            "example" : "26"
-          },
-          "receivedDateTime" : {
-            "type" : "string",
-            "description" : "NOC received date and time",
-            "example" : "2022-06-30T01:30:48.342Z"
-          }
-        },
-        "description" : "Applicable for the ACH payment when NOC is orginated or received.",
-        "example" : "{\"nocCode \": \"CO2\",\"originalAccountNumber\": 112233,\"correctedAccountNumber\": 223344,\"originalRoutingNumber\": 1111222,\"correctedRoutingNumber\": 332222,  \"originalTranCode\": \"27\",\"correctedTranCode \": \"26 \",\"receivedDateTime \": \"2022 - 06 - 30 T01: 30: 48.342 Z\"}"
-      },
-      "payment_beneficiaryFIAdviceInformation" : {
-        "type" : "object",
-        "properties" : {
-          "adviceCode" : {
-            "type" : "string",
-            "description" : "Advice FI Code",
-            "example" : "LTR"
-          },
-          "lines" : {
-            "type" : "string",
-            "description" : "Advice FI Information"
-          }
-        },
-        "description" : "Beneficiary FI Advice Information",
-        "example" : "{\"adviceCode \": \"LTR\",\"lines\": \"advice information\"}"
-      },
-      "payment_beneficiaryAdviceInformation" : {
-        "type" : "object",
-        "properties" : {
-          "adviceCode" : {
-            "type" : "string",
-            "description" : "Advice  Code",
-            "example" : "LTR"
-          },
-          "lines" : {
-            "type" : "string",
-            "description" : "Advice Information"
-          }
-        },
-        "description" : "Beneficiary Advice Information",
-        "example" : "{\"adviceCode \": \"LTR\",\"lines\": \"advice information\"}"
-      },
-      "payment_paymentReturnDetails" : {
-        "type" : "object",
-        "properties" : {
-          "code" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          }
-        },
-        "example" : "{\"code\":\"R02\",\"description\":\"Account closed\"}"
       }
     }
   }
