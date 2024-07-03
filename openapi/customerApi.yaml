@@ -2136,6 +2136,45 @@
           }
         }
       },
+      "UpdateCustomerAddress" : {
+        "properties" : {
+          "addressLine1" : {
+            "type" : "string",
+            "description" : "Address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "type" : "string",
+            "description" : "Address Line 2",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "City",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "type" : "string",
+            "description" : "State",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "type" : "string",
+            "description" : "Postal code",
+            "example" : "28269"
+          },
+          "countryCode" : {
+            "type" : "string",
+            "description" : "ISO country code",
+            "example" : "USA"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country name",
+            "example" : "UNITED STATES OF AMERICA"
+          }
+        }
+      },
       "CustomerAppLimit" : {
         "properties" : {
           "appName" : {
@@ -2391,7 +2430,7 @@
             "type" : "boolean"
           },
           "mailingAddress" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
           },
           "relationshipType" : {
             "type" : "string",
@@ -2529,13 +2568,13 @@
             "example" : "https://twitter.com/finzly"
           },
           "legalAddress" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
           },
           "mailAddressSameAsLegal" : {
             "type" : "boolean"
           },
           "mailingAddress" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
           },
           "relationshipType" : {
             "type" : "string",
@@ -2721,13 +2760,13 @@
             "example" : "https://twitter.com/bank"
           },
           "legalAddress" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
           },
           "mailAddressSameAsLegal" : {
             "type" : "boolean"
           },
           "mailingAddress" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
           },
           "relationshipType" : {
             "type" : "string",
