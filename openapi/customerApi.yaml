@@ -714,7 +714,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetAccountResponse"
                 }
@@ -724,7 +724,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetAccountResponse"
                 }
@@ -802,7 +802,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/UpdateAccountResponse"
                 }
@@ -812,7 +812,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/UpdateAccountResponse"
                 }
@@ -879,7 +879,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/UpdateAccountResponse"
                 }
@@ -889,7 +889,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/UpdateAccountResponse"
                 }
@@ -1053,7 +1053,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "Account Info",
+          "description" : "Contact Info",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -1220,11 +1220,11 @@
           }
         } ],
         "requestBody" : {
-          "description" : "Account Info",
+          "description" : "Contact Info",
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/CustomerContact"
+                "$ref" : "#/components/schemas/UpdateCustomerContact"
               }
             }
           },
@@ -1234,7 +1234,7 @@
           "default" : {
             "description" : "Successful",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateCustomerContactResponse"
                 }
@@ -1244,7 +1244,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CreateCustomerContactResponse"
                 }
@@ -1325,7 +1325,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CustomerUserResponse"
                 }
@@ -1406,7 +1406,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CustomerUserResponse"
                 }
@@ -1585,7 +1585,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomerUserResponse"
                 }
@@ -1744,7 +1744,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetCustomerRoleResponse"
                 }
@@ -1905,7 +1905,7 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/CustomerRoleResponse"
                 }
@@ -2048,6 +2048,50 @@
         "properties" : {
           "data" : {
             "$ref" : "#/components/schemas/PaymentNoteOptionValueChildren_data"
+          }
+        }
+      },
+      "UpdateCustomerContactIntermediaryBankAddress" : {
+        "properties" : {
+          "addressLine1" : {
+            "type" : "string",
+            "description" : "Address line 1",
+            "example" : "111 My Street"
+          },
+          "addressLine2" : {
+            "type" : "string",
+            "description" : "Address Line 2",
+            "example" : "Suite 210"
+          },
+          "addressLine3" : {
+            "type" : "string",
+            "description" : "Address Line 3",
+            "example" : "Suite 210"
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "City",
+            "example" : "Charlotte"
+          },
+          "state" : {
+            "type" : "string",
+            "description" : "State",
+            "example" : "North Carolina"
+          },
+          "postalCode" : {
+            "type" : "string",
+            "description" : "Postal code",
+            "example" : "28269"
+          },
+          "countryCode" : {
+            "type" : "string",
+            "description" : "ISO country code",
+            "example" : "USA"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country name",
+            "example" : "UNITED STATES OF AMERICA"
           }
         }
       },
@@ -3410,6 +3454,54 @@
         }
       },
       "CustomerContact" : {
+        "required" : [ "contactBank", "externalReferenceId", "name", "templateName" ],
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly system. The external reference id can be used by the finzly for the request tracing purpose (if needed).",
+            "example" : "89856556"
+          },
+          "templateName" : {
+            "type" : "string",
+            "description" : "Contact unique name.",
+            "example" : "bene 1"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Contact name.",
+            "example" : "John"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/CustomerAddress"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "Customer Email Address",
+            "example" : "abc@abc.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Customer's Phone number",
+            "example" : "123-124-9877"
+          },
+          "contactBank" : {
+            "$ref" : "#/components/schemas/CustomerContact_contactBank"
+          },
+          "intermediaryBank" : {
+            "$ref" : "#/components/schemas/CustomerContact_intermediaryBank"
+          },
+          "otherInfo" : {
+            "$ref" : "#/components/schemas/CustomerContact_otherInfo"
+          },
+          "regulartoryReporting" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CustomerContact_regulartoryReporting"
+            }
+          }
+        }
+      },
+      "UpdateCustomerContact" : {
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
@@ -3445,10 +3537,10 @@
             "example" : "123-124-9877"
           },
           "contactBank" : {
-            "$ref" : "#/components/schemas/CustomerContact_contactBank"
+            "$ref" : "#/components/schemas/UpdateCustomerContact_contactBank"
           },
           "intermediaryBank" : {
-            "$ref" : "#/components/schemas/CustomerContact_intermediaryBank"
+            "$ref" : "#/components/schemas/UpdateCustomerContact_intermediaryBank"
           },
           "otherInfo" : {
             "$ref" : "#/components/schemas/CustomerContact_otherInfo"
@@ -4101,6 +4193,7 @@
         }
       },
       "CustomerContact_contactBank" : {
+        "required" : [ "accountCcy", "accountNo", "country", "name" ],
         "type" : "object",
         "properties" : {
           "country" : {
@@ -4120,10 +4213,12 @@
           },
           "nationalCode" : {
             "type" : "string",
+            "description" : "National code that identifies your bank, country, location, and branch. Either swiftCode or nationalCode is needed.",
             "example" : "0125487"
           },
           "swiftCode" : {
             "type" : "string",
+            "description" : "SWIFT code that identifies your bank, country, location, and branch. Either swiftCode or nationalCode is needed.",
             "example" : "USBNX000"
           }
         }
@@ -4171,6 +4266,58 @@
           },
           "value" : {
             "type" : "string"
+          }
+        }
+      },
+      "UpdateCustomerContact_contactBank" : {
+        "type" : "object",
+        "properties" : {
+          "country" : {
+            "type" : "string"
+          },
+          "accountNo" : {
+            "type" : "string"
+          },
+          "accountCcy" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
+          },
+          "nationalCode" : {
+            "type" : "string",
+            "example" : "0125487"
+          },
+          "swiftCode" : {
+            "type" : "string",
+            "example" : "USBNX000"
+          }
+        }
+      },
+      "UpdateCustomerContact_intermediaryBank" : {
+        "type" : "object",
+        "properties" : {
+          "country" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "nationalCode" : {
+            "type" : "string"
+          },
+          "swiftCode" : {
+            "type" : "string"
+          },
+          "coverMessageRequired" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/UpdateCustomerContactIntermediaryBankAddress"
           }
         }
       },
