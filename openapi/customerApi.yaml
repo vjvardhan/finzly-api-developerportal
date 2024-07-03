@@ -3432,7 +3432,7 @@
             "example" : "John"
           },
           "address" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
           },
           "email" : {
             "type" : "string",
