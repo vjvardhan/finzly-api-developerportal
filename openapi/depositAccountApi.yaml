@@ -652,6 +652,7 @@
         }
       },
       "DepositDebitCardRequest" : {
+        "required" : [ "cardName" ],
         "properties" : {
           "cardName" : {
             "type" : "string",
@@ -885,6 +886,7 @@
         }
       },
       "CloseDepositAccountRequest" : {
+        "required" : [ "comments" ],
         "properties" : {
           "comments" : {
             "type" : "string",
