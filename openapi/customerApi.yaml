@@ -3529,6 +3529,7 @@
           },
           "regulartoryReporting" : {
             "type" : "array",
+            "description" : "The key for regular reporting should be configured in BankOs staticData. eg. routingNumber,social, TaxId etc...",
             "items" : {
               "$ref" : "#/components/schemas/CustomerContact_regulartoryReporting"
             }
@@ -3581,6 +3582,7 @@
           },
           "regulartoryReporting" : {
             "type" : "array",
+            "description" : "The key for regular reporting should be configured in BankOs staticData. eg. routingNumber,social, TaxId etc...",
             "items" : {
               "$ref" : "#/components/schemas/CustomerContact_regulartoryReporting"
             }
@@ -4323,8 +4325,7 @@
             "type" : "string",
             "example" : "4545"
           }
-        },
-        "description" : "The key for regular reporting should be configured in BankOs staticData. eg. routingNumber,social, TaxId etc..."
+        }
       },
       "UpdateCustomerContact_contactBank" : {
         "type" : "object",
