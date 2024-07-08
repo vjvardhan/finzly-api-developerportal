@@ -487,7 +487,7 @@
           "schema" : {
             "type" : "string",
             "description" : "Status if the account",
-            "example" : "Active or Inactive"
+            "example" : "Active or Closed or Suspended"
           }
         }, {
           "name" : "currency",
