@@ -1750,7 +1750,7 @@
         "description" : "The address pertains to the sender or debtor. This field is optional and is required only when the account is not present in the Finzly-CRM system. If any of the address fields are provided, it is necessary to include addressLine1, city, state, postalCode, and countryCode."
       },
       "ReceiverOrDebtorAddress" : {
-        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
+        "required" : [ "addressLine1", "countryCode" ],
         "properties" : {
           "addressLine1" : {
             "maxLength" : 35,
@@ -2415,7 +2415,7 @@
             "type" : "string",
             "description" : "Local instrument code applicable for the CTP fedwire payment or RTP payment",
             "example" : "COVS",
-            "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE" ]
+            "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE", "FDNA" ]
           },
           "referenceForBeneficiary" : {
             "maxLength" : 16,
@@ -2454,8 +2454,8 @@
           "requestMethod" : {
             "maxLength" : 45,
             "type" : "string",
-            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
-            "example" : "WALK-IN"
+            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. EMAL, URID etc.",
+            "example" : "EMAL"
           },
           "detailsOfCharges" : {
             "maxLength" : 3,
@@ -2697,7 +2697,6 @@
         "description" : "Payment sender and account details from which the money will be deducted."
       },
       "PaymentReceiver" : {
-        "required" : [ "address" ],
         "properties" : {
           "accountUID" : {
             "maxLength" : 11,
