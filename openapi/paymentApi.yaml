@@ -2415,7 +2415,7 @@
             "type" : "string",
             "description" : "Local instrument code applicable for the CTP fedwire payment or RTP payment",
             "example" : "COVS",
-            "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE" ]
+            "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE", "FDNA" ]
           },
           "referenceForBeneficiary" : {
             "maxLength" : 16,
@@ -2454,8 +2454,8 @@
           "requestMethod" : {
             "maxLength" : 45,
             "type" : "string",
-            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
-            "example" : "WALK-IN"
+            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. EMAL, URID etc.",
+            "example" : "EMAL"
           },
           "detailsOfCharges" : {
             "maxLength" : 3,
