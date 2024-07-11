@@ -2697,7 +2697,6 @@
         "description" : "Payment sender and account details from which the money will be deducted."
       },
       "PaymentReceiver" : {
-        "required" : [ "address" ],
         "properties" : {
           "accountUID" : {
             "maxLength" : 11,
