@@ -2454,8 +2454,8 @@
           "requestMethod" : {
             "maxLength" : 45,
             "type" : "string",
-            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. EMAL, URID etc.",
-            "example" : "EMAL"
+            "description" : "This is an optional field. Customer payment request method from a given channel for e.g. WALK-IN, PHONE-IN etc.",
+            "example" : "WALK-IN"
           },
           "detailsOfCharges" : {
             "maxLength" : 3,
