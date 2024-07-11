@@ -2870,7 +2870,6 @@
         }
       },
       "UpdateAccountRequest" : {
-        "required" : [ "externalReferenceId" ],
         "properties" : {
           "externalReferenceId" : {
             "type" : "string",
