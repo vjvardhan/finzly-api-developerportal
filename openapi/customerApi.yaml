@@ -140,7 +140,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/GetCustomersResponse"
+                  "$ref" : "#/components/schemas/SearchCustomersResponse"
                 }
               }
             }
@@ -150,7 +150,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/GetCustomersResponse"
+                  "$ref" : "#/components/schemas/SearchCustomersResponse"
                 }
               }
             }
@@ -393,7 +393,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CreateUpdateCustomerResponse"
+                  "$ref" : "#/components/schemas/UpdateCustomersResponse"
                 }
               }
             }
@@ -403,7 +403,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/CreateUpdateCustomerResponse"
+                  "$ref" : "#/components/schemas/UpdateCustomersResponse"
                 }
               }
             }
@@ -2676,6 +2676,32 @@
           }
         }
       },
+      "UpdateCustomersResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "CUST001"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to get the customer: <Reason>"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetCustomerDetailResponse"
+            }
+          }
+        }
+      },
       "GetCustomersResponse" : {
         "properties" : {
           "status" : {
@@ -2702,6 +2728,199 @@
             "items" : {
               "$ref" : "#/components/schemas/GetCustomerDetailResponse"
             }
+          }
+        }
+      },
+      "SearchCustomersResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "Status of the API request either it will be a success or a failure",
+            "example" : "Success",
+            "enum" : [ "Success", "Failure" ]
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Code associated with the error.",
+            "example" : "CUST001"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.",
+            "example" : "Failed to get the customer: <Reason>"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SearchCustomerDetailResponse"
+            }
+          }
+        }
+      },
+      "SearchCustomerDetailResponse" : {
+        "properties" : {
+          "externalReferenceId" : {
+            "type" : "string",
+            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing purpose (if needed).",
+            "example" : "tran12780"
+          },
+          "legalName" : {
+            "type" : "string",
+            "description" : "Customer's legal name",
+            "example" : "DEMO Bank"
+          },
+          "shortName" : {
+            "type" : "string",
+            "description" : "Customer's short name",
+            "example" : "DMOB"
+          },
+          "customerUID" : {
+            "type" : "number",
+            "description" : "The unique identifier associated with the customer record assigned by the Finzly system.",
+            "example" : 111222
+          },
+          "customerType" : {
+            "type" : "string",
+            "description" : "Type of the customers in the Finzly CRM system",
+            "example" : "Consumer or Corporate or Downstream Partner or Processing Org or Financial Institution",
+            "enum" : [ "Consumer", "Corporate", "Financial Institution", "Downstream Partner", "Processing Org" ]
+          },
+          "taxId" : {
+            "type" : "string",
+            "description" : "A tax id that the US government uses to identify business entities located in the US number.",
+            "example" : "123456789"
+          },
+          "achCompanyID" : {
+            "type" : "string",
+            "description" : "ACH company ID is a 10-digit identifier used by banks and Nacha, the operator of the ACH network, to identify the entity collecting payments or sending money via ACH (also referred to as an “originator”)",
+            "example" : "1234567899"
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Customer id assigned by the user.",
+            "example" : "12347890"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current status of the customer.",
+            "example" : "Active"
+          },
+          "lei" : {
+            "type" : "string",
+            "description" : "Legal Entity Identifier (LEI) associated with the customer",
+            "example" : "ABC1234"
+          },
+          "swiftcode" : {
+            "type" : "string",
+            "description" : "SWIFT code that identifies your bank, country, location, and branch",
+            "example" : "BOFAUS3N"
+          },
+          "language" : {
+            "type" : "string",
+            "description" : "language",
+            "example" : "English"
+          },
+          "emailAddress" : {
+            "type" : "string",
+            "description" : "Customer email address",
+            "example" : "abc@bank.com"
+          },
+          "phoneNumber" : {
+            "type" : "string",
+            "description" : "Customer phone number",
+            "example" : "1112223333"
+          },
+          "faxNumber" : {
+            "type" : "string",
+            "description" : "Customer fax number",
+            "example" : "1231249877"
+          },
+          "website" : {
+            "type" : "string",
+            "description" : "Customer website url address",
+            "example" : "http://www.bank.com"
+          },
+          "logoUrl" : {
+            "type" : "string",
+            "description" : "Customer logo url",
+            "example" : "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+          },
+          "linkedinUrl" : {
+            "type" : "string",
+            "description" : "Company linkedin URL",
+            "example" : "https://www.linkedin.com/company/finzly"
+          },
+          "twitterUrl" : {
+            "type" : "string",
+            "description" : "Customer twitter url",
+            "example" : "https://twitter.com/bank"
+          },
+          "legalAddress" : {
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
+          },
+          "mailAddressSameAsLegal" : {
+            "type" : "boolean"
+          },
+          "mailingAddress" : {
+            "$ref" : "#/components/schemas/UpdateCustomerAddress"
+          },
+          "relationshipType" : {
+            "type" : "string",
+            "description" : "Relationship Type",
+            "example" : "Customer or Bank or ThirdParty or Self",
+            "enum" : [ "customer", "bank", "thirdparty", "self" ]
+          },
+          "partnerOrgShortName" : {
+            "type" : "string",
+            "description" : "This is the shortname associated with the customer defined in the CRM system as 'Downstream Partner'. This is required only if the customer relationshipType is Third party",
+            "example" : "TESTBANK"
+          },
+          "processingOrgShortName" : {
+            "type" : "string",
+            "description" : "This is the shortname associated with the processing org the customer is associated with.",
+            "example" : "POBANK"
+          },
+          "costCenter" : {
+            "type" : "string",
+            "description" : "Cost Center associated with the customer entity",
+            "example" : "123123121"
+          },
+          "relationshipManager" : {
+            "type" : "string",
+            "description" : "Relationship manager name. It needs to be a valid user login id in the finzly system.",
+            "example" : "testuser"
+          },
+          "originatingOfficer" : {
+            "type" : "string",
+            "description" : "Originating Officer name. Its needs to be a valid user login id in the finzly system.",
+            "example" : "testuser"
+          },
+          "parentEntityShortName" : {
+            "type" : "string",
+            "description" : "This is the shortname associated with the existing customer legal entity act as a parent entity",
+            "example" : "TESTBANK"
+          },
+          "additionalProfileDetails" : {
+            "$ref" : "#/components/schemas/CustomerAdditonalProfileDetails"
+          },
+          "secCodes" : {
+            "type" : "array",
+            "description" : "Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity",
+            "items" : {
+              "type" : "string",
+              "example" : "WEB"
+            }
+          },
+          "note" : {
+            "type" : "string",
+            "description" : "Free form text to leave any notes for the csutomer entity.",
+            "example" : "Notes for the customer"
+          },
+          "legalEntityAccessSettings" : {
+            "$ref" : "#/components/schemas/LegalEntityAccessSettings"
           }
         }
       },
@@ -2866,6 +3085,60 @@
           },
           "legalEntityAccessSettings" : {
             "$ref" : "#/components/schemas/LegalEntityAccessSettings"
+          },
+          "feeTier" : {
+            "$ref" : "#/components/schemas/feeTier"
+          },
+          "legalEntityLimits" : {
+            "$ref" : "#/components/schemas/legalEntityLimits"
+          }
+        }
+      },
+      "feeTier" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Application feeTier unique id which is associated with customer.",
+            "example" : "3616"
+          },
+          "application" : {
+            "type" : "string",
+            "description" : "An application name which is associated with customer and feeTier. e.g. Payment Galaxy, Confirms",
+            "example" : "Confirms"
+          },
+          "feeTier" : {
+            "type" : "string",
+            "description" : "Value for the fee tier.",
+            "example" : "Gold"
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Customer bank account number which is accosiated with customer and the fee tier.",
+            "example" : "40000023"
+          }
+        }
+      },
+      "legalEntityLimits" : {
+        "properties" : {
+          "key" : {
+            "type" : "string",
+            "description" : "Application limit code which is associated customer.",
+            "example" : "ACH_CCD_DEBIT_LIMIT_PER_BATCH"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Application level limit which is associated customer.",
+            "example" : "21"
+          },
+          "applicationId" : {
+            "type" : "string",
+            "description" : "Application unique identification number which is associated with customer.",
+            "example" : "b6f342c3-e438-4d05-963e-12b144c0d467"
+          },
+          "applicationName" : {
+            "type" : "string",
+            "description" : "An application name which is associated with customer. e.g. Payment Galaxy, Confirms",
+            "example" : "Payment Galaxy"
           }
         }
       },
