@@ -656,7 +656,7 @@
         "properties" : {
           "cardName" : {
             "type" : "string",
-            "description" : "Specifies card name is an unique field."
+            "description" : "It is an unique field and only alphabetical characters are allowed."
           }
         }
       },
