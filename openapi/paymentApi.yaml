@@ -2413,7 +2413,7 @@
           },
           "localInstruments" : {
             "type" : "string",
-            "description" : "Local instrument code applicable for the CTP fedwire or RTP or FEDNOW payment",
+            "description" : "Local instrument code applicable for the CTP fedwire or RTP or FEDNOW payment.",
             "example" : "COVS",
             "enum" : [ "COVS", "ANSI", "GXML", "IXML", "NARR", "S820", "SWIF", "UEDI", "RRMT", "PROP", "STANDARD", "ZELLE", "INTERMEDIARY", "FOREIGN_AFFILIATE", "FDNA" ]
           },
