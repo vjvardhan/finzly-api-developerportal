@@ -2871,6 +2871,7 @@
         }
       },
       "AddCustomerFeeTierRequest" : {
+        "required" : [ "application", "feeTier" ],
         "properties" : {
           "application" : {
             "type" : "string",
@@ -2907,7 +2908,8 @@
         "properties" : {
           "id" : {
             "type" : "number",
-            "description" : "Customer fee tier id."
+            "description" : "Customer fee tier id.",
+            "example" : 889
           }
         }
       },
