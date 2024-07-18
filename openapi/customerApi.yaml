@@ -2871,10 +2871,11 @@
         }
       },
       "AddCustomerFeeTierRequest" : {
+        "required" : [ "application", "feeTier" ],
         "properties" : {
           "application" : {
             "type" : "string",
-            "description" : "A valid application name should be present in the Finzly system  and enabled for fees. e.g. Confirms, FX FrontOffice, Deposit, Teller, CRM, FX Trader, Foreign Exchange, Payment Galaxy, etc...",
+            "description" : "A valid application name should be present in the Finzly system  and enabled for fees.\ne.g. Confirms, FX FrontOffice, Deposit, Teller, CRM, FX Trader, Foreign Exchange, Payment Galaxy, etc...",
             "example" : "Payment Galaxy"
           },
           "accountNumber" : {
@@ -2884,7 +2885,7 @@
           },
           "feeTier" : {
             "type" : "string",
-            "description" : "A valid feeTier should be present in the Finzly system.            e.g. Gold,Silver,Platinum,BEN,SHA,ON,TELLER CONSUMER ACH,TELLER CONSUMER FEDWIRE,TELLER CONSUMER SWIFT,TELLER CORPORATE ACH,TELLER CORPORATE FEDWIRE,TELLER CORPORATE SWIFT, etc ...",
+            "description" : "A valid feeTier should be present in the Finzly system. e.g. Gold,Silver,Platinum,BEN,SHA,ON,TELLER CONSUMER ACH,TELLER CONSUMER FEDWIRE,TELLER CONSUMER SWIFT,TELLER CORPORATE ACH,TELLER CORPORATE FEDWIRE,TELLER CORPORATE SWIFT, etc ...",
             "example" : "Gold"
           }
         }
@@ -2907,7 +2908,8 @@
         "properties" : {
           "id" : {
             "type" : "number",
-            "description" : "Customer fee tier id."
+            "description" : "Customer fee tier id.",
+            "example" : 889
           }
         }
       },
