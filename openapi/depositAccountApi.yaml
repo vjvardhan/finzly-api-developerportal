@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Deposit Account",
-    "version" : "1.0.1"
+    "version" : "1.0.2"
   },
   "servers" : [ {
     "url" : "/"
@@ -85,6 +85,73 @@
       }
     },
     "/v1/bank/account/{accountId}" : {
+      "get" : {
+        "tags" : [ "Deposit Account" ],
+        "summary" : "Get deposit account details",
+        "description" : "Get a deposit account",
+        "operationId" : "GetDepositAccount",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Successful",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetDepositAccount"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetDepositAccount"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "You are not authorized to access the resource"
+          },
+          "403" : {
+            "description" : "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404" : {
+            "description" : "The resource you were trying to reach is not found"
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service unavailable"
+          }
+        }
+      },
       "put" : {
         "tags" : [ "Deposit Account" ],
         "summary" : "Update deposit account",
@@ -312,75 +379,6 @@
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DepositTransactionResponse"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad request"
-          },
-          "401" : {
-            "description" : "You are not authorized to access the resource"
-          },
-          "403" : {
-            "description" : "Accessing the resource you were trying to reach is forbidden"
-          },
-          "404" : {
-            "description" : "The resource you were trying to reach is not found"
-          },
-          "500" : {
-            "description" : "Internal server error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service unavailable"
-          }
-        }
-      }
-    },
-    "/v1/bank/account/{accountId}/balance" : {
-      "get" : {
-        "tags" : [ "Deposit Account" ],
-        "summary" : "Get deposit account details",
-        "description" : "Get a deposit account",
-        "operationId" : "GetDepositAccount",
-        "parameters" : [ {
-          "name" : "accountId",
-          "in" : "path",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string",
-            "description" : "account unique identifier associated with the deposit account in the Finzly's CRM system"
-          }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "Successful",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DepositAccountBalance"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DepositAccountBalance"
                 }
               }
             }
@@ -803,6 +801,35 @@
           }
         }
       },
+      "GetNotification" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "UUID of the notification which is associated with the deposit account.",
+            "example" : "70d38a9e-a609-4e2a-4444-8e02e140e6df"
+          },
+          "emailList" : {
+            "type" : "string",
+            "description" : "The valid email id.",
+            "example" : "abc@finzly.com"
+          },
+          "phoneNumberList" : {
+            "type" : "string",
+            "description" : "Valid phone number",
+            "example" : "9865321478"
+          },
+          "legalEntityId" : {
+            "type" : "number",
+            "description" : "Legal Entity Id",
+            "example" : 101
+          },
+          "depositAccountId" : {
+            "type" : "number",
+            "description" : "Deposit Account Id",
+            "example" : 101
+          }
+        }
+      },
       "Notification" : {
         "properties" : {
           "id" : {
@@ -836,6 +863,50 @@
           }
         }
       },
+      "GetDebitCards" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "UUID of the debit card which is associated with the deposit account.",
+            "example" : "70d38a9e-a609-4e2a-4444-8e02e140e6df"
+          },
+          "cardName" : {
+            "type" : "string",
+            "description" : "User name on card",
+            "example" : "xyz"
+          },
+          "cardNumber" : {
+            "type" : "string",
+            "description" : "Card Number",
+            "example" : "989898"
+          },
+          "cardExpiryDate" : {
+            "type" : "string",
+            "description" : "Card Expiry Date",
+            "example" : "2024-08-05"
+          },
+          "nameOnCard" : {
+            "type" : "string",
+            "description" : "Name On Card",
+            "example" : "xyz"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status",
+            "example" : "ACtive"
+          },
+          "depositAccountId" : {
+            "type" : "number",
+            "description" : "Deposit Account Id",
+            "example" : 101
+          },
+          "accountId" : {
+            "type" : "number",
+            "description" : "Account Id",
+            "example" : 1
+          }
+        }
+      },
       "AddDepositAccountNotification" : {
         "properties" : {
           "email" : {
@@ -862,6 +933,40 @@
             "description" : "Type of the counterParty.",
             "example" : "OWNER",
             "enum" : [ "OWNER", "CO-OWNER", "BENEFICIARY", "ESCROW" ]
+          }
+        }
+      },
+      "GetParty" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "UUID of the party which is associated with the deposit account.",
+            "example" : "70d38a9e-a609-4e2a-4444-8e02e140e6df"
+          },
+          "counterPartyShortName" : {
+            "type" : "string",
+            "description" : "This is a short name of the legal entity.",
+            "example" : "BANKA"
+          },
+          "relationship" : {
+            "type" : "string",
+            "description" : "Type of the counterParty",
+            "example" : "OWNER"
+          },
+          "addedOn" : {
+            "type" : "string",
+            "description" : "Added on date",
+            "example" : "2024-08-05"
+          },
+          "depositAccountId" : {
+            "type" : "number",
+            "description" : "Deposit Account Id",
+            "example" : 101
+          },
+          "accountId" : {
+            "type" : "number",
+            "description" : "Account Id",
+            "example" : 1
           }
         }
       },
@@ -895,12 +1000,195 @@
           }
         }
       },
-      "DepositAccountBalance" : {
+      "GetDepositAccount" : {
         "properties" : {
-          "accountUID" : {
+          "id" : {
             "type" : "number",
             "description" : "Deposit account unique id",
             "example" : 101
+          },
+          "productCode" : {
+            "type" : "string",
+            "description" : "productCode should be valid and present in the system.",
+            "example" : "BBCCOO"
+          },
+          "accountSubType" : {
+            "type" : "string",
+            "description" : "Account sub type",
+            "example" : "Savings"
+          },
+          "book" : {
+            "type" : "string",
+            "description" : "Book which is configured with account."
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Account name is an unique field and it is a mandatory field.",
+            "example" : "test123"
+          },
+          "accruedInterest" : {
+            "type" : "number",
+            "description" : "Accrued interest",
+            "example" : 222
+          },
+          "effectiveDate" : {
+            "type" : "string",
+            "description" : "Effective Date",
+            "example" : "2024-09-01"
+          },
+          "maturityDate" : {
+            "type" : "string",
+            "description" : "Maturity Date",
+            "example" : "2024-09-01"
+          },
+          "overdraftPermitted" : {
+            "type" : "boolean",
+            "description" : "Overdraft Permitted",
+            "example" : false
+          },
+          "overdraftLimit" : {
+            "type" : "string",
+            "description" : "Overdraft Limit",
+            "example" : "1.0"
+          },
+          "enableWires" : {
+            "type" : "boolean",
+            "description" : "Enable Wires",
+            "example" : false
+          },
+          "stopWires" : {
+            "type" : "boolean",
+            "description" : "Stop Wires",
+            "example" : false
+          },
+          "collateralized" : {
+            "type" : "boolean",
+            "description" : "collateralized",
+            "example" : false
+          },
+          "deceasedOwner" : {
+            "type" : "boolean",
+            "description" : "Deceased Owner",
+            "example" : false
+          },
+          "legalHold" : {
+            "type" : "boolean",
+            "description" : "Legal Hold",
+            "example" : false
+          },
+          "suspend" : {
+            "type" : "boolean",
+            "description" : "Suspend",
+            "example" : false
+          },
+          "openedBy" : {
+            "type" : "string",
+            "description" : "Opened by",
+            "example" : "test.account"
+          },
+          "dateOpened" : {
+            "type" : "string",
+            "description" : "Date Opened",
+            "example" : "2024-08-05"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Status",
+            "example" : "ACTIVE"
+          },
+          "statementFrequency" : {
+            "type" : "string",
+            "description" : "Statement Frequency",
+            "example" : "MONTHLY"
+          },
+          "nextStatementDate" : {
+            "type" : "string",
+            "description" : "Next Statement Date",
+            "example" : "2024-09-01"
+          },
+          "offsetGL" : {
+            "type" : "string",
+            "description" : "Offset GL",
+            "example" : "20718894"
+          },
+          "stopDebits" : {
+            "type" : "boolean",
+            "description" : "Stop Debits",
+            "example" : false
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments",
+            "example" : "test"
+          },
+          "postingDate" : {
+            "type" : "string",
+            "description" : "Posting Date",
+            "example" : "2024-09-01"
+          },
+          "routingNumber" : {
+            "type" : "string",
+            "description" : "Routing Number",
+            "example" : "2024-09-01"
+          },
+          "nextInterestPayDate" : {
+            "type" : "string",
+            "description" : "Next Interest Pay Date",
+            "example" : "2024-09-01"
+          },
+          "error" : {
+            "type" : "string",
+            "description" : "error",
+            "example" : "error"
+          },
+          "statementType" : {
+            "type" : "string",
+            "description" : "Statement Type",
+            "example" : "PDF"
+          },
+          "nextResetDate" : {
+            "type" : "string",
+            "description" : "Next Reset Date",
+            "example" : "2024-09-01"
+          },
+          "masterAccountId" : {
+            "type" : "number",
+            "description" : "Master Account Id",
+            "example" : 1212
+          },
+          "masterAccountNumber" : {
+            "type" : "string",
+            "description" : "Master Account Number",
+            "example" : "98568989"
+          },
+          "hierarchyLevel" : {
+            "type" : "number",
+            "description" : "Hierarchy Level"
+          },
+          "hasChildren" : {
+            "type" : "boolean",
+            "description" : "Has Children",
+            "example" : false
+          },
+          "processingOrg" : {
+            "type" : "string",
+            "description" : "Processing Org",
+            "example" : "12"
+          },
+          "ytdIntPaid" : {
+            "type" : "number",
+            "description" : "ytd Int Paid",
+            "example" : 323
+          },
+          "withheldTax" : {
+            "type" : "number",
+            "description" : "With held Tax",
+            "example" : 323
+          },
+          "freeTransactions" : {
+            "type" : "number",
+            "description" : "Free Transactions",
+            "example" : 5
           },
           "accountNumber" : {
             "type" : "string",
@@ -927,11 +1215,205 @@
             "description" : "Ledger balance balance in the ledger account.",
             "example" : 100000.0
           },
+          "party" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetParty"
+            }
+          },
+          "debitCards" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetDebitCards"
+            }
+          },
           "result" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Result"
             }
+          },
+          "notification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/GetNotification"
+            }
+          },
+          "rates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Rates"
+            }
+          },
+          "product" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Product"
+            }
+          },
+          "statementSettings" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/StatementSettings"
+            }
+          }
+        }
+      },
+      "Rates" : {
+        "properties" : {
+          "interestType" : {
+            "type" : "string",
+            "description" : "Interest Type",
+            "example" : "FIXED"
+          },
+          "fixedRate" : {
+            "type" : "number",
+            "description" : "Fixed Rate",
+            "example" : 12.0
+          },
+          "rateIndex" : {
+            "type" : "number",
+            "description" : "Rate Index",
+            "example" : 0.0
+          },
+          "rateSpread" : {
+            "type" : "number",
+            "description" : "Rate Spread",
+            "example" : 0.0
+          },
+          "interestCalculationDay" : {
+            "type" : "number",
+            "description" : "Interest CalculationDay",
+            "example" : 30
+          },
+          "interestPaymentFrequency" : {
+            "type" : "string",
+            "description" : "Interest Payment Frequency",
+            "example" : "XYZ"
+          },
+          "compoundingType" : {
+            "type" : "string",
+            "description" : "Compounding Type",
+            "example" : "MONTHLY"
+          },
+          "interestPayDay" : {
+            "type" : "number",
+            "description" : "Interest Pay Day",
+            "example" : 12
+          },
+          "dayCounting" : {
+            "type" : "string",
+            "description" : "Day Counting",
+            "example" : "ACTUALVS360_ACT_360_"
+          }
+        }
+      },
+      "Product" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id",
+            "example" : "c1da7e65-d135-40fa-accf-1efef4ecced4"
+          },
+          "productCode" : {
+            "type" : "string",
+            "description" : "Product Code",
+            "example" : "VP001"
+          },
+          "productName" : {
+            "type" : "string",
+            "description" : "Product Name",
+            "example" : "Virtual Product 001"
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Currency",
+            "example" : "USD"
+          },
+          "maintenanceFee" : {
+            "type" : "number",
+            "description" : "Maintenance Fee",
+            "example" : 12
+          },
+          "accountSubType" : {
+            "type" : "string",
+            "description" : "Account Sub-Type",
+            "example" : "Savings"
+          },
+          "glCurrency" : {
+            "type" : "string",
+            "description" : "gl Currency",
+            "example" : "USD"
+          },
+          "book" : {
+            "type" : "string",
+            "description" : "book",
+            "example" : "DEPOSA"
+          },
+          "feeTier" : {
+            "type" : "string",
+            "description" : "feeTier",
+            "example" : "GOLD"
+          },
+          "liabilityGL" : {
+            "type" : "string",
+            "description" : "Liability GL",
+            "example" : "20718894"
+          },
+          "accruedInterestGL" : {
+            "type" : "number",
+            "description" : "Accrued Interest GL",
+            "example" : 20718894
+          },
+          "revalPlGl" : {
+            "type" : "number",
+            "description" : "RevalPlGl",
+            "example" : 20718894
+          },
+          "accountNumber" : {
+            "type" : "string",
+            "description" : "Account Number",
+            "example" : "VP001"
+          },
+          "offsetGL" : {
+            "type" : "number",
+            "description" : "offsetGL",
+            "example" : 20718894
+          },
+          "result" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Rates"
+            }
+          },
+          "routingNumber" : {
+            "type" : "string",
+            "description" : "routingNumber",
+            "example" : "126543610"
+          }
+        }
+      },
+      "StatementSettings" : {
+        "properties" : {
+          "enableDebitAdvice" : {
+            "type" : "boolean",
+            "description" : "Enable Debit Advice",
+            "example" : true
+          },
+          "debitLimit" : {
+            "type" : "number",
+            "description" : "Debit Limit",
+            "example" : 12
+          },
+          "enableCreditAdvice" : {
+            "type" : "boolean",
+            "description" : "Enable Credit Advice",
+            "example" : true
+          },
+          "creditLimit" : {
+            "type" : "number",
+            "description" : "Credit Limit",
+            "example" : 12
           }
         }
       },
