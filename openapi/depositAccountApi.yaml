@@ -1228,34 +1228,19 @@
             }
           },
           "result" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Result"
-            }
+            "$ref" : "#/components/schemas/Result"
           },
           "notification" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/GetNotification"
-            }
+            "$ref" : "#/components/schemas/GetNotification"
           },
           "rates" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Rates"
-            }
+            "$ref" : "#/components/schemas/Rates"
           },
           "product" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Product"
-            }
+            "$ref" : "#/components/schemas/Product"
           },
           "statementSettings" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/StatementSettings"
-            }
+            "$ref" : "#/components/schemas/StatementSettings"
           }
         }
       },
@@ -1380,16 +1365,13 @@
             "description" : "offsetGL",
             "example" : 20718894
           },
-          "result" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Rates"
-            }
-          },
           "routingNumber" : {
             "type" : "string",
             "description" : "routingNumber",
             "example" : "126543610"
+          },
+          "result" : {
+            "$ref" : "#/components/schemas/Rates"
           }
         }
       },
