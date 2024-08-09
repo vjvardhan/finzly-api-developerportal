@@ -470,13 +470,8 @@
         }
       },
       "FXQuoteRequest" : {
-        "required" : [ "buyCurrency", "customerId", "customerIdType", "externalReferenceId", "productType", "sellCurrency" ],
+        "required" : [ "buyCurrency", "customerId", "customerIdType", "productType", "sellCurrency" ],
         "properties" : {
-          "externalReferenceId" : {
-            "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
-            "example" : "REQ123"
-          },
           "channel" : {
             "type" : "string",
             "description" : "The channel name set by the FX quote request system such as API, TELLER etc. This is an optional field and defaulted to API if it is not provided. The channel names should be defined in the Finzly system before it can be used in the API.",
@@ -626,13 +621,11 @@
           },
           "code" : {
             "type" : "string",
-            "description" : "This will indicate the error code in case of API error",
-            "example" : "FXQUOTE001"
+            "description" : "This will indicate the error code in case of API error"
           },
           "message" : {
             "type" : "string",
-            "description" : "This will be the detailed error message indicating what failed and how to fix the issue",
-            "example" : "Failed to get a FX Quote due to the mandatory attribute <attribute-name> is not provide."
+            "description" : "This will be the detailed error message indicating what failed and how to fix the issue"
           },
           "data" : {
             "$ref" : "#/components/schemas/FXQuoteResponse_data"
@@ -888,11 +881,6 @@
       "FXQuoteResponse_data" : {
         "type" : "object",
         "properties" : {
-          "externalReferenceId" : {
-            "type" : "string",
-            "description" : "Unique reference id from a system outside of finzly. The external reference id can be used by the finzly for the request tracing (if needed).",
-            "example" : "REQ123"
-          },
           "quoteUUID" : {
             "type" : "string",
             "description" : "FX Quote universally unique identifier (UUID)",
