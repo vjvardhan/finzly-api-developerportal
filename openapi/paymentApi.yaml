@@ -5309,7 +5309,7 @@
         "type" : "object",
         "properties" : {
           "paymentUID" : {
-            "type" : "1252"
+            "type" : "string"
           }
         }
       },
@@ -5317,7 +5317,7 @@
         "type" : "object",
         "properties" : {
           "paymentUID" : {
-            "type" : "1252"
+            "type" : "string"
           }
         },
         "description" : "If the status is Failure then data will be null"
@@ -5326,7 +5326,7 @@
         "type" : "object",
         "properties" : {
           "paymentUID" : {
-            "type" : "1252",
+            "type" : "string",
             "description" : "Payment unique identifier."
           }
         },
