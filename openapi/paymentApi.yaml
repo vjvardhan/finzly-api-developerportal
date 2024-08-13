@@ -1574,7 +1574,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/ReturnPaymentResponse"
+                    "$ref" : "#/components/schemas/ReversePaymentResponse"
                   }
                 }
               }
