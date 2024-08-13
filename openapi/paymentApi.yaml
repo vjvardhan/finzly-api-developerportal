@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Payment API",
-    "version" : "2.3.1"
+    "version" : "2.3.2"
   },
   "servers" : [ {
     "url" : "https://sandbox-security-uat.finzly.io/auth/realms/BANKOS.UAT.SANDBOX.CUSTOMER/protocol/openid-connect/token",
@@ -2629,13 +2629,13 @@
           "accountType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL.",
+            "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL or Loan.",
             "example" : "Deposit"
           },
           "subAccountType" : {
             "maxLength" : 20,
             "type" : "string",
-            "description" : "This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings or GL.",
+            "description" : "This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings, Loan or GL.",
             "example" : "Checking"
           },
           "name" : {
@@ -2659,7 +2659,7 @@
             "type" : "string",
             "description" : "This is an optional field, it is required when the accountUID is not provided. The unique identifier type to identifiy the bank details. You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.",
             "example" : "NID",
-            "enum" : [ "NID", "SWIFT" ]
+            "enum" : [ "NID", "BIC" ]
           },
           "bankId" : {
             "maxLength" : 35,
@@ -2720,8 +2720,8 @@
           "subAccountType" : {
             "maxLength" : 20,
             "type" : "string",
-            "description" : "Whether the receiver account is a Checking or Savings. This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code).",
-            "example" : "Checking, Savings"
+            "description" : "Whether the receiver account is a Checking or Savings or Loan. This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code).",
+            "example" : "Checking"
           },
           "accountCurrency" : {
             "maxLength" : 3,
@@ -2791,26 +2791,26 @@
           "accountType" : {
             "maxLength" : 35,
             "type" : "string",
-            "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL.",
+            "description" : "Type of the account. This is an optional field, it is required when the accountUID is not provided. The possible values are Deposit or GL or Loan.",
             "example" : "Deposit"
           },
           "subAccountType" : {
             "maxLength" : 20,
             "type" : "string",
-            "description" : "This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings or GL.",
-            "example" : "Checking, Savings or GL"
+            "description" : "This is an optional field, it is required when the accountUID is not provided and for the speed associated with the ACH payment rail (This helps to identify the ACH tran code). If the accountType is GL then subAccountType should be GL also. The possible values are Checking, Savings, Loan or GL.",
+            "example" : "Checking"
           },
           "name" : {
             "maxLength" : 50,
             "type" : "string",
             "description" : "Creditor name associated with the payment. This is an optional field, it is required when the accountUID is not provided. For the speed associated with the fedwire payment rail, this will be mapped to {5000} tag.",
-            "example" : "Creditor/Sender Name"
+            "example" : "Creditor name"
           },
           "entityType" : {
             "maxLength" : 45,
             "type" : "string",
             "description" : "Type of the entity. It is required when the accountUID is empty and accountType is Deposit. The valid values are Consumer or Corporate.",
-            "example" : "Consumer or Corporate",
+            "example" : "Consumer",
             "enum" : [ "Consumer", "Corporate" ]
           },
           "address" : {
@@ -2820,7 +2820,7 @@
             "maxLength" : 10,
             "type" : "string",
             "description" : "This is an optional field, it is required when the accountUID is not provided. The unique identifier type to identifiy the bank details. You have two options either provide NID or SWIFT. A SWIFT code — sometimes also called a BIC number — is a standard format for Business Identifier Codes (BIC). It is an 8 to 11-character code that identifies banks globally. An NID number (a.k.a ABA/routing number) it is 9-digit numeric characters used by banks to identify specific financial institutions within the United States.",
-            "example" : "NID or SWIFT"
+            "example" : "NID"
           },
           "bankId" : {
             "maxLength" : 35,
@@ -2867,7 +2867,7 @@
             "maxLength" : 20,
             "type" : "string",
             "description" : "Sub acount type associated with the account possible values are Checking or Savings",
-            "example" : "Checking, Savings"
+            "example" : "Checking"
           },
           "accountCurrency" : {
             "maxLength" : 3,
@@ -4021,7 +4021,7 @@
           },
           "deliveryAgentType" : {
             "type" : "string",
-            "description" : "Debit account type. The possible values are Deposit, GL, MCA.",
+            "description" : "Debit account type. The possible values are Deposit, GL, Loan.",
             "example" : "Deposit"
           },
           "wireType" : {
