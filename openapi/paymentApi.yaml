@@ -19,7 +19,7 @@
   } ],
   "tags" : [ {
     "name" : "Payments",
-    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Get Payment Details\n3. Search Payments\n4. Cancel a Payment\n5. Return a Payment\n6. Reverse a Payment\n7. Transfer (Book) Payment\n"
+    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
   }, {
     "name" : "Bulk Payment",
     "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported.\n  1. ACH - NACHA format\n  2. Wire\n  3. RTP\n  4. FedNow.      \n \n"
@@ -3777,7 +3777,7 @@
             "example" : "Failed to reverse a payment: <Reason>"
           },
           "data" : {
-            "$ref" : "#/components/schemas/ReversePaymentResponse_data"
+            "$ref" : "#/components/schemas/ReturnPaymentResponse_data"
           }
         }
       },
@@ -5317,17 +5317,9 @@
         "type" : "object",
         "properties" : {
           "paymentUID" : {
-            "type" : "string"
-          }
-        },
-        "description" : "If the status is Failure then data will be null"
-      },
-      "ReversePaymentResponse_data" : {
-        "type" : "object",
-        "properties" : {
-          "paymentUID" : {
             "type" : "string",
-            "description" : "Payment unique identifier."
+            "description" : "Payment unique identifier.",
+            "example" : "1235"
           }
         },
         "description" : "If the status is Failure then data will be null"
