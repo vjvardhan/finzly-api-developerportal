@@ -19,7 +19,7 @@
   } ],
   "tags" : [ {
     "name" : "Payments",
-    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment \n2.Initiate Debit Payment \n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
+    "description" : "Payments APIs enables third-parties, banks, and bank's downstream partners to initiate and manage payments for their customers.\n\nThe single payment API support the payment origination for the various payment rails such as ACH, FedWire, Instant Payments based on the speed preference.\n\nFollowing use cases helps you to understand the current payment capabilities exposed via Finzly Connect APIs.       \n\n1. Initiate Credit Payment (Payout)\n2. Initiate Debit Payment (Collection)\n3. Get Payment Details\n4. Search Payments\n5. Cancel a Payment\n6. Return a Payment\n7. Reverse a Payment\n8. Transfer (Book) Payment\n"
   }, {
     "name" : "Bulk Payment",
     "description" : "This feature allows customers to upload bulk payments and process them seamlessly. Following payment, rails are supported.\n  1. ACH - NACHA format\n  2. Wire\n  3. RTP\n  4. FedNow.      \n \n"
@@ -2408,7 +2408,7 @@
           },
           "paymentRemittanceNotes" : {
             "type" : "string",
-            "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field",
+            "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field. The charater limit for the ACH payment is 80 characters and for RTP 140 characters.",
             "example" : "Remittance Notes"
           },
           "localInstruments" : {
@@ -2503,7 +2503,7 @@
           },
           "paymentRemittanceNotes" : {
             "type" : "string",
-            "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field",
+            "description" : "This is applicable for the ACH and RTP payment. It signifies the information originator requests its bank to transmit to the Beneficiary about the reason for a credit transfer to facilitate reconciliation by the Beneficiary. This is an optional field. The charater limit for the ACH payment is 80 characters and for RTP 140 characters.",
             "example" : "Remittance Notes"
           },
           "operationNote" : {
