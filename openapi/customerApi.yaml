@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.3.4"
+    "version" : "2.3.5"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -451,7 +451,7 @@
         }
       }
     },
-    "/v1/customers/{customerUID}/fees" : {
+        "/v1/customers/{customerUID}/fees" : {
       "post" : {
         "tags" : [ "Customer" ],
         "summary" : "Add customer fee tier",
@@ -2870,7 +2870,7 @@
           }
         }
       },
-      "AddCustomerFeeTierRequest" : {
+            "AddCustomerFeeTierRequest" : {
         "required" : [ "application", "feeTier" ],
         "properties" : {
           "application" : {
@@ -4257,11 +4257,6 @@
       },
       "SearchCustomerUserRequest" : {
         "properties" : {
-          "userId" : {
-            "type" : "string",
-            "description" : "User unique identifer.",
-            "example" : "f945bc67-c44b-4f88-91d9-d09434e4dd37"
-          },
           "loginId" : {
             "type" : "string",
             "description" : "Unique identifier.",
