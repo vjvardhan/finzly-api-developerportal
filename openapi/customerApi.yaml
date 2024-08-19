@@ -2290,7 +2290,7 @@
         }
       },
       "CustomerContactIntermediaryBankAddress" : {
-        "required" : [ "addressLine1", "city", "countryCode", "postalCode" ],
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode","state" ],
         "properties" : {
           "addressLine1" : {
             "type" : "string",
