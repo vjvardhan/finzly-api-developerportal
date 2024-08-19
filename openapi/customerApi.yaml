@@ -451,200 +451,6 @@
         }
       }
     },
-        "/v1/customers/{customerUID}/fees" : {
-      "post" : {
-        "tags" : [ "Customer" ],
-        "summary" : "Add customer fee tier",
-        "description" : "Add cusstomer fee tier for an existing customer",
-        "operationId" : "addCustomerFeeTierByCustomerUID",
-        "parameters" : [ {
-          "name" : "customerUID",
-          "in" : "path",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string",
-            "description" : "Customer unique identifier associated with the customer in the Finzly's CRM system"
-          }
-        } ],
-        "requestBody" : {
-          "description" : "Customer fee tier details",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/AddCustomerFeeTierRequest"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "default" : {
-            "description" : "Customer fee tier id.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/FeeAddAndUpdateResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Successfully processed request",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/FeeAddAndUpdateResponse"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "bad input parameter environment"
-          },
-          "401" : {
-            "description" : "You are not authorized to access the resource"
-          },
-          "402" : {
-            "description" : "The parameters were valid but the request failed."
-          },
-          "403" : {
-            "description" : "Accessing the resource you were trying to reach is forbidden"
-          },
-          "404" : {
-            "description" : "The resource you were trying to reach is not found"
-          },
-          "405" : {
-            "description" : "bad input parameter environment"
-          },
-          "409" : {
-            "description" : "The request conflicts with another request (perhaps due to using the same idempotent key)."
-          },
-          "429" : {
-            "description" : "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
-          },
-          "500" : {
-            "description" : "Something went wrong on back end.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service unavailable"
-          }
-        }
-      }
-    },
-    "/v1/customers/{customerUID}/fees/{feeId}" : {
-      "put" : {
-        "tags" : [ "Customer" ],
-        "summary" : "Update customer fee tier",
-        "description" : "Update cusstomer fee tier",
-        "operationId" : "updateCustomerFeeTierByCustomerUID",
-        "parameters" : [ {
-          "name" : "customerUID",
-          "in" : "path",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string",
-            "description" : "Customer unique identifier associated with the customer in the Finzly's CRM system"
-          }
-        }, {
-          "name" : "feeId",
-          "in" : "path",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string",
-            "description" : "Customer feeTier unique identifier associated with the customer in the Finzly's CRM system"
-          }
-        } ],
-        "requestBody" : {
-          "description" : "Customer fee tier details",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateCustomerFeeTierRequest"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "default" : {
-            "description" : "Customer fee tier id.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/FeeAddAndUpdateResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Successfully processed request",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/FeeAddAndUpdateResponse"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "bad input parameter environment"
-          },
-          "401" : {
-            "description" : "You are not authorized to access the resource"
-          },
-          "402" : {
-            "description" : "The parameters were valid but the request failed."
-          },
-          "403" : {
-            "description" : "Accessing the resource you were trying to reach is forbidden"
-          },
-          "404" : {
-            "description" : "The resource you were trying to reach is not found"
-          },
-          "405" : {
-            "description" : "bad input parameter environment"
-          },
-          "409" : {
-            "description" : "The request conflicts with another request (perhaps due to using the same idempotent key)."
-          },
-          "429" : {
-            "description" : "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
-          },
-          "500" : {
-            "description" : "Something went wrong on back end.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Error"
-                  }
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service unavailable"
-          }
-        }
-      }
-    },
     "/v2/customers/{customerUID}/accounts" : {
       "get" : {
         "tags" : [ "Customer Account" ],
@@ -2335,7 +2141,7 @@
         }
       },
       "CustomerAddress" : {
-        "required" : [ "addressLine1", "city", "countryCode", "postalCode" ],
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode", "state" ],
         "properties" : {
           "addressLine1" : {
             "type" : "string",
@@ -2430,7 +2236,7 @@
       },
       "CustomerLimit" : {
         "properties" : {
-          "key" : {
+          "kay" : {
             "type" : "string",
             "description" : "A valid appication limit code which is associated with the provided application name. e.g. | 1. Payment Galaxy FEDWIRE_PAYMENT_LIMIT_PER_FILE, FEDWIRE_PAYMENT_LIMIT_PER_DAY, FEDWIRE_PAYMENT_LIMIT_PER_MONTH, FEDWIRE_PAYMENT_LIMIT_PER_TRANSACTION, FEDWIRE_PAYMENT_LIMIT_PER_WEEK, INSTANT_PAYMENT_LIMIT_PER_DAY, INSTANT_PAYMENT_LIMIT_PER_FILE, INSTANT_PAYMENT_LIMIT_PER_MONTH, NO_OF_ACH_BATCHES_PER_FILE, INSTANT_PAYMENT_LIMIT_PER_TRANSACTION, INSTANT_PAYMENT_LIMIT_PER_WEEK, NO_OF_ACH_FILES_PER_DAY, NO_OF_ACH_FILES_PER_MONTH, SWIFT_PAYMENT_LIMIT_PER_MONTH, SWIFT_PAYMENT_LIMIT_PER_DAY, SWIFT_PAYMENT_LIMIT_PER_TRANSACTION, SWIFT_PAYMENT_LIMIT_PER_WEEK, ACH_PAYMENT_LIMIT_PER_TRANSACTION, ACH_POP_CREDIT_LIMIT_PER_BATCH, ACH_POP_CREDIT_TRANSACTION_LIMIT, ACH_POP_DEBIT_LIMIT_PER_BATCH, ACH_POP_DEBIT_TRANSACTION_LIMIT, ACH_PPD_CREDIT_LIMIT_PER_BATCH, ACH_PPD_CREDIT_TRANSACTION_LIMIT, ACH_PPD_DEBIT_LIMIT_PER_BATCH, ACH_PPD_DEBIT_TRANSACTION_LIMIT, ACH_WEB_CREDIT_LIMIT_PER_BATCH, ACH_WEB_CREDIT_TRANSACTION_LIMIT, ACH_WEB_DEBIT_LIMIT_PER_BATCH, ACH_WEB_DEBIT_TRANSACTION_LIMIT, ACH_WHITELIST_LIMIT 2. Confrms FX_FORWARD_LIMIT, FX_DAILY_SETTLEMENT_LIMIT",
             "example" : "FEDWIRE_PAYMENT_LIMIT_PER_DAY"
@@ -2867,49 +2673,6 @@
             "items" : {
               "$ref" : "#/components/schemas/CustomerAppLimit"
             }
-          }
-        }
-      },
-            "AddCustomerFeeTierRequest" : {
-        "required" : [ "application", "feeTier" ],
-        "properties" : {
-          "application" : {
-            "type" : "string",
-            "description" : "A valid application name should be present in the Finzly system  and enabled for fees.\ne.g. Confirms, FX FrontOffice, Deposit, Teller, CRM, FX Trader, Foreign Exchange, Payment Galaxy, etc...",
-            "example" : "Payment Galaxy"
-          },
-          "accountNumber" : {
-            "type" : "string",
-            "description" : "A valid account number should be present in the Finzly system and associated with the respective Legal Entity (LE).",
-            "example" : "32265656"
-          },
-          "feeTier" : {
-            "type" : "string",
-            "description" : "A valid feeTier should be present in the Finzly system. e.g. Gold,Silver,Platinum,BEN,SHA,ON,TELLER CONSUMER ACH,TELLER CONSUMER FEDWIRE,TELLER CONSUMER SWIFT,TELLER CORPORATE ACH,TELLER CORPORATE FEDWIRE,TELLER CORPORATE SWIFT, etc ...",
-            "example" : "Gold"
-          }
-        }
-      },
-      "UpdateCustomerFeeTierRequest" : {
-        "properties" : {
-          "accountNumber" : {
-            "type" : "string",
-            "description" : "A valid account number should be present in the Finzly system and associated with the respective Legal Entity (LE).",
-            "example" : "32265656"
-          },
-          "feeTier" : {
-            "type" : "string",
-            "description" : "A valid feeTier should be present in the Finzly system.            e.g. Gold,Silver,Platinum,BEN,SHA,ON,TELLER CONSUMER ACH,TELLER CONSUMER FEDWIRE,TELLER CONSUMER SWIFT,TELLER CORPORATE ACH,TELLER CORPORATE FEDWIRE,TELLER CORPORATE SWIFT, etc ...",
-            "example" : "Gold"
-          }
-        }
-      },
-      "FeeAddAndUpdateResponse" : {
-        "properties" : {
-          "id" : {
-            "type" : "number",
-            "description" : "Customer fee tier id.",
-            "example" : 889
           }
         }
       },
@@ -4257,6 +4020,11 @@
       },
       "SearchCustomerUserRequest" : {
         "properties" : {
+          "userId" : {
+            "type" : "string",
+            "description" : "User unique identifer.",
+            "example" : "f945bc67-c44b-4f88-91d9-d09434e4dd37"
+          },
           "loginId" : {
             "type" : "string",
             "description" : "Unique identifier.",
