@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Customer and Account API",
-    "version" : "2.3.5"
+    "version" : "2.3.6"
   },
   "servers" : [ {
     "url" : "https://sandbox-digitalbanking-uat.finzly.io/auth/realms/{{TENANT}}/protocol/openid-connect/token",
@@ -451,7 +451,7 @@
         }
       }
     },
-        "/v1/customers/{customerUID}/fees" : {
+    "/v1/customers/{customerUID}/fees" : {
       "post" : {
         "tags" : [ "Customer" ],
         "summary" : "Add customer fee tier",
@@ -2869,7 +2869,7 @@
             }
           }
         }
-      },                
+      },
       "AddCustomerFeeTierRequest" : {
         "required" : [ "application", "feeTier" ],
         "properties" : {
@@ -4277,19 +4277,14 @@
             "description" : "users email id",
             "example" : "user123@gamil.com"
           },
-          "phoneNumber" : {
+          "type" : {
             "type" : "string",
-            "description" : "User contact number",
-            "example" : "9389989658"
+            "description" : "Type of the user",
+            "example" : "Customer"
           },
-          "status" : {
+          "legalEntityId" : {
             "type" : "string",
-            "description" : "Current status of the user",
-            "example" : "Active"
-          },
-          "shortName" : {
-            "type" : "string",
-            "description" : "The name of the legal entity associated with the user.",
+            "description" : "The legal entity associated with the user.",
             "example" : "CORP"
           }
         }
@@ -4757,7 +4752,7 @@
             "example" : "Banka"
           },
           "address" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/CustomerContactIntermediaryBankAddress"
           },
           "nationalCode" : {
             "type" : "string",
