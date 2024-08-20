@@ -4752,7 +4752,7 @@
             "example" : "Banka"
           },
           "address" : {
-            "$ref" : "#/components/schemas/CustomerAddress"
+            "$ref" : "#/components/schemas/CustomerContactIntermediaryBankAddress"
           },
           "nationalCode" : {
             "type" : "string",
