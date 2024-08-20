@@ -451,7 +451,7 @@
         }
       }
     },
-    "/v1/customers/{customerUID}/fees" : {
+        "/v1/customers/{customerUID}/fees" : {
       "post" : {
         "tags" : [ "Customer" ],
         "summary" : "Add customer fee tier",
@@ -2335,7 +2335,7 @@
         }
       },
       "CustomerAddress" : {
-        "required" : [ "addressLine1", "city", "countryCode", "postalCode","state" ],
+        "required" : [ "addressLine1", "city", "countryCode", "postalCode" ],
         "properties" : {
           "addressLine1" : {
             "type" : "string",
@@ -2869,7 +2869,7 @@
             }
           }
         }
-      },      
+      },                
       "AddCustomerFeeTierRequest" : {
         "required" : [ "application", "feeTier" ],
         "properties" : {
