@@ -4285,7 +4285,7 @@
           "legalEntityId" : {
             "type" : "string",
             "description" : "The legal entity associated with the user.",
-            "example" : "CORP"
+            "example" : "1023"
           }
         }
       },
