@@ -6,11 +6,11 @@ title: Finzly Roles API
 
 ### **Search Roles**
 
-[POST/searchRoleV2](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRoleV2/)
+[POST/searchRole/](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRole/)
 
 **HTTP Method: POST**
 
-**Description:** Sending a POST request to /searchRoleV2 endpoint allows users to search roles created by business customers to support their internal users. All the request parameters and objects are mentioned below - 
+**Description:** Sending a POST request to /searchRole/ endpoint allows users to search roles created by business customers to support their internal users. All the request parameters and objects are mentioned below - 
 
 **Request Parameters**
 
@@ -18,7 +18,7 @@ title: Finzly Roles API
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[V2GetRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRoleV2/)|true|Search the roles using various parameters|
+|body|body|[/GetRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRole/)|true|Search the roles using various parameters|
 
 
 **JSON Response**
@@ -75,11 +75,11 @@ title: Finzly Roles API
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[[V2Role](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRoleV2/)]|false|none|none|
-|pagination|[V2Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRoleV2/)|false |none|none|
+|data|[[/Role](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRole/)]|false|none|none|
+|pagination|[/Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchRole/)|false |none|none|
 
 
-**V2Role**
+**/Role**
 ```yaml Before
 {
   "roleUUID": "123e4567-e89b-12d3-a456-426614174000 etc.",
@@ -121,12 +121,12 @@ title: Finzly Roles API
 |type|string|false|none|Type of the Role|
 |customerUID|number|false |none|A unique id associated with the CRM entity|
 |customerShortName|string|false|none|Short name associated with the CRM entity|
-|applications|[V2App]|false|none|none|
+|applications|[/App]|false|none|none|
 
 
-### **Add Role V2**
+### **Add Role /**
 
-[POST /roles](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRoleV2/)
+[POST /roles](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRole/)
 
 **HTTP Method: POST**
 
@@ -138,7 +138,7 @@ Request Parameters
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[V2CreateRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRoleV2/)|true|Search the roles using various parameters|
+|body|body|[/CreateRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRole/)|true|Search the roles using various parameters|
 
 **JSON Response**
 
@@ -164,9 +164,9 @@ Sending a successful POST request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2CreateRoleResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRoleV2/)|false|none|none|
+|data|[/CreateRoleResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addRole/)|false|none|none|
 
-**V2 Create Role Response Data**
+**/ Create Role Response Data**
 ```yaml Before
 {
   "externalReferenceId": "for e.g. 126879",
@@ -181,7 +181,7 @@ Sending a successful POST request to this endpoint returns the following data -
 
 ### **Get Role**
 
-[GET /roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getRoleV2/)
+[GET /roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getRole/)
 
 HTTP Method: GET**
 
@@ -250,9 +250,9 @@ HTTP Method: GET**
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2Role](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getRoleV2/)|false|none|none|
+|data|[/Role](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/getRole/)|false|none|none|
 
-**V2Role**
+**/Role**
 
 |**Name**|**Type**|**Required**|**Restrictions**|**Description**|
 | :- | :- | :- | :- | :- |
@@ -262,11 +262,11 @@ HTTP Method: GET**
 |type|string|false|none|Type of the Role|
 |customerUID|number|false |none|A unique id associated with the CRM entity|
 |customerShortName|string|false|none|Short name associated with the CRM entity|
-|applications|[V2App]|false|none|none|
+|applications|[/App]|false|none|none|
 
-### **Update Role V2**
+### **Update Role /**
 
-[PUT /roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRoleV2/)
+[PUT /roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRole/)
 
 **HTTP Method:  PUT**
 
@@ -278,7 +278,7 @@ HTTP Method: GET**
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
 |roleUUID|path|string|true|A UUID (Universal Unique Identifier) associated with a role|
-|body|body|<p></p><p>[V2CreateRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRoleV2/)</p>|false|Type of the role|
+|body|body|<p></p><p>[/CreateRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRole/)</p>|false|Type of the role|
 
 **JSON Response**
 
@@ -304,11 +304,11 @@ HTTP Method: GET**
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2CreateRoleResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRoleV2/)|false|none|none|
+|data|[/CreateRoleResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateRole/)|false|none|none|
 
 ### **Delete Role**
 
-[DELETE /roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRoleV2/)
+[DELETE /roles/{roleUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRole/)
 
 **HTTP Method: DELETE**
 
@@ -318,7 +318,7 @@ HTTP Method: GET**
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|<p>[V2GetRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRoleV2/)</p><p></p>|true|Search the roles using various parameters|
+|body|body|<p>[/GetRoleRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRole/)</p><p></p>|true|Search the roles using various parameters|
 
 **JSON Response**
 
@@ -347,9 +347,9 @@ HTTP Method: GET**
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2DeleteRoleResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRoleV2/)|false|none|none|
+|data|[/DeleteRoleResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/deleteRole/)|false|none|none|
 
-**V2 Delete Roles Response**
+**/ Delete Roles Response**
 ```yaml Before
 {
   "roleUUID": "for e.g. 123e4567-e89b-12d3-a456-426614174000"

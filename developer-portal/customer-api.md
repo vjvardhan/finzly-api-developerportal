@@ -21,7 +21,7 @@ __Description__ - Using this API, the user can add a CRM entity to FinzlyOS. Thi
 ## **Customer API**
 ### **Search Customer**
 
-[GET /customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)
+[GET /customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)
 
 __HTTP Method: GET__
 
@@ -145,8 +145,8 @@ __API Response Objects-__
 |status|string|false|none|Status of the API request either it will be a success or a failure|
 |code|string|false|none|Code associated with the error.|
 |message|string|false|none|Error message corresponding to the error code indicating the issue in API call and an indication on how to resolve it.|
-|pagination|[Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)|false|none|none|
-|data|[[GetCustomerDetailResponse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)]|false|none|none|
+|pagination|[Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)|false|none|none|
+|data|[[GetCustomerDetailResponse](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)]|false|none|none|
 
 
 **Get Customer Detail Response**
@@ -266,9 +266,9 @@ __API Response Objects-__
 |logoUrl|string|false|none|Customer logo url|
 |linkedinUrl|string|false|none|Company linkedin URL|
 |<p>twitterUrl</p><p></p><p></p>|string|false|none|Customer twitter url|
-|legalAddress|[CustomerAddress](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)|false|none|none|
+|legalAddress|[CustomerAddress](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)|false|none|none|
 |mailAddressSameAsLegal|boolean|false|none|none|
-|mailingAddress|[CustomerAddress](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)|false|none|none|
+|mailingAddress|[CustomerAddress](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)|false|none|none|
 |relationshipType|string|false|none|Relationship Type|
 |partnerOrgShortName|string|false|none|This is the shortname associated with the customer defined in the CRM system as 'Downstream Partner'. This is required only if the customer relationshipType is Third party|
 |processingOrgShortName|string|false|none|This is the shortname associated with the processing org the customer is associated with.|
@@ -276,10 +276,10 @@ __API Response Objects-__
 |relationshipManager|string|false|none|Relationship manager name. It needs to be a valid user login id in the finzly system.|
 |originatingOfficer|string|false|none|Originating Officer name. It needs to be a valid user login id in the finzly system.|
 |parentEntityShortName|string|false|none|This is the short name associated with the existing customer legal entity act as a parent entity|
-|addtionalProfileDetails|[[CustomerAdditonalProfileDetails](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)]|false|none|none|
+|addtionalProfileDetails|[[CustomerAdditonalProfileDetails](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)]|false|none|none|
 |secCodes|string|false|none|Provide all valid SEC-Standard Entry Class codes allowed for the given customer entity|
 |note|string|false|none|Free form text to leave any notes for the customer entity.|
-|legalEntityAccessSettings|[LegalEntityAccessSettings](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomersV2/)|false|none|none|
+|legalEntityAccessSettings|[LegalEntityAccessSettings](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/searchCustomers/)|false|none|none|
 
 
 *Note the following about the results:*
@@ -290,7 +290,7 @@ __API Response Objects-__
 - *Curl Command Line: ​Contains a form of the request that you can copy and paste to execute at the command line or in scripts.*
 
 ### **Creating Customer**
-[POST /customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomerV2/)
+[POST /customers](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomer/)
 
 **HTTP Method:** **POST**
 
@@ -302,7 +302,7 @@ The entire data will be passed through the body section.
 
 |Name |In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|` `[CreateCustomerRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomerV2/)|true|Customer Details|
+|body|body|` `[CreateCustomerRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomer/)|true|Customer Details|
 
 
 **JSON Response** for POST request to **/customers** endpoint will return the following data - 
@@ -333,7 +333,7 @@ The entire data will be passed through the body section.
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[CreateUpdateCustomerResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomerV2/)</p><p></p>|false|none|none|
+|data|<p>[CreateUpdateCustomerResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/createCustomer/)</p><p></p>|false|none|none|
 
 
 **Note the following about the results:**
@@ -345,7 +345,7 @@ The entire data will be passed through the body section.
 
 ### **Getting Customer Information by customerUID**
 
-[GET /customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerByCustomerUIDV2/)
+[GET /customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/getCustomerByCustomerUID/)
 
 **HTTP Method: GET**
 
@@ -477,7 +477,7 @@ A successful GET request to **/customers/{customerUID}** endpoint returns the fo
 
 ### **Updating Customers**
 
-[PUT /customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/updateCustomerByCustomerUIDV2/)
+[PUT /customers/{customerUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/updateCustomerByCustomerUID/)
 
 **HTTP Method: PUT**
 
@@ -490,7 +490,7 @@ Here we need to Pass the Customer ID in the path of the API request and Data via
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
 |customerUID|path|string|true|none|
-|body|body|[UpdateCustomerRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/updateCustomerByCustomerUIDV2/)|true|Customer details|
+|body|body|[UpdateCustomerRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/updateCustomerByCustomerUID/)|true|Customer details|
 
 **JSON Response**
 
@@ -531,7 +531,7 @@ Here we need to Pass the Customer ID in the path of the API request and Data via
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[CreateUpdateCustomerResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/updateCustomerByCustomerUIDV2/)</p><p></p>|false|none|none|
+|data|<p>[CreateUpdateCustomerResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/customerapi/operation/updateCustomerByCustomerUID/)</p><p></p>|false|none|none|
 
 
 

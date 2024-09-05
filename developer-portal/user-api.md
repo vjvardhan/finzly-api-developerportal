@@ -7,7 +7,7 @@ title: Finzly User API
 
 ### **Search User**	
 
-[POST /users/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)
+[POST /users/search](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)
 
 **HTTP Method: POST**
 
@@ -16,7 +16,7 @@ title: Finzly User API
 
 |**Name**|**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[V2SearchUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)|true|Customer User|
+|body|body|[/SearchUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)|true|Customer User|
 
 **JSON Response**
 
@@ -61,12 +61,12 @@ title: Finzly User API
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[[V2SearchUser](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)]|false|none|none|
-|pagination|[V2Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)|false|none|none|
+|data|[[/SearchUser](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)]|false|none|none|
+|pagination|[/Pagination](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)|false|none|none|
 
-### **Get User V2**
+### **Get User /**
 
-[GET /users/{userUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)
+[GET /users/{userUUID}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)
 
 **HTTP Method: GET**
 
@@ -161,12 +161,12 @@ title: Finzly User API
 |type|string|false|none|Type of user|
 |createdBy|string|false|none|User Id who created the user in the system|
 |lastUpdatedBy|string|false|none|User who last updated the user in the system|
-|roles|[[V2UserRole](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)]|false|none|none|
-|userlimits|<p>[[V2UserLimits](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUserV2/)]</p><p></p>|false|none|none|
+|roles|[[/UserRole](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)]|false|none|none|
+|userlimits|<p>[[/UserLimits](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/searchUser/)]</p><p></p>|false|none|none|
 
 ### **Update User**
 
-[PUT /users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)
+[PUT /users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUser/)
 
 **HTTP Method: PUT**
 
@@ -177,7 +177,7 @@ title: Finzly User API
 
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|<p>[V2UpdateUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)</p><p></p>|false|Customer User|
+|body|body|<p>[/UpdateUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUser/)</p><p></p>|false|Customer User|
 
 **JSON Response**
 
@@ -200,10 +200,10 @@ title: Finzly User API
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2AddUserResponseData](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUserV2/)|false|none|none|
+|data|[/AddUserResponseData](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/updateUser/)|false|none|none|
 
 
-**V2 Add User Response**
+**/ Add User Response**
 ```yaml Before
 {
   "externalReferenceId": "string",
@@ -221,7 +221,7 @@ title: Finzly User API
 
 ### **Add User**
 
-[POST /users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)
+[POST /users](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUser/)
 
 **HTTP Method: POST**
 
@@ -232,7 +232,7 @@ Request Parameters
 
 |Name|In|Type|Required|Description|
 | :- | :- | :- | :- | :- |
-|body|body|<p>[V2UpdateUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)</p><p></p>|false|Customer User|
+|body|body|<p>[/UpdateUserRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUser/)</p><p></p>|false|Customer User|
 
 **JSON Response**
 
@@ -256,9 +256,9 @@ Request Parameters
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|[V2AddUserResponseData](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUserV2/)|false|none|none|
+|data|[/AddUserResponseData](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/addUser/)|false|none|none|
 
-**V2 Add User Response**
+**/ Add User Response**
 ```yaml Before
 {
   "externalReferenceId": "string",
@@ -276,7 +276,7 @@ Request Parameters
 |userUUID|string|false|none|A universally unique identifier (UUID) assigned to the user by the system|
 
 ### **Activate User**
-[PUT /users/{userUUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/activateUserV2/)
+[PUT /users/{userUUID}/activate](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/activateUser/)
 **HTTP Method: PUT**
 
 **Description -** Sending a PUT request to the PUT /users/{userUUID}/activate endpoint allows users to activate a user. The request parameters and objects are mentioned below - 
@@ -316,9 +316,9 @@ Request Parameters
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
 
 
-### **Suspend User V2**
+### **Suspend User /**
 
-[PUT /users/{userUUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/suspendUserV2/)
+[PUT /users/{userUUID}/suspend](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/userreference/operation/suspendUser/)
 
 **HTTP Method: PUT**
 

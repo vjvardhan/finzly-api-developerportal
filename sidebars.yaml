@@ -111,14 +111,18 @@ training:
       expanded: false
       pages:
         - page: openapi/fxAPI.page.yaml/*
-    - group: Customer and Accounts
+    - group: Customer
       expanded: false
       pages:
-        - page: openapi/customerAPI.page.yaml/*
+        - page: openapi/customerAPI.page.yaml/*    
     - group: Webhooks
       expanded: false
       pages:
         - page: openapi/paymentWebhook.page.yaml/*
+    - group: Deposit Accounts
+      expanded: false
+      pages:
+        - page: openapi/depositAccountApi.page.yaml/*
 - label: Frequently Asked Questions
   page: developer-portal/faq.md #< NoChange
 - label: Changelog

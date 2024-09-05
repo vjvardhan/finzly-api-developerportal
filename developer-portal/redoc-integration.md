@@ -70,7 +70,7 @@ versions:
     isDefault: false
   - definitionId: acme-v2
     id: v2
-    title: Acme V2
+    title: Acme /
     isDefault: true
 
 settings:

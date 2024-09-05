@@ -16,7 +16,7 @@ Following functions helps you to understand the current FX capabilities exposed 
 
 ## **API Functions**
 ### **Get FX Quote**
-[POST /fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)
+[POST /fx/quote](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuote/)
 
 **HTTP Method: GET**
 
@@ -27,7 +27,7 @@ Following functions helps you to understand the current FX capabilities exposed 
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[FXQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)|true|Quote request attributes to get the quote for a given ccy pair|
+|body|body|[FXQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuote/)|true|Quote request attributes to get the quote for a given ccy pair|
 
 **JSON Response**
 
@@ -64,10 +64,10 @@ A successful POST request to this endpoint returns the following data-
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuoteV2/)</p><p></p>|false|none|none|
+|data|<p>[FXQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXQuote/)</p><p></p>|false|none|none|
 
 ### **Accept FX Quote** 
-[PUT /fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)
+[PUT /fx/accept](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuote/)
 
 **HTTP Method: PUT**
 
@@ -78,7 +78,7 @@ A successful POST request to this endpoint returns the following data-
 
 |**Name** |**In**|**Type**|**Required**|**Description**|
 | :- | :- | :- | :- | :- |
-|body|body|[FXAcceptQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)|false|none|
+|body|body|[FXAcceptQuoteRequest](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuote/)|false|none|
 
 **JSON Response**
 
@@ -118,7 +118,7 @@ A successful GET request to this endpoint returns the following data-
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXAcceptQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuoteV2/)</p><p></p>|false|none|none|
+|data|<p>[FXAcceptQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/acceptFXQuote/)</p><p></p>|false|none|none|
 
 **FX Accept Quote Response Data**
 
@@ -144,7 +144,7 @@ A successful GET request to this endpoint returns the following data-
 |externalPricingSystemRefId|string|false|none|Unique reference id returned by the external system provider.|
 
 ### **Reject FX Quote**
-[PUT /fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)
+[PUT /fx/{quoteUUID}/reject](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuote/)
 
 **HTTP Method: PUT**
 
@@ -181,7 +181,7 @@ A successful PUT request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXRejectQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuoteV2/)</p><p></p>|false|none|none|
+|data|<p>[FXRejectQuoteResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/rejectFXQuote/)</p><p></p>|false|none|none|
 
 **FX Reject Quote Response Data**
 ```yaml Before
@@ -198,7 +198,7 @@ A successful PUT request to this endpoint returns the following data -
 
 ### **Get FX trade information (v2)**
 
-[GET /fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformationV2/)
+[GET /fx/{forexContractNo}](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformation/)
 
 **HTTP Method: GET**
 
@@ -249,7 +249,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXTradeInfoResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformationV2/)</p><p></p>|false|none|none|
+|data|<p>[FXTradeInfoResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/getFXTradeInformation/)</p><p></p>|false|none|none|
 
 **FX Trade Response Data**
 
@@ -293,7 +293,7 @@ A successful GET request to this endpoint returns the following data -
 |executionTime|string(date)|false|none|The execution time|
 
 ### **Cover FX Trade**
-[GET /fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTradeV2/)
+[GET /fx/{forexContractNo}/cover](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTrade/)
 
 **HTTP Method: GET**
 
@@ -343,7 +343,7 @@ A successful GET request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXCoverTradeResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTradeV2/)</p><p></p>|false|none|none|
+|data|<p>[FXCoverTradeResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/coverFXTrade/)</p><p></p>|false|none|none|
 
 **FX Cover Trader Response Data**
 
@@ -395,7 +395,7 @@ A successful GET request to this endpoint returns the following data -
 |referenceSpotRate|number|false|none|the offered rate|
 
 ### **Cancel FX Trade**
-[DELETE /fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)
+[DELETE /fx/{forexContractNo}/cancel](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTrade/)
 
 **HTTP Method: Delete**
 
@@ -432,7 +432,7 @@ A successful Delete request to this endpoint returns the following data -
 |status|string|false|none|This will return Success/Failed|
 |code|string|false|none|This will indicate the error code in case of API error|
 |message|string|false|none|This will be the detailed error message indicating what failed and how to fix the issue|
-|data|<p>[FXTradeCancelResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTradeV2/)</p><p></p>|false|none|none|
+|data|<p>[FXTradeCancelResponse_data](https://finzlyconnect-api-developer-portal.redoc.ly/openapi/reference/operation/cancelFXTrade/)</p><p></p>|false|none|none|
 
 **FX Trade Cancel Response Data**
 ```yaml Before
